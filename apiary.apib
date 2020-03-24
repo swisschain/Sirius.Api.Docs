@@ -1,80 +1,80 @@
 FORMAT: 1A
-HOST: https://polls.apiblueprint.org/
+HOST: https://sirius.swisschain.io/
 
-# Sirius
+# Sirius - Brokerage API 
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Sirius is a API allowing consumers to work with wallets and transfers on many different blockchains.
 
-## Questions Collection [/questions]
+Brokerage API allowing consumers to work with broker account. Broker account it is one wallet with many internal deposit accounts (personal accounts).
 
-### List All Questions [GET]
+## Broker Accounts [/api/broker-accounts]
 
-+ Response 200 (application/json)
+Hello world
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+Broker account allows you to receive deposits and send withdrawals in all supported blockchains. Broker account has accounts associated with it.
 
-### Create a New Question [POST]
+Each deposit and withdrawal can be associated with particular account and each account can be associated with anything you need to. Thanks to this, you can identify to which of your user, contract, bill or whatever particular transfer is related to.
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Creates a broker account [POST]
+
+Create a new broker account.
 
 + Request (application/json)
-
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
     + Headers
 
-            Location: /questions/2
+            X-Request-ID: number
+            Tenant-Id: Put your "customer ID" (temporally)
+    
+    + Body
+
+        {
+            "name": "Name of broker account"
+        }
+
++ Response 200 (application/json)
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "name": "Name of broker account",
+                "brokerAccountId": "ID of Broker account"
             }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "type": "string",
+              "title": "string",
+              "status": 0,
+              "detail": "string",
+              "instance": "string",
+              "extensions": {
+                "additionalProp1": {},
+                "additionalProp2": {},
+                "additionalProp3": {}
+              }
+            }
+            
+## Is Alive [/api/isalive]
+
+Service availability validation
+
+### API info [GET]
+
+Get is alive status.
+
++ Response 200 (application/json)
+
+    + Body
+    
+        {
+          "name": "Api",
+          "version": "1.0.0.0",
+          "env": null,
+          "hostName": "api-6d9cf8c746-qz478",
+          "isDebug": false,
+          "startedAt": "2020-03-23T13:45:41.5860463Z",
+          "stateIndicators": []
+        }
