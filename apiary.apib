@@ -3,30 +3,76 @@ HOST: https://sirius.swisschain.io/
 
 # Sirius - Brokerage API 
 
-Sirius is a API allowing consumers to work with wallets and transfers on many different blockchains.
+Sirius is an API allowing consumers to work with wallets and transfers in many different blockchains in the common manner. 
+You don't need to learn particularities of all the blockchains to receive crypto or tockens from your users or to send withdrawals to someone.
 
-Brokerage API allowing consumers to work with broker account. Broker account it is one wallet with many internal deposit accounts (personal accounts).
+It's easy as one, two, three!
+
+1. Create as many brokerage accounts as you need.
+2. Create accounts associated with your users, contracts, bills, or whatever you need whithin these broker accounts.
+3. You are ready to receive deposits and send withdrawals using our awesome API!
+
+# API usage
+
+## Allowed HTTP Verbs:
+- `PUT` : Updates a resource 
+- `POST` : Creates a resource
+- `GET` : Gets a resource or list of resources
+- `DELETE` : Deletes a resource
+
+## Description Of Usual Server Responses:
+- 200 `OK` : the request was successful.
+- 201 `Created` : the request was successful and a resource was created.
+- 204 `No Content` : the request was successful but there is no representation to return.
+- 400 `Bad Request` : the request has invalid or missing required parameters.
+- 401 `Unauthorized` : authentication failed.
+- 403 `Forbidden` : access denied.
+- 404 `Not Found` : resource was not found.
+
+## Pagination
+
+TODO
+
+## Error responses
+
+TODO
 
 ## Broker Accounts [/api/broker-accounts]
 
 Broker account allows you to receive deposits and send withdrawals in all supported blockchains. Broker account has accounts associated with it.
 
-Each deposit and withdrawal can be associated with particular account and each account can be associated with anything you need to. Thanks to this, you can identify to which of your user, contract, bill or whatever particular transfer is related to.
+Each deposit and withdrawal can be associated with particular account and each account can be associated with
+anything you need to. Thanks to this, you can identify to which of your user, contract, bill or whatever particular transfer is related to.
 
-### Creates a broker account [POST]
+---
+**Broker account attributes:**
 
-Create a new broker account.
+- __brokerAccountId__ `(String)` : unique identifier. 
+- __name__ `(String)` : Name of the broker account.
+- __state__ `(String)` : Current state of the broker account
+    - `Creating` : The broker account is not fully created yet, you to need to wait a bit, while Sirius completes this its creation. You can create accounts within it, but not receive or send transfers.
+    - `Active` : The broker account is active and can be used as usual.
+    - `Blocked` : The broker account is blocked - processing of all deposits and withdrawals is on hold.
+- __creationDateTime__ `(Timestamp)` : Timestamp when the broker account creation was started.
+- __activationDateTime__ `(Timestamp)` (optional) : Timestamp when the broker account was activated last time.
+- __blockingDateTime__ `(Timestamp)` (optional) : Timestamp when the broker account was blocked last time.
+
+---
+
+### Create a broker account [POST]
+
+Creates a new broker account.
 
 + Request (application/json)
     + Headers
 
-            X-Request-ID: number
+            X-Request-ID: Unique request ID. Use the same ID if you lost response and want to retry the request
             Tenant-Id: Put your "customer ID" (temporally)
     
     + Body
 
             {
-                "name": "Name of broker account"
+                "name": "Exchange clients"
             }
 
 + Response 200 (application/json)
@@ -34,8 +80,12 @@ Create a new broker account.
     + Body
 
             {
-                "name": "Name of broker account",
-                "brokerAccountId": "ID of Broker account"
+              "name": "Exchange clients",
+              "brokerAccountId": "100106",
+              "state": "creating",
+              "creationDateTime": "2020-03-24T15:27:51.9313772Z",
+              "blockingDateTime": null,
+              "activationDateTime": null
             }
 
 + Response 400 (application/json)
@@ -43,30 +93,88 @@ Create a new broker account.
     + Body
 
             {
-              "type": "string",
-              "title": "string",
-              "status": 0,
-              "detail": "string",
-              "instance": "string",
-              "extensions": {
-                "additionalProp1": {},
-                "additionalProp2": {},
-                "additionalProp3": {}
+              "errors": {
+                "name": [
+                  "Name is required"
+                ],
+                "X-Request-ID": [
+                  "Duplicate request ID detected. Try to use another value"
+                ]
+              }
+            }
+            
+### Search broker accounts [GET /api/broker-accounts{?name,brokerAccountId,state,order,cursor,limit}]
+
+Searches broker accounts.
+
++ Parameters
+    + name (optional, String) - Text to search in the name of the broker accounts
+    + brokerAccountId (optional, String) - Exact ID of the broker account to search
+    + state (optional, Enums list) - Coma separated list of the broker account states to search
+    + order (optional, Enum) - Result items sorting order
+    + cursor (optional, String) - Cursor to continue the search
+    + limit (optional, Number) - Maximum number of items to return in the search results
+
++ Request (application/json)
+    + Headers
+    
+            Tenant-Id: Put your "customer ID" (temporally)
+    
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "pagination": {
+                "cursor": "100104",
+                "count": 0,
+                "order": "asc",
+                "nextUrl": "/api/broker-accounts?Order=asc&Cursor=100108&Limit=2"
+              },
+              "items": [
+                {
+                  "name": "Exchange clients",
+                  "brokerAccountId": "100106",
+                  "state": "active",
+                  "creationDateTime": "2020-03-24T17:06:58.464Z",
+                  "blockedDateTime": null,
+                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                },
+                {
+                  "name": "Corporate",
+                  "brokerAccountId": "100108",
+                  "state": "active",
+                  "creationDateTime": "2020-03-24T17:06:28.464Z",
+                  "blockedDateTime": "2020-03-24T17:06:38.464Z",
+                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                }
+              ]
+            }
+            
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "order": [
+                  "Invalid order"
+                ],
+                "limit": [
+                  "Limit should be in the range 1..1000"
+                ]
               }
             }
             
 ## Is Alive [/api/isalive]
 
-Service availability validation
+Validates service availability.
 
 ### API info [GET]
 
-Get is alive status.
-
 + Response 200 (application/json)
-
     + Body
-    
+
             {
               "name": "Api",
               "version": "1.0.0.0",
