@@ -1,2 +1,2 @@
-# Service.Sirius.Api.Docs
+# Sirius.Api.Docs
 Sirius API blueprint documentation for apiary.io
