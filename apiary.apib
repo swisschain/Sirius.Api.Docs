@@ -39,10 +39,14 @@ TODO
 
 ## Blockchains [/api/blockchains{?name,blockchainId,protocolCode,protocolName,networkType,order,cursor,limit}]
 
-We distinguish _Blockchain_, _Protocol_, and _Network Type_ . Protocol is a set of rules how blockchain nodes 
-interact with each other. It's what people usually call a blockchain - 
-Bitcoin, Ethereum, Ripple. Blockchain is a particular "instance" of the protocol - 
-Ethereum Ropsten, Bitcoin Mainnet, Ethereum Mainnet... Network type can be private, test, or public.
+We distinguish _Blockchain_, _Protocol_, and _Network Type_. 
+
+- _Protocol_ is a set of rules on how 
+blockchain nodes interact with each other. It's what people usually call a blockchain - 
+Bitcoin, Ethereum, Ripple. 
+- _Blockchain_ is an "instance" of the protocol - 
+Ethereum Ropsten, Bitcoin Mainnet, Ethereum Mainnet. 
+- _Network type_ can be private, test, or public.
 
 TODO: Change terms to _Blockchain_ -> _Network_, _Protocol_ -> _Blockchain_?
 
@@ -52,9 +56,9 @@ TODO: Change terms to _Blockchain_ -> _Network_, _Protocol_ -> _Blockchain_?
 - __blockchainId__ `(String)` : unique identifier. 
 - __name__ `(String)` : Name of the blockchain.
 - __networkType__ `(String)` : Type of the network
-    - `Private` : Private blockchain visible only for particular customer.
-    - `Test` : Public test blockchain.
-    - `Public` : Public mainnet blockchain.
+    - `private` : Private blockchain visible only for particular customer.
+    - `test` : Public test blockchain.
+    - `public` : Public mainnet blockchain.
 - __protocol__ `(Protocol)` : Protocol of the blockchain.
     - __code__ `(String)` : Unique code of the protocol.
     - __name__ `(String)` : Name of the protocol.
@@ -137,9 +141,9 @@ anything you need to. Thanks to this, you can identify to which of your user, co
 - __brokerAccountId__ `(String)` : unique identifier. 
 - __name__ `(String)` : Name of the broker account.
 - __state__ `(String)` : Current state of the broker account
-    - `Creating` : The broker account is not fully created yet, you to need to wait a bit, while Sirius completes this its creation. You can create accounts within it, but not receive or send transfers.
-    - `Active` : The broker account is active and can be used as usual.
-    - `Blocked` : The broker account is blocked - processing of all deposits and withdrawals is on hold.
+    - `creating` : The broker account is not fully created yet, you to need to wait a bit, while Sirius completes this its creation. You can create accounts within it, but not receive or send transfers.
+    - `active` : The broker account is active and can be used as usual.
+    - `blocked` : The broker account is blocked - processing of all deposits and withdrawals is on hold.
 - __creationDateTime__ `(Timestamp)` : Timestamp when the broker account creation was started.
 - __activationDateTime__ `(Timestamp)` (optional) : Timestamp when the broker account was activated last time.
 - __blockingDateTime__ `(Timestamp)` (optional) : Timestamp when the broker account was blocked last time.
