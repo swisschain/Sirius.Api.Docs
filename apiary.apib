@@ -41,47 +41,70 @@ TODO
 
 TODO
 
-## Blockchains [/api/blockchains{?name,blockchainId,protocolCode,protocolName,networkType,order,cursor,limit}]
+## Data structures
+
+### Order (enum)
+
+Order of the sorting
+
++ `asc` - Ascending sorting order
++ `desc` - Descending sorting order
+
+### NetworkType (enum)
+
+Type of a blockchain network
+
++ `private` - Private blockchain visible only for particular customer.
++ `test` - Public test blockchain.
++ `public` - Public mainnet blockchain.
+
+### BrokerAccountState (enum)
+
++ `creating` - The broker account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can create accounts within it, but not receive or send transfers.
++ `active` - The broker account is active and can be used as usual.
++ `blocked` - The broker account is blocked - processing of all deposits and withdrawals is on hold.
+
+### AccountState (enum)
+
++ `creating` - The account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can't receive or send transfers.
++ `active` - The account is active and can be used as usual.
++ `blocked` - The account is blocked - processing of all deposits and withdrawals is on hold.
+
+## Blockchain [/api/blockchains{?name,blockchainId,protocolCode,protocolName,networkType,order,cursor,limit}]
 
 We distinguish _Blockchain_, _Protocol_, and _Network Type_. 
 
-- _Protocol_ is a set of rules on how 
-blockchain nodes interact with each other. It's what people usually call a blockchain - 
-Bitcoin, Ethereum, Ripple. 
-- _Blockchain_ is an "instance" of the protocol - 
-Ethereum Ropsten, Bitcoin Mainnet, Ethereum Mainnet. 
+_Blockchain_ is not just _Bitcoin_ or _Ethereum_, it's a particular network. For example _Bitcoin MainNet_, 
+_Ethereum Ropsten_ are blockchains, whilst _Bitcoin_ and _Ethereum_ are protocols which are used by these blockchains.
+Networks can be one of the types - `private`, `test`, `public`. So _Blockchain_ has a protocol and network type.
+
+- _Blockchain_ is an "instance" of the protocol - Ethereum Ropsten, Bitcoin Mainnet, Ethereum Mainnet.
+- _Protocol_ is a set of rules on how blockchain nodes interact with each other - Bitcoin, Ethereum, Ripple.
 - _Network type_ can be private, test, or public.
 
-TODO: Change terms to _Blockchain_ -> _Network_, _Protocol_ -> _Blockchain_?
-
 ---
-**Blockchain attributes:**
 
-- __blockchainId__ `(String)` : unique identifier. 
-- __name__ `(String)` : Name of the blockchain.
-- __networkType__ `(String)` : Type of the network
-    - `private` : Private blockchain visible only for particular customer.
-    - `test` : Public test blockchain.
-    - `public` : Public mainnet blockchain.
-- __protocol__ `(Protocol)` : Protocol of the blockchain.
-    - __code__ `(String)` : Unique code of the protocol.
-    - __name__ `(String)` : Name of the protocol.
-
----
++ Attributes
+    + blockchainId: `bitcoin-mainnet` - unique identifier. 
+    + name: `Bitcoin MainNet` - Name of the blockchain.
+    + networkType: `public` (NetworkType) - Type of the network
+    + protocol - Protocol of the blockchain.
+        + code: `bitcoin` - Unique code of the protocol.
+        + name: `Bitcoin` - Name of the protocol.
 
 ### Search blockchains [GET]
 
 Searches blockchains.
 
 + Parameters
-    + name (optional, String) - Text to search in the name of the blockchain
-    + blockchainId (optional, String) - Exact ID of the blockchain to search
-    + protocolCode (optional, String) - Exact ode of the protocol to search
-    + protocolName (optional, String) - Text to search in the name of the protocol
-    + networkType (optional, Enums list) - Coma separated list of the network types to search
-    + order (optional, Enum) - Result items sorting order
-    + cursor (optional, String) - Cursor to continue the search
-    + limit (optional, Number) - Maximum number of items to return in the search results
+    + name : `Bit` (optional, string) - Text to search in the name of the blockchain
+    + blockchainId : `bitcoin-mainnet` (optional, string) - Exact ID of the blockchain to search
+    + protocolCode : `bitcoin` (optional, string) - Exact ode of the protocol to search
+    + protocolName : `coin` (optional, string) - Text to search in the name of the protocol
+    + networkType : `public` (optional, array[NetworkType]) - Coma separated list of the network types to search
+    + order : `asc` (optional, Order) - Result items sorting order
+    + cursor : `bitcoin-mainnet` (optional, string) - Cursor to continue the search
+    + limit : `20` (optional, number) - Maximum number of items to return in the search results
 
 + Response 200 (application/json)
 
@@ -132,7 +155,7 @@ Searches blockchains.
             }
 
 
-## Broker Accounts [/api/broker-accounts]
+## Broker Account [/api/broker-accounts]
 
 _Broker account_ allows you to receive deposits and send withdrawals in all supported blockchains. Broker account has accounts associated with it.
 
@@ -140,19 +163,14 @@ Each deposit and withdrawal can be associated with particular account and each a
 anything you need to. Thanks to this, you can identify to which of your user, contract, bill or whatever particular transfer is related to.
 
 ---
-**Broker account attributes:**
 
-- __brokerAccountId__ `(String)` : unique identifier. 
-- __name__ `(String)` : Name of the broker account.
-- __state__ `(String)` : Current state of the broker account
-    - `creating` : The broker account is not fully created yet, you to need to wait a bit, while Sirius completes this its creation. You can create accounts within it, but not receive or send transfers.
-    - `active` : The broker account is active and can be used as usual.
-    - `blocked` : The broker account is blocked - processing of all deposits and withdrawals is on hold.
-- __creationDateTime__ `(Timestamp)` : Timestamp when the broker account creation was started.
-- __activationDateTime__ `(Timestamp)` (optional) : Timestamp when the broker account was activated last time.
-- __blockingDateTime__ `(Timestamp)` (optional) : Timestamp when the broker account was blocked last time.
-
----
++ Attributes
+    + brokerAccountId: `100555` - unique identifier. 
+    + name: `Clients` - Name of the broker account.
+    + state: `active` (BrokerAccountState) - Current state of the broker account.
+    + creationDateTime: `2020-03-24T15:27:51.9313772Z` - Timestamp when the broker account creation was started.
+    + activationDateTime: `2020-03-24T15:27:51.9313772Z` - _(optional)_ Timestamp when the broker account was activated last time.
+    + blockingnDateTime: `2020-03-24T15:27:51.9313772Z` - _(optional)_ Timestamp when the broker account was blocked last time.
 
 ### Create a broker account [POST]
 
@@ -203,12 +221,12 @@ Creates a new broker account.
 Searches broker accounts.
 
 + Parameters
-    + name (optional, String) - Text to search in the name of the broker accounts
-    + brokerAccountId (optional, String) - Exact ID of the broker account to search
-    + state (optional, Enums list) - Coma separated list of the broker account states to search
-    + order (optional, Enum) - Result items sorting order
-    + cursor (optional, String) - Cursor to continue the search
-    + limit (optional, Number) - Maximum number of items to return in the search results
+    + name (optional, string) - Text to search in the name of the broker accounts
+    + brokerAccountId (optional, string) - Exact ID of the broker account to search
+    + state (optional, array[BrokerAccountState]) - Coma separated list of the broker account states to search
+    + order (optional, Order) - Result items sorting order
+    + cursor (optional, string) - Cursor to continue the search
+    + limit (optional, number) - Maximum number of items to return in the search results
 
 + Request (application/json)
     + Headers
@@ -258,6 +276,93 @@ Searches broker accounts.
                 "limit": [
                   "Limit should be in the range 1..1000"
                 ]
+              }
+            }
+            
+## Account [/api/broker-accounts/{brokerAccountId}/accounts]
+
+_Account_ allows you to distinguish deposits by the received _Broker account_ and withdrawals sent from it 
+between your business objects (users, bills, contracts). While creating an _Account_ you can pass a _Reference ID_
+which is ID of the object in your system associated with thi _Account_. Receiving deposits to this account,
+API will pass you this _Reference ID_, so you can easily determine recipient in your system. When you execute
+a withdrawal you can specify _Account_ to which this withdrawal is related to. API will notify you that
+withdrawal related to particular _Account_ and _Reference ID_ is complete of failed. Also _Refernce ID_ can
+be useful in analytics reports in our _Universe_ portal.
+
+---
+
++ Attributes
+    + accountId: `100123` - unique identifier. 
+    + brokerAccountId: `100555` - unique identifier of the broker account, which owns the account. 
+    + referenceId: `105585e04f354c79a781bf8cb812a4de` - _(optional)_ unique identifier of the object in your system, associated with the account. Can be associated with several accounts.
+    + state: `active` (AccountState) - Current state of the account.
+    + creationDateTime: `2020-03-24T15:27:51.9313772Z` - Timestamp when the account creation was started.
+    + activationDateTime: `2020-03-24T15:27:51.9313772Z` - _(optional)_ Timestamp when the account was activated last time.
+    + blockingnDateTime: `2020-03-24T15:27:51.9313772Z` - _(optional)_ Timestamp when the account was blocked last time.
+
+### Create account within broker account [POST]
+
+Creates a new account within specified broker account
+
++ Request (application/json)
+    + Headers
+
+            X-Request-ID: Unique request ID. Use the same ID if you lost response and want to retry the request
+            Tenant-Id: Put your "customer ID" (temporally)
+    
+    + Body
+
+            {
+                "referenceId": "105585e04f354c79a781bf8cb812a4de"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "accountId": "100123",
+              "brokerAccountId": "100555",
+              "referenceId": "105585e04f354c79a781bf8cb812a4de",
+              "state": "creating",
+              "creationDateTime": "2020-03-24T15:27:51.9313772Z",
+              "blockingDateTime": null,
+              "activationDateTime": null
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "X-Request-ID": [
+                  "Duplicate request ID detected. Try to use another value"
+                ]
+              }
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Tenant doesn't own specified account"
+                ]
+              }
+            }
+            
++ Response 404 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Broker account not found"
+                ]ef
               }
             }
             
