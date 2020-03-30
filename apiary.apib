@@ -14,13 +14,13 @@ It's easy as one, two, three!
 
 # API usage
 
-## Allowed HTTP Verbs:
+## Allowed HTTP Verbs
 - `PUT` : Updates a resource 
 - `POST` : Creates a resource
 - `GET` : Gets a resource or list of resources
 - `DELETE` : Deletes a resource
 
-## Description Of Usual Server Responses:
+## Description Of Usual Server Responses
 - 200 `OK` : the request was successful.
 - 201 `Created` : the request was successful and a resource was created.
 - 204 `No Content` : the request was successful but there is no representation to return.
@@ -97,6 +97,8 @@ Networks can be one of the types - `private`, `test`, `public`. So _Blockchain_ 
         + name: `Bitcoin` - Name of the protocol.
 
 ### Search blockchains [GET]
+
+`GET /api/blockchains`
 
 Searches blockchains.
 
@@ -177,6 +179,8 @@ Asset represents crypto currency or token in particular _Blockchain_.
     + accuracy: 6 (number) - Maximum number of digits after the decimal point which are supported by the asset.
 
 ### Search assets [GET]
+
+`GET /api/assets`
 
 Searches assets.
 
@@ -265,6 +269,8 @@ anything you need to. Thanks to this, you can identify to which of your user, co
 
 ### Create a broker account [POST]
 
+`POST /api/broker-accounts`
+
 Creates a new broker account.
 
 + Request (application/json)
@@ -308,6 +314,8 @@ Creates a new broker account.
             }
             
 ### Search broker accounts [GET /api/broker-accounts{?brokerAccountId,name,state,order,cursor,limit}]
+
+`GET /api/broker-accounts`
 
 Searches broker accounts.
 
@@ -371,6 +379,8 @@ Searches broker accounts.
             }
             
 ### Get broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}{?order,cursor,limit}]
+
+`GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}`
 
 Searches broker accounts.
 
@@ -444,11 +454,11 @@ Searches broker accounts.
               "errors": {
                 "brokerAccountId": [
                   "Broker account not found"
-                ] req
+                ]
               }
             }
             
-## Account [/api/broker-accounts/{brokerAccountId}/accounts]
+## Account [/api/accounts]
 
 _Account_ allows you to distinguish deposits by the received _Broker account_ and withdrawals sent from it 
 between your business objects (users, bills, contracts). While creating an _Account_ you can pass a _Reference ID_
@@ -461,17 +471,19 @@ be useful in analytics reports in our _Universe_ portal.
 ---
 
 + Attributes
-    + accountId: `100123` - unique identifier. 
-    + brokerAccountId: `100555` - unique identifier of the broker account, which owns the account. 
-    + referenceId: `105585e04f354c79a781bf8cb812a4de` - _(optional)_ unique identifier of the object in your system, associated with the account. Can be associated with several accounts.
-    + state: `active` (AccountState) - Current state of the account.
-    + creationDateTime: `2020-03-24T15:27:51.9313772Z` - Timestamp when the account creation was started.
-    + activationDateTime: `2020-03-24T15:27:51.9313772Z` - _(optional)_ Timestamp when the account was activated last time.
-    + blockingnDateTime: `2020-03-24T15:27:51.9313772Z` - _(optional)_ Timestamp when the account was blocked last time.
+    + accountId: 100123 (number) - unique identifier. 
+    + brokerAccountId: 100555 (number) - unique identifier of the broker account, which owns the account. 
+    + referenceId: "105585e04f354c79a781bf8cb812a4de" (optional, string) - unique identifier of the object in your system, associated with the account. Can be associated with several accounts.
+    + state: "active" (AccountState) - Current state of the account.
+    + creationDateTime: "2020-03-24T15:27:51.9313772Z" (string) - Timestamp when the account creation was started.
+    + activationDateTime: "2020-03-24T15:27:51.9313772Z" (optional, string) - Timestamp when the account was activated last time.
+    + blockingnDateTime: "2020-03-24T15:27:51.9313772Z" (optional, string) - Timestamp when the account was blocked last time.
 
-### Create account within broker account [POST]
+### Create an account [POST]
 
-Creates a new account within specified broker account
+`POST /api/accounts`
+
+Creates a new account within specified broker account.
 
 + Request (application/json)
     + Headers
@@ -482,6 +494,7 @@ Creates a new account within specified broker account
     + Body
 
             {
+                "brokerAccountId": 100106
                 "referenceId": "105585e04f354c79a781bf8cb812a4de"
             }
 
@@ -490,9 +503,9 @@ Creates a new account within specified broker account
     + Body
 
             {
-              "accountId": "100123",
-              "brokerAccountId": "100555",
+              "accountId": 100345,
               "referenceId": "105585e04f354c79a781bf8cb812a4de",
+              "brokerAccountId": 100106,
               "state": "creating",
               "creationDateTime": "2020-03-24T15:27:51.9313772Z",
               "blockingDateTime": null,
@@ -505,36 +518,169 @@ Creates a new account within specified broker account
 
             {
               "errors": {
+                "name": [
+                  "Broker account is not found"
+                ],
                 "X-Request-ID": [
                   "Duplicate request ID detected. Try to use another value"
                 ]
               }
             }
             
-+ Response 403 (application/json)
+### Search accounts [GET /api/accounts{?accountId,brokerAccountId,referenceId,state,order,cursor,limit}]
+
+`GET /api/accounts`
+
+Searches broker accounts.
+
++ Parameters
+    + accountId: 100345 (optional, number) - Exact ID of the account to search
+    + brokerAccountId: 100106 (optional, number) - Exact ID of the broker account to search
+    + referenceId: "105585e04f354c79a781bf8cb812a4de" (optional, string) - Exact reference ID to search
+    + state: "active" (optional, array[AccountState]) - List of the account states to search
+    + order: "asc" (optional, Order) - Result items sorting order
+    + cursor: 100105 (optional, number) - Cursor to continue the search
+    + limit: 20 (optional, number) - Maximum number of items to return in the search results
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer Your-JWT-Token
+    
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "pagination": {
+                "cursor": 100345,
+                "count": 2,
+                "order": "asc",
+                "nextUrl": "/api/accounts?order=asc&cursor=100347&limit=2"
+              },
+              "items": [
+                {
+                  "accountId": 100346,
+                  "referenceId": null,
+                  "brokerAccountId": 100106,
+                  "state": "active",
+                  "creationDateTime": "2020-03-24T17:06:58.464Z",
+                  "blockedDateTime": null,
+                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                },
+                {
+                  "accountId": 100347,
+                  "referenceId": "105585e04f354c79a781bf8cb812a4de",
+                  "brokerAccountId": 100106,
+                  "state": "active",
+                  "creationDateTime": "2020-03-24T17:06:28.464Z",
+                  "blockedDateTime": "2020-03-24T17:06:38.464Z",
+                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                }
+              ]
+            }
+            
++ Response 400 (application/json)
 
     + Body
 
             {
               "errors": {
-                "brokerAccountId": [
-                  "Tenant doesn't own specified account"
+                "order": [
+                  "Invalid order"
+                ],
+                "limit": [
+                  "Limit should be in the range 1..1000"
+                ]
+              }
+            }
+            
+### Get account requisites [GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}{?order,cursor,limit}]
+
+`GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}`
+
+Searches broker accounts.
+
++ Parameters
+    + accountId: 100106 (number) - ID of the account
+    + assetId: 100348 (number) - ID of the asset
+    + order: "asc" (optional, Order) - Result items sorting order
+    + cursor: 100869 (optional, number) - Cursor to continue the search
+    + limit: 50 (optional, number) - Maximum number of items to return in the search results
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer Your-JWT-Token
+    
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "pagination": {
+                "cursor": 100869,
+                "count": 3,
+                "order": "asc",
+                "nextUrl": "/api/accounts/100106/requisites/by-asset-id/100348?order=asc&cursor=100872&limit=3"
+              },
+              "items": [
+                {
+                  "accountRequisitesId": 100870,
+                  "accountId": 100106,
+                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
+                  "blockchainId": "bitcoin-mainnet",
+                  "tag": null,
+                  "tagType": null
+                },
+                {
+                  "accountRequisitesId": 100871,
+                  "accountId": 100106,
+                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "address": "0x5e550bdb798eb3b1b3e0850789fc59d38486ed5d",
+                  "blockchainId": "ethereum-mainnet",
+                  "tag": null,
+                  "tagType": null
+                },
+                {
+                  "accountRequisitesId": 100872,
+                  "accountId": 100106,
+                  "creationDateTime": "2020-03-30T22:35:28.558Z",
+                  "address": "MSVJRBZpQTKyxcxdQz7R7D6hh7irixnZiK",
+                  "blockchainId": "stellar-mainnet",
+                  "tag": "122d7f5f0763450fb1d8d0b22a5740ce",
+                  "tagType": "text"
+                }
+              ]
+            }
+            
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "order": [
+                  "Invalid order"
+                ],
+                "limit": [
+                  "Limit should be in the range 1..1000"
                 ]
               }
             }
             
 + Response 404 (application/json)
-
     + Body
 
             {
               "errors": {
-                "brokerAccountId": [
-                  "Broker account not found"
-                ]ef
+                "accountId": [
+                  "Account not found"
+                ]
               }
             }
-            
+
 ## Is Alive [/api/isalive]
 
 Validates service availability.
