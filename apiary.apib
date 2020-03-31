@@ -79,6 +79,35 @@ State of the account
 + `active` - The account is active and can be used as usual.
 + `blocked` - The account is blocked - processing of all deposits and withdrawals is on hold.
 
+### Broker account requisites (object)
+
+Requisites of the broker account
+
++ `brokerAccountRequisitesId` - Unique ID.
++ `brokerAccountId` - Broker account ID.
++ `creationDateTime` - Creation time of the requisites.
++ `address` - Blockchain address of the requisites.
++ `blockchainId` - Blockchain ID of the requisites.
+
+### Tag type (enum)
+
+Tag type
+
++ `text` - text tag
++ `number` - numeric tag
+
+### Account requisites (object)
+
+Requisites of the account
+
++ `accountRequisitesId` - Unique ID.
++ `accountId` - Account ID.
++ `creationDateTime` - Creation Reqtime of the requisites.
++ `address` - Blockchain address of the requisites.
++ `blockchainId` - Blockchain ID of the requisites.
++ `tag`: (optional) - Tag of the requisites.
++ `tagType`: (TagType) - Type of the requisites tag.
+
 ## Blockchain [/api/blockchains{?blockchainId,name,protocolCode,protocolName,networkType,order,cursor,limit}]
 
 We distinguish _Blockchain_, _Protocol_, and _Network Type_. 
