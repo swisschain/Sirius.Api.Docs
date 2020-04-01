@@ -412,18 +412,15 @@ Searches broker accounts.
               }
             }
             
-### Get broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}{?order,cursor,limit}]
+### Get broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}]
 
 `GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}`
 
-Gets broker account requisites.
+Gets actual broker account requisites.
 
 + Parameters
     + brokerAccountId: 100106 (number) - ID of the broker account
     + assetId: 100348 (number) - ID of the asset
-    + order: "asc" (optional, Order) - Result items sorting order
-    + cursor: 100869 (optional, number) - Cursor to continue the search
-    + limit: 50 (optional, number) - Maximum number of items to return in the search results
 
 + Request (application/json)
     + Headers
@@ -435,35 +432,11 @@ Gets broker account requisites.
     + Body
 
             {
-              "pagination": {
-                "cursor": 100869,
-                "count": 3,
-                "order": "asc",
-                "nextUrl": "/api/broker-accounts/100106/requisites/by-asset-id/100348?order=asc&cursor=100872&limit=3"
-              },
-              "items": [
-                {
-                  "brokerAccountRequisitesId": 100870,
-                  "brokerAccountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
-                  "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
-                  "blockchainId": "bitcoin-mainnet"
-                },
-                {
-                  "brokerAccountRequisitesId": 100871,
-                  "brokerAccountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
-                  "address": "0x5e550bdb798eb3b1b3e0850789fc59d38486ed5d",
-                  "blockchainId": "ethereum-mainnet"
-                },
-                {
-                  "brokerAccountRequisitesId": 100872,
-                  "brokerAccountId": 100106,
-                  "creationDateTime": "2020-03-30T22:35:28.558Z",
-                  "address": "3Q2XgoM21fUutbxkYrvJe9iZsqoG2S6RnU",
-                  "blockchainId": "bitcoin-mainnet"
-                }
-              ]
+              "brokerAccountRequisitesId": 100870,
+              "brokerAccountId": 100106,
+              "creationDateTime": "2020-03-28T22:35:28.558Z",
+              "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
+              "blockchainId": "bitcoin-mainnet"
             }
             
 + Response 400 (application/json)
@@ -480,7 +453,18 @@ Gets broker account requisites.
                 ]
               }
             }
-            
+
++ Response 403 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Tenant doesn't own specified broker account"
+                ]
+              }
+            }
+
 + Response 404 (application/json)
     + Body
 
@@ -629,7 +613,7 @@ Searches accounts.
               }
             }
             
-### Get account requisites [GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}{?order,cursor,limit}]
+### Get account requisites [GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}]
 
 `GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}`
 
@@ -638,9 +622,6 @@ Gets account requisites.
 + Parameters
     + accountId: 100106 (number) - ID of the account
     + assetId: 100348 (number) - ID of the asset
-    + order: "asc" (optional, Order) - Result items sorting order
-    + cursor: 100869 (optional, number) - Cursor to continue the search
-    + limit: 50 (optional, number) - Maximum number of items to return in the search results
 
 + Request (application/json)
     + Headers
@@ -652,41 +633,13 @@ Gets account requisites.
     + Body
 
             {
-              "pagination": {
-                "cursor": 100869,
-                "count": 3,
-                "order": "asc",
-                "nextUrl": "/api/accounts/100106/requisites/by-asset-id/100348?order=asc&cursor=100872&limit=3"
-              },
-              "items": [
-                {
-                  "accountRequisitesId": 100870,
-                  "accountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
-                  "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
-                  "blockchainId": "bitcoin-mainnet",
-                  "tag": null,
-                  "tagType": null
-                },
-                {
-                  "accountRequisitesId": 100871,
-                  "accountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
-                  "address": "0x5e550bdb798eb3b1b3e0850789fc59d38486ed5d",
-                  "blockchainId": "ethereum-mainnet",
-                  "tag": null,
-                  "tagType": null
-                },
-                {
-                  "accountRequisitesId": 100872,
-                  "accountId": 100106,
-                  "creationDateTime": "2020-03-30T22:35:28.558Z",
-                  "address": "MSVJRBZpQTKyxcxdQz7R7D6hh7irixnZiK",
-                  "blockchainId": "stellar-mainnet",
-                  "tag": "122d7f5f0763450fb1d8d0b22a5740ce",
-                  "tagType": "text"
-                }
-              ]
+              "accountRequisitesId": 100870,
+              "accountId": 100106,
+              "creationDateTime": "2020-03-28T22:35:28.558Z",
+              "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
+              "blockchainId": "bitcoin-mainnet",
+              "tag": null,
+              "tagType": null
             }
             
 + Response 400 (application/json)
@@ -700,6 +653,17 @@ Gets account requisites.
                 ],
                 "limit": [
                   "Limit should be in the range 1..1000"
+                ]
+              }
+            }
+            
++ Response 403 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Tenant doesn't own specified Accounaccount"
                 ]
               }
             }
