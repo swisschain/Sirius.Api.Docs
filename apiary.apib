@@ -33,7 +33,7 @@ It's easy as one, two, three!
 
 For testing you can use this authorization token:
 ```
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyLCJhdWQiOlsic2lyaXVzLnN3aXNzY2hhaW4uaW8iXSwiZXhwIjoyODU4NDc2NTA5LCJ0ZW5hbnQtaWQiOiJ0ZXN0LXRlbmFudC0xMDAifQ.xhkGk_AUXMdmlEIVInWKhyASADPgQqiK7iy4WWnFSWw
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyLCJhdWQiOlsic2lyaXVzLnN3aXNzY2hhaW4uaW8iXSwiZXhwIjoxNjU4NDc2NTA5LCJ0ZW5hbnQtaWQiOiJ0ZXN0LXRlbmFudC0xMDAifQ.eGxji8XtYZxdYncbrDbr3krPes5c09HsXgJ8KBXB2C4
 ``` 
 
 TODO: authorization in prodo
@@ -79,7 +79,18 @@ State of the account
 + `active` - The account is active and can be used as usual.
 + `blocked` - The account is blocked - processing of all deposits and withdrawals is on hold.
 
-### Broker account requisites (object)
+### TagType (enum)
+
+Tag type of the account. Tag is an additional information associated with particular account, 
+which can be specified in the blockchain transaction. This allows to use single blockchain 
+address to handle many accounts on it. This feature is available only on some blockchains: 
+(Ripple, Stellar, Eos...). In some blockchains different types of the tag are supported
+and you have to specify exact type in this case.
+
++ `text` - text tag
++ `number` - numeric tag
+
+### BrokerAccountRequisites (object)
 
 Requisites of the broker account
 
@@ -89,14 +100,7 @@ Requisites of the broker account
 + `address` - Blockchain address of the requisites.
 + `blockchainId` - Blockchain ID of the requisites.
 
-### Tag type (enum)
-
-Tag type
-
-+ `text` - text tag
-+ `number` - numeric tag
-
-### Account requisites (object)
+### AccountRequisites (object)
 
 Requisites of the account
 
@@ -106,7 +110,7 @@ Requisites of the account
 + `address` - Blockchain address of the requisites.
 + `blockchainId` - Blockchain ID of the requisites.
 + `tag` (optional) - Tag of the requisites.
-+ `tagType` (TagType) - Type of the requisites tag.
++ `tagType` ([TagType](#/data-structures/0/tag-type)) - Type of the requisites tag.
 
 ## Blockchain [/api/blockchains{?blockchainId,name,protocolCode,protocolName,networkType,order,cursor,limit}]
 
@@ -146,7 +150,7 @@ Searches blockchains.
     + name : `Bit` (optional, string) - Text to search in the name of the blockchain
     + protocolCode : `bitcoin` (optional, string) - Exact ode of the protocol to search
     + protocolName : `coin` (optional, string) - Text to search in the name of the protocol
-    + networkType : `public` (optional, array[NetworkType]) - Coma separated list of the network types to search
+    + networkType : `public` (optional, array[NetworkType]) - List of the network types to search
     + order : `asc` (optional, Order) - Result items sorting order
     + cursor : `bitcoin-mainnet` (optional, string) - Cursor to continue the search
     + limit : `20` (optional, number) - Maximum number of items to return in the search results
@@ -412,11 +416,11 @@ Searches broker accounts.
               }
             }
             
-### Get broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}]
+### Get actual broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}]
 
 `GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}`
 
-Gets actual broker account requisites.
+Gets actual [broker account requisites](#/data-structures/0/broker-account-requisites).
 
 + Parameters
     + brokerAccountId: 100106 (number) - ID of the broker account
@@ -475,7 +479,96 @@ Gets actual broker account requisites.
                 ]
               }
             }
+
+### Search broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites{?brokerAccountRequisitesId,assetId,blockchainId,address,order,cursor,limit}]
+
+`GET /api/broker-accounts/{brokerAccountId}/requisites`
+
+Searches [broker account requisites](#/data-structures/0/broker-account-requisites).
+
++ Parameters
+    + brokerAccountId: 100106 (number) - ID of the broker account to search
+    + brokerAccountRequisitesId: 100856 (optional, number) - ID of the broker account requisites to searh
+    + assetId: 100348 (optional, number) - ID of the asset to search
+    + blockchainId: "bitcoin-mainnet" (optional, string) - ID of the blockchain to search
+    + address: "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP" (optional, string) - Exact address to search
+    + order: "asc" (optional, Order) - Result items sorting order
+    + cursor: 100869 (optional, number) - Cursor to continue the search
+    + limit: 20 (optional, number) - Maximum number of items to return in the search results
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer Your-JWT-Token
+    
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "pagination": {
+                "cursor": 100869,
+                "count": 2,
+                "order": "asc",
+                "nextUrl": "/api/broker-accounts/100106/requisites?order=asc&cursor=100872&limit=2"
+              },
+              "items": [
+                {
+                  "brokerAccountRequisitesId": 100870,
+                  "brokerAccountId": 100106,
+                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
+                  "blockchainId": "bitcoin-mainnet"
+                },
+                {
+                  "brokerAccountRequisitesId": 100871,
+                  "brokerAccountId": 100106,
+                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "address": "0x30804040d4d84482b73e5c655298276d276d0ca3",
+                  "blockchainId": "ethereum-mainnet"
+                },
+              ]
+            }
+
             
+            
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "order": [
+                  "Invalid order"
+                ],
+                "limit": [
+                  "Limit should be in the range 1..1000"
+                ]
+              }
+            }
+
++ Response 403 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Tenant doesn't own specified broker account"
+                ]
+              }
+            }
+
++ Response 404 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Broker account not found"
+                ]
+              }
+            }
+
 ## Account [/api/accounts]
 
 _Account_ allows you to distinguish deposits by the received _Broker account_ and withdrawals sent from it 
@@ -613,11 +706,11 @@ Searches accounts.
               }
             }
             
-### Get account requisites [GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}]
+### Get actual account requisites [GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}]
 
 `GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}`
 
-Gets account requisites.
+Gets actual [account requisites](#/data-structures/0/account-requisites).
 
 + Parameters
     + accountId: 100106 (number) - ID of the account
@@ -641,6 +734,101 @@ Gets account requisites.
               "tag": null,
               "tagType": null
             }
+            
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "order": [
+                  "Invalid order"
+                ],
+                "limit": [
+                  "Limit should be in the range 1..1000"
+                ]
+              }
+            }
+            
++ Response 403 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Tenant doesn't own specified Accounaccount"
+                ]
+              }
+            }
+            
++ Response 404 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "accountId": [
+                  "Account not found"
+                ]
+              }
+            }
+
+### Search account requisites [GET /api/accounts/{accountId}/requisites{?accountRequisitesId,referenceId,assetId,blockchainId,address,tag,tagType,order,cursor,limit}]
+
+`GET /api/accounts/{accountId}/requisites`
+
+Searches [account requisites](#/data-structures/0/account-requisites).
+
++ Parameters
+    + accountId: 100106 (number) - ID of the account to search
+    + accountRequisitesId: 100789 (optional, number) - ID of the account requisites to search
+    + referenceId: "105585e04f354c79a781bf8cb812a4de" (optional, string) - Exact reference ID to search
+    + assetId: 100348 (optional, number) - ID of the asset to search
+    + blockchainId: "bitcoin-mainnet" (optional, string) - ID of the blockchain to search
+    + address: "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP" (optional, string) - Exact address to search
+    + tag: "12345612412" (optional, string) - Exact tag to search
+    + tagType: "text" (optional, array[TagType]) - List of the tag types to search
+    + order: "asc" (optional, Order) - Result items sorting order
+    + cursor: 100105 (optional, number) - Cursor to continue the search
+    + limit: 20 (optional, number) - Maximum number of items to return in the search results
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer Your-JWT-Token
+    
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "pagination": {
+                "cursor": 100869,
+                "count": 2,
+                "order": "asc",
+                "nextUrl": "/api/accounts/100106/requisites?order=asc&cursor=100872&limit=2"
+              },
+              "items": [
+                {
+                  "accountRequisitesId": 100870,
+                  "accountId": 100106,
+                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
+                  "blockchainId": "bitcoin-mainnet",
+                  "tag": null,
+                  "tagType": null
+                },
+                {
+                  "accountRequisitesId": 100871,
+                  "accountId": 100106,
+                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "address": "0x30804040d4d84482b73e5c655298276d276d0ca3",
+                  "blockchainId": "ethereum-mainnet",
+                  "tag": null,
+                  "tagType": null
+                }
+              ]
+            }
+            
             
 + Response 400 (application/json)
 
