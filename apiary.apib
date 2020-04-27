@@ -36,7 +36,7 @@ For testing you can use this authorization token:
 Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyLCJhdWQiOlsic2lyaXVzLnN3aXNzY2hhaW4uaW8iXSwiZXhwIjoxNjU4NDc2NTA5LCJ0ZW5hbnQtaWQiOiJ0ZXN0LXRlbmFudC0xMDAifQ.eGxji8XtYZxdYncbrDbr3krPes5c09HsXgJ8KBXB2C4
 ``` 
 
-TODO: authorization in prodo
+TODO: authorization in prod
 
 ## Pagination
 
@@ -106,11 +106,28 @@ Requisites of the account
 
 + `accountRequisitesId` - Unique ID.
 + `accountId` - Account ID.
-+ `creationDateTime` - Creation Reqtime of the requisites.
++ `creationDateTime` - Creation time of the requisites.
 + `address` - Blockchain address of the requisites.
 + `blockchainId` - Blockchain ID of the requisites.
 + `tag` (optional) - Tag of the requisites.
 + `tagType` ([TagType](#/data-structures/0/tag-type)) - Type of the requisites tag.
+
+### BrokerAccountBalances (object)
+
+Balances of the broker account in a particular asset. We distinguish 4 different balances
+for each asset in each broker account.
+
++ `id` - Unique ID.
++ `brokerAccountId` - Broker account ID.
++ `assetId` - Asset ID.
++ `ownedBalance` - Balance owned by the broker.
++ `availableBalance` - Balance available for a withdrawal.
++ `pendingBalance` - Balance which is being deposited, but not completely transferred yet.
++ `reservedBalance` - Balance which is being withdrawn, but not completely transferred yet.
++ `ownedBalanceUpdateDateTime` - Time of the owned balance update.
++ `availableBalanceUpdateDateTime` - Time of the available balance update.
++ `pendingBalanceUpdateDateTime` - Time of the pending balance update.
++ `reservedBalanceUpdateDateTime` - Time of the reserved balance update.
 
 ## Blockchain [/api/blockchains{?blockchainId,name,protocolCode,protocolName,networkType,order,cursor,limit}]
 
@@ -568,6 +585,105 @@ Searches [broker account requisites](#/data-structures/0/broker-account-requisit
                 ]
               }
             }
+
+### Search broker account balances [GET /api/broker-accounts/{brokerAccountId}/balances{?assetId,order,cursor,limit}]
+
+`GET /api/broker-accounts/{brokerAccountId}/balances
+
+Searches [broker account balances](#/data-structures/0/broker-account-balances).
+
++ Parameters
+    + brokerAccountId: 100106 (number) - ID of the broker account to search
+    + assetId: 100348 (optional, number) - ID of the asset to search
+    + order: "asc" (optional, Order) - Result items sorting order
+    + cursor: 100869 (optional, number) - Cursor to continue the search
+    + limit: 20 (optional, number) - Maximum number of items to return in the search results
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer Your-JWT-Token
+    
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "pagination": {
+                "cursor": 100866,
+                "count": 2,
+                "order": "asc",
+                "nextUrl": "/api/broker-accounts/100106/balances?order=asc&cursor=100869&limit=2"
+              },
+              "items": [
+                {
+                    "id": 1000867,
+                    "brokerAccountId": 100106,
+                    "assetId": 100000,
+                    "ownedBalance": 100,
+                    "availableBalance": 90,
+                    "pendingBalance": 2,
+                    "reservedBalance": 10,
+                    "ownedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
+                    "availableBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
+                    "pendingBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
+                    "reservedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z"
+                },
+                {
+                    "id": 1000868,
+                    "brokerAccountId": 100106,
+                    "assetId": 100001,
+                    "ownedBalance": 58,
+                    "availableBalance": 57,
+                    "pendingBalance": 5,
+                    "reservedBalance": 1,
+                    "ownedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
+                    "availableBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
+                    "pendingBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
+                    "reservedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z"
+                },
+              ]
+            }
+
+            
+            
++ Response 400 (application/json)
+
+    + Body
+
+            {
+              "errors": {
+                "order": [
+                  "Invalid order"
+                ],
+                "limit": [
+                  "Limit should be in the range 1..1000"
+                ]
+              }
+            }
+
++ Response 403 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Tenant doesn't own specified broker account"
+                ]
+              }
+            }
+
++ Response 404 (application/json)
+    + Body
+
+            {
+              "errors": {
+                "brokerAccountId": [
+                  "Broker account not found"
+                ]
+              }
+            }
+
 
 ## Account [/api/accounts]
 
