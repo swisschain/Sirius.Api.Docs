@@ -90,27 +90,27 @@ and you have to specify exact type in this case.
 + `text` - text tag
 + `number` - numeric tag
 
-### BrokerAccountRequisites (object)
+### BrokerAccountDetails (object)
 
-Requisites of the broker account
+Details of the broker account
 
-+ `brokerAccountRequisitesId` - Unique ID.
++ `id` - Unique ID.
 + `brokerAccountId` - Broker account ID.
-+ `creationDateTime` - Creation time of the requisites.
-+ `address` - Blockchain address of the requisites.
-+ `blockchainId` - Blockchain ID of the requisites.
++ `creationDateTime` - Creation time of the details.
++ `address` - Blockchain address of the details.
++ `blockchainId` - Blockchain ID of the details.
 
-### AccountRequisites (object)
+### AccountDetails (object)
 
-Requisites of the account
+Details of the account
 
-+ `accountRequisitesId` - Unique ID.
++ `id` - Unique ID.
 + `accountId` - Account ID.
-+ `creationDateTime` - Creation time of the requisites.
-+ `address` - Blockchain address of the requisites.
-+ `blockchainId` - Blockchain ID of the requisites.
-+ `tag` (optional) - Tag of the requisites.
-+ `tagType` ([TagType](#/data-structures/0/tag-type)) - Type of the requisites tag.
++ `creationDateTime` - Creation time of the details.
++ `address` - Blockchain address of the details.
++ `blockchainId` - Blockchain ID of the details.
++ `tag` (optional) - Tag of the details.
++ `tagType` ([TagType](#/data-structures/0/tag-type)) - Type of the details tag.
 
 ### BrokerAccountBalances (object)
 
@@ -433,11 +433,11 @@ Searches broker accounts.
               }
             }
             
-### Get actual broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}]
+### Get actual broker account details [GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}]
 
-`GET /api/broker-accounts/{brokerAccountId}/requisites/by-asset-id/{assetId}`
+`GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}`
 
-Gets actual [broker account requisites](#/data-structures/0/broker-account-requisites).
+Gets actual [broker account details](#/data-structures/0/broker-account-details).
 
 + Parameters
     + brokerAccountId: 100106 (number) - ID of the broker account
@@ -453,7 +453,7 @@ Gets actual [broker account requisites](#/data-structures/0/broker-account-requi
     + Body
 
             {
-              "brokerAccountRequisitesId": 100870,
+              "id": 100870,
               "brokerAccountId": 100106,
               "creationDateTime": "2020-03-28T22:35:28.558Z",
               "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
@@ -497,15 +497,15 @@ Gets actual [broker account requisites](#/data-structures/0/broker-account-requi
               }
             }
 
-### Search broker account requisites [GET /api/broker-accounts/{brokerAccountId}/requisites{?brokerAccountRequisitesId,assetId,blockchainId,address,order,cursor,limit}]
+### Search broker account details [GET /api/broker-accounts/{brokerAccountId}/details{?id,assetId,blockchainId,address,order,cursor,limit}]
 
-`GET /api/broker-accounts/{brokerAccountId}/requisites`
+`GET /api/broker-accounts/{brokerAccountId}/details`
 
-Searches [broker account requisites](#/data-structures/0/broker-account-requisites).
+Searches [broker account details](#/data-structures/0/broker-account-details).
 
 + Parameters
     + brokerAccountId: 100106 (number) - ID of the broker account to search
-    + brokerAccountRequisitesId: 100856 (optional, number) - ID of the broker account requisites to searh
+    + id: 100856 (optional, number) - ID of the broker account details to searh
     + assetId: 100348 (optional, number) - ID of the asset to search
     + blockchainId: "bitcoin-mainnet" (optional, string) - ID of the blockchain to search
     + address: "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP" (optional, string) - Exact address to search
@@ -527,18 +527,18 @@ Searches [broker account requisites](#/data-structures/0/broker-account-requisit
                 "cursor": 100869,
                 "count": 2,
                 "order": "asc",
-                "nextUrl": "/api/broker-accounts/100106/requisites?order=asc&cursor=100872&limit=2"
+                "nextUrl": "/api/broker-accounts/100106/details?order=asc&cursor=100872&limit=2"
               },
               "items": [
                 {
-                  "brokerAccountRequisitesId": 100870,
+                  "id": 100870,
                   "brokerAccountId": 100106,
                   "creationDateTime": "2020-03-28T22:35:28.558Z",
                   "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
                   "blockchainId": "bitcoin-mainnet"
                 },
                 {
-                  "brokerAccountRequisitesId": 100871,
+                  "id": 100871,
                   "brokerAccountId": 100106,
                   "creationDateTime": "2020-03-28T22:35:28.558Z",
                   "address": "0x30804040d4d84482b73e5c655298276d276d0ca3",
@@ -822,11 +822,11 @@ Searches accounts.
               }
             }
             
-### Get actual account requisites [GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}]
+### Get actual account details [GET /api/accounts/{accountId}/details/by-asset-id/{assetId}]
 
-`GET /api/accounts/{accountId}/requisites/by-asset-id/{assetId}`
+`GET /api/accounts/{accountId}/details/by-asset-id/{assetId}`
 
-Gets actual [account requisites](#/data-structures/0/account-requisites).
+Gets actual [account details](#/data-structures/0/account-details).
 
 + Parameters
     + accountId: 100106 (number) - ID of the account
@@ -842,7 +842,7 @@ Gets actual [account requisites](#/data-structures/0/account-requisites).
     + Body
 
             {
-              "accountRequisitesId": 100870,
+              "id": 100870,
               "accountId": 100106,
               "creationDateTime": "2020-03-28T22:35:28.558Z",
               "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
@@ -888,15 +888,15 @@ Gets actual [account requisites](#/data-structures/0/account-requisites).
               }
             }
 
-### Search account requisites [GET /api/accounts/{accountId}/requisites{?accountRequisitesId,referenceId,assetId,blockchainId,address,tag,tagType,order,cursor,limit}]
+### Search account details [GET /api/accounts/{accountId}/details{?id,referenceId,assetId,blockchainId,address,tag,tagType,order,cursor,limit}]
 
-`GET /api/accounts/{accountId}/requisites`
+`GET /api/accounts/{accountId}/details`
 
-Searches [account requisites](#/data-structures/0/account-requisites).
+Searches [account details](#/data-structures/0/account-details).
 
 + Parameters
     + accountId: 100106 (number) - ID of the account to search
-    + accountRequisitesId: 100789 (optional, number) - ID of the account requisites to search
+    + id: 100789 (optional, number) - ID of the account details to search
     + referenceId: "105585e04f354c79a781bf8cb812a4de" (optional, string) - Exact reference ID to search
     + assetId: 100348 (optional, number) - ID of the asset to search
     + blockchainId: "bitcoin-mainnet" (optional, string) - ID of the blockchain to search
@@ -913,7 +913,6 @@ Searches [account requisites](#/data-structures/0/account-requisites).
             Authorization: Bearer Your-JWT-Token
     
 + Response 200 (application/json)
-
     + Body
 
             {
@@ -921,11 +920,11 @@ Searches [account requisites](#/data-structures/0/account-requisites).
                 "cursor": 100869,
                 "count": 2,
                 "order": "asc",
-                "nextUrl": "/api/accounts/100106/requisites?order=asc&cursor=100872&limit=2"
+                "nextUrl": "/api/accounts/100106/details?order=asc&cursor=100872&limit=2"
               },
               "items": [
                 {
-                  "accountRequisitesId": 100870,
+                  "id": 100870,
                   "accountId": 100106,
                   "creationDateTime": "2020-03-28T22:35:28.558Z",
                   "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
@@ -934,7 +933,7 @@ Searches [account requisites](#/data-structures/0/account-requisites).
                   "tagType": null
                 },
                 {
-                  "accountRequisitesId": 100871,
+                  "id": 100871,
                   "accountId": 100106,
                   "creationDateTime": "2020-03-28T22:35:28.558Z",
                   "address": "0x30804040d4d84482b73e5c655298276d276d0ca3",
