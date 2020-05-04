@@ -96,7 +96,7 @@ Details of the broker account
 
 + `id` - Unique ID.
 + `brokerAccountId` - Broker account ID.
-+ `creationDateTime` - Creation time of the details.
++ `createdAt` - Creation time of the details.
 + `address` - Blockchain address of the details.
 + `blockchainId` - Blockchain ID of the details.
 
@@ -106,7 +106,7 @@ Details of the account
 
 + `id` - Unique ID.
 + `accountId` - Account ID.
-+ `creationDateTime` - Creation time of the details.
++ `createdAt` - Creation time of the details.
 + `address` - Blockchain address of the details.
 + `blockchainId` - Blockchain ID of the details.
 + `tag` (optional) - Tag of the details.
@@ -124,12 +124,10 @@ for each asset in each broker account.
 + `availableBalance` - Balance available for a withdrawal.
 + `pendingBalance` - Balance which is being deposited, but not completely transferred yet.
 + `reservedBalance` - Balance which is being withdrawn, but not completely transferred yet.
-+ `ownedBalanceUpdateDateTime` - Time of the owned balance update.
-+ `availableBalanceUpdateDateTime` - Time of the available balance update.
-+ `pendingBalanceUpdateDateTime` - Time of the pending balance update.
-+ `reservedBalanceUpdateDateTime` - Time of the reserved balance update.
++ `createdAt` - Creation time of the balances.
++ `updatedAt` - The update time of the balances.
 
-## Blockchain [/api/blockchains{?blockchainId,name,protocolCode,protocolName,networkType,order,cursor,limit}]
+## Blockchain [/api/blockchains{?id,name,protocolCode,protocolName,networkType,order,cursor,limit}]
 
 We distinguish _Blockchain_, _Protocol_, and _Network Type_. 
 
@@ -144,7 +142,7 @@ Networks can be one of the types - `private`, `test`, `public`. So _Blockchain_ 
 ---
 
 + Attributes
-    + blockchainId: `bitcoin-mainnet` - unique identifier. 
+    + id: `bitcoin-mainnet` - unique identifier. 
     + name: `Bitcoin MainNet` - Name of the blockchain.
     + networkType: `public` (NetworkType) - Type of the network
     + protocol - Protocol of the blockchain.
@@ -163,7 +161,7 @@ Searches blockchains.
             Authorization: Bearer Your-JWT-Token
 
 + Parameters
-    + blockchainId : `bitcoin-mainnet` (optional, string) - Exact ID of the blockchain to search
+    + id : `bitcoin-mainnet` (optional, string) - Exact ID of the blockchain to search
     + name : `Bit` (optional, string) - Text to search in the name of the blockchain
     + protocolCode : `bitcoin` (optional, string) - Exact ode of the protocol to search
     + protocolName : `coin` (optional, string) - Text to search in the name of the protocol
@@ -186,7 +184,7 @@ Searches blockchains.
               "items": [
                 {
                   "name": "Litecoin - MainNet",
-                  "blockchainId": "litecoin-mainnet",
+                  "id": "litecoin-mainnet",
                   "networkType": "public",
                   "protocol": {
                     "code": "litecoin",
@@ -195,7 +193,7 @@ Searches blockchains.
                 },
                 {
                   "name": "Ripple - MainNet",
-                  "blockchainId": "ripple-mainnet",
+                  "id": "ripple-mainnet",
                   "networkType": "public",
                   "protocol": {
                     "code": "ripple",
@@ -220,14 +218,14 @@ Searches blockchains.
               }
             }
 
-## Asset [/api/assets{?assetId,blockchainId,symbol,address,accuracy,order,cursor,limit}]
+## Asset [/api/assets{?id,blockchainId,symbol,address,accuracy,order,cursor,limit}]
 
 Asset represents crypto currency or token in particular _Blockchain_.
 
 ---
 
 + Attributes
-    + assetId: 100346 (number) - Unique identifier.
+    + id: 100346 (number) - Unique identifier.
     + blockchainId: `ethereum-mainnet` - uniqueue identifier of the blockchain to which the asset is related to. 
     + symbol: `USDT` - Symbol of the asset.
     + address: `0xdac17f958d2ee523a2206206994597c13d831ec7` (optional, string) - Address of the asset in the blockchain, if any.
@@ -245,7 +243,7 @@ Searches assets.
             Authorization: Bearer Your-JWT-Token
 
 + Parameters
-    + assetId: 100346 (number) - Exact ID of the asset to search
+    + id: 100346 (number) - Exact ID of the asset to search
     + blockchainId: `ethereum-mainnet` - Exact ID of the blockchain to search
     + symbol: `USDT` - Text to search in the symbol of the asset
     + address: `0xdac17f958d2ee523a2206206994597c13d831ec7` (optional, string) - Exact address of the asset to search
@@ -267,21 +265,21 @@ Searches assets.
               },
               "items": [
                 {
-                  "assetId": 100429,
+                  "id": 100429,
                   "blockchainId": "bitcoin-testnet",
                   "symbol": "BTC",
                   "address": null,
                   "accuracy": 8
                 },
                 {
-                  "assetId": 100430,
+                  "id": 100430,
                   "blockchainId": "bitcoin-mainnet",
                   "symbol": "BTC",
                   "address": null,
                   "accuracy": 8
                 },
                 {
-                  "assetId": 100431,
+                  "id": 100431,
                   "blockchainId": "ethereum-mainnet",
                   "symbol": "USDT",
                   "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
@@ -315,12 +313,11 @@ anything you need to. Thanks to this, you can identify to which of your user, co
 ---
 
 + Attributes
-    + brokerAccountId: 100555 (number) - unique identifier. 
+    + id: 100555 (number) - unique identifier. 
     + name: `Clients` - Name of the broker account.
     + state: `active` (BrokerAccountState) - Current state of the broker account.
-    + creationDateTime: `2020-03-24T15:27:51.9313772Z` - Timestamp when the broker account creation was started.
-    + activationDateTime: `2020-03-24T15:27:51.9313772Z` (optional, string) - Timestamp when the broker account was activated last time.
-    + blockingnDateTime: `2020-03-24T15:27:51.9313772Z` (optional, string) - Timestamp when the broker account was blocked last time.
+    + createdAt: `2020-03-24T15:27:51.9313772Z` - Creation time of the broker account.
+    + updatedAt: `2020-03-24T15:27:51.9313772Z` - The update time of the broker account.
 
 ### Create a broker account [POST]
 
@@ -346,11 +343,10 @@ Creates a new broker account.
 
             {
               "name": "Exchange clients",
-              "brokerAccountId": 100106,
+              "id": 100106,
               "state": "creating",
-              "creationDateTime": "2020-03-24T15:27:51.9313772Z",
-              "blockingDateTime": null,
-              "activationDateTime": null
+              "createdAt": "2020-03-24T15:27:51.9313772Z",
+              "updatedAt": "2020-03-24T15:27:51.9313772Z"
             }
 
 + Response 400 (application/json)
@@ -368,14 +364,14 @@ Creates a new broker account.
               }
             }
             
-### Search broker accounts [GET /api/broker-accounts{?brokerAccountId,name,state,order,cursor,limit}]
+### Search broker accounts [GET /api/broker-accounts{?id,name,state,order,cursor,limit}]
 
 `GET /api/broker-accounts`
 
 Searches broker accounts.
 
 + Parameters
-    + brokerAccountId: 100106 (optional, number) - Exact ID of the broker account to search
+    + id: 100106 (optional, number) - Exact ID of the broker account to search
     + name: "clients" (optional, string) - Text to search in the name of the broker accounts
     + state: "active" (optional, array[BrokerAccountState]) - List of the broker account states to search
     + order: "asc" (optional, Order) - Result items sorting order
@@ -401,19 +397,17 @@ Searches broker accounts.
               "items": [
                 {
                   "name": "Exchange clients",
-                  "brokerAccountId": 100106,
+                  "id": 100106,
                   "state": "active",
-                  "creationDateTime": "2020-03-24T17:06:58.464Z",
-                  "blockedDateTime": null,
-                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                  "createdAt": "2020-03-24T17:06:58.464Z",
+                  "updatedAt": "2020-03-24T17:06:58.464Z"
                 },
                 {
                   "name": "Corporate",
-                  "brokerAccountId": 100108,
+                  "id": 100108,
                   "state": "active",
-                  "creationDateTime": "2020-03-24T17:06:28.464Z",
-                  "blockedDateTime": "2020-03-24T17:06:38.464Z",
-                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                  "createdAt": "2020-03-24T17:06:28.464Z",
+                  "updatedAt": "2020-03-24T17:06:58.464Z"
                 }
               ]
             }
@@ -455,7 +449,7 @@ Gets actual [broker account details](#/data-structures/0/broker-account-details)
             {
               "id": 100870,
               "brokerAccountId": 100106,
-              "creationDateTime": "2020-03-28T22:35:28.558Z",
+              "createdAt": "2020-03-28T22:35:28.558Z",
               "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
               "blockchainId": "bitcoin-mainnet"
             }
@@ -533,14 +527,14 @@ Searches [broker account details](#/data-structures/0/broker-account-details).
                 {
                   "id": 100870,
                   "brokerAccountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "createdAt": "2020-03-28T22:35:28.558Z",
                   "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
                   "blockchainId": "bitcoin-mainnet"
                 },
                 {
                   "id": 100871,
                   "brokerAccountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "createdAt": "2020-03-28T22:35:28.558Z",
                   "address": "0x30804040d4d84482b73e5c655298276d276d0ca3",
                   "blockchainId": "ethereum-mainnet"
                 },
@@ -624,10 +618,8 @@ Searches [broker account balances](#/data-structures/0/broker-account-balances).
                     "availableBalance": 90,
                     "pendingBalance": 2,
                     "reservedBalance": 10,
-                    "ownedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
-                    "availableBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
-                    "pendingBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
-                    "reservedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z"
+                    "createdAt": "2020-04-27T06:28:42.595Z",
+                    "updatedAt": "2020-04-27T06:28:42.595Z"
                 },
                 {
                     "id": 1000868,
@@ -637,10 +629,8 @@ Searches [broker account balances](#/data-structures/0/broker-account-balances).
                     "availableBalance": 57,
                     "pendingBalance": 5,
                     "reservedBalance": 1,
-                    "ownedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
-                    "availableBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
-                    "pendingBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z",
-                    "reservedBalanceUpdateDateTime": "2020-04-27T06:28:42.595Z"
+                    "createdAt": "2020-04-27T06:28:42.595Z",
+                    "updatedAt": "2020-04-27T06:28:42.595Z"
                 },
               ]
             }
@@ -698,13 +688,12 @@ be useful in analytics reports in our _Universe_ portal.
 ---
 
 + Attributes
-    + accountId: 100123 (number) - unique identifier. 
+    + id: 100123 (number) - unique identifier. 
     + brokerAccountId: 100555 (number) - unique identifier of the broker account, which owns the account. 
     + referenceId: "105585e04f354c79a781bf8cb812a4de" (optional, string) - unique identifier of the object in your system, associated with the account. Can be associated with several accounts.
     + state: "active" (AccountState) - Current state of the account.
-    + creationDateTime: "2020-03-24T15:27:51.9313772Z" (string) - Timestamp when the account creation was started.
-    + activationDateTime: "2020-03-24T15:27:51.9313772Z" (optional, string) - Timestamp when the account was activated last time.
-    + blockingnDateTime: "2020-03-24T15:27:51.9313772Z" (optional, string) - Timestamp when the account was blocked last time.
+    + createdAt: "2020-03-24T15:27:51.9313772Z" (string) - Creation time of the account.
+    + updatedAt: "2020-03-24T15:27:51.9313772Z" (string) - The update time of the account.
 
 ### Create an account [POST]
 
@@ -730,13 +719,12 @@ Creates a new account within specified broker account.
     + Body
 
             {
-              "accountId": 100345,
+              "id": 100345,
               "referenceId": "105585e04f354c79a781bf8cb812a4de",
               "brokerAccountId": 100106,
               "state": "creating",
-              "creationDateTime": "2020-03-24T15:27:51.9313772Z",
-              "blockingDateTime": null,
-              "activationDateTime": null
+              "createdAt": "2020-03-24T15:27:51.9313772Z",
+              "updatedAt": "2020-03-24T15:27:51.9313772Z"
             }
 
 + Response 400 (application/json)
@@ -754,14 +742,14 @@ Creates a new account within specified broker account.
               }
             }
             
-### Search accounts [GET /api/accounts{?accountId,brokerAccountId,referenceId,state,order,cursor,limit}]
+### Search accounts [GET /api/accounts{?id,brokerAccountId,referenceId,state,order,cursor,limit}]
 
 `GET /api/accounts`
 
 Searches accounts.
 
 + Parameters
-    + accountId: 100345 (optional, number) - Exact ID of the account to search
+    + id: 100345 (optional, number) - Exact ID of the account to search
     + brokerAccountId: 100106 (optional, number) - Exact ID of the broker account to search
     + referenceId: "105585e04f354c79a781bf8cb812a4de" (optional, string) - Exact reference ID to search
     + state: "active" (optional, array[AccountState]) - List of the account states to search
@@ -787,22 +775,20 @@ Searches accounts.
               },
               "items": [
                 {
-                  "accountId": 100346,
+                  "id": 100346,
                   "referenceId": null,
                   "brokerAccountId": 100106,
                   "state": "active",
-                  "creationDateTime": "2020-03-24T17:06:58.464Z",
-                  "blockedDateTime": null,
-                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                  "createdAt": "2020-03-24T17:06:58.464Z",
+                  "updatedAt": "2020-03-24T17:06:58.464Z"
                 },
                 {
-                  "accountId": 100347,
+                  "id": 100347,
                   "referenceId": "105585e04f354c79a781bf8cb812a4de",
                   "brokerAccountId": 100106,
                   "state": "active",
-                  "creationDateTime": "2020-03-24T17:06:28.464Z",
-                  "blockedDateTime": "2020-03-24T17:06:38.464Z",
-                  "activationDateTime": "2020-03-24T17:06:58.464Z"
+                  "createdAt": "2020-03-24T17:06:28.464Z",
+                  "updatedAt": "2020-03-24T17:06:38.464Z"
                 }
               ]
             }
@@ -844,7 +830,7 @@ Gets actual [account details](#/data-structures/0/account-details).
             {
               "id": 100870,
               "accountId": 100106,
-              "creationDateTime": "2020-03-28T22:35:28.558Z",
+              "createdAt": "2020-03-28T22:35:28.558Z",
               "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
               "blockchainId": "bitcoin-mainnet",
               "tag": null,
@@ -926,7 +912,7 @@ Searches [account details](#/data-structures/0/account-details).
                 {
                   "id": 100870,
                   "accountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "createdAt": "2020-03-28T22:35:28.558Z",
                   "address": "35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP",
                   "blockchainId": "bitcoin-mainnet",
                   "tag": null,
@@ -935,7 +921,7 @@ Searches [account details](#/data-structures/0/account-details).
                 {
                   "id": 100871,
                   "accountId": 100106,
-                  "creationDateTime": "2020-03-28T22:35:28.558Z",
+                  "createdAt": "2020-03-28T22:35:28.558Z",
                   "address": "0x30804040d4d84482b73e5c655298276d276d0ca3",
                   "blockchainId": "ethereum-mainnet",
                   "tag": null,
