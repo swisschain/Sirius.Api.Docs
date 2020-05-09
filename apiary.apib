@@ -15,12 +15,14 @@ It's easy as one, two, three!
 # API usage
 
 ## Allowed HTTP Verbs
+
 - `PUT` : Updates a resource 
 - `POST` : Creates a resource
 - `GET` : Gets a resource or list of resources
 - `DELETE` : Deletes a resource
 
 ## Description Of Usual Server Responses
+
 - 200 `OK` : the request was successful.
 - 201 `Created` : the request was successful and a resource was created.
 - 204 `No Content` : the request was successful but there is no representation to return.
@@ -29,22 +31,41 @@ It's easy as one, two, three!
 - 403 `Forbidden` : access denied.
 - 404 `Not Found` : resource was not found.
 
-## Authorization
+## Authentication
 
-For testing you can use this authorization token:
-```
-Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyLCJhdWQiOlsic2lyaXVzLnN3aXNzY2hhaW4uaW8iXSwiZXhwIjoxNjU4NDc2NTA5LCJ0ZW5hbnQtaWQiOiJ0ZXN0LXRlbmFudC0xMDAifQ.eGxji8XtYZxdYncbrDbr3krPes5c09HsXgJ8KBXB2C4
-``` 
-
-TODO: authorization in prod
+Sirius API uses `Bearer` authentication. To get the token, register in our [Universe portal](https://universe.swisschain.io),
+create a subscription and create an API key. We use JWT as the API key, so you can explore which
+claims particular token contains using [jwt.io](http://jwt.io) online service.
 
 ## Pagination
 
-TODO
+Sirius API uses cursor-based pagination model in all endpoints which can return loads of items.
+
+Pagination parameters are passed via query string. The parameters can be:
+
+- `order` : (optional, [Order](#/data-structures/0/order)) - sorting order of the result. Items always sorted by the ID.
+- `cursor` : (optional) ID of the item, after which result should be returned. Type of the cursor is the same
+as the ID type of the queried items.
+- `limit` : (optional, number) specifies how many items should be returned at maximum.
+
+The response is:
+
+### Paginated (object)
+
++ `pagination` - pagination state.
+    + `cursor` - current cursor.
+    + `count` (number) - count of the items in the response.
+    + `order` ([Order](#/data-structures/0/order)) - current order.
+    + `nextUrl` (string) - relative URL of the next items page.
++ `items` (array[object]) - the array of the queried items.
 
 ## Error responses
 
-TODO
+Until other is specified for the particular endpoint and HTTP status code, the error response model is:
+
++ `errors` - errors map, where key is a request field name.
+    + `""` (array[string]) - (the key is empty string) the array of the summary errors which are not associated with any request fields directly.
+    + `propertyName` (array[string]) - the array of the errors associated with the `propertyName` field of the request.
 
 ## Data structures
 
