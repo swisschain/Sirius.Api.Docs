@@ -121,6 +121,13 @@ Details of the broker account
 + `address` - Blockchain address of the details.
 + `blockchainId` - Blockchain ID of the details.
 
+### BrokerAccountDetailsBrief (object)
+
+Brief broker account details
+
++ `id` - Unique ID.
++ `address` - Blockchain address of the details.
+
 ### AccountDetails (object)
 
 Details of the account
@@ -130,6 +137,15 @@ Details of the account
 + `createdAt` - Creation time of the details.
 + `address` - Blockchain address of the details.
 + `blockchainId` - Blockchain ID of the details.
++ `tag` (optional) - Tag of the details.
++ `tagType` ([TagType](#/data-structures/0/tag-type)) - Type of the details tag.
+
+### AccountDetailsBrief (object)
+
+Brief details of the account
+
++ `id` - Unique ID.
++ `address` - Blockchain address of the details.
 + `tag` (optional) - Tag of the details.
 + `tagType` ([TagType](#/data-structures/0/tag-type)) - Type of the details tag.
 
@@ -988,6 +1004,37 @@ Searches [account details](#/data-structures/0/account-details).
                 ]
               }
             }
+            
+            
+            
+            
+            
+## Deposit [/api/deposits]
+
+_Deposit_ is an incoming transfer to an _Account_ or a _Borker account_. If a deposit was made to the particular account within the broker account, then you can match it to your business entity (user, contract, invoice, etc).
+Deposits directly to the broker account make sense if you want to provide assets on your broker account for operating.
+
+If you have specified ID of your user (or contract, invoice, etc) in the `referenceId` when the account is being created, then the deposit to this account will contain this ID in the `referenceId` field. 
+So you able to match the deposit to your business object even without storing a mapping on your side.
+
+---
+
++ Attributes
+    + id: 100555 (number) - Unique identifier. 
+    + brokerAccountId: 100567 (number) - ID of the broker account received the deposit.
+    + brokerAccountDetails: (BrokerAccountDetailsBrief) - The broker account details received the deposit.
+    + accountId: 100200 (number, optional) - ID of the account received the deposit. Specified only if the deposit was made to an account within the broker account.
+    + referenceId: `d612bb47ff14476f90572a4319181f11` (string, optional) - Customer`s business object ID specified in the account received the deposit. Specified only if the deposit was made to an account within the broker account.
+    + accountDetails: (AccountDetailsBrief, optional) - The account details received the deposit. Specified only if the deposit was made to an account within the broker account.
+    + assetId: 100300 (number) - ID of the deposit asset.
+    + blockchainId: `bitcoin-main` (string) - ID of the deposit blockchain.
+    + amount: 10.123 (number) - Amount of the deposit.
+
+TODO:
+            
+            
+            
+            
 
 ## Is Alive [/api/isalive]
 
