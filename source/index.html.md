@@ -21,9 +21,9 @@ Sirius is an API allowing consumers to work with wallets and transfers in many d
 
 It's easy as one, two, three!
 
-# Create as many brokerage accounts as you need.
-# Create accounts associated with your users, contracts, bills, or whatever you need whithin these broker accounts.
-# You are ready to receive deposits and send withdrawals using our awesome API!
+- Create as many brokerage accounts as you need.
+- Create accounts associated with your users, contracts, bills, or whatever you need whithin these broker accounts.
+- You are ready to receive deposits and send withdrawals using our awesome API!
 
 For more information about Swisschain, please visit [swisschain.io](https://swisschain.io/).
 
