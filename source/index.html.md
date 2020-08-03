@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - change-log.md
   - api_usage.md
+  - brokerage-api.md
   
 
 search: true
