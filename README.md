@@ -1,2 +1,3 @@
-# Sirius.Api.Docs
-Sirius API blueprint documentation for apiary.io
+# Sirius API documentation
+
+Web page: [swisschain.github.io/Sirius.Api.Docs](https://swisschain.github.io/Sirius.Api.Docs)
