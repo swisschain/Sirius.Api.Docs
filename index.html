@@ -201,7 +201,7 @@
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;protobuf&quot;,&quot;json&quot;]">
+  <body class="index" data-languages="[&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,7 +211,6 @@
     <div class="toc-wrapper">
       <img src="images/Lykke_White.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="protobuf">protobuf</a>
               <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
@@ -249,13 +248,7 @@
                     <a href="#error-responses" class="toc-h2 toc-link" data-title="Error responses">Error responses</a>
                   </li>
                   <li>
-                    <a href="#pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
-                  </li>
-                  <li>
-                    <a href="#decimal-type" class="toc-h2 toc-link" data-title="Decimal type">Decimal type</a>
-                  </li>
-                  <li>
-                    <a href="#timestamp-type" class="toc-h2 toc-link" data-title="Timestamp type">Timestamp type</a>
+                    <a href="#timestamp" class="toc-h2 toc-link" data-title="Timestamp">Timestamp</a>
                   </li>
               </ul>
           </li>
@@ -263,7 +256,10 @@
             <a href="#brokerage-api" class="toc-h1 toc-link" data-title="Brokerage API">Brokerage API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#search-blockchains" class="toc-h2 toc-link" data-title="Search blockchains">Search blockchains</a>
+                    <a href="#blockchains" class="toc-h2 toc-link" data-title="Blockchains">Blockchains</a>
+                  </li>
+                  <li>
+                    <a href="#data-structures" class="toc-h2 toc-link" data-title="Data structures">Data structures</a>
                   </li>
               </ul>
           </li>
@@ -308,8 +304,7 @@
 <p>Request Header</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="nl">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **********************************"</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code>  <span class="s">"Authorization"</span><span class="o">:</span> <span class="s">"Bearer **********************************"</span>
-</code></pre></div><h2 id='error-responses'>Error responses</h2>
+</span></code></pre></div><h2 id='error-responses'>Error responses</h2>
 <p>Until other is specified for the particular endpoint and HTTP status code, the error response model is:</p>
 
 <ul>
@@ -322,28 +317,13 @@
 </ul>
 
 <blockquote>
-<p>Successful response. Property <code>error</code> is null.</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"some_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="err">...</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"some_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello world"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kn">package</span> <span class="nn">hft</span><span class="p">;</span>
-
-<span class="kd">message</span> <span class="nc">Response</span> <span class="p">{</span>
-    <span class="n">common.Error</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// error is NULL</span>
-    <span class="n">SomeDataType</span> <span class="na">some_data</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="kt">string</span> <span class="na">some_message</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<blockquote>
 <p>Error response. Property <code>error</code> is not null.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">""</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Errors summary"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"Invalid order"</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -353,71 +333,51 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="err">```</span><span class="w">
 
-</span><span class="err">```protobuf</span><span class="w">
 
-</span><span class="err">#</span><span class="w"> </span><span class="err">todo:</span><span class="w"> </span><span class="err">fill</span><span class="w"> </span><span class="err">example</span><span class="w">
+</span><span class="err">##</span><span class="w"> </span><span class="err">Pagination</span><span class="w">
 
-</span></code></pre></div><h2 id='pagination'>Pagination</h2>
-<p>Sirius API uses cursor-based pagination model in all endpoints which can return loads of items.</p>
+</span><span class="err">Sirius</span><span class="w"> </span><span class="err">API</span><span class="w"> </span><span class="err">uses</span><span class="w"> </span><span class="err">cursor-based</span><span class="w"> </span><span class="err">pagination</span><span class="w"> </span><span class="err">model</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">endpoints</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">return</span><span class="w"> </span><span class="err">loads</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">items.</span><span class="w">
 
-<p>Pagination parameters are passed via query string. The parameters can be:</p>
+</span><span class="err">Pagination</span><span class="w"> </span><span class="err">parameters</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">passed</span><span class="w"> </span><span class="err">via</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">string.</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">parameters</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">be:</span><span class="w">
 
-<ul>
-<li><code>order</code> : (<strong><em>optional</em></strong>, <strong>Order</strong>) - sorting order of the result. Items always sorted by the ID.</li>
-<li><code>cursor</code> : (<strong><em>optional</em></strong>) ID of the item, after which result should be returned. Type of the cursor is the same as the ID type of the queried items.</li>
-<li><code>limit</code> : (<strong><em>optional</em></strong>, <strong>number</strong>) specifies how many items should be returned at maximum.</li>
-</ul>
+</span><span class="err">-</span><span class="w"> </span><span class="err">`order`</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">(***optional***,</span><span class="w"> </span><span class="err">**Order**)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">sorting</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">result.</span><span class="w"> </span><span class="err">Items</span><span class="w"> </span><span class="err">always</span><span class="w"> </span><span class="err">sorted</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">ID.</span><span class="w">
+</span><span class="err">-</span><span class="w"> </span><span class="err">`cursor`</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">(***optional***)</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">item,</span><span class="w"> </span><span class="err">after</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">should</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">returned.</span><span class="w"> </span><span class="err">Type</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">cursor</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">queried</span><span class="w"> </span><span class="err">items.</span><span class="w">
+</span><span class="err">-</span><span class="w"> </span><span class="err">`limit`</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">(***optional***,</span><span class="w"> </span><span class="err">**number**)</span><span class="w"> </span><span class="err">specifies</span><span class="w"> </span><span class="err">how</span><span class="w"> </span><span class="err">many</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">should</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">returned</span><span class="w"> </span><span class="err">at</span><span class="w"> </span><span class="err">maximum.</span><span class="w">
 
-<p>The response is:</p>
-<h3 id='paginated'>Paginated</h3>
-<ul>
-<li><code>pagination</code> - pagination state.
+</span><span class="err">The</span><span class="w"> </span><span class="err">response</span><span class="w"> </span><span class="err">is:</span><span class="w">
 
-<ul>
-<li><code>cursor</code> - current cursor.</li>
-<li><code>count</code> (number) - count of the items in the response.</li>
-<li><code>order</code> (Order) - current order.</li>
-<li><code>nextUrl</code> (string) - relative URL of the next items page.</li>
-<li><code>items</code> (array[object]) - the array of the queried items.</li>
-</ul></li>
-</ul>
-<h2 id='decimal-type'>Decimal type</h2>
-<p>Here you can see how to manage <code>decimal</code> types (Price, Volume, Amount, etc) in API contract.</p>
+</span><span class="err">###</span><span class="w"> </span><span class="err">Paginated</span><span class="w">
 
-<p>In the <code>gRPC API</code> contract, the <code>decimal</code> type is presented as a <code>string</code> type, with a textual representation of the number. This is done in order to avoid issues with the non-strict precision <code>double</code> type.</p>
+</span><span class="err">-</span><span class="w"> </span><span class="err">`pagination`</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">pagination</span><span class="w"> </span><span class="err">state.</span><span class="w">
+  </span><span class="err">-</span><span class="w"> </span><span class="err">`cursor`</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">cursor.</span><span class="w">
+  </span><span class="err">-</span><span class="w"> </span><span class="err">`count`</span><span class="w"> </span><span class="err">(number)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">count</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">response.</span><span class="w">
+  </span><span class="err">-</span><span class="w"> </span><span class="err">`order`</span><span class="w"> </span><span class="err">(Order)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">order.</span><span class="w">
+  </span><span class="err">-</span><span class="w"> </span><span class="err">`nextUrl`</span><span class="w"> </span><span class="err">(string)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">relative</span><span class="w"> </span><span class="err">URL</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">next</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">page.</span><span class="w">
+  </span><span class="err">-</span><span class="w"> </span><span class="err">`items`</span><span class="w"> </span><span class="err">(array</span><span class="p">[</span><span class="err">object</span><span class="p">]</span><span class="err">)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">array</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">queried</span><span class="w"> </span><span class="err">items.</span><span class="w">
 
-<p>In the <code>Rest API</code> contact, the decimal type is presented as a number with strict precision.</p>
+</span><span class="err">##</span><span class="w"> </span><span class="err">Decimal</span><span class="w"> </span><span class="err">number</span><span class="w">
 
-<blockquote>
-<p>Example with decimal type</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">Here</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">how</span><span class="w"> </span><span class="err">`decimal`</span><span class="w"> </span><span class="err">numbers</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">presented</span><span class="w"> </span><span class="err">(Price,</span><span class="w"> </span><span class="err">Volume,</span><span class="w"> </span><span class="err">Amount,</span><span class="w"> </span><span class="err">etc)</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">API</span><span class="w"> </span><span class="err">contract.</span><span class="w">
+
+</span><span class="err">In</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">`Rest</span><span class="w"> </span><span class="err">API`,</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">decimal</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">presented</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">strict</span><span class="w"> </span><span class="err">precision.</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Decimal</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">example</span><span class="w">
+
+</span><span class="err">```json</span><span class="w">
+</span><span class="p">{</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">222231.33420001911</span><span class="p">,</span><span class="w">
     </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000001</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">Body</span> <span class="p">{</span>
-    <span class="kt">string</span> <span class="na">price</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// "222231.33420001911"</span>
-    <span class="kt">string</span> <span class="na">volume</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// "0.0000001"</span>
-<span class="p">}</span>
-</code></pre></div><h2 id='timestamp-type'>Timestamp type</h2>
-<p>Here you can see: How to manage the <code>TimeStamp</code> type in the API contract.</p>
-
-<p><i>The timestamp is always used in the <b>time zone UTC+0</b></i></p>
-
-<p>In the <code>Rest API</code> contact, the <code>TimeStamp</code> type is presented as a <code>number</code> with &quot;Milliseconds in Unix Epoch&quot; format of date-time.</p>
-
-<p>In the <code>gRPC API</code> contract, the <code>TimeStamp</code> type is presented as a <code>google.protobuf.TimeStamp</code> type.</p>
+</span></code></pre></div><h2 id='timestamp'>Timestamp</h2>
+<p><code>iso 8601</code> is used for the timestamps in the form <code>2020-08-04T08:05:09.039924+00:00</code></p>
 
 <blockquote>
-<p>Example with timestamp</p>
+<p>Timestamp example </p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="nl">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1592903724406</span><span class="w">
+   </span><span class="nl">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-04T08:05:09.039924+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="k">import</span> <span class="s">"google/protobuf/timestamp.proto"</span><span class="p">;</span>
-
-<span class="n">google.protobuf.Timestamp</span> <span class="na">time_name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// 1592903724406</span>
-</code></pre></div><h1 id='brokerage-api'>Brokerage API</h1><h2 id='search-blockchains'>Search blockchains</h2>
+</span></code></pre></div><h1 id='brokerage-api'>Brokerage API</h1><h2 id='blockchains'>Blockchains</h2>
 <p>We distinguish <em>Blockchain</em>, <em>Protocol</em>, and <em>Network Type</em>.</p>
 
 <p><em>Blockchain</em> is not just Bitcoin or Ethereum, it&#39;s a particular network. For example Bitcoin MainNet, Ethereum Ropsten are blockchains, whilst Bitcoin and Ethereum are protocols which are used by these blockchains. Networks can be one of the types - <code>private</code>, <code>test</code>, <code>public</code>. So Blockchain has a protocol and network type.</p>
@@ -427,9 +387,7 @@
 <p>Protocol is a set of rules on how blockchain nodes interact with each other - <code>Bitcoin</code>, <code>Ethereum</code>, <code>Ripple</code>.</p>
 
 <p>Network type can be <code>private</code>, <code>test</code>, or <code>public</code>.</p>
-<h3 id='request'>Request</h3>
-<p><strong>gRPC:</strong> <code>sirius.Brokerage.GetBlockchains</code></p>
-
+<h3 id='search-blockchains'>Search blockchains</h3>
 <p><strong>Rest API:</strong> <code>GET /api/blockchains</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -472,7 +430,7 @@
 </tr>
 </tbody></table>
 <h3 id='response'>Response</h3>
-<p>Array of blockchain descriptions:</p>
+<p>Paginated array of blockchain descriptions:</p>
 
 <table><thead>
 <tr>
@@ -489,22 +447,34 @@
 <td><code>bitcoin-mainnet</code></td>
 </tr>
 <tr>
+<td><code>tenantId</code></td>
+<td>(<strong><em>optional</em></strong>) string</td>
+<td>Id of the tenant that owns the blockchain</td>
+<td>100000</td>
+</tr>
+<tr>
 <td><code>name</code></td>
 <td>string</td>
-<td>Name of the blockchain.</td>
-<td><code>Bitcoin MainNet</code></td>
+<td>Name of the blockchain</td>
+<td><code>bitcoin-mainnet</code></td>
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td><a href="#network-type">NetworkType</a></td>
+<td><a href="#networkType">NetworkType</a></td>
 <td>Type of the network</td>
 <td></td>
 </tr>
 <tr>
 <td><code>protocol</code></td>
-<td><a href="#">BlockchainProtocol</a></td>
+<td><a href="#BlockchainProtocol">BlockchainProtocol</a></td>
 <td>Protocol of the blockchain.</td>
 <td></td>
+</tr>
+<tr>
+<td><code>latestBlockNumber</code></td>
+<td>number</td>
+<td>Number of the latest block</td>
+<td>1567432</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/blockchains</span><span class="w">
@@ -513,40 +483,265 @@
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin-mainnet"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asc"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/blockchains?order=asc&amp;cursor=ripple-mainnet&amp;limit=2"</span><span class="w">
+    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/blockchains?Order=Asc&amp;Cursor=stellar-test&amp;Limit=3"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Litecoin - MainNet"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"litecoin-mainnet"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"networkType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin-private"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"litecoin"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Litecoin"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"startBlockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requirements"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"publicKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"destinationTag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"doubleSpendingProtectionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coins"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"tenantId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin private network"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"networkType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latestBlockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">5899</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ripple - MainNet"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ripple-mainnet"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"networkType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum-ropsten"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ripple"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ripple"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"startBlockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requirements"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"publicKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"destinationTag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"doubleSpendingProtectionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nonce"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"tenantId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum test network"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"networkType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latestBlockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">8450781</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stellar-test"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stellar"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stellar"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"startBlockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requirements"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"publicKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"destinationTag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">9223372036854776000</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Memo ID"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"maxLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Memo text"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"doubleSpendingProtectionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nonce"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"tenantId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stellar test network"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"networkType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"latestBlockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">133093</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code>
-<span class="err">#</span> <span class="n">todo</span><span class="o">:</span>
+</span></code></pre></div><h3 id='get-latest-block'>Get latest block</h3>
+<p><strong>Rest API:</strong> <code>GET /api/blockchains/{id}/latest-block</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>Exact ID of the blockchain</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<p>Paginated array of blockchain descriptions:</p>
 
-</code></pre></div>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>blockNumber</code></td>
+<td>number</td>
+<td>Number of the latest block.</td>
+<td>5933</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/blockchains</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"blockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">5933</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='data-structures'>Data structures</h2><h3 id='order-enum'>Order (enum)</h3>
+<p>Order of the sorting</p>
+
+<ul>
+<li><code>asc</code> - Ascending sorting order</li>
+<li><code>desc</code> - Descending sorting order</li>
+</ul>
+<h3 id='networktype-enum'>NetworkType (enum)</h3>
+<p>Type of a blockchain network</p>
+
+<ul>
+<li><code>private</code> - Private blockchain.</li>
+<li><code>test</code> - Public test blockchain.</li>
+<li><code>public</code> - Public mainnet blockchain.</li>
+</ul>
+<h3 id='blockchainprotocol-object'>BlockchainProtocol (object)</h3>
+<ul>
+<li><code>code</code> (<strong><em>string</em></strong>) - Code of the protocol. (eg. &quot;bitcoin&quot;).</li>
+<li><code>name</code> (<strong><em>string</em></strong>) - Name of the protocol. (eg. &quot;Bitcoin&quot;).</li>
+<li><code>startBlockNumber</code> (<strong><em>number</em></strong>) - Number of the first block in the blockchain. Usually 0 or 1.</li>
+<li><code>requirements</code> (<strong><em>object</em></strong>) - Requirements of the protocol.
+
+<ul>
+<li><code>publicKey</code> (<strong><em>boolean</em></strong>) - Indicates, if source address public key is required to build a transaction. (eg. <code>true</code>).</li>
+</ul></li>
+<li><code>capabilities</code> (<strong><em>object</em></strong>) - Capabilities of the protocol.
+
+<ul>
+<li><code>destinationTag</code> (<strong><em>optional</em></strong>, <strong><em>object</em></strong>) - Capabilities of the protocol related to the destination tag. <code>null</code> if destination tag is not supported.
+
+<ul>
+<li><code>number</code> (<strong><em>optional</em></strong>, <strong><em>object</em></strong>) - Capabilities of the protocol related to the <code>Number</code> <a href="#TagType">TagType</a>. <code>null</code> if <code>Number</code> tag is not suppoerted.
+
+<ul>
+<li><code>min</code> (<strong><em>number</em></strong>) - Minimum number supported by the <code>Number</code> destination tag. (eg. 1).</li>
+<li><code>max</code> (<strong><em>number</em></strong>) - Maximum number supported by the <code>Number</code> destination tag. (eg. 9223372036854776000).</li>
+<li><code>name</code> (<strong><em>string</em></strong>) - Name of the <code>Number</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo ID&quot;).</li>
+</ul></li>
+<li><code>text</code> (<strong><em>optional</em></strong>, <strong><em>object</em></strong>) - Capabilities of the protocol related to the <code>Text</code> <a href="#TagType">TagType</a>. <code>null</code> if the <code>Text</code> tag is not supported.
+
+<ul>
+<li><code>maxLength</code> (<strong><em>number</em></strong>) - Mximum length of the <code>Text</code> destination tag. (eg. 28).</li>
+<li><code>name</code> (<strong><em>string</em></strong>) - Name of the <code>Text</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo text&quot;).</li>
+</ul></li>
+<li><code>doubleSpendingProtectionType</code> (<strong><em><a href="#DoubleSpendingProtectionType">DoubleSpendingProtectionType</a></em></strong>) - Type of the protection agains funds double spending (eg. <code>coins</code>).</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id='tagtype-enum'>TagType (enum)</h3>
+<p>Tag type of the account. Tag is an additional information associated with particular account, 
+which can be specified in the blockchain transaction. This allows to use single blockchain 
+address to handle many accounts on it. This feature is available only on some blockchains: 
+(Ripple, Stellar, Eos...). In some blockchains different types of the tag are supported
+and you have to specify exact type in this case.</p>
+
+<ul>
+<li><code>text</code> - text tag</li>
+<li><code>number</code> - numeric tag</li>
+</ul>
+<h3 id='doublespendingprotectiontype-enum'>DoubleSpendingProtectionType (enum)</h3>
+<p>Each blockchain use some protection mechanism agains funds double-spending. Sirius distinguish next types:</p>
+
+<ul>
+<li><code>coins</code> - Coins are used to transfer funds. (eg. Bitcoin, Dash)</li>
+<li><code>nonce</code> - Nonce number (sequence) is used to distinguish outgoing transactions. (eg. Ethereum, Stellar)</li>
+</ul>
+<h3 id='brokeraccountstate-enum'>BrokerAccountState (enum)</h3>
+<p>State of the broker account</p>
+
+<ul>
+<li><code>creating</code> - The broker account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can create accounts within it, but not receive or send transfers.</li>
+<li><code>active</code> - The broker account is active and can be used as usual.</li>
+<li><code>blocked</code> - The broker account is blocked - processing of all deposits and withdrawals is on hold.</li>
+</ul>
+<h3 id='accountstate-enum'>AccountState (enum)</h3>
+<p>State of the account</p>
+
+<ul>
+<li><code>creating</code> - The account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can&#39;t receive or send transfers.</li>
+<li><code>active</code> - The account is active and can be used as usual.</li>
+<li><code>blocked</code> - The account is blocked - processing of all deposits and withdrawals is on hold.</li>
+</ul>
+<h3 id='brokeraccountdetails-object'>BrokerAccountDetails (object)</h3>
+<p>Details of the broker account</p>
+
+<ul>
+<li><code>id</code> - Unique ID.</li>
+<li><code>brokerAccountId</code> - Broker account ID.</li>
+<li><code>createdAt</code> - Creation time of the details.</li>
+<li><code>address</code> - Blockchain address of the details.</li>
+<li><code>blockchainId</code> - Blockchain ID of the details.</li>
+</ul>
+<h3 id='brokeraccountdetailsbrief-object'>BrokerAccountDetailsBrief (object)</h3>
+<p>Brief broker account details</p>
+
+<ul>
+<li><code>id</code> - Unique ID.</li>
+<li><code>address</code> - Blockchain address of the details.</li>
+</ul>
+<h3 id='accountdetails-object'>AccountDetails (object)</h3>
+<p>Details of the account</p>
+
+<ul>
+<li><code>id</code> - Unique ID.</li>
+<li><code>accountId</code> - Account ID.</li>
+<li><code>createdAt</code> - Creation time of the details.</li>
+<li><code>address</code> - Blockchain address of the details.</li>
+<li><code>blockchainId</code> - Blockchain ID of the details.</li>
+<li><code>tag</code> (optional) - Tag of the details.</li>
+<li><code>tagType</code> (<a href="#/data-structures/0/tag-type">TagType</a>) - Type of the details tag.</li>
+</ul>
+<h3 id='accountdetailsbrief-object'>AccountDetailsBrief (object)</h3>
+<p>Brief details of the account</p>
+
+<ul>
+<li><code>id</code> - Unique ID.</li>
+<li><code>address</code> - Blockchain address of the details.</li>
+<li><code>tag</code> (optional) - Tag of the details.</li>
+<li><code>tagType</code> (<a href="#/data-structures/0/tag-type">TagType</a>) - Type of the details tag.</li>
+</ul>
+<h3 id='brokeraccountbalances-object'>BrokerAccountBalances (object)</h3>
+<p>Balances of the broker account in a particular asset. We distinguish 4 different balances
+for each asset in each broker account.</p>
+
+<ul>
+<li><code>id</code> - Unique ID.</li>
+<li><code>brokerAccountId</code> - Broker account ID.</li>
+<li><code>assetId</code> - Asset ID.</li>
+<li><code>ownedBalance</code> - Balance owned by the broker.</li>
+<li><code>availableBalance</code> - Balance available for a withdrawal.</li>
+<li><code>pendingBalance</code> - Balance which is being deposited, but not completely transferred yet.</li>
+<li><code>reservedBalance</code> - Balance which is being withdrawn, but not completely transferred yet.</li>
+<li><code>createdAt</code> - Creation time of the balances.</li>
+<li><code>updatedAt</code> - The update time of the balances.</li>
+</ul>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="protobuf">protobuf</a>
                 <a href="#" data-language-name="json">json</a>
           </div>
       </div>
