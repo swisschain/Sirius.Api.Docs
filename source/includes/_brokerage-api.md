@@ -18,16 +18,16 @@ Network type can be `private`, `test`, or `public`.
 
 ### Query Parameters
 
-name | description
----- | -----------
-`id` | Exact ID of the blockchain to search
-`name` | Text to search in the name of the blockchain
-`protocolCode` | Exact ode of the protocol to search
-`protocolName` | Text to search in the name of the protocol
-`networkType` | List of the network types to search
-`order` | Result items sorting order
-`cursor` | Cursor to continue the search
-`limit` | Maximum number of items to return in the search results
+name | type | description | example
+---- | ---- | ----------- | -------
+`id` | (***optional***, ***string***) | Exact ID of the blockchain to search | bitcoin-private
+`name` | (***optional***, ***string***) | Text to search in the name of the blockchain | Bitcoin private network
+`protocolCode` | (***optional***, ***string***) | Exact ode of the protocol to search | bitcoin
+`protocolName` | (***optional***, ***string***) | Text to search in the name of the protocol | Bitcoin
+`networkType` | (***optional***, ***[NetworkType](#networkType)***) | List of the network types to search. Repeat the parameter to specify multiple items | private
+`order` | (***optional***, ***[Order](#order)***) | Result items sorting order | asc
+`cursor` | (***optional***, ***string***) | Cursor to continue the search | stellar-test
+`limit` | (***optional***, ***number***) | Maximum number of items to return in the search results | 10
 
 ### Response
 
@@ -35,9 +35,9 @@ Paginated array of blockchain descriptions:
 
 name | type | description | example
 ---- | ---- | ----------- | -------
-`id` | string | Unique identifier. | `bitcoin-mainnet`
+`id` | string | Unique identifier. | `bitcoin-private`
 `tenantId` | (***optional***) string | Id of the tenant that owns the blockchain | 100000
-`name` | string | Name of the blockchain | `bitcoin-mainnet`
+`name` | string | Name of the blockchain | `bitcoin-private`
 `networkType` | [NetworkType](#networkType) | Type of the network
 `protocol` | [BlockchainProtocol](#BlockchainProtocol) | Protocol of the blockchain.
 `latestBlockNumber` | number | Number of the latest block | 1567432
