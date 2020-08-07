@@ -399,40 +399,58 @@
 <table><thead>
 <tr>
 <th>name</th>
+<th>type</th>
 <th>description</th>
+<th>example</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>id</code></td>
+<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
 <td>Exact ID of the blockchain to search</td>
+<td>bitcoin-private</td>
 </tr>
 <tr>
 <td><code>name</code></td>
+<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
 <td>Text to search in the name of the blockchain</td>
+<td>Bitcoin private network</td>
 </tr>
 <tr>
 <td><code>protocolCode</code></td>
+<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
 <td>Exact ode of the protocol to search</td>
+<td>bitcoin</td>
 </tr>
 <tr>
 <td><code>protocolName</code></td>
+<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
 <td>Text to search in the name of the protocol</td>
+<td>Bitcoin</td>
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td>List of the network types to search</td>
+<td>(<strong><em>optional</em></strong>, <strong><em><a href="#networkType">NetworkType</a></em></strong>)</td>
+<td>List of the network types to search. Repeat the parameter to specify multiple items</td>
+<td>private</td>
 </tr>
 <tr>
 <td><code>order</code></td>
+<td>(<strong><em>optional</em></strong>, <strong><em><a href="#order">Order</a></em></strong>)</td>
 <td>Result items sorting order</td>
+<td>asc</td>
 </tr>
 <tr>
 <td><code>cursor</code></td>
+<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
 <td>Cursor to continue the search</td>
+<td>stellar-test</td>
 </tr>
 <tr>
 <td><code>limit</code></td>
+<td>(<strong><em>optional</em></strong>, <strong><em>number</em></strong>)</td>
 <td>Maximum number of items to return in the search results</td>
+<td>10</td>
 </tr>
 </tbody></table>
 <h3 id='response'>Response</h3>
@@ -450,7 +468,7 @@
 <td><code>id</code></td>
 <td>string</td>
 <td>Unique identifier.</td>
-<td><code>bitcoin-mainnet</code></td>
+<td><code>bitcoin-private</code></td>
 </tr>
 <tr>
 <td><code>tenantId</code></td>
@@ -462,7 +480,7 @@
 <td><code>name</code></td>
 <td>string</td>
 <td>Name of the blockchain</td>
-<td><code>bitcoin-mainnet</code></td>
+<td><code>bitcoin-private</code></td>
 </tr>
 <tr>
 <td><code>networkType</code></td>
