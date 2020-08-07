@@ -42,11 +42,11 @@ name | type | description | example
 `protocol` | [BlockchainProtocol](#BlockchainProtocol) | Protocol of the blockchain.
 `latestBlockNumber` | number | Number of the latest block | 1567432
 
-```json
 GET /api/blockchains
 
 > Response 200 (application/json) - success response
 
+```json
 {
   "pagination": {
     "cursor": null,
@@ -150,11 +150,11 @@ name | type | description | example
 ---- | ---- | ----------- | -------
 `blockNumber` | number | Number of the latest block. | 5933
 
-```json
 GET /api/blockchains
 
 > Response 200 (application/json) - success response
 
+```json
 {
   "blockNumber": 5933
 }

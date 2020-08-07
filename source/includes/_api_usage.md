@@ -40,7 +40,7 @@ Until other is specified for the particular endpoint and HTTP status code, the e
   - `propertyName` (array[string]) - the array of the errors associated with the propertyName field of the request.
 
 
-> Error response. Property `error` is not null.
+> Error response.
 
 ```json
 {
@@ -55,8 +55,8 @@ Until other is specified for the particular endpoint and HTTP status code, the e
       "Limit should be in the range 1..1000"
     ]
   }
-}```
-
+}
+```
 
 ## Pagination
 
