@@ -23,7 +23,7 @@
 
 ## Authentication
 
-Sirius API uses `Bearer authentication`. To get the token, register in our Universe portal, create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using jwt.io online service.
+Sirius API uses `Bearer authentication`. To get the token, register in our [Universe portal](https://universe.swisschain.io/), create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using [jwt.io](https://jwt.io) online service.
 
 > Request Header
 
