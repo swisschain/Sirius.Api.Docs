@@ -31,10 +31,6 @@ Sirius API uses `Bearer authentication`. To get the token, register in our Unive
   "Authorization": "Bearer **********************************"
 ```
 
-```protobuf
-  "Authorization": "Bearer **********************************"
-```
-
 ## Error responses
 
 Until other is specified for the particular endpoint and HTTP status code, the error response model is:
@@ -44,33 +40,14 @@ Until other is specified for the particular endpoint and HTTP status code, the e
   - `propertyName` (array[string]) - the array of the errors associated with the propertyName field of the request.
 
 
-> Successful response. Property `error` is null.
-
-```json
-{
-    "some_data": {
-        ...
-    },
-    "some_message": "Hello world",
-    "error": null
-}
-```
-
-```protobuf
-package hft;
-
-message Response {
-    common.Error error = 1;  // error is NULL
-    SomeDataType some_data = 2;
-    string some_message = 3;
-}
-```
-
 > Error response. Property `error` is not null.
 
 ```json
 {
   "errors": {
+    "": [
+      "Errors summary"
+    ],
     "order": [
       "Invalid order"
     ],
@@ -80,11 +57,6 @@ message Response {
   }
 }```
 
-```protobuf
-
-# todo: fill example
-
-```
 
 ## Pagination
 
@@ -107,15 +79,13 @@ The response is:
   - `nextUrl` (string) - relative URL of the next items page.
   - `items` (array[object]) - the array of the queried items.
 
-## Decimal type
+## Decimal number
 
-Here you can see how to manage `decimal` types (Price, Volume, Amount, etc) in API contract.
+Here you can see how `decimal` numbers are presented (Price, Volume, Amount, etc) in API contract.
 
-In the `gRPC API` contract, the `decimal` type is presented as a `string` type, with a textual representation of the number. This is done in order to avoid issues with the non-strict precision `double` type.
+In the `Rest API`, the decimal type is presented as a number with strict precision.
 
-In the `Rest API` contact, the decimal type is presented as a number with strict precision.
-
-> Example with decimal type
+> Decimal number example
 
 ```json
 {
@@ -124,32 +94,14 @@ In the `Rest API` contact, the decimal type is presented as a number with strict
 }
 ```
 
-```protobuf
-message Body {
-    string price = 1;   // "222231.33420001911"
-    string volume = 2;  // "0.0000001"
-}
-```
+## Timestamp
 
-## Timestamp type
-Here you can see: How to manage the `TimeStamp` type in the API contract.
+`iso 8601` is used for the timestamps in the form `2020-08-04T08:05:09.039924+00:00`
 
-<i>The timestamp is always used in the <b>time zone UTC+0</b></i>
-
-In the `Rest API` contact, the `TimeStamp` type is presented as a `number` with "Milliseconds in Unix Epoch" format of date-time.
-
-In the `gRPC API` contract, the `TimeStamp` type is presented as a `google.protobuf.TimeStamp` type.
-
-> Example with timestamp
+> Timestamp example 
 
 ```json
 {
-   "Timestamp": 1592903724406
+   "Timestamp": "2020-08-04T08:05:09.039924+00:00"
 }
-```
-
-```protobuf
-import "google/protobuf/timestamp.proto";
-
-google.protobuf.Timestamp time_name = 1;  // 1592903724406
 ```
