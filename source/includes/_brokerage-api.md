@@ -1,6 +1,4 @@
-# Brokerage API
-
-## Blockchains
+# Blockchains
 
 We distinguish *Blockchain*, *Protocol*, and *Network Type*.
 
@@ -12,7 +10,9 @@ Protocol is a set of rules on how blockchain nodes interact with each other - `B
 
 Network type can be `private`, `test`, or `public`.
 
-### Search blockchains
+## Search blockchains
+
+### Request
 
 **Rest API:** `GET /api/blockchains`
 
@@ -42,9 +42,10 @@ name | type | description | example
 `protocol` | [BlockchainProtocol](#BlockchainProtocol) | Protocol of the blockchain.
 `latestBlockNumber` | number | Number of the latest block | 1567432
 
-GET /api/blockchains
 
-> Response 200 (application/json) - success response
+> GET /api/blockchains
+
+Response 200 (application/json) - success response
 
 ```json
 {
@@ -132,7 +133,9 @@ GET /api/blockchains
 }
 ```
 
-### Get latest block
+## Get latest block
+
+### Request
 
 **Rest API:** `GET /api/blockchains/{id}/latest-block`
 
@@ -150,9 +153,9 @@ name | type | description | example
 ---- | ---- | ----------- | -------
 `blockNumber` | number | Number of the latest block. | 5933
 
-GET /api/blockchains
+> GET /api/blockchains/{id}/latest-block
 
-> Response 200 (application/json) - success response
+Response 200 (application/json) - success response
 
 ```json
 {
