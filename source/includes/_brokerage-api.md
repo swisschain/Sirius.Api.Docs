@@ -42,10 +42,8 @@ name | type | description | example
 `protocol` | [BlockchainProtocol](#BlockchainProtocol) | Protocol of the blockchain.
 `latestBlockNumber` | number | Number of the latest block | 1567432
 
-
 > GET /api/blockchains
-
-Response 200 (application/json) - success response
+> Response 200 (application/json) - success response
 
 ```json
 {
@@ -154,8 +152,7 @@ name | type | description | example
 `blockNumber` | number | Number of the latest block. | 5933
 
 > GET /api/blockchains/{id}/latest-block
-
-Response 200 (application/json) - success response
+> Response 200 (application/json) - success response
 
 ```json
 {
