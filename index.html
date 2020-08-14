@@ -267,8 +267,54 @@
                   <li>
                     <a href="#get-latest-block" class="toc-h2 toc-link" data-title="Get latest block">Get latest block</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#assets" class="toc-h1 toc-link" data-title="Assets">Assets</a>
+              <ul class="toc-list-h2">
                   <li>
-                    <a href="#data-structures" class="toc-h2 toc-link" data-title="Data structures">Data structures</a>
+                    <a href="#search-assets" class="toc-h2 toc-link" data-title="Search assets">Search assets</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#data-structures" class="toc-h1 toc-link" data-title="Data structures">Data structures</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#order-enum" class="toc-h2 toc-link" data-title="Order (enum)">Order (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#networktype-enum" class="toc-h2 toc-link" data-title="NetworkType (enum)">NetworkType (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#blockchainprotocol-object" class="toc-h2 toc-link" data-title="BlockchainProtocol (object)">BlockchainProtocol (object)</a>
+                  </li>
+                  <li>
+                    <a href="#tagtype-enum" class="toc-h2 toc-link" data-title="TagType (enum)">TagType (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#doublespendingprotectiontype-enum" class="toc-h2 toc-link" data-title="DoubleSpendingProtectionType (enum)">DoubleSpendingProtectionType (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#brokeraccountstate-enum" class="toc-h2 toc-link" data-title="BrokerAccountState (enum)">BrokerAccountState (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#accountstate-enum" class="toc-h2 toc-link" data-title="AccountState (enum)">AccountState (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#brokeraccountdetails-object" class="toc-h2 toc-link" data-title="BrokerAccountDetails (object)">BrokerAccountDetails (object)</a>
+                  </li>
+                  <li>
+                    <a href="#brokeraccountdetailsbrief-object" class="toc-h2 toc-link" data-title="BrokerAccountDetailsBrief (object)">BrokerAccountDetailsBrief (object)</a>
+                  </li>
+                  <li>
+                    <a href="#accountdetails-object" class="toc-h2 toc-link" data-title="AccountDetails (object)">AccountDetails (object)</a>
+                  </li>
+                  <li>
+                    <a href="#accountdetailsbrief-object" class="toc-h2 toc-link" data-title="AccountDetailsBrief (object)">AccountDetailsBrief (object)</a>
+                  </li>
+                  <li>
+                    <a href="#brokeraccountbalances-object" class="toc-h2 toc-link" data-title="BrokerAccountBalances (object)">BrokerAccountBalances (object)</a>
                   </li>
               </ul>
           </li>
@@ -409,55 +455,55 @@
 </thead><tbody>
 <tr>
 <td><code>id</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
+<td><em>optional</em>, <em>string</em></td>
 <td>Exact ID of the blockchain to search</td>
 <td>bitcoin-private</td>
 </tr>
 <tr>
 <td><code>name</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
+<td><em>optional</em>, <em>string</em></td>
 <td>Text to search in the name of the blockchain</td>
 <td>Bitcoin private network</td>
 </tr>
 <tr>
 <td><code>protocolCode</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
+<td><em>optional</em>, <em>string</em></td>
 <td>Exact ode of the protocol to search</td>
 <td>bitcoin</td>
 </tr>
 <tr>
 <td><code>protocolName</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
+<td><em>optional</em>, <em>string</em></td>
 <td>Text to search in the name of the protocol</td>
 <td>Bitcoin</td>
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em><a href="#networkType">NetworkType</a></em></strong>)</td>
+<td><em>optional</em>, <em><a href="#networkType">NetworkType</a></em></td>
 <td>List of the network types to search. Repeat the parameter to specify multiple items</td>
 <td>private</td>
 </tr>
 <tr>
 <td><code>order</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em><a href="#order">Order</a></em></strong>)</td>
+<td><em>optional</em>, <em><a href="#order">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
 <tr>
 <td><code>cursor</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em>string</em></strong>)</td>
+<td><em>optional</em>, <em>string</em></td>
 <td>Cursor to continue the search</td>
 <td>stellar-test</td>
 </tr>
 <tr>
 <td><code>limit</code></td>
-<td>(<strong><em>optional</em></strong>, <strong><em>number</em></strong>)</td>
+<td><em>optional</em>, <em>number</em></td>
 <td>Maximum number of items to return in the search results</td>
 <td>10</td>
 </tr>
 </tbody></table>
 <h3 id='response'>Response</h3>
-<p>Paginated array of blockchain descriptions:</p>
+<p>Paginated array of the blockchains:</p>
 
 <table><thead>
 <tr>
@@ -475,39 +521,38 @@
 </tr>
 <tr>
 <td><code>tenantId</code></td>
-<td>(<strong><em>optional</em></strong>) string</td>
+<td><em>optional</em>, <em>string</em></td>
 <td>Id of the tenant that owns the blockchain</td>
 <td>100000</td>
 </tr>
 <tr>
 <td><code>name</code></td>
-<td>string</td>
+<td><em>string</em></td>
 <td>Name of the blockchain</td>
 <td><code>bitcoin-private</code></td>
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td><a href="#networkType">NetworkType</a></td>
+<td><em><a href="#networkType">NetworkType</a></em></td>
 <td>Type of the network</td>
 <td></td>
 </tr>
 <tr>
 <td><code>protocol</code></td>
-<td><a href="#BlockchainProtocol">BlockchainProtocol</a></td>
+<td><em><a href="#BlockchainProtocol">BlockchainProtocol</a></em></td>
 <td>Protocol of the blockchain.</td>
 <td></td>
 </tr>
 <tr>
 <td><code>latestBlockNumber</code></td>
-<td>number</td>
+<td><em>number</em></td>
 <td>Number of the latest block</td>
 <td>1567432</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>GET /api/blockchains
-Response 200 (application/json) - success response</p>
+<p>GET /api/blockchains 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -598,16 +643,20 @@ Response 200 (application/json) - success response</p>
 <table><thead>
 <tr>
 <th>name</th>
+<th>type</th>
 <th>description</th>
+<th>example</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>id</code></td>
-<td>Exact ID of the blockchain</td>
+<td>(string*</td>
+<td>Exact ID of the blockchain to search</td>
+<td>bitcoin-private</td>
 </tr>
 </tbody></table>
 <h3 id='response-2'>Response</h3>
-<p>Paginated array of blockchain descriptions:</p>
+<p>The latest block of the specified blockchain:</p>
 
 <table><thead>
 <tr>
@@ -619,27 +668,163 @@ Response 200 (application/json) - success response</p>
 </thead><tbody>
 <tr>
 <td><code>blockNumber</code></td>
-<td>number</td>
+<td><em>number</em></td>
 <td>Number of the latest block.</td>
 <td>5933</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>GET /api/blockchains/{id}/latest-block
-Response 200 (application/json) - success response</p>
+<p>GET /api/blockchains/{id}/latest-block 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"blockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">5933</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='data-structures'>Data structures</h2><h3 id='order-enum'>Order (enum)</h3>
+</span></code></pre></div><h1 id='assets'>Assets</h1><h2 id='search-assets'>Search assets</h2><h3 id='request-3'>Request</h3>
+<p><strong>Rest API:</strong> <code>GET /api/assets</code></p>
+<h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the asset to search</td>
+<td>100553</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Exact blockchain id to search</td>
+<td>bitcoin-private</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Text to search in the asset symbol</td>
+<td>BTC</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Exact address to search</td>
+<td>0xC1701AbD559FC263829CA3917d03045F95b5224A</td>
+</tr>
+<tr>
+<td><code>accuracy</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact accuracy to search</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td><em>optional</em>, <em><a href="#order">Order</a></em></td>
+<td>Result items sorting order</td>
+<td>asc</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Cursor to continue the search</td>
+<td>stellar-test</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Maximum number of items to return in the search results</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<p>Paginated array of the assets:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the asset to search</td>
+<td>100003</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><em>string</em></td>
+<td>Exact blockchain id to search</td>
+<td>bitcoin-private</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><em>string</em></td>
+<td>Text to search in the asset symbol</td>
+<td>BTC</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Exact address to search</td>
+<td>0xC1701AbD559FC263829CA3917d03045F95b5224A</td>
+</tr>
+<tr>
+<td><code>accuracy</code></td>
+<td><em>number</em></td>
+<td>Exact accuracy to search</td>
+<td>8</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>GET /api/assets 200 OK</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asc"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/assets?Symbol=BTC&amp;Order=Asc&amp;Cursor=100110&amp;Limit=3"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100003</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum-ropsten"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x3DFf0dCE5fc4B367Ec91d31DE3837cf3840c8284"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100085</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum-ropsten"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sBTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xC1701AbD559FC263829CA3917d03045F95b5224A"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100110</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum-ropsten"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TBTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xa609f2c9C5B7873F353C15D4ef6e151D14db69CC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='data-structures'>Data structures</h1><h2 id='order-enum'>Order (enum)</h2>
 <p>Order of the sorting</p>
 
 <ul>
 <li><code>asc</code> - Ascending sorting order</li>
 <li><code>desc</code> - Descending sorting order</li>
 </ul>
-<h3 id='networktype-enum'>NetworkType (enum)</h3>
+<h2 id='networktype-enum'>NetworkType (enum)</h2>
 <p>Type of a blockchain network</p>
 
 <ul>
@@ -647,40 +832,40 @@ Response 200 (application/json) - success response</p>
 <li><code>test</code> - Public test blockchain.</li>
 <li><code>public</code> - Public mainnet blockchain.</li>
 </ul>
-<h3 id='blockchainprotocol-object'>BlockchainProtocol (object)</h3>
+<h2 id='blockchainprotocol-object'>BlockchainProtocol (object)</h2>
 <ul>
-<li><code>code</code> (<strong><em>string</em></strong>) - Code of the protocol. (eg. &quot;bitcoin&quot;).</li>
-<li><code>name</code> (<strong><em>string</em></strong>) - Name of the protocol. (eg. &quot;Bitcoin&quot;).</li>
-<li><code>startBlockNumber</code> (<strong><em>number</em></strong>) - Number of the first block in the blockchain. Usually 0 or 1.</li>
-<li><code>requirements</code> (<strong><em>object</em></strong>) - Requirements of the protocol.
+<li><code>code</code> (<em>string</em>) - Code of the protocol. (eg. &quot;bitcoin&quot;).</li>
+<li><code>name</code> (<em>string</em>) - Name of the protocol. (eg. &quot;Bitcoin&quot;).</li>
+<li><code>startBlockNumber</code> (<em>number</em>) - Number of the first block in the blockchain. Usually 0 or 1.</li>
+<li><code>requirements</code> (<em>object</em>) - Requirements of the protocol.
 
 <ul>
-<li><code>publicKey</code> (<strong><em>boolean</em></strong>) - Indicates, if source address public key is required to build a transaction. (eg. <code>true</code>).</li>
+<li><code>publicKey</code> (<em>boolean</em>) - Indicates, if source address public key is required to build a transaction. (eg. <code>true</code>).</li>
 </ul></li>
-<li><code>capabilities</code> (<strong><em>object</em></strong>) - Capabilities of the protocol.
+<li><code>capabilities</code> (<em>object</em>) - Capabilities of the protocol.
 
 <ul>
-<li><code>destinationTag</code> (<strong><em>optional</em></strong>, <strong><em>object</em></strong>) - Capabilities of the protocol related to the destination tag. <code>null</code> if destination tag is not supported.
+<li><code>destinationTag</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the destination tag. <code>null</code> if destination tag is not supported.
 
 <ul>
-<li><code>number</code> (<strong><em>optional</em></strong>, <strong><em>object</em></strong>) - Capabilities of the protocol related to the <code>Number</code> <a href="#TagType">TagType</a>. <code>null</code> if <code>Number</code> tag is not suppoerted.
+<li><code>number</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the <code>Number</code> <a href="#TagType">TagType</a>. <code>null</code> if <code>Number</code> tag is not suppoerted.
 
 <ul>
-<li><code>min</code> (<strong><em>number</em></strong>) - Minimum number supported by the <code>Number</code> destination tag. (eg. 1).</li>
-<li><code>max</code> (<strong><em>number</em></strong>) - Maximum number supported by the <code>Number</code> destination tag. (eg. 9223372036854776000).</li>
-<li><code>name</code> (<strong><em>string</em></strong>) - Name of the <code>Number</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo ID&quot;).</li>
+<li><code>min</code> (<em>number</em>) - Minimum number supported by the <code>Number</code> destination tag. (eg. 1).</li>
+<li><code>max</code> (<em>number</em>) - Maximum number supported by the <code>Number</code> destination tag. (eg. 9223372036854776000).</li>
+<li><code>name</code> (<em>string</em>) - Name of the <code>Number</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo ID&quot;).</li>
 </ul></li>
-<li><code>text</code> (<strong><em>optional</em></strong>, <strong><em>object</em></strong>) - Capabilities of the protocol related to the <code>Text</code> <a href="#TagType">TagType</a>. <code>null</code> if the <code>Text</code> tag is not supported.
+<li><code>text</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the <code>Text</code> <a href="#TagType">TagType</a>. <code>null</code> if the <code>Text</code> tag is not supported.
 
 <ul>
-<li><code>maxLength</code> (<strong><em>number</em></strong>) - Mximum length of the <code>Text</code> destination tag. (eg. 28).</li>
-<li><code>name</code> (<strong><em>string</em></strong>) - Name of the <code>Text</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo text&quot;).</li>
+<li><code>maxLength</code> (<em>number</em>) - Mximum length of the <code>Text</code> destination tag. (eg. 28).</li>
+<li><code>name</code> (<em>string</em>) - Name of the <code>Text</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo text&quot;).</li>
 </ul></li>
-<li><code>doubleSpendingProtectionType</code> (<strong><em><a href="#DoubleSpendingProtectionType">DoubleSpendingProtectionType</a></em></strong>) - Type of the protection agains funds double spending (eg. <code>coins</code>).</li>
+<li><code>doubleSpendingProtectionType</code> (<em><a href="#DoubleSpendingProtectionType">DoubleSpendingProtectionType</a></em>) - Type of the protection agains funds double spending (eg. <code>coins</code>).</li>
 </ul></li>
 </ul></li>
 </ul>
-<h3 id='tagtype-enum'>TagType (enum)</h3>
+<h2 id='tagtype-enum'>TagType (enum)</h2>
 <p>Tag type of the account. Tag is an additional information associated with particular account, 
 which can be specified in the blockchain transaction. This allows to use single blockchain 
 address to handle many accounts on it. This feature is available only on some blockchains: 
@@ -691,14 +876,14 @@ and you have to specify exact type in this case.</p>
 <li><code>text</code> - text tag</li>
 <li><code>number</code> - numeric tag</li>
 </ul>
-<h3 id='doublespendingprotectiontype-enum'>DoubleSpendingProtectionType (enum)</h3>
+<h2 id='doublespendingprotectiontype-enum'>DoubleSpendingProtectionType (enum)</h2>
 <p>Each blockchain use some protection mechanism agains funds double-spending. Sirius distinguish next types:</p>
 
 <ul>
 <li><code>coins</code> - Coins are used to transfer funds. (eg. Bitcoin, Dash)</li>
 <li><code>nonce</code> - Nonce number (sequence) is used to distinguish outgoing transactions. (eg. Ethereum, Stellar)</li>
 </ul>
-<h3 id='brokeraccountstate-enum'>BrokerAccountState (enum)</h3>
+<h2 id='brokeraccountstate-enum'>BrokerAccountState (enum)</h2>
 <p>State of the broker account</p>
 
 <ul>
@@ -706,7 +891,7 @@ and you have to specify exact type in this case.</p>
 <li><code>active</code> - The broker account is active and can be used as usual.</li>
 <li><code>blocked</code> - The broker account is blocked - processing of all deposits and withdrawals is on hold.</li>
 </ul>
-<h3 id='accountstate-enum'>AccountState (enum)</h3>
+<h2 id='accountstate-enum'>AccountState (enum)</h2>
 <p>State of the account</p>
 
 <ul>
@@ -714,58 +899,58 @@ and you have to specify exact type in this case.</p>
 <li><code>active</code> - The account is active and can be used as usual.</li>
 <li><code>blocked</code> - The account is blocked - processing of all deposits and withdrawals is on hold.</li>
 </ul>
-<h3 id='brokeraccountdetails-object'>BrokerAccountDetails (object)</h3>
+<h2 id='brokeraccountdetails-object'>BrokerAccountDetails (object)</h2>
 <p>Details of the broker account</p>
 
 <ul>
-<li><code>id</code> - Unique ID.</li>
-<li><code>brokerAccountId</code> - Broker account ID.</li>
-<li><code>createdAt</code> - Creation time of the details.</li>
-<li><code>address</code> - Blockchain address of the details.</li>
-<li><code>blockchainId</code> - Blockchain ID of the details.</li>
+<li><code>id</code> (<em>number</em>) - Unique ID.</li>
+<li><code>brokerAccountId</code> (<em>number</em>) - Broker account ID.</li>
+<li><code>createdAt</code> (<em>timestamp</em>)- Creation time of the details.</li>
+<li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
+<li><code>blockchainId</code> (<em>string</em>) - Blockchain ID of the details.</li>
 </ul>
-<h3 id='brokeraccountdetailsbrief-object'>BrokerAccountDetailsBrief (object)</h3>
+<h2 id='brokeraccountdetailsbrief-object'>BrokerAccountDetailsBrief (object)</h2>
 <p>Brief broker account details</p>
 
 <ul>
-<li><code>id</code> - Unique ID.</li>
-<li><code>address</code> - Blockchain address of the details.</li>
+<li><code>id</code> (<em>number</em>) - Unique ID.</li>
+<li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
 </ul>
-<h3 id='accountdetails-object'>AccountDetails (object)</h3>
+<h2 id='accountdetails-object'>AccountDetails (object)</h2>
 <p>Details of the account</p>
 
 <ul>
-<li><code>id</code> - Unique ID.</li>
-<li><code>accountId</code> - Account ID.</li>
-<li><code>createdAt</code> - Creation time of the details.</li>
-<li><code>address</code> - Blockchain address of the details.</li>
-<li><code>blockchainId</code> - Blockchain ID of the details.</li>
-<li><code>tag</code> (optional) - Tag of the details.</li>
-<li><code>tagType</code> (<a href="#/data-structures/0/tag-type">TagType</a>) - Type of the details tag.</li>
+<li><code>id</code> (<em>number</em>) - Unique ID.</li>
+<li><code>accountId</code> (<em>number</em>) - Account ID.</li>
+<li><code>createdAt</code> (<em>timestamp</em>) - Creation time of the details.</li>
+<li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
+<li><code>blockchainId</code> (<em>string</em>) - Blockchain ID of the details.</li>
+<li><code>tag</code> (<em>optional</em>, <em>string</em>) - Tag of the details.</li>
+<li><code>tagType</code> (<em>optional</em>, <em><a href="#/data-structures/0/tag-type">TagType</a></em>) - Type of the details tag.</li>
 </ul>
-<h3 id='accountdetailsbrief-object'>AccountDetailsBrief (object)</h3>
+<h2 id='accountdetailsbrief-object'>AccountDetailsBrief (object)</h2>
 <p>Brief details of the account</p>
 
 <ul>
-<li><code>id</code> - Unique ID.</li>
-<li><code>address</code> - Blockchain address of the details.</li>
-<li><code>tag</code> (optional) - Tag of the details.</li>
-<li><code>tagType</code> (<a href="#/data-structures/0/tag-type">TagType</a>) - Type of the details tag.</li>
+<li><code>id</code> (<em>number</em>) - Unique ID.</li>
+<li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
+<li><code>tag</code> (<em>optional</em>, <em>string</em>) - Tag of the details.</li>
+<li><code>tagType</code> (<em>optional</em>, <em>[TagType](#TagType</em>) - Type of the details tag.</li>
 </ul>
-<h3 id='brokeraccountbalances-object'>BrokerAccountBalances (object)</h3>
+<h2 id='brokeraccountbalances-object'>BrokerAccountBalances (object)</h2>
 <p>Balances of the broker account in a particular asset. We distinguish 4 different balances
 for each asset in each broker account.</p>
 
 <ul>
-<li><code>id</code> - Unique ID.</li>
-<li><code>brokerAccountId</code> - Broker account ID.</li>
-<li><code>assetId</code> - Asset ID.</li>
-<li><code>ownedBalance</code> - Balance owned by the broker.</li>
-<li><code>availableBalance</code> - Balance available for a withdrawal.</li>
-<li><code>pendingBalance</code> - Balance which is being deposited, but not completely transferred yet.</li>
-<li><code>reservedBalance</code> - Balance which is being withdrawn, but not completely transferred yet.</li>
-<li><code>createdAt</code> - Creation time of the balances.</li>
-<li><code>updatedAt</code> - The update time of the balances.</li>
+<li><code>id</code> (<em>number</em>) - Unique ID.</li>
+<li><code>brokerAccountId</code> (<em>number</em>) - Broker account ID.</li>
+<li><code>assetId</code> (<em>number</em>) - Asset ID.</li>
+<li><code>ownedBalance</code> (<em>number</em>) - Balance owned by the broker.</li>
+<li><code>availableBalance</code> (<em>number</em>) - Balance available for a withdrawal.</li>
+<li><code>pendingBalance</code> (<em>number</em>) - Balance which is being deposited, but not completely transferred yet.</li>
+<li><code>reservedBalance</code> (<em>number</em>) - Balance which is being withdrawn, but not completely transferred yet.</li>
+<li><code>createdAt</code> (<em>timestamp</em>) - Creation time of the balances.</li>
+<li><code>updatedAt</code> (<em>timestamp</em>) - The update time of the balances.</li>
 </ul>
 
       </div>
