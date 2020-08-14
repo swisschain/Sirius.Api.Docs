@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Sirius API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -259,10 +259,13 @@
               </ul>
           </li>
           <li>
-            <a href="#brokerage-api" class="toc-h1 toc-link" data-title="Brokerage API">Brokerage API</a>
+            <a href="#blockchains" class="toc-h1 toc-link" data-title="Blockchains">Blockchains</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#blockchains" class="toc-h2 toc-link" data-title="Blockchains">Blockchains</a>
+                    <a href="#search-blockchains" class="toc-h2 toc-link" data-title="Search blockchains">Search blockchains</a>
+                  </li>
+                  <li>
+                    <a href="#get-latest-block" class="toc-h2 toc-link" data-title="Get latest block">Get latest block</a>
                   </li>
                   <li>
                     <a href="#data-structures" class="toc-h2 toc-link" data-title="Data structures">Data structures</a>
@@ -383,7 +386,7 @@
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="nl">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-04T08:05:09.039924+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='brokerage-api'>Brokerage API</h1><h2 id='blockchains'>Blockchains</h2>
+</span></code></pre></div><h1 id='blockchains'>Blockchains</h1>
 <p>We distinguish <em>Blockchain</em>, <em>Protocol</em>, and <em>Network Type</em>.</p>
 
 <p><em>Blockchain</em> is not just Bitcoin or Ethereum, it&#39;s a particular network. For example Bitcoin MainNet, Ethereum Ropsten are blockchains, whilst Bitcoin and Ethereum are protocols which are used by these blockchains. Networks can be one of the types - <code>private</code>, <code>test</code>, <code>public</code>. So Blockchain has a protocol and network type.</p>
@@ -393,7 +396,7 @@
 <p>Protocol is a set of rules on how blockchain nodes interact with each other - <code>Bitcoin</code>, <code>Ethereum</code>, <code>Ripple</code>.</p>
 
 <p>Network type can be <code>private</code>, <code>test</code>, or <code>public</code>.</p>
-<h3 id='search-blockchains'>Search blockchains</h3>
+<h2 id='search-blockchains'>Search blockchains</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/blockchains</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -502,11 +505,11 @@
 </tr>
 </tbody></table>
 
-<p>GET /api/blockchains</p>
-
 <blockquote>
-<p>Response 200 (application/json) - success response</p>
+<p>GET /api/blockchains</p>
 </blockquote>
+
+<p>Response 200 (application/json) - success response</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -590,7 +593,7 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='get-latest-block'>Get latest block</h3>
+</span></code></pre></div><h2 id='get-latest-block'>Get latest block</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/blockchains/{id}/latest-block</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
@@ -623,11 +626,11 @@
 </tr>
 </tbody></table>
 
-<p>GET /api/blockchains</p>
-
 <blockquote>
-<p>Response 200 (application/json) - success response</p>
+<p>GET /api/blockchains/{id}/latest-block</p>
 </blockquote>
+
+<p>Response 200 (application/json) - success response</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"blockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">5933</span><span class="w">
 </span><span class="p">}</span><span class="w">
