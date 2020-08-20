@@ -140,7 +140,7 @@ name | type | description | example
 
 name | type | description | example
 ---- | ---- | ----------- | -------
-`id` | (string* | Exact ID of the blockchain to search | bitcoin-private
+`id` | *string* | Exact ID of the blockchain to search | bitcoin-private
 
 ### Response
 
@@ -250,7 +250,7 @@ name | type | description | example
 }
 ```
 
-## Updates vault
+## Updates a vault
 
 ### Request
 
@@ -327,7 +327,7 @@ name | type | description | example
 }
 ```
 
-## Gets vault API key token
+## Gets the vault API key token
 
 ### Request
 
@@ -346,7 +346,7 @@ name | type | description | example
 }
 ```
 
-## Revokes vault API key token
+## Revokes the vault API key token
 
 ### Request
 
@@ -405,7 +405,7 @@ name | type | description | example
 }
 ```
 
-## Searches broker account balances
+## Searches the broker account balances
 
 ### Request
 
@@ -424,7 +424,7 @@ name | type | description | example
 }
 ```
 
-## Searches broker account details
+## Searches the broker account details
 
 ### Request
 
@@ -443,7 +443,7 @@ name | type | description | example
 }
 ```
 
-## Gets broker account details by the asset id
+## Gets the broker account details by the asset id
 
 ### Request
 
@@ -464,7 +464,7 @@ name | type | description | example
 
 # Accounts
 
-## Creates an account within a broker account
+## Creates an account
 
 ### Request
 
@@ -502,7 +502,7 @@ name | type | description | example
 }
 ```
 
-## Searches account details
+## Searches the account details
 
 ### Request
 
@@ -521,7 +521,7 @@ name | type | description | example
 }
 ```
 
-## Gets account details by the asset id
+## Gets the account details by the asset id
 
 ### Request
 
