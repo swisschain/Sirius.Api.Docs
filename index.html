@@ -284,7 +284,7 @@
                     <a href="#creates-a-vault" class="toc-h2 toc-link" data-title="Creates a vault">Creates a vault</a>
                   </li>
                   <li>
-                    <a href="#updates-vault" class="toc-h2 toc-link" data-title="Updates vault">Updates vault</a>
+                    <a href="#updates-a-vault" class="toc-h2 toc-link" data-title="Updates a vault">Updates a vault</a>
                   </li>
                   <li>
                     <a href="#searches-vaults" class="toc-h2 toc-link" data-title="Searches vaults">Searches vaults</a>
@@ -296,10 +296,10 @@
                     <a href="#searches-vault-api-keys" class="toc-h2 toc-link" data-title="Searches vault API keys">Searches vault API keys</a>
                   </li>
                   <li>
-                    <a href="#gets-vault-api-key-token" class="toc-h2 toc-link" data-title="Gets vault API key token">Gets vault API key token</a>
+                    <a href="#gets-the-vault-api-key-token" class="toc-h2 toc-link" data-title="Gets the vault API key token">Gets the vault API key token</a>
                   </li>
                   <li>
-                    <a href="#revokes-vault-api-key-token" class="toc-h2 toc-link" data-title="Revokes vault API key token">Revokes vault API key token</a>
+                    <a href="#revokes-the-vault-api-key-token" class="toc-h2 toc-link" data-title="Revokes the vault API key token">Revokes the vault API key token</a>
                   </li>
               </ul>
           </li>
@@ -313,13 +313,13 @@
                     <a href="#searches-broker-accounts" class="toc-h2 toc-link" data-title="Searches broker accounts">Searches broker accounts</a>
                   </li>
                   <li>
-                    <a href="#searches-broker-account-balances" class="toc-h2 toc-link" data-title="Searches broker account balances">Searches broker account balances</a>
+                    <a href="#searches-the-broker-account-balances" class="toc-h2 toc-link" data-title="Searches the broker account balances">Searches the broker account balances</a>
                   </li>
                   <li>
-                    <a href="#searches-broker-account-details" class="toc-h2 toc-link" data-title="Searches broker account details">Searches broker account details</a>
+                    <a href="#searches-the-broker-account-details" class="toc-h2 toc-link" data-title="Searches the broker account details">Searches the broker account details</a>
                   </li>
                   <li>
-                    <a href="#gets-broker-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets broker account details by the asset id">Gets broker account details by the asset id</a>
+                    <a href="#gets-the-broker-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets the broker account details by the asset id">Gets the broker account details by the asset id</a>
                   </li>
               </ul>
           </li>
@@ -327,16 +327,16 @@
             <a href="#accounts" class="toc-h1 toc-link" data-title="Accounts">Accounts</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#creates-an-account-within-a-broker-account" class="toc-h2 toc-link" data-title="Creates an account within a broker account">Creates an account within a broker account</a>
+                    <a href="#creates-an-account" class="toc-h2 toc-link" data-title="Creates an account">Creates an account</a>
                   </li>
                   <li>
                     <a href="#searches-accounts" class="toc-h2 toc-link" data-title="Searches accounts">Searches accounts</a>
                   </li>
                   <li>
-                    <a href="#searches-account-details" class="toc-h2 toc-link" data-title="Searches account details">Searches account details</a>
+                    <a href="#searches-the-account-details" class="toc-h2 toc-link" data-title="Searches the account details">Searches the account details</a>
                   </li>
                   <li>
-                    <a href="#gets-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets account details by the asset id">Gets account details by the asset id</a>
+                    <a href="#gets-the-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets the account details by the asset id">Gets the account details by the asset id</a>
                   </li>
               </ul>
           </li>
@@ -738,7 +738,7 @@
 </thead><tbody>
 <tr>
 <td><code>id</code></td>
-<td>(string*</td>
+<td><em>string</em></td>
 <td>Exact ID of the blockchain to search</td>
 <td>bitcoin-private</td>
 </tr>
@@ -913,7 +913,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='updates-vault'>Updates vault</h2><h3 id='request-5'>Request</h3>
+</span></code></pre></div><h2 id='updates-a-vault'>Updates a vault</h2><h3 id='request-5'>Request</h3>
 <p><strong>Rest API:</strong> <code>PUT /api/vaults/{vaultId}</code></p>
 <h3 id='parameters-4'>Parameters</h3><h3 id='query-parameters-4'>Query Parameters</h3><h3 id='response-5'>Response</h3>
 <blockquote>
@@ -945,7 +945,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='gets-vault-api-key-token'>Gets vault API key token</h2><h3 id='request-9'>Request</h3>
+</span></code></pre></div><h2 id='gets-the-vault-api-key-token'>Gets the vault API key token</h2><h3 id='request-9'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token</code></p>
 <h3 id='parameters-8'>Parameters</h3><h3 id='query-parameters-8'>Query Parameters</h3><h3 id='response-9'>Response</h3>
 <blockquote>
@@ -953,7 +953,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='revokes-vault-api-key-token'>Revokes vault API key token</h2><h3 id='request-10'>Request</h3>
+</span></code></pre></div><h2 id='revokes-the-vault-api-key-token'>Revokes the vault API key token</h2><h3 id='request-10'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke</code></p>
 <h3 id='parameters-9'>Parameters</h3><h3 id='query-parameters-9'>Query Parameters</h3><h3 id='response-10'>Response</h3>
 <blockquote>
@@ -977,7 +977,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-broker-account-balances'>Searches broker account balances</h2><h3 id='request-13'>Request</h3>
+</span></code></pre></div><h2 id='searches-the-broker-account-balances'>Searches the broker account balances</h2><h3 id='request-13'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/balances</code></p>
 <h3 id='parameters-12'>Parameters</h3><h3 id='query-parameters-12'>Query Parameters</h3><h3 id='response-13'>Response</h3>
 <blockquote>
@@ -985,7 +985,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-broker-account-details'>Searches broker account details</h2><h3 id='request-14'>Request</h3>
+</span></code></pre></div><h2 id='searches-the-broker-account-details'>Searches the broker account details</h2><h3 id='request-14'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details</code></p>
 <h3 id='parameters-13'>Parameters</h3><h3 id='query-parameters-13'>Query Parameters</h3><h3 id='response-14'>Response</h3>
 <blockquote>
@@ -993,7 +993,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='gets-broker-account-details-by-the-asset-id'>Gets broker account details by the asset id</h2><h3 id='request-15'>Request</h3>
+</span></code></pre></div><h2 id='gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='request-15'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}</code></p>
 <h3 id='parameters-14'>Parameters</h3><h3 id='query-parameters-14'>Query Parameters</h3><h3 id='response-15'>Response</h3>
 <blockquote>
@@ -1001,7 +1001,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='accounts'>Accounts</h1><h2 id='creates-an-account-within-a-broker-account'>Creates an account within a broker account</h2><h3 id='request-16'>Request</h3>
+</span></code></pre></div><h1 id='accounts'>Accounts</h1><h2 id='creates-an-account'>Creates an account</h2><h3 id='request-16'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/accounts</code></p>
 <h3 id='parameters-15'>Parameters</h3><h3 id='query-parameters-15'>Query Parameters</h3><h3 id='response-16'>Response</h3>
 <blockquote>
@@ -1017,7 +1017,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-account-details'>Searches account details</h2><h3 id='request-18'>Request</h3>
+</span></code></pre></div><h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-18'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details</code></p>
 <h3 id='parameters-17'>Parameters</h3><h3 id='query-parameters-17'>Query Parameters</h3><h3 id='response-18'>Response</h3>
 <blockquote>
@@ -1025,7 +1025,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='gets-account-details-by-the-asset-id'>Gets account details by the asset id</h2><h3 id='request-19'>Request</h3>
+</span></code></pre></div><h2 id='gets-the-account-details-by-the-asset-id'>Gets the account details by the asset id</h2><h3 id='request-19'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details/by-asset-id/{assetId}</code></p>
 <h3 id='parameters-18'>Parameters</h3><h3 id='query-parameters-18'>Query Parameters</h3><h3 id='response-19'>Response</h3>
 <blockquote>
