@@ -229,6 +229,416 @@ name | type | description | example
 }
 ```
 
+# Vaults
+
+## Creates a vault
+
+### Request
+
+**Rest API:** `POST /api/vaults`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/vaults 200 OK
+
+```json
+{
+}
+```
+
+## Updates vault
+
+### Request
+
+**Rest API:** `PUT /api/vaults/{vaultId}`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> PUT /api/vaults/{vaultId} 200 OK
+
+```json
+{
+}
+```
+
+## Searches vaults
+
+### Request
+
+**Rest API:** `GET /api/vaults`
+
+### Parameters
+
+### Query Parameters
+
+
+### Response
+
+> POST /api/vaults 200 OK
+
+```json
+{
+}
+```
+
+## Creates a vault API key
+
+### Request
+
+**Rest API:** `POST /api/vaults/{vaultId}/api-keys`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> POST /api/vaults/{vaultId}/api-keys 200 OK
+
+```json
+{
+}
+```
+
+## Searches vault API keys
+
+### Request
+
+**Rest API:** `GET /api/vaults/{vaultId}/api-keys`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/vaults/{vaultId}/api-keys 200 OK
+
+```json
+{
+}
+```
+
+## Gets vault API key token
+
+### Request
+
+**Rest API:** `GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token 200 OK
+
+```json
+{
+}
+```
+
+## Revokes vault API key token
+
+### Request
+
+**Rest API:** `POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke 200 OK
+
+```json
+{
+}
+```
+
+# Broker accounts
+
+## Creates a broker account
+
+### Request
+
+**Rest API:** `POST /api/broker-accounts`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> POST /api/broker-accounts 200 OK
+
+```json
+{
+}
+```
+
+## Searches broker accounts
+
+### Request
+
+**Rest API:** `GET /api/broker-accounts`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/broker-accounts 200 OK
+
+```json
+{
+}
+```
+
+## Searches broker account balances
+
+### Request
+
+**Rest API:** `GET /api/broker-accounts/{brokerAccountId}/balances`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/broker-accounts/{brokerAccountId}/balances 200 OK
+
+```json
+{
+}
+```
+
+## Searches broker account details
+
+### Request
+
+**Rest API:** `GET /api/broker-accounts/{brokerAccountId}/details`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/broker-accounts/{brokerAccountId}/details 200 OK
+
+```json
+{
+}
+```
+
+## Gets broker account details by the asset id
+
+### Request
+
+**Rest API:** `GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId} 200 OK
+
+```json
+{
+}
+```
+
+# Accounts
+
+## Creates an account within a broker account
+
+### Request
+
+**Rest API:** `POST /api/accounts`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> POST /api/accounts 200 OK
+
+```json
+{
+}
+```
+
+## Searches accounts
+
+### Request
+
+**Rest API:** `GET /api/accounts`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/accounts 200 OK
+
+```json
+{
+}
+```
+
+## Searches account details
+
+### Request
+
+**Rest API:** `GET /api/accounts/{accountId}/details`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/accounts/{accountId}/details 200 OK
+
+```json
+{
+}
+```
+
+## Gets account details by the asset id
+
+### Request
+
+**Rest API:** `GET /api/accounts/{accountId}/details/by-asset-id/{assetId}`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/accounts/{accountId}/details/by-asset-id/{assetId} 200 OK
+
+```json
+{
+}
+```
+
+# Deposits
+
+## Searches deposits
+
+### Request
+
+**Rest API:** `GET /api/deposits`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/deposits 200 OK
+
+```json
+{
+}
+```
+
+## Searches deposit updates
+
+### Request
+
+**Rest API:** `GET /api/deposit-updates`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/deposit-updates 200 OK
+
+```json
+{
+}
+```
+
+# Withdrawals
+
+## Starts a withdrawal
+
+### Request
+
+**Rest API:** `POST /api/withdrawals`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> POST /api/withdrawals 200 OK
+
+```json
+{
+}
+```
+
+## Searches withdrawals
+
+### Request
+
+**Rest API:** `GET /api/withdrawals`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/withdrawals 200 OK
+
+```json
+{
+}
+```
+
+## Searches withdrawal updates
+
+### Request
+
+**Rest API:** `GET /api/withdrawal-updates`
+
+### Parameters
+
+### Query Parameters
+
+### Response
+
+> GET /api/withdrawal-updates 200 OK
+
+```json
+{
+}
+```
+
 # Data structures
 
 ## Order (enum)
