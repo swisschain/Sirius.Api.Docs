@@ -237,16 +237,32 @@ name | type | description | example
 
 **Rest API:** `POST /api/vaults`
 
-### Parameters
+### Headers
 
-### Query Parameters
+name | type | description | example
+---- | ---- | ----------- | -------
+`X-Request-ID` | *string* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
+
+
+### Body Parameters
+
+name | type | description | example
+---- | ---- | ----------- | -------
+`name` | *string* | Name of the vault | production
+`type` | *[VaultType](#VaultType)* | Type of the vault | private
 
 ### Response
 
-> GET /api/vaults 200 OK
+> POST /api/vaults 200 OK
 
 ```json
 {
+  "id": 100010,
+  "name": "production",
+  "type": "private",
+  "status": "offline",
+  "createdAt": "2020-08-24T21:43:02.6554641Z",
+  "updatedAt": "2020-08-24T21:43:02.6554641Z"
 }
 ```
 
@@ -707,6 +723,13 @@ State of the account
 + `creating` - The account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can't receive or send transfers.
 + `active` - The account is active and can be used as usual.
 + `blocked` - The account is blocked - processing of all deposits and withdrawals is on hold.
+
+## VaultType (enum)
+
+Type of the vault
+
++ `private` - The vault executing on the customer's environment
++ `shared` - The shared vault executing on the SwissChain environment used by different customers
 
 ## BrokerAccountDetails (object)
 
