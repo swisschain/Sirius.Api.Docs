@@ -390,6 +390,9 @@
                     <a href="#accountstate-enum" class="toc-h2 toc-link" data-title="AccountState (enum)">AccountState (enum)</a>
                   </li>
                   <li>
+                    <a href="#vaulttype-enum" class="toc-h2 toc-link" data-title="VaultType (enum)">VaultType (enum)</a>
+                  </li>
+                  <li>
                     <a href="#brokeraccountdetails-object" class="toc-h2 toc-link" data-title="BrokerAccountDetails (object)">BrokerAccountDetails (object)</a>
                   </li>
                   <li>
@@ -907,15 +910,59 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='vaults'>Vaults</h1><h2 id='creates-a-vault'>Creates a vault</h2><h3 id='request-4'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults</code></p>
-<h3 id='parameters-3'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-4'>Response</h3>
+<h3 id='headers'>Headers</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-Request-ID</code></td>
+<td><em>string</em></td>
+<td>Uniqueu ID of the request</td>
+<td>1a5c0b3d15494ec8a390fd3b22d757d6</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td>Name of the vault</td>
+<td>production</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><em><a href="#VaultType">VaultType</a></em></td>
+<td>Type of the vault</td>
+<td>private</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
 <blockquote>
-<p>GET /api/vaults 200 OK</p>
+<p>POST /api/vaults 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='updates-a-vault'>Updates a vault</h2><h3 id='request-5'>Request</h3>
 <p><strong>Rest API:</strong> <code>PUT /api/vaults/{vaultId}</code></p>
-<h3 id='parameters-4'>Parameters</h3><h3 id='query-parameters-4'>Query Parameters</h3><h3 id='response-5'>Response</h3>
+<h3 id='parameters-3'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-5'>Response</h3>
 <blockquote>
 <p>PUT /api/vaults/{vaultId} 200 OK</p>
 </blockquote>
@@ -923,7 +970,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-vaults'>Searches vaults</h2><h3 id='request-6'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults</code></p>
-<h3 id='parameters-5'>Parameters</h3><h3 id='query-parameters-5'>Query Parameters</h3><h3 id='response-6'>Response</h3>
+<h3 id='parameters-4'>Parameters</h3><h3 id='query-parameters-4'>Query Parameters</h3><h3 id='response-6'>Response</h3>
 <blockquote>
 <p>POST /api/vaults 200 OK</p>
 </blockquote>
@@ -931,7 +978,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='creates-a-vault-api-key'>Creates a vault API key</h2><h3 id='request-7'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys</code></p>
-<h3 id='parameters-6'>Parameters</h3><h3 id='query-parameters-6'>Query Parameters</h3><h3 id='response-7'>Response</h3>
+<h3 id='parameters-5'>Parameters</h3><h3 id='query-parameters-5'>Query Parameters</h3><h3 id='response-7'>Response</h3>
 <blockquote>
 <p>POST /api/vaults/{vaultId}/api-keys 200 OK</p>
 </blockquote>
@@ -939,7 +986,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-vault-api-keys'>Searches vault API keys</h2><h3 id='request-8'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys</code></p>
-<h3 id='parameters-7'>Parameters</h3><h3 id='query-parameters-7'>Query Parameters</h3><h3 id='response-8'>Response</h3>
+<h3 id='parameters-6'>Parameters</h3><h3 id='query-parameters-6'>Query Parameters</h3><h3 id='response-8'>Response</h3>
 <blockquote>
 <p>GET /api/vaults/{vaultId}/api-keys 200 OK</p>
 </blockquote>
@@ -947,7 +994,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='gets-the-vault-api-key-token'>Gets the vault API key token</h2><h3 id='request-9'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token</code></p>
-<h3 id='parameters-8'>Parameters</h3><h3 id='query-parameters-8'>Query Parameters</h3><h3 id='response-9'>Response</h3>
+<h3 id='parameters-7'>Parameters</h3><h3 id='query-parameters-7'>Query Parameters</h3><h3 id='response-9'>Response</h3>
 <blockquote>
 <p>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token 200 OK</p>
 </blockquote>
@@ -955,7 +1002,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='revokes-the-vault-api-key-token'>Revokes the vault API key token</h2><h3 id='request-10'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke</code></p>
-<h3 id='parameters-9'>Parameters</h3><h3 id='query-parameters-9'>Query Parameters</h3><h3 id='response-10'>Response</h3>
+<h3 id='parameters-8'>Parameters</h3><h3 id='query-parameters-8'>Query Parameters</h3><h3 id='response-10'>Response</h3>
 <blockquote>
 <p>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke 200 OK</p>
 </blockquote>
@@ -963,7 +1010,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='broker-accounts'>Broker accounts</h1><h2 id='creates-a-broker-account'>Creates a broker account</h2><h3 id='request-11'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/broker-accounts</code></p>
-<h3 id='parameters-10'>Parameters</h3><h3 id='query-parameters-10'>Query Parameters</h3><h3 id='response-11'>Response</h3>
+<h3 id='parameters-9'>Parameters</h3><h3 id='query-parameters-9'>Query Parameters</h3><h3 id='response-11'>Response</h3>
 <blockquote>
 <p>POST /api/broker-accounts 200 OK</p>
 </blockquote>
@@ -971,7 +1018,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-broker-accounts'>Searches broker accounts</h2><h3 id='request-12'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts</code></p>
-<h3 id='parameters-11'>Parameters</h3><h3 id='query-parameters-11'>Query Parameters</h3><h3 id='response-12'>Response</h3>
+<h3 id='parameters-10'>Parameters</h3><h3 id='query-parameters-10'>Query Parameters</h3><h3 id='response-12'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts 200 OK</p>
 </blockquote>
@@ -979,7 +1026,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-the-broker-account-balances'>Searches the broker account balances</h2><h3 id='request-13'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/balances</code></p>
-<h3 id='parameters-12'>Parameters</h3><h3 id='query-parameters-12'>Query Parameters</h3><h3 id='response-13'>Response</h3>
+<h3 id='parameters-11'>Parameters</h3><h3 id='query-parameters-11'>Query Parameters</h3><h3 id='response-13'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts/{brokerAccountId}/balances 200 OK</p>
 </blockquote>
@@ -987,7 +1034,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-the-broker-account-details'>Searches the broker account details</h2><h3 id='request-14'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details</code></p>
-<h3 id='parameters-13'>Parameters</h3><h3 id='query-parameters-13'>Query Parameters</h3><h3 id='response-14'>Response</h3>
+<h3 id='parameters-12'>Parameters</h3><h3 id='query-parameters-12'>Query Parameters</h3><h3 id='response-14'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts/{brokerAccountId}/details 200 OK</p>
 </blockquote>
@@ -995,7 +1042,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='request-15'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}</code></p>
-<h3 id='parameters-14'>Parameters</h3><h3 id='query-parameters-14'>Query Parameters</h3><h3 id='response-15'>Response</h3>
+<h3 id='parameters-13'>Parameters</h3><h3 id='query-parameters-13'>Query Parameters</h3><h3 id='response-15'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId} 200 OK</p>
 </blockquote>
@@ -1003,7 +1050,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='accounts'>Accounts</h1><h2 id='creates-an-account'>Creates an account</h2><h3 id='request-16'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/accounts</code></p>
-<h3 id='parameters-15'>Parameters</h3><h3 id='query-parameters-15'>Query Parameters</h3><h3 id='response-16'>Response</h3>
+<h3 id='parameters-14'>Parameters</h3><h3 id='query-parameters-14'>Query Parameters</h3><h3 id='response-16'>Response</h3>
 <blockquote>
 <p>POST /api/accounts 200 OK</p>
 </blockquote>
@@ -1011,7 +1058,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-accounts'>Searches accounts</h2><h3 id='request-17'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts</code></p>
-<h3 id='parameters-16'>Parameters</h3><h3 id='query-parameters-16'>Query Parameters</h3><h3 id='response-17'>Response</h3>
+<h3 id='parameters-15'>Parameters</h3><h3 id='query-parameters-15'>Query Parameters</h3><h3 id='response-17'>Response</h3>
 <blockquote>
 <p>GET /api/accounts 200 OK</p>
 </blockquote>
@@ -1019,7 +1066,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-18'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details</code></p>
-<h3 id='parameters-17'>Parameters</h3><h3 id='query-parameters-17'>Query Parameters</h3><h3 id='response-18'>Response</h3>
+<h3 id='parameters-16'>Parameters</h3><h3 id='query-parameters-16'>Query Parameters</h3><h3 id='response-18'>Response</h3>
 <blockquote>
 <p>GET /api/accounts/{accountId}/details 200 OK</p>
 </blockquote>
@@ -1027,7 +1074,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='gets-the-account-details-by-the-asset-id'>Gets the account details by the asset id</h2><h3 id='request-19'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details/by-asset-id/{assetId}</code></p>
-<h3 id='parameters-18'>Parameters</h3><h3 id='query-parameters-18'>Query Parameters</h3><h3 id='response-19'>Response</h3>
+<h3 id='parameters-17'>Parameters</h3><h3 id='query-parameters-17'>Query Parameters</h3><h3 id='response-19'>Response</h3>
 <blockquote>
 <p>GET /api/accounts/{accountId}/details/by-asset-id/{assetId} 200 OK</p>
 </blockquote>
@@ -1035,7 +1082,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='deposits'>Deposits</h1><h2 id='searches-deposits'>Searches deposits</h2><h3 id='request-20'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/deposits</code></p>
-<h3 id='parameters-19'>Parameters</h3><h3 id='query-parameters-19'>Query Parameters</h3><h3 id='response-20'>Response</h3>
+<h3 id='parameters-18'>Parameters</h3><h3 id='query-parameters-18'>Query Parameters</h3><h3 id='response-20'>Response</h3>
 <blockquote>
 <p>GET /api/deposits 200 OK</p>
 </blockquote>
@@ -1043,7 +1090,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-deposit-updates'>Searches deposit updates</h2><h3 id='request-21'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/deposit-updates</code></p>
-<h3 id='parameters-20'>Parameters</h3><h3 id='query-parameters-20'>Query Parameters</h3><h3 id='response-21'>Response</h3>
+<h3 id='parameters-19'>Parameters</h3><h3 id='query-parameters-19'>Query Parameters</h3><h3 id='response-21'>Response</h3>
 <blockquote>
 <p>GET /api/deposit-updates 200 OK</p>
 </blockquote>
@@ -1051,7 +1098,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='withdrawals'>Withdrawals</h1><h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request-22'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/withdrawals</code></p>
-<h3 id='parameters-21'>Parameters</h3><h3 id='query-parameters-21'>Query Parameters</h3><h3 id='response-22'>Response</h3>
+<h3 id='parameters-20'>Parameters</h3><h3 id='query-parameters-20'>Query Parameters</h3><h3 id='response-22'>Response</h3>
 <blockquote>
 <p>POST /api/withdrawals 200 OK</p>
 </blockquote>
@@ -1059,7 +1106,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-withdrawals'>Searches withdrawals</h2><h3 id='request-23'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/withdrawals</code></p>
-<h3 id='parameters-22'>Parameters</h3><h3 id='query-parameters-22'>Query Parameters</h3><h3 id='response-23'>Response</h3>
+<h3 id='parameters-21'>Parameters</h3><h3 id='query-parameters-21'>Query Parameters</h3><h3 id='response-23'>Response</h3>
 <blockquote>
 <p>GET /api/withdrawals 200 OK</p>
 </blockquote>
@@ -1067,7 +1114,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-withdrawal-updates'>Searches withdrawal updates</h2><h3 id='request-24'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/withdrawal-updates</code></p>
-<h3 id='parameters-23'>Parameters</h3><h3 id='query-parameters-23'>Query Parameters</h3><h3 id='response-24'>Response</h3>
+<h3 id='parameters-22'>Parameters</h3><h3 id='query-parameters-22'>Query Parameters</h3><h3 id='response-24'>Response</h3>
 <blockquote>
 <p>GET /api/withdrawal-updates 200 OK</p>
 </blockquote>
@@ -1154,6 +1201,13 @@ and you have to specify exact type in this case.</p>
 <li><code>creating</code> - The account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can&#39;t receive or send transfers.</li>
 <li><code>active</code> - The account is active and can be used as usual.</li>
 <li><code>blocked</code> - The account is blocked - processing of all deposits and withdrawals is on hold.</li>
+</ul>
+<h2 id='vaulttype-enum'>VaultType (enum)</h2>
+<p>Type of the vault</p>
+
+<ul>
+<li><code>private</code> - The vault executing on the customer&#39;s environment</li>
+<li><code>shared</code> - The shared vault executing on the SwissChain environment used by different customers</li>
 </ul>
 <h2 id='brokeraccountdetails-object'>BrokerAccountDetails (object)</h2>
 <p>Details of the broker account</p>
