@@ -9,7 +9,14 @@ toc_footers:
 includes:
   - change-log.md
   - api_usage.md
-  - brokerage-api.md
+  - brokerage-api-blockchains.md
+  - brokerage-api-assets.md
+  - brokerage-api-vaults.md
+  - brokerage-api-broker-accounts.md
+  - brokerage-api-accounts.md
+  - brokerage-api-deposits.md
+  - brokerage-api-withdrawals.md
+  - brokerage-api-data-structures.md
 
 search: true
 ---
