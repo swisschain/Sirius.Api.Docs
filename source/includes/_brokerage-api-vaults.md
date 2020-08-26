@@ -6,11 +6,11 @@
 
 **Rest API:** `POST /api/vaults`
 
-> 
-
-x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
+> POST /api/vaults
 
 ```json
+x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
+
 {
   "name": "production",
   "type": "private"
