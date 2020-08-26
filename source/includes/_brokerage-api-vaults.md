@@ -6,14 +6,25 @@
 
 **Rest API:** `POST /api/vaults`
 
-### Headers
+> 
+
+x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
+
+```json
+{
+  "name": "production",
+  "type": "private"
+}
+```
+
+#### Headers
 
 name | type | description | example
 ---- | ---- | ----------- | -------
 `X-Request-ID` | *string* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
 
 
-### Body Parameters
+#### Body Parameters
 
 name | type | description | example
 ---- | ---- | ----------- | -------
