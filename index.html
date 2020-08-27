@@ -910,17 +910,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='vaults'>Vaults</h1><h2 id='creates-a-vault'>Creates a vault</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults</code></p>
-
-<blockquote>
-<p>POST /api/vaults Request</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h4 id='headers'>Headers</h4>
+<h4 id='headers'>Headers</h4>
 <table><thead>
 <tr>
 <th>name</th>
@@ -936,7 +926,11 @@
 <td>1a5c0b3d15494ec8a390fd3b22d757d6</td>
 </tr>
 </tbody></table>
-<h4 id='body-parameters'>Body Parameters</h4>
+
+<blockquote>
+<p>x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6</p>
+</blockquote>
+<h4 id='body'>Body</h4>
 <table><thead>
 <tr>
 <th>name</th>
@@ -958,7 +952,15 @@
 <td>private</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3>
+
+<blockquote>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response'>Response</h3>
 <blockquote>
 <p>POST /api/vaults Response: 200 OK</p>
 </blockquote>
@@ -972,7 +974,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='updates-a-vault'>Updates a vault</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>PUT /api/vaults/{vaultId}</code></p>
-<h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response-2'>Response</h3>
+<h4 id='parameters'>Parameters</h4><h4 id='query-parameters'>Query Parameters</h4><h3 id='response-2'>Response</h3>
 <blockquote>
 <p>PUT /api/vaults/{vaultId} 200 OK</p>
 </blockquote>
@@ -980,7 +982,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-vaults'>Searches vaults</h2><h3 id='request-3'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults</code></p>
-<h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-3'>Response</h3>
+<h4 id='parameters-2'>Parameters</h4><h4 id='query-parameters-2'>Query Parameters</h4><h3 id='response-3'>Response</h3>
 <blockquote>
 <p>POST /api/vaults 200 OK</p>
 </blockquote>
@@ -988,7 +990,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='creates-a-vault-api-key'>Creates a vault API key</h2><h3 id='request-4'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys</code></p>
-<h3 id='parameters-3'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-4'>Response</h3>
+<h4 id='parameters-3'>Parameters</h4><h4 id='query-parameters-3'>Query Parameters</h4><h3 id='response-4'>Response</h3>
 <blockquote>
 <p>POST /api/vaults/{vaultId}/api-keys 200 OK</p>
 </blockquote>
@@ -996,7 +998,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='searches-vault-api-keys'>Searches vault API keys</h2><h3 id='request-5'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys</code></p>
-<h3 id='parameters-4'>Parameters</h3><h3 id='query-parameters-4'>Query Parameters</h3><h3 id='response-5'>Response</h3>
+<h4 id='parameters-4'>Parameters</h4><h4 id='query-parameters-4'>Query Parameters</h4><h3 id='response-5'>Response</h3>
 <blockquote>
 <p>GET /api/vaults/{vaultId}/api-keys 200 OK</p>
 </blockquote>
@@ -1004,7 +1006,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='gets-the-vault-api-key-token'>Gets the vault API key token</h2><h3 id='request-6'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token</code></p>
-<h3 id='parameters-5'>Parameters</h3><h3 id='query-parameters-5'>Query Parameters</h3><h3 id='response-6'>Response</h3>
+<h4 id='parameters-5'>Parameters</h4><h4 id='query-parameters-5'>Query Parameters</h4><h3 id='response-6'>Response</h3>
 <blockquote>
 <p>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token 200 OK</p>
 </blockquote>
@@ -1012,7 +1014,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='revokes-the-vault-api-key-token'>Revokes the vault API key token</h2><h3 id='request-7'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke</code></p>
-<h3 id='parameters-6'>Parameters</h3><h3 id='query-parameters-6'>Query Parameters</h3><h3 id='response-7'>Response</h3>
+<h4 id='parameters-6'>Parameters</h4><h4 id='query-parameters-6'>Query Parameters</h4><h3 id='response-7'>Response</h3>
 <blockquote>
 <p>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke 200 OK</p>
 </blockquote>
