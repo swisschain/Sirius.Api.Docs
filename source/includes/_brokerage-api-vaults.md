@@ -6,7 +6,7 @@
 
 **Rest API:** `POST /api/vaults`
 
-> POST /api/vaults
+> POST /api/vaults Request
 
 ```json
 x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
@@ -33,7 +33,7 @@ name | type | description | example
 
 ### Response
 
-> POST /api/vaults 200 OK
+> POST /api/vaults Response: 200 OK
 
 ```json
 {
