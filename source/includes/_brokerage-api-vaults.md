@@ -6,30 +6,30 @@
 
 **Rest API:** `POST /api/vaults`
 
-> POST /api/vaults Request
-
-```json
-x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
-
-{
-  "name": "production",
-  "type": "private"
-}
-```
-
 #### Headers
 
 name | type | description | example
 ---- | ---- | ----------- | -------
 `X-Request-ID` | *string* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
 
+> x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 
-#### Body Parameters
+#### Body
 
 name | type | description | example
 ---- | ---- | ----------- | -------
 `name` | *string* | Name of the vault | production
 `type` | *[VaultType](#VaultType)* | Type of the vault | private
+
+> 
+
+```json
+
+{
+  "name": "production",
+  "type": "private"
+}
+```
 
 ### Response
 
@@ -52,9 +52,9 @@ name | type | description | example
 
 **Rest API:** `PUT /api/vaults/{vaultId}`
 
-### Parameters
+#### Parameters
 
-### Query Parameters
+#### Query Parameters
 
 ### Response
 
@@ -71,9 +71,9 @@ name | type | description | example
 
 **Rest API:** `GET /api/vaults`
 
-### Parameters
+#### Parameters
 
-### Query Parameters
+#### Query Parameters
 
 
 ### Response
@@ -91,9 +91,9 @@ name | type | description | example
 
 **Rest API:** `POST /api/vaults/{vaultId}/api-keys`
 
-### Parameters
+#### Parameters
 
-### Query Parameters
+#### Query Parameters
 
 ### Response
 
@@ -110,9 +110,9 @@ name | type | description | example
 
 **Rest API:** `GET /api/vaults/{vaultId}/api-keys`
 
-### Parameters
+#### Parameters
 
-### Query Parameters
+#### Query Parameters
 
 ### Response
 
@@ -129,9 +129,9 @@ name | type | description | example
 
 **Rest API:** `GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token`
 
-### Parameters
+#### Parameters
 
-### Query Parameters
+#### Query Parameters
 
 ### Response
 
@@ -148,9 +148,9 @@ name | type | description | example
 
 **Rest API:** `POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke`
 
-### Parameters
+#### Parameters
 
-### Query Parameters
+#### Query Parameters
 
 ### Response
 
