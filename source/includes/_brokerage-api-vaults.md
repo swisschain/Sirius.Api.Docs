@@ -33,12 +33,12 @@ message VaultCreateRequest {
 }
 ```
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`X-Request-ID` | - | *string, header* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
- - | `request_id` | *string* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
-`name` | `name` | *string* | Name of the vault | My Vault
-`type` | `type` | *[VaultType](#VaultType)* | Type of the vault | private
+REST name | gRPC name | type | description 
+--------- | --------- | ---- | -----------
+`X-Request-ID` | - | *string, header* | Unique ID of the request
+ - | `request_id` | *string* | Unique ID of the request
+`name` | `name` | *string* | Name of the vault
+`type` | `type` | *[VaultType](#VaultType)* | Type of the vault
 
 ### Response
 
@@ -83,14 +83,14 @@ message VaultResponse {
 }
 ```
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`id` | `id` | *number* | ID of the vault | 100010
-`name` | `name` | *string* | Name of the vault | My Vault
-`type` | `type` | *[VaultType](#VaultType)* | Type of the vault | private
-`status` | `status` | *[VaultStatus](#VaultStatus)* | Status of the vault | offline
-`createdAt` | `created_at` | *timestamp* | Date of the vault creation | 2020-08-24T21:43:02.6554641Z
-`updatedAt` | `updated_at` | *timestamp* | Date of the vault update | 2020-08-24T21:43:02.6554641Z
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the vault
+`name` | `name` | *string* | Name of the vault
+`type` | `type` | *[VaultType](#VaultType)* | Type of the vault
+`status` | `status` | *[VaultStatus](#VaultStatus)* | Status of the vault
+`createdAt` | `created_at` | *timestamp* | Date of the vault creation
+`updatedAt` | `updated_at` | *timestamp* | Date of the vault update
 
 ## Updates a vault
 
