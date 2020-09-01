@@ -8,7 +8,9 @@
 
 > POST /api/vaults Request:
 
+```
 x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
+```
 
 ```json
 
