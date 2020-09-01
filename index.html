@@ -943,43 +943,38 @@
 </code></pre></div>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
-<th>REST placement</th>
-<th>gRPC placement</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>X-Request-ID</code></td>
-<td><em>string</em></td>
-<td>headers</td>
 <td>-</td>
+<td><em>string, header</em></td>
 <td>Uniqueu ID of the request</td>
 <td>1a5c0b3d15494ec8a390fd3b22d757d6</td>
 </tr>
 <tr>
+<td>-</td>
 <td><code>request_id</code></td>
 <td><em>string</em></td>
-<td>-</td>
-<td>body</td>
 <td>Uniqueu ID of the request</td>
 <td>1a5c0b3d15494ec8a390fd3b22d757d6</td>
 </tr>
 <tr>
 <td><code>name</code></td>
+<td><code>name</code></td>
 <td><em>string</em></td>
-<td>body</td>
-<td>body</td>
 <td>Name of the vault</td>
 <td>My Vault</td>
 </tr>
 <tr>
 <td><code>type</code></td>
+<td><code>type</code></td>
 <td><em><a href="#VaultType">VaultType</a></em></td>
-<td>body</td>
-<td>body</td>
 <td>Type of the vault</td>
 <td>private</td>
 </tr>
@@ -1033,15 +1028,15 @@
 <td><code>id</code></td>
 <td><code>id</code></td>
 <td><em>number</em></td>
-<td>Name of the vault</td>
-<td>production</td>
+<td>ID of the vault</td>
+<td>100010</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
 <td>Name of the vault</td>
-<td>production</td>
+<td>My Vault</td>
 </tr>
 <tr>
 <td><code>type</code></td>
