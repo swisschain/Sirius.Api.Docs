@@ -2,6 +2,7 @@
 title: Sirius API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - protobuf
   - json
 
 toc_footers:
