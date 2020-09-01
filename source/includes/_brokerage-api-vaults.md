@@ -11,10 +11,11 @@
 POST /api/vaults
 
 > Request: (application/json)
-> x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
+
+x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 
 {
-  "name": "production",
+  "name": "My Vault",
   "type": "private"
 }
 ```
@@ -25,16 +26,16 @@ swisschain.sirius.api.vaults.Vaults/Create
 > Requets: (application/grpc)
 
 message VaultCreateRequest {
-  string request_id = 1;
-  string name = 2;
-  VaultType type = 3;
+  string request_id = 1;    // 1a5c0b3d15494ec8a390fd3b22d757d6
+  string name = 2;          // "My Vault"
+  VaultType type = 3;       // VaultType.PRIVATE
 }
 ```
 
 name | type | REST placement | gRPC placement | description | example
 ---- | ---- | -------------- | -------------- | ----------- | -------
 `X-Request-ID` | *string* | headers | - | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
-`name` | *string* | body | body | Name of the vault | production
+`name` | *string* | body | body | Name of the vault | My Vault
 `type` | *[VaultType](#VaultType)* | body | body | Type of the vault | private
 
 ### Response
@@ -46,7 +47,7 @@ POST /api/vaults
 
 {
   "id": 100010,
-  "name": "production",
+  "name": "My Vault",
   "type": "private",
   "status": "offline",
   "createdAt": "2020-08-24T21:43:02.6554641Z",
@@ -61,22 +62,22 @@ swisschain.sirius.api.vaults.Vaults/Create
 
 message VaultCreateResponse {
     oneof result {
-      VaultCreateResponseBody body = 1;
-      swisschain.sirius.api.common.ErrorResponseBody error = 2;
+      VaultCreateResponseBody body = 1;                         // Object
+      swisschain.sirius.api.common.ErrorResponseBody error = 2; // NULL
     } 
 }
 
 message VaultCreateResponseBody {
-  VaultResponse vault = 1;
+  VaultResponse vault = 1;                                      // Object
 }
 
 message VaultResponse {
-  int64 id = 1;
-  string name = 2;
-  VaultType type = 3;
-  VaultStatus status = 4;
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
+  int64 id = 1;                                                 // 100010
+  string name = 2;                                              // "My Vault"
+  VaultType type = 3;                                           // VaultType.PRIVATE
+  VaultStatus status = 4;                                       // VaultStatus.OFFLINE
+  google.protobuf.Timestamp created_at = 5;                     // "2020-08-24T21:43:02.6554641Z"
+  google.protobuf.Timestamp updated_at = 6;                     // "2020-08-24T21:43:02.6554641Z"
 }
 ```
 
