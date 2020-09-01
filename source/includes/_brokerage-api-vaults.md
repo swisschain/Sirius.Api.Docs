@@ -5,6 +5,7 @@
 ### Request
 
 **Rest API:** `POST /api/vaults`
+
 **gRPC API:** `swisschain.sirius.api.vaults.Vaults/Create`
 
 ```json
@@ -35,6 +36,7 @@ message VaultCreateRequest {
 name | type | REST placement | gRPC placement | description | example
 ---- | ---- | -------------- | -------------- | ----------- | -------
 `X-Request-ID` | *string* | headers | - | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
+`request_id` | *string* | - | body | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
 `name` | *string* | body | body | Name of the vault | My Vault
 `type` | *[VaultType](#VaultType)* | body | body | Type of the vault | private
 
