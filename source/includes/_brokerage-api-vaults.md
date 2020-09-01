@@ -85,7 +85,7 @@ message VaultResponse {
 
 REST name | gRPC name | type | description | example
 --------- | --------- | ---- | ----------- | -------
-`id` | `id` | *number* | Name of the vault | 100010
+`id` | `id` | *number* | ID of the vault | 100010
 `name` | `name` | *string* | Name of the vault | My Vault
 `type` | `type` | *[VaultType](#VaultType)* | Type of the vault | private
 `status` | `status` | *[VaultStatus](#VaultStatus)* | Status of the vault | offline
