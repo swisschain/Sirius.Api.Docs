@@ -222,18 +222,18 @@
             <a href="#sirius-brokerage-api" class="toc-h1 toc-link" data-title="Sirius - Brokerage API">Sirius - Brokerage API</a>
           </li>
           <li>
+            <a href="#feedback" class="toc-h1 toc-link" data-title="Feedback">Feedback</a>
+          </li>
+          <li>
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2020-08-01-the-release-of-sirius-api" class="toc-h2 toc-link" data-title="2020-08-01 | The release of Sirius API.">2020-08-01 | The release of Sirius API.</a>
+                    <a href="#2020-09-07-public-beta" class="toc-h2 toc-link" data-title="2020-09-07 | Public Beta">2020-09-07 | Public Beta</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#protocol-description" class="toc-h1 toc-link" data-title="Protocol description">Protocol description</a>
-          </li>
-          <li>
-            <a href="#api-usage" class="toc-h1 toc-link" data-title="API usage">API usage</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#allowed-http-verbs" class="toc-h2 toc-link" data-title="Allowed HTTP Verbs">Allowed HTTP Verbs</a>
@@ -257,6 +257,12 @@
                     <a href="#timestamp" class="toc-h2 toc-link" data-title="Timestamp">Timestamp</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#api-usage" class="toc-h1 toc-link" data-title="API usage">API usage</a>
+          </li>
+          <li>
+            <a href="#examples" class="toc-h1 toc-link" data-title="Examples">Examples</a>
           </li>
           <li>
             <a href="#blockchains" class="toc-h1 toc-link" data-title="Blockchains">Blockchains</a>
@@ -426,7 +432,7 @@
 </ul>
 
 <p>For more information about Swisschain, please visit <a href="https://swisschain.io/">swisschain.io</a>.</p>
-<h1 id='change-log'>Change Log</h1><h2 id='2020-08-01-the-release-of-sirius-api'>2020-08-01 | The release of Sirius API.</h2><h1 id='protocol-description'>Protocol description</h1><h1 id='api-usage'>API usage</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
+<h1 id='feedback'>Feedback</h1><h1 id='change-log'>Change Log</h1><h2 id='2020-09-07-public-beta'>2020-09-07 | Public Beta</h2><h1 id='protocol-description'>Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
 <li><code>POST</code> : Creates a resource.</li>
@@ -523,7 +529,7 @@
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="nl">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-04T08:05:09.039924+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='blockchains'>Blockchains</h1>
+</span></code></pre></div><h1 id='api-usage'>API usage</h1><h1 id='examples'>Examples</h1><h1 id='blockchains'>Blockchains</h1>
 <p>We distinguish <em>Blockchain</em>, <em>Protocol</em>, and <em>Network Type</em>.</p>
 
 <p><em>Blockchain</em> is not just Bitcoin or Ethereum, it&#39;s a particular network. For example Bitcoin MainNet, Ethereum Ropsten are blockchains, whilst Bitcoin and Ethereum are protocols which are used by these blockchains. Networks can be one of the types - <code>private</code>, <code>test</code>, <code>public</code>. So Blockchain has a protocol and network type.</p>
@@ -926,10 +932,6 @@
 <td>1a5c0b3d15494ec8a390fd3b22d757d6</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6</p>
-</blockquote>
 <h4 id='body'>Body</h4>
 <table><thead>
 <tr>
@@ -955,7 +957,8 @@
 
 <blockquote>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+
 </span><span class="p">{</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="w">
