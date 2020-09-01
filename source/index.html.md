@@ -7,8 +7,11 @@ language_tabs: # must be one of https://git.io/vQNgJ
 toc_footers:
 
 includes:
+  - feedback.md
   - change-log.md
+  - protocol-description.md
   - api_usage.md
+  - examples.md
   - brokerage-api-blockchains.md
   - brokerage-api-assets.md
   - brokerage-api-vaults.md

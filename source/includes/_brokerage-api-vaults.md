@@ -12,8 +12,6 @@ name | type | description | example
 ---- | ---- | ----------- | -------
 `X-Request-ID` | *string* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
 
-> x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
-
 #### Body
 
 name | type | description | example
@@ -24,6 +22,7 @@ name | type | description | example
 > 
 
 ```json
+x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 
 {
   "name": "production",

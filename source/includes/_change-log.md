@@ -1,4 +1,4 @@
 # Change Log
 
-## 2020-08-01 | The release of Sirius API.
+## 2020-09-07 | Public Beta
 
