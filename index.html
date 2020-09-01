@@ -917,23 +917,33 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='vaults'>Vaults</h1><h2 id='creates-a-vault'>Creates a vault</h2><h3 id='request'>Request</h3>
-<p><strong>Rest API:</strong> <code>POST /api/vaults</code></p>
+<p><strong>Rest API:</strong> <code>POST /api/vaults</code>
+<strong>gRPC API:</strong> <code>swisschain.sirius.api.vaults.Vaults/Create</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/vaults</span><span class="w">
 
-<blockquote>
-<p>POST /api/vaults Request:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h4 id='headers'>Headers</h4>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Create</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">VaultCreateRequest</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <table><thead>
 <tr>
 <th>name</th>
 <th>type</th>
+<th>REST placement</th>
+<th>gRPC placement</th>
 <th>description</th>
 <th>example</th>
 </tr>
@@ -941,37 +951,33 @@
 <tr>
 <td><code>X-Request-ID</code></td>
 <td><em>string</em></td>
+<td>headers</td>
+<td>-</td>
 <td>Uniqueu ID of the request</td>
 <td>1a5c0b3d15494ec8a390fd3b22d757d6</td>
 </tr>
-</tbody></table>
-<h4 id='body'>Body</h4>
-<table><thead>
-<tr>
-<th>name</th>
-<th>type</th>
-<th>description</th>
-<th>example</th>
-</tr>
-</thead><tbody>
 <tr>
 <td><code>name</code></td>
 <td><em>string</em></td>
+<td>body</td>
+<td>body</td>
 <td>Name of the vault</td>
 <td>production</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td><em><a href="#VaultType">VaultType</a></em></td>
+<td>body</td>
+<td>body</td>
 <td>Type of the vault</td>
 <td>private</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3>
-<blockquote>
-<p>POST /api/vaults Response: 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/vaults</span><span class="w"> 
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="p">,</span><span class="w">
@@ -979,7 +985,83 @@
   </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='updates-a-vault'>Updates a vault</h2><h3 id='request-2'>Request</h3>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Create</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">VaultCreateResponse</span> <span class="p">{</span>
+    <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+      <span class="n">VaultCreateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">VaultCreateResponseBody</span> <span class="p">{</span>
+  <span class="n">VaultResponse</span> <span class="na">vault</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">VaultResponse</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">VaultStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>Name of the vault</td>
+<td>production</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td>Name of the vault</td>
+<td>production</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>type</code></td>
+<td><em><a href="#VaultType">VaultType</a></em></td>
+<td>Type of the vault</td>
+<td>private</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>status</code></td>
+<td><em><a href="#VaultStatus">VaultStatus</a></em></td>
+<td>Status of the vault</td>
+<td>offline</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the vault creation</td>
+<td>2020-08-24T21:43:02.6554641Z</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the vault update</td>
+<td>2020-08-24T21:43:02.6554641Z</td>
+</tr>
+</tbody></table>
+<h2 id='updates-a-vault'>Updates a vault</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>PUT /api/vaults/{vaultId}</code></p>
 <h4 id='parameters'>Parameters</h4><h4 id='query-parameters'>Query Parameters</h4><h3 id='response-2'>Response</h3>
 <blockquote>
