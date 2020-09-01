@@ -33,12 +33,12 @@ message VaultCreateRequest {
 }
 ```
 
-name | type | REST placement | gRPC placement | description | example
----- | ---- | -------------- | -------------- | ----------- | -------
-`X-Request-ID` | *string* | headers | - | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
-`request_id` | *string* | - | body | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
-`name` | *string* | body | body | Name of the vault | My Vault
-`type` | *[VaultType](#VaultType)* | body | body | Type of the vault | private
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`X-Request-ID` | - | *string, header* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
+ - | `request_id` | *string* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
+`name` | `name` | *string* | Name of the vault | My Vault
+`type` | `type` | *[VaultType](#VaultType)* | Type of the vault | private
 
 ### Response
 
@@ -85,8 +85,8 @@ message VaultResponse {
 
 REST name | gRPC name | type | description | example
 --------- | --------- | ---- | ----------- | -------
-`id` | `id` | *number* | Name of the vault | production
-`name` | `name` | *string* | Name of the vault | production
+`id` | `id` | *number* | Name of the vault | 100010
+`name` | `name` | *string* | Name of the vault | My Vault
 `type` | `type` | *[VaultType](#VaultType)* | Type of the vault | private
 `status` | `status` | *[VaultStatus](#VaultStatus)* | Status of the vault | offline
 `createdAt` | `created_at` | *timestamp* | Date of the vault creation | 2020-08-24T21:43:02.6554641Z
