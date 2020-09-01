@@ -189,19 +189,129 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/vaults`
 
-#### Parameters
+**gRPC API:** `swisschain.sirius.api.vaults.Vaults/Search`
 
-#### Query Parameters
+```json
+GET /api/vaults?id=100010&name=My%20Vault&type=private&order=asc&cursor=100009&limit=3
+```
 
+```protobuf
+swisschain.sirius.api.vaults.Vaults/Search
+
+> Requets: (application/grpc)
+
+message VaultSearchRequest {  
+  google.protobuf.Int64Value id = 1;                            // 100010
+  google.protobuf.StringValue name = 2;                         // "My Vault"
+  repeated VaultType type = 3;                                  // Array<VaultType>
+  swisschain.sirius.api.common.PaginationInt64 pagination = 4;  // Object
+}
+
+message PaginationInt64 {
+  PaginationOrder order = 1;                                    // PaginationOrder.ASC
+  google.protobuf.Int64Value cursor = 2;                        // 100009
+  int32 limit = 3;                                              // 3
+}
+```
+
+REST name | gRPC name | type | REST placement | description 
+--------- | --------- | ---- | -------------- | -----------
+`id` | `id` | *number, optional* | *query* | Exact ID of the vault to search
+`name` | `name` | *string, optional* | *query* | Name of the vault to search
+`type` | `type` | *Array<[VaultType](#VaultType)>, optional* | *query* | Zero or several vault types to search
+`order` | `pagination.order` | *[Order](#order), optional* | *query* | Results sorting order
+`cursor` | `pagination.cursor` | *number, optional* | *query* | Cursor to continue search from
 
 ### Response
 
-> POST /api/vaults 200 OK
-
 ```json
+GET /api/vaults?&name=Vault&type=private&order=asc&cursor=100009&limit=3
+
+> Response: 200 (application/json) - success response
+
 {
+  "pagination": {
+    "cursor": 100009,
+    "count": 3,
+    "order": "asc",
+    "nextUrl": "/api/vaults?&name=Vault&type=private&order=asc&cursor=100012&limit=3"
+  },
+  "items": [
+    {
+      "id": 100010,
+      "name": "My Vault",
+      "type": "shared",
+      "status": "online",
+      "createdAt": "2020-08-27T22:08:56.976533Z",
+      "updatedAt": "2020-08-27T22:08:56.976533Z"
+    },
+    {
+      "id": 100011,
+      "name": "My Secure Vault",
+      "type": "private",
+      "status": "online",
+      "createdAt": "2020-08-27T22:08:56.976533Z",
+      "updatedAt": "2020-08-27T22:08:56.976533Z"
+    },
+    {
+      "id": 100012,
+      "name": "Test Vault",
+      "type": "shared",
+      "status": "online",
+      "createdAt": "2020-08-27T22:08:56.976533Z",
+      "updatedAt": "2020-08-27T22:08:56.976533Z"
+    }
+  ]
 }
 ```
+
+```protobuf
+swisschain.sirius.api.vaults.Vaults/Search
+
+> Response: (application/grpc) - success response
+
+message VaultSearchResponse {
+  oneof result {
+    VaultSearchResponseBody body = 1;                           // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;   // NULL
+  } 
+}
+
+message VaultSearchResponseBody {
+  swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;   // Object
+  repeated VaultResponse items = 2;                                     // Array<Object>
+}
+
+message VaultUpdateResponseBody {
+  VaultResponse vault = 1;                                              // Object
+}
+
+message PaginatedInt64Response {
+  google.protobuf.Int64Value cursor = 1;                                // 100009
+  int32 count = 2;                                                      // 3
+  PaginationOrder order = 3;                                            // PaginationOrder.ASC
+}
+
+message VaultResponse {
+  int64 id = 1;                                                         // 100010
+  string name = 2;                                                      // "My Secure Vault"
+  VaultType type = 3;                                                   // VaultType.PRIVATE
+  VaultStatus status = 4;                                               // VaultStatus.OFFLINE
+  google.protobuf.Timestamp created_at = 5;                             // "2020-08-24T21:43:02.6554641Z"
+  google.protobuf.Timestamp updated_at = 6;                             // "2020-08-24T21:43:02.6554641Z"
+}
+```
+
+Paginated list of
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the vault
+`name` | `name` | *string* | Name of the vault
+`type` | `type` | *[VaultType](#VaultType)* | Type of the vault
+`status` | `status` | *[VaultStatus](#VaultStatus)* | Status of the vault
+`createdAt` | `created_at` | *timestamp* | Date of the vault creation
+`updatedAt` | `updated_at` | *timestamp* | Date of the vault update
 
 ## Vault API key creation
 
