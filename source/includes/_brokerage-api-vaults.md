@@ -5,15 +5,13 @@
 ### Request
 
 **Rest API:** `POST /api/vaults`
-
-> POST /api/vaults Request:
-
-```
-x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
-```
+**gRPC API:** `swisschain.sirius.api.vaults.Vaults/Create`
 
 ```json
+POST /api/vaults
 
+> Request: (application/json)
+> x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 
 {
   "name": "production",
@@ -21,24 +19,31 @@ x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 }
 ```
 
-#### Headers
+```protobuf
+swisschain.sirius.api.vaults.Vaults/Create
 
-name | type | description | example
----- | ---- | ----------- | -------
-`X-Request-ID` | *string* | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
+> Requets: (application/grpc)
 
-#### Body
+message VaultCreateRequest {
+  string request_id = 1;
+  string name = 2;
+  VaultType type = 3;
+}
+```
 
-name | type | description | example
----- | ---- | ----------- | -------
-`name` | *string* | Name of the vault | production
-`type` | *[VaultType](#VaultType)* | Type of the vault | private
+name | type | REST placement | gRPC placement | description | example
+---- | ---- | -------------- | -------------- | ----------- | -------
+`X-Request-ID` | *string* | headers | - | Uniqueu ID of the request | 1a5c0b3d15494ec8a390fd3b22d757d6
+`name` | *string* | body | body | Name of the vault | production
+`type` | *[VaultType](#VaultType)* | body | body | Type of the vault | private
 
 ### Response
 
-> POST /api/vaults Response: 200 OK
-
 ```json
+POST /api/vaults 
+
+> Response: 200 (application/json) - success response
+
 {
   "id": 100010,
   "name": "production",
@@ -48,6 +53,41 @@ name | type | description | example
   "updatedAt": "2020-08-24T21:43:02.6554641Z"
 }
 ```
+
+```protobuf
+swisschain.sirius.api.vaults.Vaults/Create
+
+> Response: (application/grpc) - success response
+
+message VaultCreateResponse {
+    oneof result {
+      VaultCreateResponseBody body = 1;
+      swisschain.sirius.api.common.ErrorResponseBody error = 2;
+    } 
+}
+
+message VaultCreateResponseBody {
+  VaultResponse vault = 1;
+}
+
+message VaultResponse {
+  int64 id = 1;
+  string name = 2;
+  VaultType type = 3;
+  VaultStatus status = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+```
+
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`id` | `id` | *number* | Name of the vault | production
+`name` | `name` | *string* | Name of the vault | production
+`type` | `type` | *[VaultType](#VaultType)* | Type of the vault | private
+`status` | `status` | *[VaultStatus](#VaultStatus)* | Status of the vault | offline
+`createdAt` | `created_at` | *timestamp* | Date of the vault creation | 2020-08-24T21:43:02.6554641Z
+`updatedAt` | `updated_at` | *timestamp* | Date of the vault update | 2020-08-24T21:43:02.6554641Z
 
 ## Updates a vault
 
