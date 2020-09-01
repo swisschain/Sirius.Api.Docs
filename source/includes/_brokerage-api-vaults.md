@@ -6,6 +6,19 @@
 
 **Rest API:** `POST /api/vaults`
 
+> POST /api/vaults Request:
+
+x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
+
+```json
+
+
+{
+  "name": "production",
+  "type": "private"
+}
+```
+
 #### Headers
 
 name | type | description | example
@@ -18,17 +31,6 @@ name | type | description | example
 ---- | ---- | ----------- | -------
 `name` | *string* | Name of the vault | production
 `type` | *[VaultType](#VaultType)* | Type of the vault | private
-
-> 
-
-```json
-x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
-
-{
-  "name": "production",
-  "type": "private"
-}
-```
 
 ### Response
 
