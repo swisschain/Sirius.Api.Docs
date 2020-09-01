@@ -923,10 +923,11 @@
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/vaults</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
-</span><span class="err">&gt;</span><span class="w"> </span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+
+</span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Vault"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Create</span>
@@ -934,9 +935,9 @@
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
 
 <span class="kd">message</span> <span class="nc">VaultCreateRequest</span> <span class="p">{</span>
-  <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>    <span class="c1">// 1a5c0b3d15494ec8a390fd3b22d757d6</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>          <span class="c1">// "My Vault"</span>
+  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>       <span class="c1">// VaultType.PRIVATE</span>
 <span class="p">}</span>
 </code></pre></div>
 <table><thead>
@@ -963,7 +964,7 @@
 <td>body</td>
 <td>body</td>
 <td>Name of the vault</td>
-<td>production</td>
+<td>My Vault</td>
 </tr>
 <tr>
 <td><code>type</code></td>
@@ -980,7 +981,7 @@
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Vault"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="p">,</span><span class="w">
@@ -992,22 +993,22 @@
 
 <span class="kd">message</span> <span class="nc">VaultCreateResponse</span> <span class="p">{</span>
     <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
-      <span class="n">VaultCreateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="n">VaultCreateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                         <span class="c1">// Object</span>
+      <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// NULL</span>
     <span class="p">}</span> 
 <span class="p">}</span>
 
 <span class="kd">message</span> <span class="nc">VaultCreateResponseBody</span> <span class="p">{</span>
-  <span class="n">VaultResponse</span> <span class="na">vault</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">VaultResponse</span> <span class="na">vault</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                      <span class="c1">// Object</span>
 <span class="p">}</span>
 
 <span class="kd">message</span> <span class="nc">VaultResponse</span> <span class="p">{</span>
-  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-  <span class="n">VaultStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                 <span class="c1">// 100010</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                              <span class="c1">// "My Vault"</span>
+  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                           <span class="c1">// VaultType.PRIVATE</span>
+  <span class="n">VaultStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                       <span class="c1">// VaultStatus.OFFLINE</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                     <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                     <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
 <span class="p">}</span>
 </code></pre></div>
 <table><thead>
