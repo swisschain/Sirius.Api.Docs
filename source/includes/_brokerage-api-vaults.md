@@ -1,5 +1,12 @@
 # Vaults
 
+A Vault is a place where private keys of your blockchain wallets are kept. It generates public/private key pairs and signs transactions using these private keys. In order to create any broker-account, account, wallet, receive or send transactions in Sirius, you have to create a Vault first. There are two types of the Vault:
+
+* Shared - run and managed by SwissChain. It uses software-only security to store the keys. It's used across all the customers which use this type of the Vault.
+* Private - can be run and managed either by SwissChain or by the Customer. Either software-only or IBM HSM and Hyper Protect Services based implementation can be used. IBM HSM and Hyper Protect Services can be run either in the cloud or on-premise. IBM HSM and Hyper Protect Services is the only solution in the industry which is FIPS 140-2 Level 4-certified. Contact us to get help deploying of this type of the Vault.
+
+We recommend using Shared Vault for the testing purposes and private for the production environment.
+
 ## Vault creation
 
 ### Request
@@ -108,7 +115,7 @@ PUT /api/vaults/100010
 x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 
 {
-  "name": "My Vault"
+  "name": "My Secure Vault"
 }
 ```
 
@@ -272,8 +279,8 @@ swisschain.sirius.api.vaults.Vaults/Search
 
 message VaultSearchResponse {
   oneof result {
-    VaultSearchResponseBody body = 1;                           // Object
-    swisschain.sirius.api.common.ErrorResponseBody error = 2;   // NULL
+    VaultSearchResponseBody body = 1;                                   // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;           // NULL
   } 
 }
 
