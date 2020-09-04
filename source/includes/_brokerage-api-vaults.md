@@ -309,7 +309,7 @@ message VaultResponse {
 }
 ```
 
-Paginated list of
+[Paginated](#Pagination) list of
 
 REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
@@ -326,18 +326,93 @@ REST name | gRPC name | type | description
 
 **Rest API:** `POST /api/vaults/{vaultId}/api-keys`
 
-#### Parameters
+**gRPC API:** `swisschain.sirius.api.vaults.Vaults/AddApiKey`
 
-#### Query Parameters
+```json
+POST /api/vaults/100010/api-keys
+
+> Request: (application/json)
+
+x-request-id: d5125d2d4d9445efa5414a3926ab00a7
+
+{
+  "name": "API key for my vault",
+  "expiresAt": "2020-09-24T21:43:02.6554641Z"
+}
+```
+
+```protobuf
+swisschain.sirius.api.vaults.Vaults/AddApiKey
+
+> Requets: (application/grpc)
+
+message VaultAddApiKeyRequest {
+  string request_id = 1;                        // d5125d2d4d9445efa5414a3926ab00a7
+  int64 vault_id = 2;                           // 100010
+  string name = 3;                              // "API key for my vault"
+  google.protobuf.Timestamp expires_at = 4;     // "2020-09-24T21:43:02.6554641Z"
+}
+```
+
+REST name | gRPC name | type | REST placement | description 
+--------- | --------- | ---- | -------------- | -----------
+`X-Request-ID` | - | *string* | *header* | Unique ID of the request
+ - | `request_id` | *string* | - | Unique ID of the request
+`vaultId` | `vault_id` | *number* | *route* | ID of the vault being update
+`name` | `name` | *string* | *body* | Name of the vault to set
+`expiresAt` | `expires_at` | *timestamp* | *body* | Date of the API key expiration
 
 ### Response
 
-> POST /api/vaults/{vaultId}/api-keys 200 OK
-
 ```json
+POST /api/vaults/100010/api-keys
+
+> Response: 200 (application/json) - success response
+
 {
+  "id": 100014,
+  "vaultId": 100010,
+  "name": "API key for my vault",
+  "expiresAt": "2020-09-24T21:43:02.6554641Z",
+  "issuedAt": "2020-08-24T21:43:02.6554641Z",
+  "isRevoked": false
 }
 ```
+
+```protobuf
+swisschain.sirius.api.vaults.Vaults/AddApiKey
+
+> Response: (application/grpc) - success response
+
+message VaultAddApiKeyResponse {
+  oneof result {
+    VaultAddApiKeyResponseBody body = 1;                            // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;       // NULL
+  } 
+}
+
+message VaultAddApiKeyResponseBody {
+  VaultApiKeyResponse vault_api_key = 1;                            // Object
+}
+
+message VaultApiKeyResponse {
+  int64 id = 1;                                                     // 100014
+  int64 vault_id = 2;                                               // 100010
+  string name = 3;                                                  // "API key for my vault"
+  google.protobuf.Timestamp expires_at = 4;                         // "2020-09-24T21:43:02.6554641Z"
+  google.protobuf.Timestamp issued_at = 5;                          // "2020-08-24T21:43:02.6554641Z"
+  bool is_revoked = 6;                                              // FALSE
+}
+```
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the vault API key
+`vaultId` | `vault_id` | *number* | ID of the vault
+`name` | `name` | *string* | Name of the vault
+`expiresAt` | `expires_at` | *timestamp* | Date of the API key expiration
+`issuedAt` | `issued_at` | *timestamp* | Date of the API key issuance
+`isRevoked` | `is_revoked` | *bool* | Flag indicating if the API key is revoked
 
 ## Vault API keys search
 
