@@ -135,7 +135,7 @@ REST name | gRPC name | type | REST placement | description
 --------- | --------- | ---- | -------------- | -----------
 `X-Request-ID` | - | *string* | *header* | Unique ID of the request
  - | `request_id` | *string* | - | Unique ID of the request
-`vaultId` | `vault_id` | *number* | *route* | ID of the vault being update
+`vaultId` | `vault_id` | *number* | *path* | ID of the vault being update
 `name` | `name` | *string* | *body* | Name of the vault to set
 
 ### Response
@@ -228,6 +228,7 @@ REST name | gRPC name | type | REST placement | description
 `type` | `type` | *Array<[VaultType](#VaultType)>, optional* | *query* | Zero or several vault types to search
 `order` | `pagination.order` | *[Order](#order), optional* | *query* | Results sorting order
 `cursor` | `pagination.cursor` | *number, optional* | *query* | Cursor to continue search from
+`limit` | `pagination.limit` | *number, optional* | *query* | Max numbers of the items to return from the server
 
 ### Response
 
@@ -358,7 +359,7 @@ REST name | gRPC name | type | REST placement | description
 --------- | --------- | ---- | -------------- | -----------
 `X-Request-ID` | - | *string* | *header* | Unique ID of the request
  - | `request_id` | *string* | - | Unique ID of the request
-`vaultId` | `vault_id` | *number* | *route* | ID of the vault being update
+`vaultId` | `vault_id` | *number* | *path* | ID of the vault being update
 `name` | `name` | *string* | *body* | Name of the vault to set
 `expiresAt` | `expires_at` | *timestamp* | *body* | Date of the API key expiration
 
@@ -420,18 +421,122 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/vaults/{vaultId}/api-keys`
 
-#### Parameters
+**gRPC API:** `swisschain.sirius.api.vaults.Vaults/SearchApiKeys`
 
-#### Query Parameters
+```json
+GET /api/vaults/100010/api-keys?id=100014&name=API%20key%20for%20my%20vault&isRevoked=false&order=asc&cursor=100013&limit=3
+```
+
+```protobuf
+swisschain.sirius.api.vaults.Vaults/SearchApiKeys
+
+> Requets: (application/grpc)
+
+message VaultSearchApiKeyRequest {  
+  google.protobuf.Int64Value id = 1;                            // 100014
+  google.protobuf.StringValue name = 2;                         // "API key for my vault"
+  int64 vault_id = 4;                                           // 100010
+  google.protobuf.BoolValue is_revoked = 5;                     // false
+  swisschain.sirius.api.common.PaginationInt64 pagination = 6;  // Object
+}
+
+message PaginationInt64 {
+  PaginationOrder order = 1;                                    // PaginationOrder.ASC
+  google.protobuf.Int64Value cursor = 2;                        // 100013
+  int32 limit = 3;                                              // 3
+}
+```
+
+REST name | gRPC name | type | REST placement | description 
+--------- | --------- | ---- | -------------- | -----------
+`vaultId` | `vault_id` | *number* | *path* | Exact ID of the vault to search
+`id` | `id` | *number, optional* | *query* | Exact ID of the vault API key to search
+`name` | `name` | *string, optional* | *query* | Name of the vault API key to search
+`isRevoked` | `is_revoked` | *bool, optional* | *query* | Flag indicating if only revoked or only not revoked vault API keys should be searched
+`order` | `pagination.order` | *[Order](#order), optional* | *query* | Results sorting order
+`cursor` | `pagination.cursor` | *number, optional* | *query* | Cursor to continue search from
+`limit` | `pagination.limit` | *number, optional* | *query* | Max numbers of the items to return from the server
 
 ### Response
 
-> GET /api/vaults/{vaultId}/api-keys 200 OK
-
 ```json
+GET /api/vaults/100010/api-keys?name=API%20key&isRevoked=false&order=asc&cursor=100013&limit=3
+
+> Response: 200 (application/json) - success response
+
 {
+  "pagination": {
+    "cursor": 100009,
+    "count": 3,
+    "order": "asc",
+    "nextUrl": /api/vaults/100010/api-keys?name=API%20key&isRevoked=false&order=asc&cursor=100016&limit=3
+  },
+  "items": [
+    {
+      "id": 100014,
+      "vaultId": 100010,
+      "name": "API key for my vault",
+      "expiresAt": "2021-09-10T20:26:22.845Z",
+      "issuedAt": "2020-09-10T20:26:22.845Z",
+      "isRevoked": false
+    },
+    {
+      "id": 100015,
+      "vaultId": 100010,
+      "name": "Another one API key for my vault",
+      "expiresAt": "2021-09-10T20:26:22.845Z",
+      "issuedAt": "2020-09-10T20:26:22.845Z",
+      "isRevoked": false
+    },
+    {
+      "id": 100016,
+      "vaultId": 100010,
+      "name": "One more API key for my vault",
+      "expiresAt": "2021-09-10T20:26:22.845Z",
+      "issuedAt": "2020-09-10T20:26:22.845Z",
+      "isRevoked": false
+    }
+  ]
 }
 ```
+
+```protobuf
+swisschain.sirius.api.vaults.Vaults/SearchApiKeys
+
+> Response: (application/grpc) - success response
+
+message VaultSearchApiKeyResponse {
+  oneof result {
+    VaultSearchApiKeyResponseBody body = 1;                             // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;           // NULL
+  } 
+}
+
+message VaultSearchApiKeyResponseBody {
+  swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;   // Object
+  repeated VaultApiKeyResponse items = 2;                               // Array<Object>
+}
+
+message VaultApiKeyResponse {
+  int64 id = 1;                                                         // 100016
+  int64 vault_id = 2;                                                   // 100010
+  string name = 3;                                                      // "One more API key for my vault"
+  google.protobuf.Timestamp expires_at = 4;                             // "2021-09-10T20:26:22.845Z"
+  google.protobuf.Timestamp issued_at = 5;                              // "2020-09-10T20:26:22.845Z"
+  bool is_revoked = 6;                                                  // FALSE
+}
+```
+
+[Paginated](#Pagination) list of
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the vault API key
+`vaultId` | `vault_id` | *number* | ID of the vault
+`name` | `name` | *string* | Name of the vault API key
+`expiresAt` | `expires_at` | *timestamp* | Date of the API key expiration
+`issuedAt` | `issued_at` | *timestamp* | Date of the API key issuance
+`isRevoked` | `is_revoked` | *bool* | Flag indicating if the vault API key is revoked
 
 ## Vault API key token obtaining
 
