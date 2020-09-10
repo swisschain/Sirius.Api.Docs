@@ -1119,7 +1119,7 @@
 <td><code>vaultId</code></td>
 <td><code>vault_id</code></td>
 <td><em>number</em></td>
-<td><em>route</em></td>
+<td><em>path</em></td>
 <td>ID of the vault being update</td>
 </tr>
 <tr>
@@ -1276,6 +1276,13 @@
 <td><em>number, optional</em></td>
 <td><em>query</em></td>
 <td>Cursor to continue search from</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>pagination.limit</code></td>
+<td><em>number, optional</em></td>
+<td><em>query</em></td>
+<td>Max numbers of the items to return from the server</td>
 </tr>
 </tbody></table>
 <h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/vaults?&amp;name=Vault&amp;type=private&amp;order=asc&amp;cursor=</span><span class="mi">100009</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
@@ -1450,7 +1457,7 @@
 <td><code>vaultId</code></td>
 <td><code>vault_id</code></td>
 <td><em>number</em></td>
-<td><em>route</em></td>
+<td><em>path</em></td>
 <td>ID of the vault being update</td>
 </tr>
 <tr>
@@ -1551,15 +1558,199 @@
 </tbody></table>
 <h2 id='vault-api-keys-search'>Vault API keys search</h2><h3 id='request-5'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys</code></p>
-<h4 id='parameters'>Parameters</h4><h4 id='query-parameters'>Query Parameters</h4><h3 id='response-5'>Response</h3>
-<blockquote>
-<p>GET /api/vaults/{vaultId}/api-keys 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.vaults.Vaults/SearchApiKeys</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys?id=</span><span class="mi">100014</span><span class="err">&amp;name=API%</span><span class="mi">20</span><span class="err">key%</span><span class="mi">20</span><span class="err">for%</span><span class="mi">20</span><span class="err">my%</span><span class="mi">20</span><span class="err">vault&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">SearchApiKeys</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">VaultSearchApiKeyRequest</span> <span class="p">{</span>  
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                            <span class="c1">// 100014</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                         <span class="c1">// "API key for my vault"</span>
+  <span class="kt">int64</span> <span class="na">vault_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                           <span class="c1">// 100010</span>
+  <span class="n">google.protobuf.BoolValue</span> <span class="na">is_revoked</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                     <span class="c1">// false</span>
+  <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>  <span class="c1">// Object</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">PaginationInt64</span> <span class="p">{</span>
+  <span class="n">PaginationOrder</span> <span class="na">order</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                    <span class="c1">// PaginationOrder.ASC</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">cursor</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                        <span class="c1">// 100013</span>
+  <span class="kt">int32</span> <span class="na">limit</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                              <span class="c1">// 3</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>vaultId</code></td>
+<td><code>vault_id</code></td>
+<td><em>number</em></td>
+<td><em>path</em></td>
+<td>Exact ID of the vault to search</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number, optional</em></td>
+<td><em>query</em></td>
+<td>Exact ID of the vault API key to search</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><em>string, optional</em></td>
+<td><em>query</em></td>
+<td>Name of the vault API key to search</td>
+</tr>
+<tr>
+<td><code>isRevoked</code></td>
+<td><code>is_revoked</code></td>
+<td><em>bool, optional</em></td>
+<td><em>query</em></td>
+<td>Flag indicating if only revoked or only not revoked vault API keys should be searched</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td><code>pagination.order</code></td>
+<td><em><a href="#order">Order</a>, optional</em></td>
+<td><em>query</em></td>
+<td>Results sorting order</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td><code>pagination.cursor</code></td>
+<td><em>number, optional</em></td>
+<td><em>query</em></td>
+<td>Cursor to continue search from</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>pagination.limit</code></td>
+<td><em>number, optional</em></td>
+<td><em>query</em></td>
+<td>Max numbers of the items to return from the server</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="mi">100009</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asc"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100016</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100014</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"vaultId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key for my vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isRevoked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100015</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"vaultId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another one API key for my vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isRevoked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100016</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"vaultId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One more API key for my vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isRevoked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='vault-api-key-token-obtaining'>Vault API key token obtaining</h2><h3 id='request-6'>Request</h3>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">SearchApiKeys</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">VaultSearchApiKeyResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">VaultSearchApiKeyResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                             <span class="c1">// Object</span>
+    <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>           <span class="c1">// NULL</span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">VaultSearchApiKeyResponseBody</span> <span class="p">{</span>
+  <span class="n">swisschain.sirius.api.common.PaginatedInt64Response</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// Object</span>
+  <span class="k">repeated</span> <span class="n">VaultApiKeyResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                               <span class="c1">// Array&lt;Object&gt;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">VaultApiKeyResponse</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                         <span class="c1">// 100016</span>
+  <span class="kt">int64</span> <span class="na">vault_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                                   <span class="c1">// 100010</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                                      <span class="c1">// "One more API key for my vault"</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">expires_at</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                             <span class="c1">// "2021-09-10T20:26:22.845Z"</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">issued_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                              <span class="c1">// "2020-09-10T20:26:22.845Z"</span>
+  <span class="kt">bool</span> <span class="na">is_revoked</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                                                  <span class="c1">// FALSE</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a href="#Pagination">Paginated</a> list of</p>
+
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the vault API key</td>
+</tr>
+<tr>
+<td><code>vaultId</code></td>
+<td><code>vault_id</code></td>
+<td><em>number</em></td>
+<td>ID of the vault</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td>Name of the vault API key</td>
+</tr>
+<tr>
+<td><code>expiresAt</code></td>
+<td><code>expires_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the API key expiration</td>
+</tr>
+<tr>
+<td><code>issuedAt</code></td>
+<td><code>issued_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the API key issuance</td>
+</tr>
+<tr>
+<td><code>isRevoked</code></td>
+<td><code>is_revoked</code></td>
+<td><em>bool</em></td>
+<td>Flag indicating if the vault API key is revoked</td>
+</tr>
+</tbody></table>
+<h2 id='vault-api-key-token-obtaining'>Vault API key token obtaining</h2><h3 id='request-6'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token</code></p>
-<h4 id='parameters-2'>Parameters</h4><h4 id='query-parameters-2'>Query Parameters</h4><h3 id='response-6'>Response</h3>
+<h4 id='parameters'>Parameters</h4><h4 id='query-parameters'>Query Parameters</h4><h3 id='response-6'>Response</h3>
 <blockquote>
 <p>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token 200 OK</p>
 </blockquote>
@@ -1567,7 +1758,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='vault-api-key-token-revocation'>Vault API key token revocation</h2><h3 id='request-7'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke</code></p>
-<h4 id='parameters-3'>Parameters</h4><h4 id='query-parameters-3'>Query Parameters</h4><h3 id='response-7'>Response</h3>
+<h4 id='parameters-2'>Parameters</h4><h4 id='query-parameters-2'>Query Parameters</h4><h3 id='response-7'>Response</h3>
 <blockquote>
 <p>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke 200 OK</p>
 </blockquote>
