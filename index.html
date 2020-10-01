@@ -229,7 +229,7 @@
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2020-09-07-public-beta" class="toc-h2 toc-link" data-title="2020-09-07 | Public Beta">2020-09-07 | Public Beta</a>
+                    <a href="#2020-09-29-beta-1" class="toc-h2 toc-link" data-title="2020-09-29 | Beta 1">2020-09-29 | Beta 1</a>
                   </li>
               </ul>
           </li>
@@ -240,7 +240,7 @@
                     <a href="#allowed-http-verbs" class="toc-h2 toc-link" data-title="Allowed HTTP Verbs">Allowed HTTP Verbs</a>
                   </li>
                   <li>
-                    <a href="#description-of-usual-http-server-responses" class="toc-h2 toc-link" data-title="Description Of Usual HTTP Server Responses">Description Of Usual HTTP Server Responses</a>
+                    <a href="#description-of-http-server-responses" class="toc-h2 toc-link" data-title="Description Of HTTP Server Responses">Description Of HTTP Server Responses</a>
                   </li>
                   <li>
                     <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
@@ -435,14 +435,16 @@
 <p>For more information about Swisschain, please visit <a href="https://swisschain.io/">swisschain.io</a>.</p>
 <h1 id='feedback'>Feedback</h1>
 <p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/">API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius/issues/new">GitHub issue</a>. Thank you!</p>
-<h1 id='change-log'>Change Log</h1><h2 id='2020-09-07-public-beta'>2020-09-07 | Public Beta</h2><h1 id='protocol-description'>Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
+<h1 id='change-log'>Change Log</h1><h2 id='2020-09-29-beta-1'>2020-09-29 | Beta 1</h2>
+<p>First public release of the API</p>
+<h1 id='protocol-description'>Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
 <li><code>POST</code> : Creates a resource.</li>
 <li><code>GET</code> : Gets a resource or a list of resources.</li>
 <li><code>DELETE</code> : Deletes a resource.</li>
 </ul>
-<h2 id='description-of-usual-http-server-responses'>Description Of Usual HTTP Server Responses</h2>
+<h2 id='description-of-http-server-responses'>Description Of HTTP Server Responses</h2>
 <ul>
 <li>200 <code>OK</code> : the request was successful.</li>
 <li>201 <code>Created</code> : the request was successful and a resource was created.</li>
@@ -780,7 +782,9 @@
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"blockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">5933</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='assets'>Assets</h1><h2 id='search-assets'>Search assets</h2><h3 id='request'>Request</h3>
+</span></code></pre></div><h1 id='assets'>Assets</h1>
+<p>Sirius provides the set of crypto assets available to use. You can get notifications about a deposit or initiate a withdrawal in any asset presented in this set. Each asset has a symbol, accuracy, optional address, ID of the blockchain containing this asset and unique ID. It&#39;s possible that in the different blockchains assets with the same symbol and/or address are existed, so you have to rely only on the asset ID if you need to deterministically identify it. In fact asset ID corresponds to its blockchain ID + symbol + address.</p>
+<h2 id='search-assets'>Search assets</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/assets</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -918,11 +922,11 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='vaults'>Vaults</h1>
-<p>A Vault is a place where private keys of your blockchain wallets are kept. It generates public/private key pairs and signs transactions using these private keys. In order to create any broker-account, account, wallet, receive or send transactions in Sirius, you have to create a Vault first. There are two types of the Vault:</p>
+<p>A Vault is a place where private keys of your blockchain wallets are kept. It generates public/private key pairs and signs transactions using these private keys. In order to create any broker-account or account, receive or send transactions in Sirius, you have to create a Vault first. There are two types of the Vault:</p>
 
 <ul>
-<li>Shared - run and managed by SwissChain. It uses software-only security to store the keys. It&#39;s used across all the customers which use this type of the Vault.</li>
-<li>Private - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong>. Either software-only or <strong>IBM HSM</strong> and <strong>Hyper Protect Services</strong> based implementation can be used. IBM HSM and Hyper Protect Services can be run either in the cloud or on-premise. IBM HSM and Hyper Protect Services is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help deploying of this type of the Vault.</li>
+<li>Shared - run and managed by SwissChain, shared between all the customers which uses it.</li>
+<li>Private - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong>. It&#39;s fully secure and protected solution to keep your funds in save. The solutions is based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help deploying of this type of the Vault.</li>
 </ul>
 
 <p>We recommend using Shared Vault for the testing purposes and private for the production environment.</p>
@@ -1764,7 +1768,13 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='broker-accounts'>Broker accounts</h1><h2 id='creates-a-broker-account'>Creates a broker account</h2><h3 id='request'>Request</h3>
+</span></code></pre></div><h1 id='broker-accounts'>Broker accounts</h1>
+<p>Broker account is the multi-currency (multi-blockchain) account which can contain unlimited number of personalized accounts within it. Broker account aggregates funds deposited to the personalized accounts and it provides funds for the withdrawals. The private keys of the broker accounts are stored in the vault associated with the broker account. The vault can&#39;t be changed once broker account is created.</p>
+
+<p>You can choose which particular blockchain should be enabled for the given broker account. You can give a name to the broker account which make sense for you. It&#39;s convenient to have separate broker account for each business case. It&#39;s also reasonable to keep funds on the different brokerage accounts because of security reasons. For instance you can have a &quot;Hot&quot; broker account for operational work, &quot;Cold&quot; broker account to keep reserve funds which can be used by the limited employees group of your company, and &quot;Frozen&quot; broker account which can be used only by the owners of the business. Then you can setup a process to settle funds between these broker accounts on a periodical basis or on a demand.</p>
+
+<p>Under the hood a broker account manages set of blockchain addresses. It has at least one address for each blockchain enabled for it. Depending on a particularities of each blockchain separate address or unique destination tag is created for each account within the broker account. Deposits received on an address of an account automatically moved to the address of the broker account. For some assets it&#39;s needed to pay fees in a different asset to move funds from an account to the broker account. For this Sirius provides &quot;fees assets&quot; on the account address by moving them from the broker account address.</p>
+<h2 id='creates-a-broker-account'>Creates a broker account</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/broker-accounts</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
 <blockquote>
@@ -1804,7 +1814,9 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='accounts'>Accounts</h1><h2 id='creates-an-account'>Creates an account</h2><h3 id='request'>Request</h3>
+</span></code></pre></div><h1 id='accounts'>Accounts</h1>
+<p>Account is the multi-currency (multi-blockchain) account which is associated with a particular broker account. Account has the same blockchains enabled as the parent broker account has. Account can be associated with a thing in your system by using the &quot;reference ID&quot;. You can pass ID of your end-user, invoice, contract or any other things with which you want to associate deposits received on the account. Reference ID is optional, so you can avoid passing your internal IDs to Sirius and keep mapping between your objects and Sirius accounts on your side.</p>
+<h2 id='creates-an-account'>Creates an account</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/accounts</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
 <blockquote>
@@ -1836,7 +1848,21 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='deposits'>Deposits</h1><h2 id='searches-deposits'>Searches deposits</h2><h3 id='request'>Request</h3>
+</span></code></pre></div><h1 id='deposits'>Deposits</h1>
+<p>Deposits reflects incoming transfers of the funds either to an account or directly to the broker account. You can get deposits history, or be notified about new deposits. There are different options to be notified about deposits being happened:
+* You can pull deposit updates REST API
+* You can listen for deposit updates gRPC stream
+* You can register a web-hook get the notifications (coming soon)</p>
+
+<p>Every deposit associated a broker account, an asset, optionally an account, it has amount, fees and state. If the account associated with the deposit has reference ID, you can find this value in the deposit too. </p>
+
+<p>In the case if the deposit amount is
+too small to transfer funds from the account address to the broker account address because amount even doesn&#39;t cover fees or not significantly greater than fees, the deposited funds will be keept on the account address until the next deposit with enough amount. We use term &quot;Tiny&quot; for such deposits. If deposit destination is a broker account instead of an account, we name such deposits &quot;Broker deposits&quot;.</p>
+
+<p>The lifecycle of a deposit:</p>
+
+<p><img src="https://github.com/swisschain/Sirius.Api.Docs/blob/master/source/images/deposit-lyfecycle.png" alt="Deposit lifecycle"/></p>
+<h2 id='searches-deposits'>Searches deposits</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/deposits</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
 <blockquote>
