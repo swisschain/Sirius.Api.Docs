@@ -7,7 +7,7 @@
 - `GET` : Gets a resource or a list of resources.
 - `DELETE` : Deletes a resource.
 
-## Description Of Usual HTTP Server Responses
+## Description Of HTTP Server Responses
 
 - 200 `OK` : the request was successful.
 - 201 `Created` : the request was successful and a resource was created.
