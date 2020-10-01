@@ -12,7 +12,7 @@ too small to transfer funds from the account address to the broker account addre
 
 The lifecycle of a deposit:
 
-<img src="https://github.com/swisschain/Sirius.Api.Docs/blob/master/source/images/deposit-lyfecycle.png" alt="Deposit lifecycle"/>
+<img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/deposit-lyfecycle.png" alt="Deposit lifecycle"/>
 
 ## Searches deposits
 
