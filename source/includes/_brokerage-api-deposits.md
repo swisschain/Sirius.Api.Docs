@@ -1,6 +1,7 @@
 # Deposits
 
 Deposits reflects incoming transfers of the funds either to an account or directly to the broker account. You can get deposits history, or be notified about new deposits. There are different options to be notified about deposits being happened:
+
 * You can pull deposit updates REST API
 * You can listen for deposit updates gRPC stream
 * You can register a web-hook get the notifications (coming soon)
