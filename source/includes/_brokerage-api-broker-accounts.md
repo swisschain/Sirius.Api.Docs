@@ -6,6 +6,10 @@ You can choose which particular blockchain should be enabled for the given broke
 
 Under the hood a broker account manages set of blockchain addresses. It has at least one address for each blockchain enabled for it. Depending on a particularities of each blockchain separate address or unique destination tag is created for each account within the broker account. Deposits received on an address of an account automatically moved to the address of the broker account. For some assets it's needed to pay fees in a different asset to move funds from an account to the broker account. For this Sirius provides "fees assets" on the account address by moving them from the broker account address.
 
+Broker account structure:
+
+<img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/broker-account-structure.png" alt="Broker account structure lifecycle"/>
+
 ## Creates a broker account
 
 ### Request
