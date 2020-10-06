@@ -1774,6 +1774,10 @@
 <p>You can choose which particular blockchain should be enabled for the given broker account. You can give a name to the broker account which make sense for you. It&#39;s convenient to have separate broker account for each business case. It&#39;s also reasonable to keep funds on the different brokerage accounts because of security reasons. For instance you can have a &quot;Hot&quot; broker account for operational work, &quot;Cold&quot; broker account to keep reserve funds which can be used by the limited employees group of your company, and &quot;Frozen&quot; broker account which can be used only by the owners of the business. Then you can setup a process to settle funds between these broker accounts on a periodical basis or on a demand.</p>
 
 <p>Under the hood a broker account manages set of blockchain addresses. It has at least one address for each blockchain enabled for it. Depending on a particularities of each blockchain separate address or unique destination tag is created for each account within the broker account. Deposits received on an address of an account automatically moved to the address of the broker account. For some assets it&#39;s needed to pay fees in a different asset to move funds from an account to the broker account. For this Sirius provides &quot;fees assets&quot; on the account address by moving them from the broker account address.</p>
+
+<p>Broker account structure:</p>
+
+<p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/broker-account-structure.png" alt="Broker account structure lifecycle"/></p>
 <h2 id='creates-a-broker-account'>Creates a broker account</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/broker-accounts</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
@@ -1849,7 +1853,7 @@
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='deposits'>Deposits</h1>
-<p>Deposits reflects incoming transfers of the funds either to an account or directly to the broker account. You can get deposits history, or be notified about new deposits. There are different options to be notified about deposits being happened:</p>
+<p>Deposits reflects incoming transfers of the funds either to an account or directly to the broker account. You can get deposits history, or be notified about new deposits or state changing of the existing deposits. There are different options to be notified about deposits state changing:</p>
 
 <ul>
 <li>You can pull deposit updates REST API</li>
@@ -1857,7 +1861,7 @@
 <li>You can register a web-hook get the notifications (coming soon)</li>
 </ul>
 
-<p>Every deposit associated a broker account, an asset, optionally an account, it has amount, fees and state. If the account associated with the deposit has reference ID, you can find this value in the deposit too. </p>
+<p>Every deposit is associated with a broker account, an asset, optionally an account, it has amount, fees and state. If the account associated with the deposit has reference ID, you can find this value in the deposit too. </p>
 
 <p>In the case if the deposit amount is
 too small to transfer funds from the account address to the broker account address because amount even doesn&#39;t cover fees or not significantly greater than fees, the deposited funds will be keept on the account address until the next deposit with enough amount. We use term &quot;Tiny&quot; for such deposits. If deposit destination is a broker account instead of an account, we name such deposits &quot;Broker deposits&quot;.</p>
@@ -1881,7 +1885,23 @@ too small to transfer funds from the account address to the broker account addre
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='withdrawals'>Withdrawals</h1><h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request'>Request</h3>
+</span></code></pre></div><h1 id='withdrawals'>Withdrawals</h1>
+<p>Withdrawals reflects outgoing transfers of the funds from a broker account. You can get withdrawals history, or be notified about new withdrawals and state changing of the existing withdrawals. There are different options to be notified about withdrawals state changing:</p>
+
+<ul>
+<li>You can pull withdrawals updates REST API</li>
+<li>You can listen for withdrawal updates gRPC stream</li>
+<li>You can register a web-hook get the notifications (coming soon)</li>
+</ul>
+
+<p>Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account, an asset, optionally an account, it has amount, fees and state. If you use reference ID for the accounts, you can specify either account ID or reference ID, to associate an account to the withdrawal. This link doesn&#39;t affect funds flow, it&#39;s used just for the reporting.</p>
+
+<p>The fees required for the withdrawal transaction are paid atop of the specified amount.</p>
+
+<p>The lifecycle of a withdrawal:</p>
+
+<p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/withdrawal-lyfecycle.png" alt="Withdrawal lifecycle"/></p>
+<h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/withdrawals</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
 <blockquote>
