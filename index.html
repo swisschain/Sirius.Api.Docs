@@ -434,7 +434,7 @@
 
 <p>For more information about Swisschain, please visit <a href="https://swisschain.io/">swisschain.io</a>.</p>
 <h1 id='feedback'>Feedback</h1>
-<p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/">API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius/issues/new">GitHub issue</a>. Thank you!</p>
+<p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/">REST API</a>, <a href="https://sirius-grpc.swisschain.io">gRPC API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius/issues/new">GitHub issue</a>. Thank you!</p>
 <h1 id='change-log'>Change Log</h1><h2 id='2020-09-29-beta-1'>2020-09-29 | Beta 1</h2>
 <p>First public release of the API</p>
 <h1 id='protocol-description'>Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
@@ -1903,7 +1903,23 @@ too small to transfer funds from the account address to the broker account addre
 <p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/withdrawal-lyfecycle.png" alt="Withdrawal lifecycle"/></p>
 <h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/withdrawals</code></p>
-<h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
+<h3 id='parameters'>Parameters</h3>
+<p><code>document</code> field of the request should be a JSON-formatted document describing the withdrawals parameters:</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
+    </span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Optional</span><span class="w">
+    </span><span class="nl">"accountReferenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Optional</span><span class="w">
+    </span><span class="nl">"withdrawalReferenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Optional</span><span class="w">
+    </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.345</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"destinationDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Blockchain</span><span class="w"> </span><span class="err">address</span><span class="w">
+        </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Optional</span><span class="w">
+        </span><span class="nl">"tagType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Optional</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="s2">"number"</span><span class="err">)</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
 <blockquote>
 <p>POST /api/withdrawals 200 OK</p>
 </blockquote>
