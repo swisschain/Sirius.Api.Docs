@@ -22,6 +22,25 @@ The lifecycle of a withdrawal:
 
 ### Parameters
 
+`document` field of the request should be a JSON-formatted document describing the withdrawals parameters:
+
+```json
+{
+    "version": "string", // "1.0"
+    "brokerAccountId": 1000000,
+    "accountId": 1000000, // Optional
+    "accountReferenceId": "string", // Optional
+    "withdrawalReferenceId": "string", // Optional
+    "assetId": 1000000,
+    "amount": 12.345,
+    "destinationDetails": {
+        "address": "string", // Blockchain address
+        "tag": "string", // Optional
+        "tagType": "string", // Optional - ("text", "number")
+    }
+}
+```
+
 ### Query Parameters
 
 ### Response
