@@ -1904,8 +1904,10 @@ too small to transfer funds from the account address to the broker account addre
 <h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/withdrawals</code></p>
 <h3 id='parameters'>Parameters</h3>
-<p><code>document</code> field of the request should be a JSON-formatted document describing the withdrawals parameters:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>{
+<p><code>document</code> field of the request should be a JSON-formatted document describing the withdrawals parameters.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Withdral document format:
+
+{
     "version": "string", // "1.0"
     "brokerAccountId": 1000000,
     "accountId": 1000000, // Optional
