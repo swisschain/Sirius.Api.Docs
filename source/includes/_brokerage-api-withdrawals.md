@@ -24,7 +24,7 @@ The lifecycle of a withdrawal:
 
 `document` field of the request should be a JSON-formatted document describing the withdrawals parameters:
 
-```json
+```
 {
     "version": "string", // "1.0"
     "brokerAccountId": 1000000,
