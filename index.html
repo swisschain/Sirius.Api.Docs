@@ -1996,16 +1996,81 @@
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts/Search</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
-<p>REST name | gRPC name | type | REST placement | description | example
----- | ---- | ----------- | -------
-<code>id</code> | <code>id</code> | <em>optional</em>, <em>number</em> | ID of the account to search | 11111111
-<code>brokerAccountId</code> | <code>broker_account_id</code> | <em>optional</em>, <em>number</em> | Exact broker account id to search | 100000113
-<code>userId</code> | <code>user_id</code> | <em>optional</em>, <em>number</em> | ID of users | 108000004
-<code>referenceId</code> | <code>reference_id</code> | <em>optional</em>, <em>string</em> | Account reference id | user reference
-<code>state</code> | <code>state</code> | <em>optional</em>, <em><a href="#account-state">AccountState</a></em> | State of the account | creating
-<code>order</code> | <code>pagination.order</code> | <em>optional</em>, <em><a href="#order">Order</a></em> | Result items sorting order | asc
-<code>cursor</code> | <code>pagination.cursor</code> | <em>optional</em>, <em>string</em> | Cursor to continue the search | 11111110
-<code>limit</code> | <code>pagination.limit</code> | <em>optional</em>, <em>number</em> | Maximum number of items to return in the search results | 10</p>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the account to search</td>
+<td>11111111</td>
+<td></td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact broker account id to search</td>
+<td>100000113</td>
+<td></td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>user_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of users</td>
+<td>108000004</td>
+<td></td>
+</tr>
+<tr>
+<td><code>referenceId</code></td>
+<td><code>reference_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Account reference id</td>
+<td>user reference</td>
+<td></td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em>optional</em>, <em><a href="#account-state">AccountState</a></em></td>
+<td>State of the account</td>
+<td>creating</td>
+<td></td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td><code>pagination.order</code></td>
+<td><em>optional</em>, <em><a href="#order">Order</a></em></td>
+<td>Result items sorting order</td>
+<td>asc</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td><code>pagination.cursor</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Cursor to continue the search</td>
+<td>11111110</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>pagination.limit</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Maximum number of items to return in the search results</td>
+<td>10</td>
+<td></td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts</span><span class="o">/</span><span class="n">Search</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
