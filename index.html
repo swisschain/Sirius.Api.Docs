@@ -2124,7 +2124,67 @@
   <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>                           <span class="c1">// 108000004</span>
   <span class="n">google.protobuf.StringValue</span> <span class="na">user_native_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>                   <span class="c1">// "chainalysis-user-1"</span>
 <span class="p">}</span>
-</code></pre></div><h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-3'>Request</h3>
+</code></pre></div>
+<p>Paginated response of the accounts:</p>
+
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the account</td>
+</tr>
+<tr>
+<td><code>referenceId</code></td>
+<td><code>reference_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>status</code></td>
+<td><em><a href="#account-state">AccountState</a></em></td>
+<td>Status of the account</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the account creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the latest account update</td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>user_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>userNativeId</code></td>
+<td><code>user_native_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td><em>body</em></td>
+</tr>
+</tbody></table>
+<h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-3'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-3'>Response</h3>
 <blockquote>
