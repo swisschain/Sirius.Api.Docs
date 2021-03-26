@@ -337,7 +337,7 @@
                     <a href="#create-an-account" class="toc-h2 toc-link" data-title="Create an account">Create an account</a>
                   </li>
                   <li>
-                    <a href="#searches-accounts" class="toc-h2 toc-link" data-title="Searches accounts">Searches accounts</a>
+                    <a href="#search-for-accounts" class="toc-h2 toc-link" data-title="Search for accounts">Search for accounts</a>
                   </li>
                   <li>
                     <a href="#searches-the-account-details" class="toc-h2 toc-link" data-title="Searches the account details">Searches the account details</a>
@@ -1875,21 +1875,21 @@
 <tr>
 <td><code>brokerAccountId</code></td>
 <td><code>broker_account_id</code></td>
-<td><em>int64</em></td>
+<td><em>optional</em>, <em>number</em></td>
 <td><em>body</em></td>
 <td>Id of the related Broker Account</td>
 </tr>
 <tr>
 <td><code>referenceId</code></td>
 <td><code>reference_id</code></td>
-<td><em>StringValue</em></td>
+<td><em>optional</em>, <em>string</em></td>
 <td><em>body</em></td>
 <td>Account reference id</td>
 </tr>
 <tr>
 <td><code>userId</code></td>
 <td><code>user_id</code></td>
-<td><em>Int64Value</em></td>
+<td><em>optional</em>, <em>number</em></td>
 <td><em>body</em></td>
 <td>Id of the related user in the system (Needed for enabling AML on broker Account)</td>
 </tr>
@@ -1951,13 +1951,13 @@
 <tr>
 <td><code>referenceId</code></td>
 <td><code>reference_id</code></td>
-<td><em>StringValue</em></td>
+<td><em>optional</em>, <em>string</em></td>
 <td><em>body</em></td>
 </tr>
 <tr>
 <td><code>brokerAccountId</code></td>
 <td><code>broker_account_id</code></td>
-<td><em>int64</em></td>
+<td><em>number</em></td>
 <td><em>body</em></td>
 </tr>
 <tr>
@@ -1981,27 +1981,96 @@
 <tr>
 <td><code>userId</code></td>
 <td><code>user_id</code></td>
-<td><em>Int64Value</em></td>
+<td><em>optional</em>, <em>number</em></td>
 <td><em>body</em></td>
 </tr>
 <tr>
 <td><code>userNativeId</code></td>
 <td><code>user_native_id</code></td>
-<td><em>StringValue</em></td>
+<td><em>optional</em>, <em>string</em></td>
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='searches-accounts'>Searches accounts</h2><h3 id='request-2'>Request</h3>
+<h2 id='search-for-accounts'>Search for accounts</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts</code></p>
-<h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response-2'>Response</h3>
-<blockquote>
-<p>GET /api/accounts 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts/Search</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>REST name | gRPC name | type | REST placement | description | example
+---- | ---- | ----------- | -------
+<code>id</code> | <code>id</code> | <em>optional</em>, <em>number</em> | ID of the account to search | 11111111
+<code>brokerAccountId</code> | <code>broker_account_id</code> | <em>optional</em>, <em>number</em> | Exact broker account id to search | 100000113
+<code>userId</code> | <code>user_id</code> | <em>optional</em>, <em>number</em> | ID of users | 108000004
+<code>referenceId</code> | <code>reference_id</code> | <em>optional</em>, <em>string</em> | Account reference id | user reference
+<code>state</code> | <code>state</code> | <em>optional</em>, <em><a href="#account-state">AccountState</a></em> | State of the account | creating
+<code>order</code> | <code>pagination.order</code> | <em>optional</em>, <em><a href="#order">Order</a></em> | Result items sorting order | asc
+<code>cursor</code> | <code>pagination.cursor</code> | <em>optional</em>, <em>string</em> | Cursor to continue the search | 11111110
+<code>limit</code> | <code>pagination.limit</code> | <em>optional</em>, <em>number</em> | Maximum number of items to return in the search results | 10</p>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts</span><span class="o">/</span><span class="n">Search</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">AccountSearchRequest</span> <span class="p">{</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                            <span class="c1">// 11111111</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>             <span class="c1">// 100000113</span>
+  <span class="k">repeated</span> <span class="n">AccountStateModel</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                         <span class="c1">// [AccountStateModel.Creating, AccountStateModel.Active, AccountStateModel.Blocked]</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">reference_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                 <span class="c1">// user reference</span>
+  <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// Pagination object</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                       <span class="c1">//108000004 (could be empty)</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/accounts</span><span class="w"> 
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"cursor"</span><span class="p">:</span><span class="mi">103000021</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"count"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"order"</span><span class="p">:</span><span class="s2">"asc"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="s2">"/api/accounts/details?Order=Asc&amp;Cursor=103000031&amp;Limit=10"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">103000022</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"referenceId"</span><span class="p">:</span><span class="s2">"some ref7"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="mi">100000019</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"state"</span><span class="p">:</span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="s2">"2020-09-14T16:25:54.831938+00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="s2">"2020-09-14T16:28:14.536684+00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"userId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"userNativeId"</span><span class="p">:</span><span class="kc">null</span><span class="p">},]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-3'>Request</h3>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts</span><span class="o">/</span><span class="n">Search</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">AccountSearchResponse</span> <span class="p">{</span>
+    <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+      <span class="n">AccountSearchResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                         <span class="c1">// Object</span>
+      <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>   <span class="c1">// NULL</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AccountSearchResponseBody</span> <span class="p">{</span>
+  <span class="n">swisschain.sirius.api.common.PaginatedInt64Response</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// Pagination</span>
+
+  <span class="k">repeated</span> <span class="n">AccountResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                   <span class="c1">// Array of objects</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AccountResponse</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                     <span class="c1">// 103000158</span>
+  <span class="kt">string</span> <span class="na">reference_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                          <span class="c1">// "user reference" </span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                      <span class="c1">// 100000113</span>
+  <span class="n">AccountStateModel</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                      <span class="c1">// AccountStateModel.Creating</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">createdAt</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                          <span class="c1">// "2021-03-26T14:14:46.089822+00:00"</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updatedAt</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                          <span class="c1">// "2021-03-26T14:14:46.089822+00:00"</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>                           <span class="c1">// 108000004</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">user_native_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>                   <span class="c1">// "chainalysis-user-1"</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-3'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details</code></p>
-<h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-3'>Response</h3>
+<h3 id='parameters'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-3'>Response</h3>
 <blockquote>
 <p>GET /api/accounts/{accountId}/details 200 OK</p>
 </blockquote>
@@ -2009,7 +2078,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='gets-the-account-details-by-the-asset-id'>Gets the account details by the asset id</h2><h3 id='request-4'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details/by-asset-id/{assetId}</code></p>
-<h3 id='parameters-3'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-4'>Response</h3>
+<h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-4'>Response</h3>
 <blockquote>
 <p>GET /api/accounts/{accountId}/details/by-asset-id/{assetId} 200 OK</p>
 </blockquote>
