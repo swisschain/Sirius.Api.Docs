@@ -118,7 +118,7 @@ REST name | gRPC name | type | description
 ### Query Parameters
 
 REST name | gRPC name | type | REST placement | description | example
----- | ---- | ----------- | -------
+--------- | --------- | ---- | -------------- | ----------- | -------
 `id` | `id` | *optional*, *number* | ID of the account to search | 11111111
 `brokerAccountId` | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 100000113
 `userId` | `user_id` | *optional*, *number* | ID of users | 108000004
