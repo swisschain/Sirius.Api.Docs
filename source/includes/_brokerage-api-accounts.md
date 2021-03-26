@@ -201,6 +201,18 @@ message AccountResponse {
   google.protobuf.StringValue user_native_id = 8;                   // "chainalysis-user-1"
 }
 ```
+Paginated response of the accounts:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the account
+`referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
+`brokerAccountId` | `broker_account_id` | *number* | *body* | Id of the related Broker Account
+`status` | `status` | *[AccountState](#account-state)* | Status of the account
+`createdAt` | `created_at` | *timestamp* | Date of the account creation
+`updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
+`userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
+`userNativeId` | `user_native_id` | *optional*, *string* | *body* | Native Id of the user in customer's system
 
 ## Searches the account details
 
