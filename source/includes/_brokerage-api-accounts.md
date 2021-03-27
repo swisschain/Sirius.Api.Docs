@@ -168,7 +168,7 @@ GET /api/accounts?id=103000022
             "createdAt":"2020-09-14T16:25:54.831938+00:00",
             "updatedAt":"2020-09-14T16:28:14.536684+00:00",
             "userId":null,
-            "userNativeId":null},]
+            "userNativeId":null}, ...]
 }
 ```
 
@@ -220,9 +220,44 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/accounts/{accountId}/details`
 
-### Parameters
+**gRPC API:** `swisschain.sirius.api.accounts/SearchDetails`
 
 ### Query Parameters
+
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`id` | `id` | *optional*, *number* | ID of the account details to search | 11111111
+`accountId` | `account_id` | *optional*, *number* | Exact account id to search | 103000000
+`referenceId` | `reference_id` | *optional*, *string* | Account reference id | account reference
+`brokerAccountId` | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 103000113
+`assetId` | `asset_id` | *optional*, *number* | ID of an asset | 108000004
+`blockchainId` | `blockchain_id` | *optional*, *number* | ID of the blockchain | bitcoin-private
+`address` | `address` | *optional*, *string* | Address of the account details | bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank
+`tag` | `tag` | *optional*, *string* | related tag | null
+`tag_type` | `tag_type` | *optional*, *[TagType](#tag-type)* | tag type | null
+`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
+
+
+```protobuf
+swisschain.sirius.api.accounts/SearchDetails
+
+> Requets: (application/grpc)
+
+message AccountDetailsSearchRequest {
+  google.protobuf.Int64Value id = 1;                                    // 11111111
+  google.protobuf.Int64Value broker_account_id = 2;                     // 103000113
+  google.protobuf.Int64Value account_id = 3;                            // 103000000
+  google.protobuf.StringValue reference_id = 4;                         // account reference
+  google.protobuf.Int64Value asset_id = 5;                              // 108000004
+  google.protobuf.StringValue blockchain_id = 6;                        // bitcoin-private
+  google.protobuf.StringValue address = 7;                              // bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank
+  google.protobuf.StringValue tag = 8;                                  // null
+  repeated .swisschain.sirius.api.common.NullableTagType tag_type = 9;  // NullableTagType.Value.Text
+  swisschain.sirius.api.common.PaginationInt64 pagination = 10;         // Pagination object
+}
+```
 
 ### Response
 
@@ -230,8 +265,63 @@ REST name | gRPC name | type | description
 
 ```json
 {
+    "pagination":
+    {
+        "cursor":null,
+        "count":5,
+        "order":"asc",
+        "nextUrl":null
+    },
+    "items":[
+        {
+            "id":104000000,
+            "accountId":103000000,
+            "createdAt":"2020-09-08T13:10:34.719982+00:00",
+            "address":"bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank",
+            "blockchainId":"bitcoin-private",
+            "tag":null,
+            "tagType":null},]}
+```
+
+```protobuf
+swisschain.sirius.api.accounts/SearchDetails
+
+> Response: (application/grpc) - success response
+
+message AccountDetailsSearchResponse {
+    oneof result {
+      ccountDetailsSearchResponseBody body = 1;
+      swisschain.sirius.api.common.ErrorResponseBody error = 2;
+  } 
+}
+
+message AccountDetailsSearchResponseBody {
+   swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;  // Object
+   repeated AccountDetailsResponse items = 2;                            // Paginated array of account details
+}
+
+message AccountDetailsResponse {
+  int64 id = 1;                                                 // 104000000
+  int64 account_id = 2;                                         // 103000000
+  google.protobuf.Timestamp createdAt = 3;                      // "2020-09-08T13:10:34.719982+00:00"
+  string address = 4;                                           // "bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank"
+  string blockchain_id = 5;                                     // "bitcoin-private"
+  google.protobuf.StringValue tag = 6;                          // null
+  swisschain.sirius.api.common.NullableTagType tag_type = 7;    // null
 }
 ```
+
+Paginated array of the account details:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the account details
+`blockchainId` | `blockchain_id` | *string* | Blockchain ID
+`accountId` | `account_id` | *number* | Id of the related Account
+`createdAt` | `created_at` | *timestamp* | Date of the account details creation
+`address` | `address` | *number* | Details public address
+`tag` | `tag` | *optional*, *string* | Tag which is related to address (applicable for Stellar)
+`tagType` | `tag_type` | *optional*, *[TagType](#tag-type)* | Tag type 
 
 ## Gets the account details by the asset id
 
