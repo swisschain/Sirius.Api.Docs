@@ -106,6 +106,63 @@ REST name | gRPC name | type | description
 `userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
 `userNativeId` | `user_native_id` | *optional*, *string* | *body* | Native Id of the user in customer's system
 
+## Update an account
+
+### Request
+
+**Rest API:** `PUT /api/accounts`
+
+**gRPC API:** `swisschain.sirius.api.accounts/Update`
+
+```json
+POST /api/accounts
+
+> Request: (application/json)
+
+x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
+
+{
+    "accountId": 100000113
+    "userId": 108000004
+}
+```
+
+REST name | gRPC name | type | REST placement | description 
+--------- | --------- | ---- | -------------- | -----------
+`X-Request-ID` | - | *string* | *header* | Unique ID of the request
+`accountId` | - | *optional*, *number* | *body* | Id of the related Account
+`userId` | - | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
+
+### Response
+
+```json
+POST /api/accounts 
+
+> Response: 200 (application/json) - success response
+
+{
+    "id":103000158,
+    "referenceId":"user reference",
+    "brokerAccountId":100000113,
+    "state":"creating",
+    "createdAt":"2021-03-26T14:14:46.089822+00:00",
+    "updatedAt":"2021-03-26T14:14:46.089822+00:00",
+    "userId":108000004,
+    "userNativeId":"chainalysis-user-1"
+}
+```
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the account
+`referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
+`brokerAccountId` | `broker_account_id` | *number* | *body* | Id of the related Broker Account
+`status` | `status` | *[AccountState](#account-state)* | Status of the account
+`createdAt` | `created_at` | *timestamp* | Date of the account creation
+`updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
+`userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
+`userNativeId` | `user_native_id` | *optional*, *string* | *body* | Native Id of the user in customer's system
+
 
 ## Search for accounts
 
@@ -404,3 +461,73 @@ REST name | gRPC name | type | description
 `address` | `address` | *number* | Details public address
 `tag` | `tag` | *optional*, *string* | Tag which is related to address (applicable for Stellar)
 `tagType` | `tag_type` | *optional*, *[TagType](#tag-type)* | Tag type 
+
+
+## Search for account updates
+
+### Request
+
+**gRPC API:** `swisschain.sirius.api.accounts/GetUpdates`
+
+### Parameters
+
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+- | `account_id` | *optional*, *number* | Exact account id to search updates for | 100000113
+- | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 103000113
+- | `reference_id` | *optional*, *string* | Account reference id | user reference
+- | `state` | *optional*, *[AccountState](#account-state)* | State of the account | creating
+- | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+
+
+```protobuf
+swisschain.sirius.api.accounts/GetUpdates
+
+> Requets: (application/grpc)
+
+message AccountUpdateSearchRequest {
+  google.protobuf.Int64Value account_id = 1;            // 100000113
+  google.protobuf.Int64Value broker_account_id = 2;     // 103000113
+  repeated AccountStateModel state = 3;                 // AccountStateModel.Creating
+  google.protobuf.StringValue reference_id = 4;         // user reference
+  google.protobuf.Int64Value cursor = 5;                // 108000004 (could be empty)
+}
+```
+
+### Response
+
+```protobuf
+swisschain.sirius.api.accounts/GetUpdates
+
+> Response: (application/grpc) - success response
+
+message AccountUpdateArrayResponse{
+  repeated AccountUpdateResponse items = 1;
+}
+
+message AccountUpdateResponse {
+  int64 account_update_id = 1;                          // 104000001        
+  int64 account_id = 2;                                 // 103000158
+  string reference_id = 3;                              // "user reference" 
+  int64 broker_account_id = 4;                          // 100000113
+  AccountStateModel state = 5;                          // AccountStateModel.Creating
+  google.protobuf.Timestamp createdAt = 6;              // "2021-03-26T14:14:46.089822+00:00"
+  google.protobuf.Timestamp updatedAt = 7;              // "2021-03-26T14:14:46.089822+00:00"
+  google.protobuf.Int64Value user_id = 8;               // 108000004
+  google.protobuf.StringValue user_native_id = 9;       // "chainalysis-user-1"
+}
+
+```
+Response is the stream of historical account updates and real time updates as well:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+- | `account_update_id` | *number* | ID of the account update
+- | `id` | *number* | ID of the account
+- | `reference_id` | *optional*, *string* | Account reference id
+- | `broker_account_id` | *number* | Id of the related Broker Account
+- | `status` | *[AccountState](#account-state)* | Status of the account
+- | `created_at` | *timestamp* | Date of the account creation
+- | `updated_at` | *timestamp* | Date of the latest account update
+- | `user_id` | *optional*, *number* | Id of the related user in the system (Needed for enabling AML on broker Account)
+- | `user_native_id` | *optional*, *string* | Native Id of the user in customer's system
