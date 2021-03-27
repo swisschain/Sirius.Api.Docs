@@ -147,7 +147,7 @@ message AccountSearchRequest {
 ### Response
 
 ```json
-POST /api/accounts 
+GET /api/accounts?id=103000022
 
 > Response: 200 (application/json) - success response
 
@@ -206,13 +206,13 @@ Paginated response of the accounts:
 REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
 `id` | `id` | *number* | ID of the account
-`referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
-`brokerAccountId` | `broker_account_id` | *number* | *body* | Id of the related Broker Account
+`referenceId` | `reference_id` | *optional*, *string* | Account reference id
+`brokerAccountId` | `broker_account_id` | *number* | Id of the related Broker Account
 `status` | `status` | *[AccountState](#account-state)* | Status of the account
 `createdAt` | `created_at` | *timestamp* | Date of the account creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
-`userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
-`userNativeId` | `user_native_id` | *optional*, *string* | *body* | Native Id of the user in customer's system
+`userId` | `user_id` | *optional*, *number* | Id of the related user in the system (Needed for enabling AML on broker Account)
+`userNativeId` | `user_native_id` | *optional*, *string* | Native Id of the user in customer's system
 
 ## Searches the account details
 
@@ -239,15 +239,78 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/accounts/{accountId}/details/by-asset-id/{assetId}`
 
-### Parameters
+**gRPC API:** `swisschain.sirius.api.accounts/GetDetails`
 
 ### Query Parameters
 
-### Response
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`accountId` | `account_id` | *number* | ID of the account | 103000000
+`assetId` | `asset_id` | *number* | Id of the asset | 100000113
 
-> GET /api/accounts/{accountId}/details/by-asset-id/{assetId} 200 OK
 
-```json
-{
+```protobuf
+swisschain.sirius.api.accounts/GetDetails
+
+> Requets: (application/grpc)
+
+message AccountGetDetailsRequest {
+  int64 account_id = 1;                         // 103000000
+  int64 asset_id = 2;                           // 100000113
 }
 ```
+
+### Response
+
+```json
+GET /api/accounts/103000000/details/by-asset-id/100000113 200 OK
+
+> Response: 200 (application/json) - success response
+
+{
+    "id":104000000,
+    "accountId":103000000,
+    "createdAt":"2020-09-08T13:10:34.719982+00:00",
+    "address":"bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank",
+    "blockchainId":"bitcoin-private",
+    "tag":null,
+    "tagType":null
+}
+```
+
+```protobuf
+swisschain.sirius.api.accounts/Search
+
+> Response: (application/grpc) - success response
+
+message AccountGetDetailsResponse {
+    oneof result {
+      AccountGetDetailsResponseBody body = 1;                     // Object
+      swisschain.sirius.api.common.ErrorResponseBody error = 2;   // Object
+    } 
+}
+
+message AccountGetDetailsResponseBody {
+   AccountDetailsResponse account_detail = 1;                   // Object
+}
+
+message AccountDetailsResponse {
+  int64 id = 1;                                                 // 104000000
+  int64 account_id = 2;                                         // 103000000
+  google.protobuf.Timestamp createdAt = 3;                      // "2020-09-08T13:10:34.719982+00:00"
+  string address = 4;                                           // "bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank"
+  string blockchain_id = 5;                                     // "bitcoin-private"
+  google.protobuf.StringValue tag = 6;                          // null
+  swisschain.sirius.api.common.NullableTagType tag_type = 7;    // null
+}
+```
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the account details
+`blockchainId` | `blockchain_id` | *string* | Blockchain ID
+`accountId` | `account_id` | *number* | Id of the related Account
+`createdAt` | `created_at` | *timestamp* | Date of the account details creation
+`address` | `address` | *number* | Details public address
+`tag` | `tag` | *optional*, *string* | Tag which is related to address (applicable for Stellar)
+`tagType` | `tag_type` | *optional*, *[TagType](#tag-type)* | Tag type 
