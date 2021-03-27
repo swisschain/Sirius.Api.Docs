@@ -2074,7 +2074,7 @@
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// Pagination object</span>
   <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                       <span class="c1">//108000004 (could be empty)</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/accounts</span><span class="w"> 
+</code></pre></div><h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/accounts?id=</span><span class="mi">103000022</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -2145,13 +2145,13 @@
 <td><code>referenceId</code></td>
 <td><code>reference_id</code></td>
 <td><em>optional</em>, <em>string</em></td>
-<td><em>body</em></td>
+<td>Account reference id</td>
 </tr>
 <tr>
 <td><code>brokerAccountId</code></td>
 <td><code>broker_account_id</code></td>
 <td><em>number</em></td>
-<td><em>body</em></td>
+<td>Id of the related Broker Account</td>
 </tr>
 <tr>
 <td><code>status</code></td>
@@ -2175,13 +2175,13 @@
 <td><code>userId</code></td>
 <td><code>user_id</code></td>
 <td><em>optional</em>, <em>number</em></td>
-<td><em>body</em></td>
+<td>Id of the related user in the system (Needed for enabling AML on broker Account)</td>
 </tr>
 <tr>
 <td><code>userNativeId</code></td>
 <td><code>user_native_id</code></td>
 <td><em>optional</em>, <em>string</em></td>
-<td><em>body</em></td>
+<td>Native Id of the user in customer&#39;s system</td>
 </tr>
 </tbody></table>
 <h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-3'>Request</h3>
@@ -2194,13 +2194,131 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='gets-the-account-details-by-the-asset-id'>Gets the account details by the asset id</h2><h3 id='request-4'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details/by-asset-id/{assetId}</code></p>
-<h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-4'>Response</h3>
-<blockquote>
-<p>GET /api/accounts/{accountId}/details/by-asset-id/{assetId} 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts/GetDetails</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>accountId</code></td>
+<td><code>account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the account</td>
+<td>103000000</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
+<td><em>number</em></td>
+<td>Id of the asset</td>
+<td>100000113</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts</span><span class="o">/</span><span class="n">GetDetails</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">AccountGetDetailsRequest</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                         <span class="c1">// 103000000</span>
+  <span class="kt">int64</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                           <span class="c1">// 100000113</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='response-4'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/accounts/</span><span class="mi">103000000</span><span class="err">/details/by-asset-id/</span><span class="mi">100000113</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">104000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"accountId"</span><span class="p">:</span><span class="mi">103000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="s2">"2020-09-08T13:10:34.719982+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="s2">"bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="s2">"bitcoin-private"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tag"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tagType"</span><span class="p">:</span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='deposits'>Deposits</h1>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts</span><span class="o">/</span><span class="n">Search</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">AccountGetDetailsResponse</span> <span class="p">{</span>
+    <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+      <span class="n">AccountGetDetailsResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                     <span class="c1">// Object</span>
+      <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>   <span class="c1">// Object</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AccountGetDetailsResponseBody</span> <span class="p">{</span>
+   <span class="n">AccountDetailsResponse</span> <span class="na">account_detail</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                   <span class="c1">// Object</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AccountDetailsResponse</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                 <span class="c1">// 104000000</span>
+  <span class="kt">int64</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                         <span class="c1">// 103000000</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">createdAt</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                      <span class="c1">// "2020-09-08T13:10:34.719982+00:00"</span>
+  <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                           <span class="c1">// "bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank"</span>
+  <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                                     <span class="c1">// "bitcoin-private"</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">tag</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                          <span class="c1">// null</span>
+  <span class="n">swisschain.sirius.api.common.NullableTagType</span> <span class="na">tag_type</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>    <span class="c1">// null</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the account details</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>string</em></td>
+<td>Blockchain ID</td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>account_id</code></td>
+<td><em>number</em></td>
+<td>Id of the related Account</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the account details creation</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><code>address</code></td>
+<td><em>number</em></td>
+<td>Details public address</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td><code>tag</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Tag which is related to address (applicable for Stellar)</td>
+</tr>
+<tr>
+<td><code>tagType</code></td>
+<td><code>tag_type</code></td>
+<td><em>optional</em>, <em><a href="#tag-type">TagType</a></em></td>
+<td>Tag type</td>
+</tr>
+</tbody></table>
+<h1 id='deposits'>Deposits</h1>
 <p>Deposits reflects incoming transfers of the funds either to an account or directly to the broker account. You can get deposits history, or be notified about new deposits or state changing of the existing deposits. There are different options to be notified about deposits state changing:</p>
 
 <ul>
