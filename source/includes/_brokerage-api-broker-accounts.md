@@ -85,27 +85,27 @@ swisschain.sirius.api.brokerAccounts/Create
 
 message BrokerAccountCreateResponse {
     oneof result {
-      BrokerAccountCreateResponseBody body = 1;
-      swisschain.sirius.api.common.ErrorResponseBody error = 2;
+      BrokerAccountCreateResponseBody body = 1;                 // Object
+      swisschain.sirius.api.common.ErrorResponseBody error = 2; // Object
     } 
 }
 
 message BrokerAccountCreateResponseBody {
-  BrokerAccountResponse broker_account = 1;
+  BrokerAccountResponse broker_account = 1;                     // Object
 }
 
 message BrokerAccountResponse {
-  string name = 1;
-  int64 id = 2;
-  BrokerAccountState state = 3;
-  int64 accounts_count = 4;
-  int64 blockchains_count = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
-  int64 custody_id = 8;
-  string custody_name = 9;
-  repeated string blockchain_ids = 10;
-  repeated int64 aml_connection_ids = 11;
+  string name = 1;                                              // "Broker Account Name"
+  int64 id = 2;                                                 // 100000115
+  BrokerAccountState state = 3;                                 // BrokerAccountState.Creating
+  int64 accounts_count = 4;                                     // 0
+  int64 blockchains_count = 5;                                  // 2
+  google.protobuf.Timestamp created_at = 6;                     // "2021-03-30T09:02:44.7726151+00:00"
+  google.protobuf.Timestamp updated_at = 7;                     // "2021-03-30T09:02:44.7726151+00:00"
+  int64 custody_id = 8;                                         // 404000009
+  string custody_name = 9;                                      // "NewSharedHSM"
+  repeated string blockchain_ids = 10;                          // ["bitcoin-test","ethereum-ropsten"]
+  repeated int64 aml_connection_ids = 11;                       // [600000012]
 }
 ```
 
@@ -196,27 +196,27 @@ swisschain.sirius.api.brokerAccounts/Update
 
 message BrokerAccountUpdateResponse {
   oneof result {
-    BrokerAccountUpdateActionResponseBody body = 1;
-    swisschain.sirius.api.common.ErrorResponseBody error = 2;
+    BrokerAccountUpdateActionResponseBody body = 1;             // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;   // Object
   } 
 }
 
 message BrokerAccountUpdateActionResponseBody {
-  BrokerAccountResponse broker_account = 1;
+  BrokerAccountResponse broker_account = 1;                     // Object
 }
 
 message BrokerAccountResponse {
-  string name = 1;
-  int64 id = 2;
-  BrokerAccountState state = 3;
-  int64 accounts_count = 4;
-  int64 blockchains_count = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
-  int64 custody_id = 8;
-  string custody_name = 9;
-  repeated string blockchain_ids = 10;
-  repeated int64 aml_connection_ids = 11;
+  string name = 1;                                              // "Broker Account Name"
+  int64 id = 2;                                                 // 100000115
+  BrokerAccountState state = 3;                                 // BrokerAccountState.Creating
+  int64 accounts_count = 4;                                     // 0
+  int64 blockchains_count = 5;                                  // 2
+  google.protobuf.Timestamp created_at = 6;                     // "2021-03-30T09:02:44.7726151+00:00"
+  google.protobuf.Timestamp updated_at = 7;                     // "2021-03-30T09:02:44.7726151+00:00"
+  int64 custody_id = 8;                                         // 404000009
+  string custody_name = 9;                                      // "NewSharedHSM"
+  repeated string blockchain_ids = 10;                          // ["bitcoin-test","ethereum-ropsten"]
+  repeated int64 aml_connection_ids = 11;                       // [600000012]
 }
 ```
 
@@ -240,18 +240,114 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts`
 
-### Parameters
+**gRPC API:** `swisschain.sirius.api.brokerAccounts/Search`
 
 ### Query Parameters
 
-### Response
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`id` | `id` | *optional*, *number* | Exact broker account ID to search | 100000113
+`name` | `name` | *optional*, *string* | Name of the broker account  | Broker account name
+`state` | `state` | *optional*, *Array of [BrokerAccountState](#broker-account-state)* | State of the broker account | creating
+- | `custody_id` | *optional*, *number* | Find broker accounts with specified Custody ID | 200000000
+`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
-> GET /api/broker-accounts 200 OK
 
-```json
-{
+```protobuf
+swisschain.sirius.api.brokerAccounts/Search
+
+> Requets: (application/grpc)
+
+message BrokerAccountSearchRequest {
+  google.protobuf.Int64Value id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.Int64Value custody_id = 3;
+  repeated BrokerAccountState state = 4;
+  swisschain.sirius.api.common.PaginationInt64 pagination = 5;
 }
 ```
+
+### Response
+
+```json
+GET /api/broker-accounts
+
+> Response: 200 (application/json) - success response
+
+{
+    "pagination":
+    {
+        "cursor":null,
+        "count":10,
+        "order":"asc",
+        "nextUrl":"/api/broker-accounts?Order=Asc&Cursor=100000012&Limit=10"
+    },
+    "items":[
+        {
+            "name":"first",
+            "id":100000000,
+            "state":"creating",
+            "accountCount":1,
+            "blockchainsCount":5,
+            "createdAt":"2020-09-08T13:10:24.949289+00:00",
+            "updatedAt":"2020-09-08T13:10:24.949289+00:00",
+            "custodyId":100000,
+            "custodyName":"Shared1",
+            "blockchainIds":["ethereum-ropsten","bitcoin-test","stellar-test","bitcoin-private","litecoin-private"],
+            "amlConnectionIds":[]
+        }, ...]
+}
+```
+
+```protobuf
+swisschain.sirius.api.brokerAccounts/Search
+
+> Response: (application/grpc) - success response
+
+message BrokerAccountSearchResponse {
+  oneof result {
+    BrokerAccountSearchResponseBody body = 1;                   // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;   // Object
+  } 
+}
+
+message BrokerAccountSearchResponseBody {
+  swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;   // Object
+  repeated BrokerAccountResponse items = 2;                             // Object
+}
+
+message BrokerAccountResponse {
+  string name = 1;                                              // "Broker Account Name"
+  int64 id = 2;                                                 // 100000115
+  BrokerAccountState state = 3;                                 // BrokerAccountState.Creating
+  int64 accounts_count = 4;                                     // 0
+  int64 blockchains_count = 5;                                  // 2
+  google.protobuf.Timestamp created_at = 6;                     // "2021-03-30T09:02:44.7726151+00:00"
+  google.protobuf.Timestamp updated_at = 7;                     // "2021-03-30T09:02:44.7726151+00:00"
+  int64 custody_id = 8;                                         // 404000009
+  string custody_name = 9;                                      // "NewSharedHSM"
+  repeated string blockchain_ids = 10;                          // ["bitcoin-test","ethereum-ropsten"]
+  repeated int64 aml_connection_ids = 11;                       // [600000012]
+}
+```
+
+Paginated response of the broker accounts:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the broker account
+`name` | `name` | *string* | *body* | Account reference id
+`accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
+`blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
+`state` | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
+`createdAt` | `created_at` | *timestamp* | Date of the broker account creation
+`updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
+`custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
+`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
+`blockchain_ids` | `blockchain_ids` | *Array of string* | *body* | Blockchains ids that are connected to the broker account
+`amlConnectionIds` | `aml_connection_ids` | *Array of numbers* | *body* | AML Connections that are enabled for the broker account
 
 ## Searches the broker account balances
 
