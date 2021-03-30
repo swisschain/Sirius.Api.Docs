@@ -472,18 +472,99 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts/{brokerAccountId}/details`
 
-### Parameters
+**gRPC API:** `swisschain.sirius.api.brokerAccounts/SearchDetails`
 
 ### Query Parameters
 
-### Response
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`brokerAccountId` | `broker_account_id` | *number* | Find details for specified broker account ID | 200000000
+`id` | `id` | *optional*, *number* | Find details for specified broker account ID | 200000001
+`assetId` | `asset_id` | *optional*, *number* | Show details for specified asset ID | 100000
+`blockchainId` | `blockchain_id` | *optional*, *number* | Show details for specified blockchain ID | ethereum-ropsten
+`address` | `address` | *optional*, *number* | Show details for specified address | 0x678401cf8200967a3998d1480512b3f9e79f9447
+`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
-> GET /api/broker-accounts/{brokerAccountId}/details 200 OK
 
-```json
-{
+```protobuf
+swisschain.sirius.api.brokerAccounts/GetBalances
+
+> Requets: (application/grpc)
+
+message BrokerAccountDetailsSearchRequest {
+  int64 broker_account_id = 1;                                  // 200000000
+  google.protobuf.Int64Value id = 2;                            // 200000001
+  google.protobuf.Int64Value assetId = 3;                       // 100000
+  google.protobuf.StringValue blockchainId = 4;                 // "ethereum-ropsten"
+  google.protobuf.StringValue address = 5;                      // "0x678401cf8200967a3998d1480512b3f9e79f9447"
+  swisschain.sirius.api.common.PaginationInt64 pagination = 6;  // Pagination object
 }
 ```
+
+### Response
+
+```json
+GET /api/broker-accounts/{brokerAccountId}/details
+
+> Response: 200 (application/json) - success response
+
+{
+    "pagination": {
+        "cursor":null,
+        "count":2,
+        "order":"asc",
+        "nextUrl":null
+        },
+        "items":[
+            {
+                "id":101000254,
+                "brokerAccountId":100000113,
+                "createdAt":"2021-03-10T12:27:44.666695+00:00",
+                "address":"0x02d45A855dB2dD98899cdA9a58c16E8f4A1faA96",
+                "blockchainId":"ethereum-ropsten"
+            }, ...]
+}
+```
+
+```protobuf
+swisschain.sirius.api.brokerAccounts/Search
+
+> Response: (application/grpc) - success response
+
+message BrokerAccountDetailsSearchResponse {
+  oneof result {
+    BrokerAccountDetailsSearchResponseBody body = 1;                    // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;           // Object
+  } 
+}
+
+message BrokerAccountDetailsSearchResponseBody {
+  swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;   // Object
+  repeated BrokerAccountDetailsResponse items = 2;                      // Object
+}
+
+message BrokerAccountDetailsResponse {
+  int64 id = 1;                                                         // 101000254
+  int64 broker_account_id = 2;                                          // 100000113
+  google.protobuf.Timestamp created_at = 3;                             // "2021-03-10T12:27:44.666695+00:00"
+  string address = 4;                                                   // "0x02d45A855dB2dD98899cdA9a58c16E8f4A1faA96"
+  string blockchain_id = 5;                                             // "ethereum-ropsten"
+}
+```
+
+Paginated response of the broker account details:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the broker account balance
+`brokerAccountId` | `broker_account_id` | *number* | ID of the broker account
+`assetId` | `asset_id` | *number* | ID of the asset
+`createdAt` | `created_at` | *timestamp* | Date of the broker account balance creation
+`address` | `address` | *string* | Asset's address on the blockchain(e.x:for tokens)
+`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
+`blockchainId` | `blockchain_id` | *string* | *body* | Blockchain ID
 
 ## Gets the broker account details by the asset id
 
