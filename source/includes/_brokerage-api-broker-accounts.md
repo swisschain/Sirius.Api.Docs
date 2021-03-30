@@ -644,3 +644,76 @@ REST name | gRPC name | type | description
 `custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
 `blockchainId` | `blockchain_id` | *string* | *body* | Blockchain ID
 
+## Search for broker account updates
+
+### Request
+
+**gRPC API:** `swisschain.sirius.api.brokerAccounts/GetUpdates`
+
+### Parameters
+
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+- | `custody_id` | *optional*, *number* | Search for broker accounts with this custody ID | 100000113
+- | `broker_account_id` | *optional*, *number* | Exact broker account ID to search details for | 103000113
+- | `name` | *optional*, *string* | Broker account name | user reference
+- | `state` | *optional*, *Array of [BrokerAccountState](#broker-account-state)* | State of the account | creating
+- | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+
+
+```protobuf
+swisschain.sirius.api.accounts/GetUpdates
+
+> Requets: (application/grpc)
+
+message BrokerAccountUpdateSearchRequest {
+  google.protobuf.Int64Value broker_account_id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.Int64Value custody_id = 3;
+  repeated BrokerAccountState state = 4;
+  google.protobuf.Int64Value cursor = 5;
+}
+```
+
+### Response
+
+```protobuf
+swisschain.sirius.api.accounts/GetUpdates
+
+> Response: (application/grpc) - success response
+
+message BrokerAccountUpdateArrayResponse{
+  repeated BrokerAccountUpdateItemResponse items = 1;
+}
+
+message BrokerAccountUpdateItemResponse {
+  string name = 1;
+  int64 broker_account_id = 2;
+  BrokerAccountState state = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  int64 custody_id = 6;
+  google.protobuf.StringValue custody_name = 7;
+  repeated string blockchain_ids = 8;
+  int64 broker_account_update_id = 9;
+}
+
+```
+Response is the stream of historical broker account updates and real time updates as well:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+- | `id` | *number* | ID of the broker account
+- | `name` | *string* | *body* | Broker account name
+- | `accounts_count` | *number* | Number of accounts that are attached to the broker account
+- | `blockchains_count` | *number* | Number of already created broker account details
+- | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
+- | `created_at` | *timestamp* | Date of the broker account creation
+- | `updated_at` | *timestamp* | Date of the latest broker account update
+- | `custody_id` | *number* | *body* | ID of the custody for broker account
+- | `custody_name` | *string* | *body* | Name of the custody related to broker account
+- | `blockchain_ids` | *Array of string* | *body* | Blockchains IDs that are connected to the broker account
+- | `aml_connection_ids` | *Array of numbers* | *body* | AML Connections that are enabled for the broker account
+- | `broker_account_update_id` | *number* | *body* | Broker account update ID
+
+
