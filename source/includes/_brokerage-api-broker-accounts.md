@@ -572,15 +572,75 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}`
 
-### Parameters
+**gRPC API:** `swisschain.sirius.api.brokerAccounts/GetDetails`
 
 ### Query Parameters
 
-### Response
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`brokerAccountId` | `broker_account_id` | *number* | Find details for specified broker account ID | 200000000
+`assetId` | `asset_id` | *number* | Show details for specified asset ID | 100000
 
-> GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId} 200 OK
 
-```json
-{
+```protobuf
+swisschain.sirius.api.brokerAccounts/GetDetails
+
+> Requets: (application/grpc)
+
+message BrokerAccountGetDetailsRequest {
+  int64 brokerAccountId = 1;                        
+  int64 assetId = 2;
 }
 ```
+
+### Response
+
+```json
+GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}
+
+> Response: 200 (application/json) - success response
+
+{
+    "id":101000254,
+    "brokerAccountId":100000113,
+    "createdAt":"2021-03-10T12:27:44.666695+00:00",
+    "address":"0x02d45A855dB2dD98899cdA9a58c16E8f4A1faA96",
+    "blockchainId":"ethereum-ropsten"
+}
+```
+
+```protobuf
+swisschain.sirius.api.brokerAccounts/GetDetails
+
+> Response: (application/grpc) - success response
+
+message BrokerAccountGetDetailsResponse {
+  oneof result {
+    BrokerAccountGetDetailsResponseBody body = 1;                       // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;           // Object
+  } 
+}
+
+message BrokerAccountGetDetailsResponseBody {
+  BrokerAccountDetailsResponse broker_account_details = 1;              // Object
+}
+
+message BrokerAccountDetailsResponse {
+  int64 id = 1;                                                         // 101000254
+  int64 broker_account_id = 2;                                          // 100000113
+  google.protobuf.Timestamp created_at = 3;                             // "2021-03-10T12:27:44.666695+00:00"
+  string address = 4;                                                   // "0x02d45A855dB2dD98899cdA9a58c16E8f4A1faA96"
+  string blockchain_id = 5;                                             // "ethereum-ropsten"
+}
+```
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the broker account balance
+`brokerAccountId` | `broker_account_id` | *number* | ID of the broker account
+`assetId` | `asset_id` | *number* | ID of the asset
+`createdAt` | `created_at` | *timestamp* | Date of the broker account balance creation
+`address` | `address` | *string* | Asset's address on the blockchain(e.x:for tokens)
+`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
+`blockchainId` | `blockchain_id` | *string* | *body* | Blockchain ID
+
