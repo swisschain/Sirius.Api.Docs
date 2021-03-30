@@ -223,7 +223,7 @@ message BrokerAccountResponse {
 REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
 `id` | `id` | *number* | ID of the broker account
-`name` | `name` | *string* | *body* | Account reference id
+`name` | `name` | *string* | *body* | Broker account name
 `accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
 `blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
 `state` | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
@@ -338,7 +338,7 @@ Paginated response of the broker accounts:
 REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
 `id` | `id` | *number* | ID of the broker account
-`name` | `name` | *string* | *body* | Account reference id
+`name` | `name` | *string* | *body* | Broker account name
 `accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
 `blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
 `state` | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
@@ -355,18 +355,116 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts/{brokerAccountId}/balances`
 
-### Parameters
+**gRPC API:** `swisschain.sirius.api.brokerAccounts/GetBalances`
 
 ### Query Parameters
 
-### Response
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`brokerAccountId` | `broker_account_id` | *number* | Find balances for specified broker account ID | 200000000
+`assetId` | `asset_id` | *optional*, *number* | Show balance for specified asset ID | 100000113
+`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
-> GET /api/broker-accounts/{brokerAccountId}/balances 200 OK
 
-```json
-{
+```protobuf
+swisschain.sirius.api.brokerAccounts/GetBalances
+
+> Requets: (application/grpc)
+
+message BrokerAccountGetBalancesRequest {
+  int64 broker_account_id = 1;                                  // 200000000
+  google.protobuf.Int64Value assetId = 2;                       // 100000113
+  swisschain.sirius.api.common.PaginationInt64 pagination = 3;  // Object
 }
 ```
+
+### Response
+
+```json
+GET /api/broker-accounts/{brokerAccountId}/balances
+
+> Response: 200 (application/json) - success response
+
+{
+    "pagination":
+    {
+        "cursor":null,
+        "count":3,
+        "order":"asc",
+        "nextUrl":null
+    },
+    "items":[
+        {
+            "id":102000850,
+            "brokerAccountId":100000113,
+            "assetId":100000,
+            "ownedBalance":0.17770416,
+            "availableBalance":0.17770416,
+            "pendingBalance":0.0,
+            "reservedBalance":0.0,
+            "createdAt":"2021-03-11T13:46:09.615581+00:00",
+            "updatedAt":"2021-03-19T08:53:50.020425+00:00",
+            "assetSymbol":"BTC",
+            "assetAddress":null,
+            "blockchainName":"Bitcoin private network"
+        }
+        , ...]
+}
+```
+
+```protobuf
+swisschain.sirius.api.brokerAccounts/Search
+
+> Response: (application/grpc) - success response
+
+message BrokerAccountGetBalancesResponse {
+  oneof result {
+    BrokerAccountGetBalancesResponseBody body = 1;                      // Object
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;           // Object
+  } 
+}
+
+message BrokerAccountGetBalancesResponseBody {
+  swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;   // Object
+  repeated BrokerAccountBalancesResponse items = 2;                     // Paginated balances
+}
+
+message BrokerAccountBalancesResponse
+{
+  int64 id = 1;                                                         // 102000850
+  int64 broker_account_id = 2;                                          // 100000113
+  int64 asset_id = 3;                                                   // 100000
+  swisschain.sirius.api.common.BigDecimal owned_balance = 4;            // 0.17770416
+  swisschain.sirius.api.common.BigDecimal available_balance = 5;        // 0.17770416
+  swisschain.sirius.api.common.BigDecimal pending_balance = 6;          // 0
+  swisschain.sirius.api.common.BigDecimal reserved_balance = 7;         // 0
+  google.protobuf.Timestamp created_at = 8;                             // "2021-03-11T13:46:09.615581+00:00"
+  google.protobuf.Timestamp updated_at = 9;                             // "2021-03-19T08:53:50.020425+00:00"
+  string asset_symbol = 10;                                             // "BTC"
+  google.protobuf.StringValue asset_address = 11;                       // null
+  string blockchain_name = 12;                                          // "Bitcoin private network"
+}
+```
+
+Paginated response of the broker account balances:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -----------
+`id` | `id` | *number* | ID of the broker account balance
+`brokerAccountId` | `broker_account_id` | *number* | ID of the broker account
+`assetId` | `asset_id` | *number* | ID of the asset
+`ownedBalance` | `owned_balance` | *decimal* | Owned balance. (see balance diagram)
+`availableBalance` | `available_balance` | *decimal* | Available balance. (see balance diagram)
+`pendingBalance` | `pending_balance` | *decimal* | Pending balance. (see balance diagram)
+`reservedBalance` | `reserved_balance` | *decimal* | Reserved balance. (see balance diagram)
+`createdAt` | `created_at` | *timestamp* | Date of the broker account balance creation
+`updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account balance update
+`assetSymbol` | `asset_symbol` | *string* | Symbol of the asset
+`assetAddress` | `asset_address` | *string* | Asset's address on the blockchain(e.x:for tokens)
+`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
+`blockchain_name` | `blockchain_name` | *string* | *body* | Blockchains name
 
 ## Searches the broker account details
 
