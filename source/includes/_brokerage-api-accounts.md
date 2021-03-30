@@ -100,7 +100,7 @@ REST name | gRPC name | type | description
 `id` | `id` | *number* | ID of the account
 `referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
 `brokerAccountId` | `broker_account_id` | *number* | *body* | Id of the related Broker Account
-`status` | `status` | *[AccountState](#account-state)* | Status of the account
+`status` | `status` | *[AccountState](#accountstate-enum)* | Status of the account
 `createdAt` | `created_at` | *timestamp* | Date of the account creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
 `userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
@@ -157,7 +157,7 @@ REST name | gRPC name | type | description
 `id` | `id` | *number* | ID of the account
 `referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
 `brokerAccountId` | `broker_account_id` | *number* | *body* | Id of the related Broker Account
-`status` | `status` | *[AccountState](#account-state)* | Status of the account
+`status` | `status` | *[AccountState](#accountstate-enum)* | Status of the account
 `createdAt` | `created_at` | *timestamp* | Date of the account creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
 `userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
@@ -180,8 +180,8 @@ REST name | gRPC name | type | description | example
 `brokerAccountId` | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 100000113
 `userId` | `user_id` | *optional*, *number* | ID of users | 108000004
 `referenceId` | `reference_id` | *optional*, *string* | Account reference id | user reference
-`state` | `state` | *optional*, *[AccountState](#account-state)* | State of the account | creating
-`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`state` | `state` | *optional*, *[AccountState](#accountstate-enum)* | State of the account | creating
+`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -265,7 +265,7 @@ REST name | gRPC name | type | description
 `id` | `id` | *number* | ID of the account
 `referenceId` | `reference_id` | *optional*, *string* | Account reference id
 `brokerAccountId` | `broker_account_id` | *number* | Id of the related Broker Account
-`status` | `status` | *[AccountState](#account-state)* | Status of the account
+`status` | `status` | *[AccountState](#accountstate-enum)* | Status of the account
 `createdAt` | `created_at` | *timestamp* | Date of the account creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
 `userId` | `user_id` | *optional*, *number* | Id of the related user in the system (Needed for enabling AML on broker Account)
@@ -292,7 +292,7 @@ REST name | gRPC name | type | description | example
 `address` | `address` | *optional*, *string* | Address of the account details | bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank
 `tag` | `tag` | *optional*, *string* | related tag | null
 `tag_type` | `tag_type` | *optional*, *[TagType](#tag-type)* | tag type | null
-`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -476,7 +476,7 @@ REST name | gRPC name | type | description | example
 - | `account_id` | *optional*, *number* | Exact account id to search updates for | 100000113
 - | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 103000113
 - | `reference_id` | *optional*, *string* | Account reference id | user reference
-- | `state` | *optional*, *[AccountState](#account-state)* | State of the account | creating
+- | `state` | *optional*, *[AccountState](#accountstate-enum)* | State of the account | creating
 - | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 
 
@@ -526,7 +526,7 @@ REST name | gRPC name | type | description
 - | `id` | *number* | ID of the account
 - | `reference_id` | *optional*, *string* | Account reference id
 - | `broker_account_id` | *number* | Id of the related Broker Account
-- | `status` | *[AccountState](#account-state)* | Status of the account
+- | `status` | *[AccountState](#accountstate-enum)* | Status of the account
 - | `created_at` | *timestamp* | Date of the account creation
 - | `updated_at` | *timestamp* | Date of the latest account update
 - | `user_id` | *optional*, *number* | Id of the related user in the system (Needed for enabling AML on broker Account)
