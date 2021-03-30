@@ -115,7 +115,7 @@ REST name | gRPC name | type | description
 `name` | `name` | *string* | *body* | Account reference id
 `accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
 `blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
-`state` | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
+`state` | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
 `createdAt` | `created_at` | *timestamp* | Date of the broker account creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
 `custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
@@ -250,7 +250,7 @@ REST name | gRPC name | type | description | example
 `name` | `name` | *optional*, *string* | Name of the broker account  | Broker account name
 `state` | `state` | *optional*, *Array of [BrokerAccountState](#broker-account-state)* | State of the broker account | creating
 - | `custody_id` | *optional*, *number* | Find broker accounts with specified Custody ID | 200000000
-`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -341,7 +341,7 @@ REST name | gRPC name | type | description
 `name` | `name` | *string* | *body* | Broker account name
 `accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
 `blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
-`state` | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
+`state` | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
 `createdAt` | `created_at` | *timestamp* | Date of the broker account creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
 `custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
@@ -363,7 +363,7 @@ REST name | gRPC name | type | description | example
 --------- | --------- | ---- | ----------- | -------
 `brokerAccountId` | `broker_account_id` | *number* | Find balances for specified broker account ID | 200000000
 `assetId` | `asset_id` | *optional*, *number* | Show balance for specified asset ID | 100000113
-`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -483,7 +483,7 @@ REST name | gRPC name | type | description | example
 `assetId` | `asset_id` | *optional*, *number* | Show details for specified asset ID | 100000
 `blockchainId` | `blockchain_id` | *optional*, *number* | Show details for specified blockchain ID | ethereum-ropsten
 `address` | `address` | *optional*, *number* | Show details for specified address | 0x678401cf8200967a3998d1480512b3f9e79f9447
-`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -657,7 +657,7 @@ REST name | gRPC name | type | description | example
 - | `custody_id` | *optional*, *number* | Search for broker accounts with this custody ID | 100000113
 - | `broker_account_id` | *optional*, *number* | Exact broker account ID to search details for | 103000113
 - | `name` | *optional*, *string* | Broker account name | user reference
-- | `state` | *optional*, *Array of [BrokerAccountState](#broker-account-state)* | State of the account | creating
+- | `state` | *optional*, *Array of [BrokerAccountState](#brokeraccountstate-enum)* | State of the account | creating
 - | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 
 
@@ -707,7 +707,7 @@ REST name | gRPC name | type | description
 - | `name` | *string* | *body* | Broker account name
 - | `accounts_count` | *number* | Number of accounts that are attached to the broker account
 - | `blockchains_count` | *number* | Number of already created broker account details
-- | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
+- | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
 - | `created_at` | *timestamp* | Date of the broker account creation
 - | `updated_at` | *timestamp* | Date of the latest broker account update
 - | `custody_id` | *number* | *body* | ID of the custody for broker account
