@@ -331,6 +331,9 @@
                   <li>
                     <a href="#gets-the-broker-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets the broker account details by the asset id">Gets the broker account details by the asset id</a>
                   </li>
+                  <li>
+                    <a href="#search-for-broker-account-updates" class="toc-h2 toc-link" data-title="Search for broker account updates">Search for broker account updates</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2897,6 +2900,169 @@
 <td><code>blockchainId</code></td>
 <td><code>blockchain_id</code></td>
 <td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+</tbody></table>
+<h2 id='search-for-broker-account-updates'>Search for broker account updates</h2><h3 id='request-7'>Request</h3>
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts/GetUpdates</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-</td>
+<td><code>custody_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Search for broker accounts with this custody ID</td>
+<td>100000113</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>broker_account_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact broker account ID to search details for</td>
+<td>103000113</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>name</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Broker account name</td>
+<td>user reference</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>state</code></td>
+<td><em>optional</em>, <em>Array of <a href="#broker-account-state">BrokerAccountState</a></em></td>
+<td>State of the account</td>
+<td>creating</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>pagination.cursor</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Cursor to continue the search</td>
+<td>11111110</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts</span><span class="o">/</span><span class="n">GetUpdates</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountUpdateSearchRequest</span> <span class="p">{</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">BrokerAccountState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">cursor</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='response-7'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts</span><span class="o">/</span><span class="n">GetUpdates</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountUpdateArrayResponse</span><span class="p">{</span>
+  <span class="k">repeated</span> <span class="n">BrokerAccountUpdateItemResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountUpdateItemResponse</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">BrokerAccountState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">custody_name</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="kt">string</span> <span class="na">blockchain_ids</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">broker_account_update_id</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div>
+<p>Response is the stream of historical broker account updates and real time updates as well:</p>
+
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-</td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>accounts_count</code></td>
+<td><em>number</em></td>
+<td>Number of accounts that are attached to the broker account</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>blockchains_count</code></td>
+<td><em>number</em></td>
+<td>Number of already created broker account details</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>state</code></td>
+<td><em><a href="#broker-account-state">BrokerAccountState</a></em></td>
+<td>Status of the broker account</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the broker account creation</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the latest broker account update</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>custody_id</code></td>
+<td><em>number</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>custody_name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>blockchain_ids</code></td>
+<td><em>Array of string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>aml_connection_ids</code></td>
+<td><em>Array of numbers</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>broker_account_update_id</code></td>
+<td><em>number</em></td>
 <td><em>body</em></td>
 </tr>
 </tbody></table>
