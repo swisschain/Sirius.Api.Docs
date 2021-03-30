@@ -2780,13 +2780,127 @@
 </tbody></table>
 <h2 id='gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='request-6'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}</code></p>
-<h3 id='parameters'>Parameters</h3><h3 id='query-parameters-4'>Query Parameters</h3><h3 id='response-6'>Response</h3>
-<blockquote>
-<p>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId} 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts/GetDetails</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td>Find details for specified broker account ID</td>
+<td>200000000</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
+<td><em>number</em></td>
+<td>Show details for specified asset ID</td>
+<td>100000</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.brokerAccounts</span><span class="o">/</span><span class="n">GetDetails</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountGetDetailsRequest</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">brokerAccountId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                        
+  <span class="kt">int64</span> <span class="na">assetId</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='response-6'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts/</span><span class="p">{</span><span class="err">brokerAccountId</span><span class="p">}</span><span class="err">/details/by-asset-id/</span><span class="p">{</span><span class="err">assetId</span><span class="p">}</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">101000254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="mi">100000113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="s2">"2021-03-10T12:27:44.666695+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="s2">"0x02d45A855dB2dD98899cdA9a58c16E8f4A1faA96"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="s2">"ethereum-ropsten"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='accounts'>Accounts</h1>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.brokerAccounts</span><span class="o">/</span><span class="n">GetDetails</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountGetDetailsResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">BrokerAccountGetDetailsResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                       <span class="c1">// Object</span>
+    <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>           <span class="c1">// Object</span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountGetDetailsResponseBody</span> <span class="p">{</span>
+  <span class="n">BrokerAccountDetailsResponse</span> <span class="na">broker_account_details</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>              <span class="c1">// Object</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountDetailsResponse</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                         <span class="c1">// 101000254</span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                          <span class="c1">// 100000113</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                             <span class="c1">// "2021-03-10T12:27:44.666695+00:00"</span>
+  <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                                   <span class="c1">// "0x02d45A855dB2dD98899cdA9a58c16E8f4A1faA96"</span>
+  <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                                             <span class="c1">// "ethereum-ropsten"</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account balance</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
+<td><em>number</em></td>
+<td>ID of the asset</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the broker account balance creation</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><code>address</code></td>
+<td><em>string</em></td>
+<td>Asset&#39;s address on the blockchain(e.x:for tokens)</td>
+</tr>
+<tr>
+<td><code>custodyName</code></td>
+<td><code>custody_name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+</tbody></table>
+<h1 id='accounts'>Accounts</h1>
 <p>Account is the multi-currency (multi-blockchain) account which is associated with a particular broker account. Account has the same blockchains enabled as the parent broker account has. Account can be associated with a thing in your system by using the &quot;reference ID&quot;. You can pass ID of your end-user, invoice, contract or any other things with which you want to associate deposits received on the account. Reference ID is optional, so you can avoid passing your internal IDs to Sirius and keep mapping between your objects and Sirius accounts on your side.</p>
 <h2 id='create-an-account'>Create an account</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/accounts</code></p>
