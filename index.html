@@ -314,7 +314,10 @@
             <a href="#broker-accounts" class="toc-h1 toc-link" data-title="Broker accounts">Broker accounts</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#creates-a-broker-account" class="toc-h2 toc-link" data-title="Creates a broker account">Creates a broker account</a>
+                    <a href="#create-a-broker-account" class="toc-h2 toc-link" data-title="Create a broker account">Create a broker account</a>
+                  </li>
+                  <li>
+                    <a href="#update-the-broker-account" class="toc-h2 toc-link" data-title="Update the broker account">Update the broker account</a>
                   </li>
                   <li>
                     <a href="#searches-broker-accounts" class="toc-h2 toc-link" data-title="Searches broker accounts">Searches broker accounts</a>
@@ -1784,41 +1787,426 @@
 <p>Broker account structure:</p>
 
 <p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/broker-account-structure.png" alt="Broker account structure lifecycle"/></p>
-<h2 id='creates-a-broker-account'>Creates a broker account</h2><h3 id='request'>Request</h3>
+<h2 id='create-a-broker-account'>Create a broker account</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/broker-accounts</code></p>
-<h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
-<blockquote>
-<p>POST /api/broker-accounts 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts/Create</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"amlConnectionIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">600000012</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"blockchainIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"bitcoin-test"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ethereum-ropsten"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"custodyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">404000009</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Broker Account Name"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-broker-accounts'>Searches broker accounts</h2><h3 id='request-2'>Request</h3>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.brokerAccounts</span><span class="o">/</span><span class="n">Create</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountCreateRequest</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                    <span class="c1">// 1a5c0b3d15494ec8a390fd3b22d757d6</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                          <span class="c1">// "Broker Account Name"</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                     <span class="c1">// 404000009</span>
+  <span class="k">repeated</span> <span class="kt">string</span> <span class="na">blockchain_ids</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>       <span class="c1">// [ "bitcoin-test", "ethereum-ropsten"] Array of blockchain ids</span>
+  <span class="k">repeated</span> <span class="kt">int64</span> <span class="na">aml_connection_ids</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>    <span class="c1">// [ 600000012 ] Array of aml connections ids</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-Request-ID</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>request_id</code></td>
+<td><em>string</em></td>
+<td>-</td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+<td>Name of the created Broker Account</td>
+</tr>
+<tr>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
+<td><em>number</em></td>
+<td><em>body</em></td>
+<td>ID of the custody for broker account</td>
+</tr>
+<tr>
+<td><code>blockchainIds</code></td>
+<td><code>blockchain_ids</code></td>
+<td><em>Array of strings</em></td>
+<td><em>body</em></td>
+<td>Ids of the blockchains with which broker Account should work</td>
+</tr>
+<tr>
+<td><code>amlConnectionIds</code></td>
+<td><code>aml_connection_ids</code></td>
+<td><em>Array of strings</em></td>
+<td><em>body</em></td>
+<td>Ids of the AML connections to enable for deposit/withdrawal checks</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w"> 
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"Broker Account Name"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">100000115</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="s2">"creating"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"accountCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"blockchainsCount"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">"
+    createdAt"</span><span class="err">:</span><span class="s2">"2021-03-30T09:02:44.7726151+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="s2">"2021-03-30T09:02:44.7726151+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"custodyId"</span><span class="p">:</span><span class="mi">404000009</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"custodyName"</span><span class="p">:</span><span class="s2">"NewSharedHSM"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"blockchainIds"</span><span class="p">:[</span><span class="s2">"bitcoin-test"</span><span class="p">,</span><span class="s2">"ethereum-ropsten"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"amlConnectionIds"</span><span class="p">:[</span><span class="mi">600000012</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.brokerAccounts</span><span class="o">/</span><span class="n">Create</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountCreateResponse</span> <span class="p">{</span>
+    <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+      <span class="n">BrokerAccountCreateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountCreateResponseBody</span> <span class="p">{</span>
+  <span class="n">BrokerAccountResponse</span> <span class="na">broker_account</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountResponse</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">BrokerAccountState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">accounts_count</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">blockchains_count</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">custody_name</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="kt">string</span> <span class="na">blockchain_ids</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="kt">int64</span> <span class="na">aml_connection_ids</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>accountsCount</code></td>
+<td><code>accounts_count</code></td>
+<td><em>number</em></td>
+<td>Number of accounts that are attached to the broker account</td>
+</tr>
+<tr>
+<td><code>blockchainsCount</code></td>
+<td><code>blockchains_count</code></td>
+<td><em>number</em></td>
+<td>Number of already created broker account details</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em><a href="#broker-account-state">BrokerAccountState</a></em></td>
+<td>Status of the broker account</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the broker account creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the latest broker account update</td>
+</tr>
+<tr>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
+<td><em>number</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>custodyName</code></td>
+<td><code>custody_name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>blockchain_ids</code></td>
+<td><code>blockchain_ids</code></td>
+<td><em>Array of string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>amlConnectionIds</code></td>
+<td><code>aml_connection_ids</code></td>
+<td><em>Array of numbers</em></td>
+<td><em>body</em></td>
+</tr>
+</tbody></table>
+<h2 id='update-the-broker-account'>Update the broker account</h2><h3 id='request-2'>Request</h3>
+<p><strong>Rest API:</strong> <code>PUT /api/broker-accounts</code></p>
+
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts/Update</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"amlConnectionIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">600000007</span><span class="p">,</span><span class="w"> </span><span class="mi">600000012</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"blockchainIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"stellar-test"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000116</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.brokerAccounts</span><span class="o">/</span><span class="n">Update</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountUpdateRequest</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                    <span class="c1">// 1a5c0b3d15494ec8a390fd3b22d757d6</span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>              <span class="c1">// 100000116 </span>
+  <span class="k">repeated</span> <span class="kt">string</span> <span class="na">blockchain_ids</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>       <span class="c1">// ["stellar-test"] only new ids could be added</span>
+  <span class="k">repeated</span> <span class="kt">int64</span> <span class="na">aml_connections_ids</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>   <span class="c1">// [600000007, 600000012] already existing ids could be removed</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-Request-ID</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>request_id</code></td>
+<td><em>string</em></td>
+<td>-</td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td><em>body</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>blockchainIds</code></td>
+<td><code>blockchain_ids</code></td>
+<td><em>Array of strings</em></td>
+<td><em>body</em></td>
+<td>Ids of the blockchains to add to the broker account</td>
+</tr>
+<tr>
+<td><code>amlConnectionIds</code></td>
+<td><code>aml_connection_ids</code></td>
+<td><em>Array of strings</em></td>
+<td><em>body</em></td>
+<td>Ids of the AML connections to enable for deposit/withdrawal checks</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w"> 
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"Broker Account Docs"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">100000116</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"updating"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"accountCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"blockchainsCount"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="s2">"2021-03-30T09:49:47.298466+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="s2">"2021-03-30T09:51:54.3471023+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"custodyId"</span><span class="p">:</span><span class="mi">404000008</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"custodyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SharedHSM_MAIN"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"blockchainIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bitcoin-test"</span><span class="p">,</span><span class="s2">"ethereum-ropsten"</span><span class="p">,</span><span class="s2">"stellar-test"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"amlConnectionIds"</span><span class="p">:[</span><span class="mi">600000007</span><span class="p">,</span><span class="mi">600000012</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.brokerAccounts</span><span class="o">/</span><span class="n">Update</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountUpdateResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">BrokerAccountUpdateActionResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountUpdateActionResponseBody</span> <span class="p">{</span>
+  <span class="n">BrokerAccountResponse</span> <span class="na">broker_account</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BrokerAccountResponse</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">BrokerAccountState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">accounts_count</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">blockchains_count</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">custody_name</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="kt">string</span> <span class="na">blockchain_ids</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="kt">int64</span> <span class="na">aml_connection_ids</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>accountsCount</code></td>
+<td><code>accounts_count</code></td>
+<td><em>number</em></td>
+<td>Number of accounts that are attached to the broker account</td>
+</tr>
+<tr>
+<td><code>blockchainsCount</code></td>
+<td><code>blockchains_count</code></td>
+<td><em>number</em></td>
+<td>Number of already created broker account details</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em><a href="#broker-account-state">BrokerAccountState</a></em></td>
+<td>Status of the broker account</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the broker account creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the latest broker account update</td>
+</tr>
+<tr>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
+<td><em>number</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>custodyName</code></td>
+<td><code>custody_name</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>blockchain_ids</code></td>
+<td><code>blockchain_ids</code></td>
+<td><em>Array of string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>amlConnectionIds</code></td>
+<td><code>aml_connection_ids</code></td>
+<td><em>Array of numbers</em></td>
+<td><em>body</em></td>
+</tr>
+</tbody></table>
+<h2 id='searches-broker-accounts'>Searches broker accounts</h2><h3 id='request-3'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts</code></p>
-<h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-2'>Response</h3>
+<h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3><h3 id='response-3'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-the-broker-account-balances'>Searches the broker account balances</h2><h3 id='request-3'>Request</h3>
+</span></code></pre></div><h2 id='searches-the-broker-account-balances'>Searches the broker account balances</h2><h3 id='request-4'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/balances</code></p>
-<h3 id='parameters-3'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-3'>Response</h3>
+<h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-4'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts/{brokerAccountId}/balances 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-the-broker-account-details'>Searches the broker account details</h2><h3 id='request-4'>Request</h3>
+</span></code></pre></div><h2 id='searches-the-broker-account-details'>Searches the broker account details</h2><h3 id='request-5'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details</code></p>
-<h3 id='parameters-4'>Parameters</h3><h3 id='query-parameters-4'>Query Parameters</h3><h3 id='response-4'>Response</h3>
+<h3 id='parameters-3'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-5'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts/{brokerAccountId}/details 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='request-5'>Request</h3>
+</span></code></pre></div><h2 id='gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='request-6'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}</code></p>
-<h3 id='parameters-5'>Parameters</h3><h3 id='query-parameters-5'>Query Parameters</h3><h3 id='response-5'>Response</h3>
+<h3 id='parameters-4'>Parameters</h3><h3 id='query-parameters-4'>Query Parameters</h3><h3 id='response-6'>Response</h3>
 <blockquote>
 <p>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId} 200 OK</p>
 </blockquote>
