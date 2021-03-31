@@ -8,7 +8,7 @@ Account is the multi-currency (multi-blockchain) account which is associated wit
 
 **Rest API:** `POST /api/accounts`
 
-**gRPC API:** `swisschain.sirius.api.accounts/Create`
+**gRPC API:** `swisschain.sirius.api.accounts.Accounts.Create`
 
 ```json
 POST /api/accounts
@@ -25,7 +25,7 @@ x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 ```
 
 ```protobuf
-swisschain.sirius.api.accounts/Create
+swisschain.sirius.api.accounts.Accounts.Create
 
 > Requets: (application/grpc)
 
@@ -68,7 +68,7 @@ POST /api/accounts
 ```
 
 ```protobuf
-swisschain.sirius.api.accounts/Create
+swisschain.sirius.api.accounts.Accounts.Create
 
 > Response: (application/grpc) - success response
 
@@ -112,7 +112,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `PUT /api/accounts`
 
-**gRPC API:** `swisschain.sirius.api.accounts/Update`
+**gRPC API:** `swisschain.sirius.api.accounts.Accounts.Update`
 
 ```json
 POST /api/accounts
@@ -170,7 +170,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/accounts`
 
-**gRPC API:** `swisschain.sirius.api.accounts/Search`
+**gRPC API:** `swisschain.sirius.api.accounts.Accounts.Search`
 
 ### Query Parameters
 
@@ -187,7 +187,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.accounts/Search
+swisschain.sirius.api.accounts.Accounts.Search
 
 > Requets: (application/grpc)
 
@@ -230,7 +230,7 @@ GET /api/accounts?id=103000022
 ```
 
 ```protobuf
-swisschain.sirius.api.accounts/Search
+swisschain.sirius.api.accounts.Accounts.Search
 
 > Response: (application/grpc) - success response
 
@@ -277,7 +277,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/accounts/{accountId}/details`
 
-**gRPC API:** `swisschain.sirius.api.accounts/SearchDetails`
+**gRPC API:** `swisschain.sirius.api.accounts.Accounts.SearchDetails`
 
 ### Query Parameters
 
@@ -298,7 +298,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.accounts/SearchDetails
+swisschain.sirius.api.accounts.Accounts.SearchDetails
 
 > Requets: (application/grpc)
 
@@ -341,7 +341,7 @@ message AccountDetailsSearchRequest {
 ```
 
 ```protobuf
-swisschain.sirius.api.accounts/SearchDetails
+swisschain.sirius.api.accounts.Accounts.SearchDetails
 
 > Response: (application/grpc) - success response
 
@@ -386,7 +386,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/accounts/{accountId}/details/by-asset-id/{assetId}`
 
-**gRPC API:** `swisschain.sirius.api.accounts/GetDetails`
+**gRPC API:** `swisschain.sirius.api.accounts.Accounts.GetDetails`
 
 ### Query Parameters
 
@@ -397,7 +397,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.accounts/GetDetails
+swisschain.sirius.api.accounts.Accounts.GetDetails
 
 > Requets: (application/grpc)
 
@@ -426,7 +426,7 @@ GET /api/accounts/103000000/details/by-asset-id/100000113 200 OK
 ```
 
 ```protobuf
-swisschain.sirius.api.accounts/Search
+swisschain.sirius.api.accounts.Accounts.Search
 
 > Response: (application/grpc) - success response
 
@@ -467,7 +467,7 @@ REST name | gRPC name | type | description
 
 ### Request
 
-**gRPC API:** `swisschain.sirius.api.accounts/GetUpdates`
+**gRPC API:** `swisschain.sirius.api.accounts.Accounts.GetUpdates`
 
 ### Parameters
 
@@ -481,7 +481,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.accounts/GetUpdates
+swisschain.sirius.api.accounts.Accounts.GetUpdates
 
 > Requets: (application/grpc)
 
@@ -497,7 +497,7 @@ message AccountUpdateSearchRequest {
 ### Response
 
 ```protobuf
-swisschain.sirius.api.accounts/GetUpdates
+swisschain.sirius.api.accounts.Accounts.GetUpdates
 
 > Response: (application/grpc) - success response
 

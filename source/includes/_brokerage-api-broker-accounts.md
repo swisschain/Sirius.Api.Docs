@@ -16,7 +16,7 @@ Broker account structure:
 
 **Rest API:** `POST /api/broker-accounts`
 
-**gRPC API:** `swisschain.sirius.api.brokerAccounts/Create`
+**gRPC API:** `swisschain.sirius.api.brokerAccounts.BrokerAccounts.Create`
 
 ```json
 POST /api/broker-accounts
@@ -34,7 +34,7 @@ x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Create
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.Create
 
 > Requets: (application/grpc)
 
@@ -79,7 +79,7 @@ POST /api/broker-accounts
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Create
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.Create
 
 > Response: (application/grpc) - success response
 
@@ -130,7 +130,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `PUT /api/broker-accounts`
 
-**gRPC API:** `swisschain.sirius.api.brokerAccounts/Update`
+**gRPC API:** `swisschain.sirius.api.brokerAccounts.BrokerAccounts.Update`
 
 ```json
 PUT /api/broker-accounts
@@ -147,7 +147,7 @@ x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Update
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.Update
 
 > Requets: (application/grpc)
 
@@ -190,7 +190,7 @@ PUT /api/broker-accounts
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Update
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.Update
 
 > Response: (application/grpc) - success response
 
@@ -226,7 +226,7 @@ REST name | gRPC name | type | description
 `name` | `name` | *string* | *body* | Broker account name
 `accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
 `blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
-`state` | `state` | *[BrokerAccountState](#broker-account-state)* | Status of the broker account
+`state` | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
 `createdAt` | `created_at` | *timestamp* | Date of the broker account creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
 `custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
@@ -240,7 +240,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts`
 
-**gRPC API:** `swisschain.sirius.api.brokerAccounts/Search`
+**gRPC API:** `swisschain.sirius.api.brokerAccounts.BrokerAccounts.Search`
 
 ### Query Parameters
 
@@ -248,7 +248,7 @@ REST name | gRPC name | type | description | example
 --------- | --------- | ---- | ----------- | -------
 `id` | `id` | *optional*, *number* | Exact broker account ID to search | 100000113
 `name` | `name` | *optional*, *string* | Name of the broker account  | Broker account name
-`state` | `state` | *optional*, *Array of [BrokerAccountState](#broker-account-state)* | State of the broker account | creating
+`state` | `state` | *optional*, *Array of [BrokerAccountState](#brokeraccountstate-enum)* | State of the broker account | creating
 - | `custody_id` | *optional*, *number* | Find broker accounts with specified Custody ID | 200000000
 `order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
@@ -256,7 +256,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Search
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.Search
 
 > Requets: (application/grpc)
 
@@ -302,7 +302,7 @@ GET /api/broker-accounts
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Search
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.Search
 
 > Response: (application/grpc) - success response
 
@@ -355,7 +355,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts/{brokerAccountId}/balances`
 
-**gRPC API:** `swisschain.sirius.api.brokerAccounts/GetBalances`
+**gRPC API:** `swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetBalances`
 
 ### Query Parameters
 
@@ -369,7 +369,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/GetBalances
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetBalances
 
 > Requets: (application/grpc)
 
@@ -415,7 +415,7 @@ GET /api/broker-accounts/{brokerAccountId}/balances
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Search
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetBalances
 
 > Response: (application/grpc) - success response
 
@@ -472,7 +472,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts/{brokerAccountId}/details`
 
-**gRPC API:** `swisschain.sirius.api.brokerAccounts/SearchDetails`
+**gRPC API:** `swisschain.sirius.api.brokerAccounts.BrokerAccounts.SearchDetails`
 
 ### Query Parameters
 
@@ -489,7 +489,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/GetBalances
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.SearchDetails
 
 > Requets: (application/grpc)
 
@@ -529,7 +529,7 @@ GET /api/broker-accounts/{brokerAccountId}/details
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Search
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.SearchDetails
 
 > Response: (application/grpc) - success response
 
@@ -572,7 +572,7 @@ REST name | gRPC name | type | description
 
 **Rest API:** `GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}`
 
-**gRPC API:** `swisschain.sirius.api.brokerAccounts/GetDetails`
+**gRPC API:** `swisschain.sirius.api.brokerAccounts.BrokerAccounts.BrokerAccounts.GetDetails`
 
 ### Query Parameters
 
@@ -583,7 +583,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/GetDetails
+swisschain.sirius.api.brokerAccount.BrokerAccounts.GetDetails
 
 > Requets: (application/grpc)
 
@@ -610,7 +610,7 @@ GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}
 ```
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/GetDetails
+swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetDetails
 
 > Response: (application/grpc) - success response
 
@@ -648,7 +648,7 @@ REST name | gRPC name | type | description
 
 ### Request
 
-**gRPC API:** `swisschain.sirius.api.brokerAccounts/GetUpdates`
+**gRPC API:** `swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetUpdates`
 
 ### Parameters
 
@@ -662,7 +662,7 @@ REST name | gRPC name | type | description | example
 
 
 ```protobuf
-swisschain.sirius.api.accounts/GetUpdates
+swisschain.sirius.api.accounts.BrokerAccounts.GetUpdates
 
 > Requets: (application/grpc)
 
@@ -678,7 +678,7 @@ message BrokerAccountUpdateSearchRequest {
 ### Response
 
 ```protobuf
-swisschain.sirius.api.accounts/GetUpdates
+swisschain.sirius.api.accounts.BrokerAccounts.GetUpdates
 
 > Response: (application/grpc) - success response
 
