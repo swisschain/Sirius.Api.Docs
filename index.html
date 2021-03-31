@@ -412,6 +412,12 @@
                     <a href="#vaulttype-enum" class="toc-h2 toc-link" data-title="VaultType (enum)">VaultType (enum)</a>
                   </li>
                   <li>
+                    <a href="#depositstate-enum" class="toc-h2 toc-link" data-title="DepositState (enum)">DepositState (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#deposittype-enum" class="toc-h2 toc-link" data-title="DepositType (enum)">DepositType (enum)</a>
+                  </li>
+                  <li>
                     <a href="#brokeraccountdetails-object" class="toc-h2 toc-link" data-title="BrokerAccountDetails (object)">BrokerAccountDetails (object)</a>
                   </li>
                   <li>
@@ -4600,6 +4606,35 @@ and you have to specify exact type in this case.</p>
 <ul>
 <li><code>private</code> - The vault executing on the customer&#39;s environment</li>
 <li><code>shared</code> - The shared vault executing on the SwissChain environment used by different customers</li>
+</ul>
+<h2 id='depositstate-enum'>DepositState (enum)</h2>
+<p>State of the deposit</p>
+
+<ul>
+<li><code>detected</code> -</li>
+<li><code>confirmed</code> -</li>
+<li><code>completed</code> -</li>
+<li><code>failed</code> -</li>
+<li><code>cancelled</code> -</li>
+<li><code>provisioned</code> -</li>
+<li><code>unknownAsset</code> - </li>
+<li><code>amlValidation</code> -</li>
+<li><code>amlFailed</code> -</li>
+<li><code>amlReviewed</code> -</li>
+<li><code>amlFailureAccepting</code> -</li>
+<li><code>refunding</code> -</li>
+<li><code>refundingProvisioned</code> -</li>
+<li><code>refunded</code> -</li>
+</ul>
+<h2 id='deposittype-enum'>DepositType (enum)</h2>
+<p>Type of the deposit</p>
+
+<ul>
+<li><code>tiny</code> - tiny deposit in native asset</li>
+<li><code>broker</code> - deposit on the broker account details</li>
+<li><code>regular</code> - deposit on account details in native token (ETH, BTC)</li>
+<li><code>token</code> - deposit on account details in custom token (ERC20)</li>
+<li><code>tinyToken</code> - deposit on account details in custom token (ERC20)</li>
 </ul>
 <h2 id='brokeraccountdetails-object'>BrokerAccountDetails (object)</h2>
 <p>Details of the broker account</p>
