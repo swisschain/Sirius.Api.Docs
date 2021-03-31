@@ -4191,7 +4191,18 @@ too small to transfer funds from the account address to the broker account addre
          </span><span class="nl">"assetId"</span><span class="p">:</span><span class="mi">100004</span><span class="p">,</span><span class="w">
          </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="s2">"ethereum-ropsten"</span><span class="p">,</span><span class="w">
          </span><span class="nl">"fees"</span><span class="p">:[</span><span class="w">
-
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nl">"assetId"</span><span class="p">:</span><span class="mi">100004</span><span class="p">,</span><span class="w">
+               </span><span class="nl">"amount"</span><span class="p">:</span><span class="mf">0.000957528</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nl">"assetId"</span><span class="p">:</span><span class="mi">100006</span><span class="p">,</span><span class="w">
+               </span><span class="nl">"amount"</span><span class="p">:</span><span class="mf">0.0000000176</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nl">"assetId"</span><span class="p">:</span><span class="mi">100007</span><span class="p">,</span><span class="w">
+               </span><span class="nl">"amount"</span><span class="p">:</span><span class="mf">0.000000000000054405</span><span class="w">
+            </span><span class="p">}</span><span class="w">
          </span><span class="p">],</span><span class="w">
          </span><span class="nl">"transactionInfo"</span><span class="p">:{</span><span class="w">
             </span><span class="nl">"transactionId"</span><span class="p">:</span><span class="s2">"0x29f5b19e76977118d96dba56306c46b6a5406d12da11a1f20add96d002b6d139"</span><span class="p">,</span><span class="w">
@@ -4235,49 +4246,47 @@ too small to transfer funds from the account address to the broker account addre
       </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.deposits.Deposits.Search</span>
 
-</span><span class="err">```protobuf</span><span class="w">
-</span><span class="err">swisschain.sirius.api.deposits.Deposits.Search</span><span class="w">
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
-</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="err">(application/grpc)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+<span class="kd">message</span> <span class="nc">DepositSearchResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">DepositSearchResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span> 
+<span class="p">}</span>
 
-</span><span class="err">message</span><span class="w"> </span><span class="err">DepositSearchResponse</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="err">oneof</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="err">DepositSearchResponseBody</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
-    </span><span class="err">swisschain.sirius.api.common.ErrorResponseBody</span><span class="w"> </span><span class="err">error</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">
-  </span><span class="p">}</span><span class="w"> 
-</span><span class="p">}</span><span class="w">
+<span class="kd">message</span> <span class="nc">DepositSearchResponseBody</span> <span class="p">{</span>
+  <span class="n">swisschain.sirius.api.common.PaginatedInt64Response</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">DepositResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
 
-</span><span class="err">message</span><span class="w"> </span><span class="err">DepositSearchResponseBody</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="err">swisschain.sirius.api.common.PaginatedInt</span><span class="mi">64</span><span class="err">Response</span><span class="w"> </span><span class="err">pagination</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
-  </span><span class="err">repeated</span><span class="w"> </span><span class="err">DepositResponse</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="err">message</span><span class="w"> </span><span class="err">DepositResponse</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">broker_account_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">
-  </span><span class="err">swisschain.sirius.api.common.BrokerAccountDetails</span><span class="w"> </span><span class="err">broker_account_details</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">3</span><span class="err">;</span><span class="w">
-  </span><span class="err">google.protobuf.Int</span><span class="mi">64</span><span class="err">Value</span><span class="w"> </span><span class="err">account_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">4</span><span class="err">;</span><span class="w">
-  </span><span class="err">google.protobuf.StringValue</span><span class="w"> </span><span class="err">reference_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">5</span><span class="err">;</span><span class="w">
-  </span><span class="err">swisschain.sirius.api.common.AccountDetails</span><span class="w"> </span><span class="err">account_details</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">6</span><span class="err">;</span><span class="w">
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">asset_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">7</span><span class="err">;</span><span class="w">
-  </span><span class="err">string</span><span class="w"> </span><span class="err">blockchain_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">8</span><span class="err">;</span><span class="w">
-  </span><span class="err">repeated</span><span class="w"> </span><span class="err">swisschain.sirius.api.common.Fee</span><span class="w"> </span><span class="err">fees</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">9</span><span class="err">;</span><span class="w">
-  </span><span class="err">swisschain.sirius.api.common.TransactionInfo</span><span class="w"> </span><span class="err">transaction_info</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">10</span><span class="err">;</span><span class="w">
-  </span><span class="err">DepositState</span><span class="w"> </span><span class="err">state</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">11</span><span class="err">;</span><span class="w">
-  </span><span class="err">repeated</span><span class="w"> </span><span class="err">DepositSource</span><span class="w"> </span><span class="err">sources</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">12</span><span class="err">;</span><span class="w">
-  </span><span class="err">swisschain.sirius.api.common.BigDecimal</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">=</span><span class="mi">13</span><span class="err">;</span><span class="w">
-  </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">created_at</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">14</span><span class="err">;</span><span class="w">
-  </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">updated_at</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">15</span><span class="err">;</span><span class="w">   
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">required_confirmations_count</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">16</span><span class="err">;</span><span class="w">
-  </span><span class="err">string</span><span class="w"> </span><span class="err">asset_symbol</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">17</span><span class="err">;</span><span class="w">
-  </span><span class="err">google.protobuf.StringValue</span><span class="w"> </span><span class="err">asset_address</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">18</span><span class="err">;</span><span class="w">
-  </span><span class="err">string</span><span class="w"> </span><span class="err">blockchain_name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">19</span><span class="err">;</span><span class="w">
-  </span><span class="err">string</span><span class="w"> </span><span class="err">broker_account_name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">20</span><span class="err">;</span><span class="w">
-  </span><span class="err">DepositType</span><span class="w"> </span><span class="err">deposit_type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">21</span><span class="err">;</span><span class="w">
-  </span><span class="err">swisschain.sirius.api.aml.AmlChecks</span><span class="w"> </span><span class="err">aml_checks</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">22</span><span class="err">;</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
+<span class="kd">message</span> <span class="nc">DepositResponse</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.BrokerAccountDetails</span> <span class="na">broker_account_details</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">reference_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.AccountDetails</span> <span class="na">account_details</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">swisschain.sirius.api.common.Fee</span> <span class="na">fees</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.TransactionInfo</span> <span class="na">transaction_info</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">DepositState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">DepositSource</span> <span class="na">sources</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.BigDecimal</span> <span class="na">amount</span> <span class="o">=</span><span class="mi">13</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>   
+  <span class="kt">int64</span> <span class="na">required_confirmations_count</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">asset_symbol</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">asset_address</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_name</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">broker_account_name</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="n">DepositType</span> <span class="na">deposit_type</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.aml.AmlChecks</span> <span class="na">aml_checks</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Paginated response of the deposits:</p>
 
 <table><thead>
@@ -4288,6 +4297,138 @@ too small to transfer funds from the account address to the broker account addre
 <th>description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the deposit</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td>Relevant broker account ID</td>
+</tr>
+<tr>
+<td><code>brokerAccountDetails</code></td>
+<td><code>broker_account_details</code></td>
+<td><em><a href="#brokeraccountdetails-object">BrokerAccountDetails</a></em></td>
+<td>Broker account details</td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>account_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Account ID if type is not Broker</td>
+</tr>
+<tr>
+<td><code>referenceId</code></td>
+<td><code>reference_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Account reference ID if type is not Broker</td>
+</tr>
+<tr>
+<td><code>accountDetails</code></td>
+<td><code>account_details</code></td>
+<td><em>optional</em>, <em><a href="#accountdetails-object">AccountDetails</a></em></td>
+<td>Account details if type is not Broker</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
+<td><em>number</em></td>
+<td>Asset ID of the deposit transaction</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>string</em></td>
+<td>Blockchain ID of the deposit transaction</td>
+</tr>
+<tr>
+<td><code>fees</code></td>
+<td><code>fees</code></td>
+<td><em>Array of <a href="#fee-object">Fee</a></em></td>
+<td>Array of spent fees if type is not Broker</td>
+</tr>
+<tr>
+<td><code>transactionInfo</code></td>
+<td><code>transaction_info</code></td>
+<td><em><a href="#transactioninfo-object">TransactionInfo</a></em></td>
+<td>Transaction info of incoming transaction</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em><a href="#depositstate-enum">DepositState</a></em></td>
+<td>State of the deposit</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td><code>sources</code></td>
+<td><em>Array of <a href="#depositsource-object">DepositSources</a></em></td>
+<td>Sources of the deposit transaction</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><code>amount</code></td>
+<td><em>decimal</em></td>
+<td>Amount of the deposit transaction</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the deposit creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the latest deposit update</td>
+</tr>
+<tr>
+<td><code>requiredConfirmationsCount</code></td>
+<td><code>required_confirmations_count</code></td>
+<td><em>number</em></td>
+<td>Required confirmations count for transaction</td>
+</tr>
+<tr>
+<td><code>assetSymbol</code></td>
+<td><code>asset_symbol</code></td>
+<td><em>string</em></td>
+<td>Asset symbol (BTC, ETH)</td>
+</tr>
+<tr>
+<td><code>assetAddress</code></td>
+<td><code>asset_address</code></td>
+<td><em>string</em></td>
+<td>Asset address (ERC20)</td>
+</tr>
+<tr>
+<td><code>blockchainName</code></td>
+<td><code>blockchain_name</code></td>
+<td><em>string</em></td>
+<td>Name of the blockchain</td>
+</tr>
+<tr>
+<td><code>brokerAccountName</code></td>
+<td><code>broker_account_name</code></td>
+<td><em>string</em></td>
+<td>Name of the broker account</td>
+</tr>
+<tr>
+<td><code>depositYype</code></td>
+<td><code>deposit_type</code></td>
+<td><em><a href="#deposittype-enum">DepositType</a></em></td>
+<td>Deposit type</td>
+</tr>
+<tr>
+<td><code>amlChecks</code></td>
+<td><code>aml_checks</code></td>
+<td><em><a href="#amlchecks-object">AmlChecks</a></em></td>
+<td>AML checks root object</td>
+</tr>
 </tbody></table>
 <h2 id='searches-deposit-updates'>Searches deposit updates</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/deposit-updates</code></p>
