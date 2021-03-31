@@ -165,3 +165,41 @@ TransactionInfo contains information about the transaction which happened on the
 + `confirmationsCount` (*number*) - Count of blocks after the transaction block.
 + `requiredVonfirmationsCount` (*number*) - Required count of blocks for this transaction.
 + `date` (*timestamp*) - Date of the block.
+
+## DepositSource (object)
+
+DepositSource indicates from which address amount came form.
+
++ `address` (*string*) - Address of the sender.
++ `amount ` (*decimal*) - Amount in deposit asset.
+
+## AmlChecks (object)
+
+AmlChecks contains information about passed AML checks for deposit.
+
++ `overallResolution` (*[AmlOverallResolution](#amloverallresolution-enum)*) - Overall resolution of all AML checks.
++ `startedAt` (*timestamp*) - Time when AML checks was started.
++ `completedChecks` (*Array of [CompletedAmlCheck](#completedamlcheck-object)*) - Array of completed AML checks.
++ `requiredChecks` (*timestamp*) - Amount of running parallel checks for deposit/withdrawal.
+
+## CompletedAmlCheck (object)
+
+CompletedAmlCheck contains information about passed AML check for deposit.
+
++ `amlCheckId ` (*number*) - ID of this AML check in the system.
++ `amlConnectionId ` (*number*) - ID of the AML connection which was used for this check.
++ `resolution` (*[AmlResolution](#amlresolution-enum)*) - Resolution for specified AML check.
++ `finishedAt` (*timestamp*) - Time when AML check was completed.
+
+## AmlOverallResolution (enum)
+
++ `pending` - Indicates that not all checks were completed
++ `failed` - Indicates that some checks are in HighRisk state. Manual check required
++ `succeeded` - Indicates that AML passed with lowRisk!
+
+## AmlResolution (enum)
+
++ `highRisk` - Indicates that deposit/withdrawal has a high risk. Dirty money!
++ `normal` - AML has passed without issues.
++ `unknown` - AML provider can't asses risks.
++ `assetNotConfigured` - Asset is not configured for AML.
