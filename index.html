@@ -435,6 +435,21 @@
                   <li>
                     <a href="#transactioninfo-object" class="toc-h2 toc-link" data-title="TransactionInfo (object)">TransactionInfo (object)</a>
                   </li>
+                  <li>
+                    <a href="#depositsource-object" class="toc-h2 toc-link" data-title="DepositSource (object)">DepositSource (object)</a>
+                  </li>
+                  <li>
+                    <a href="#amlchecks-object" class="toc-h2 toc-link" data-title="AmlChecks (object)">AmlChecks (object)</a>
+                  </li>
+                  <li>
+                    <a href="#completedamlcheck-object" class="toc-h2 toc-link" data-title="CompletedAmlCheck (object)">CompletedAmlCheck (object)</a>
+                  </li>
+                  <li>
+                    <a href="#amloverallresolution-enum" class="toc-h2 toc-link" data-title="AmlOverallResolution (enum)">AmlOverallResolution (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#amlresolution-enum" class="toc-h2 toc-link" data-title="AmlResolution (enum)">AmlResolution (enum)</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -4842,6 +4857,44 @@ for each asset in each broker account.</p>
 <li><code>confirmationsCount</code> (<em>number</em>) - Count of blocks after the transaction block.</li>
 <li><code>requiredVonfirmationsCount</code> (<em>number</em>) - Required count of blocks for this transaction.</li>
 <li><code>date</code> (<em>timestamp</em>) - Date of the block.</li>
+</ul>
+<h2 id='depositsource-object'>DepositSource (object)</h2>
+<p>DepositSource indicates from which address amount came form.</p>
+
+<ul>
+<li><code>address</code> (<em>string</em>) - Address of the sender.</li>
+<li><code>amount</code> (<em>decimal</em>) - Amount in deposit asset.</li>
+</ul>
+<h2 id='amlchecks-object'>AmlChecks (object)</h2>
+<p>AmlChecks contains information about passed AML checks for deposit.</p>
+
+<ul>
+<li><code>overallResolution</code> (<em><a href="#amloverallresolution-enum">AmlOverallResolution</a></em>) - Overall resolution of all AML checks.</li>
+<li><code>startedAt</code> (<em>timestamp</em>) - Time when AML checks was started.</li>
+<li><code>completedChecks</code> (<em>Array of <a href="#completedamlcheck-object">CompletedAmlCheck</a></em>) - Array of completed AML checks.</li>
+<li><code>requiredChecks</code> (<em>timestamp</em>) - Amount of running parallel checks for deposit/withdrawal.</li>
+</ul>
+<h2 id='completedamlcheck-object'>CompletedAmlCheck (object)</h2>
+<p>CompletedAmlCheck contains information about passed AML check for deposit.</p>
+
+<ul>
+<li><code>amlCheckId</code> (<em>number</em>) - ID of this AML check in the system.</li>
+<li><code>amlConnectionId</code> (<em>number</em>) - ID of the AML connection which was used for this check.</li>
+<li><code>resolution</code> (<em><a href="#amlresolution-enum">AmlResolution</a></em>) - Resolution for specified AML check.</li>
+<li><code>finishedAt</code> (<em>timestamp</em>) - Time when AML check was completed.</li>
+</ul>
+<h2 id='amloverallresolution-enum'>AmlOverallResolution (enum)</h2>
+<ul>
+<li><code>pending</code> - Indicates that not all checks were completed</li>
+<li><code>failed</code> - Indicates that some checks are in HighRisk state. Manual check required</li>
+<li><code>succeeded</code> - Indicates that AML passed with lowRisk!</li>
+</ul>
+<h2 id='amlresolution-enum'>AmlResolution (enum)</h2>
+<ul>
+<li><code>highRisk</code> - Indicates that deposit/withdrawal has a high risk. Dirty money!</li>
+<li><code>normal</code> - AML has passed without issues.</li>
+<li><code>unknown</code> - AML provider can&#39;t asses risks.</li>
+<li><code>assetNotConfigured</code> - Asset is not configured for AML.</li>
 </ul>
 
       </div>
