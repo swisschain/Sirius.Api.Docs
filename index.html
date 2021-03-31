@@ -432,6 +432,9 @@
                   <li>
                     <a href="#brokeraccountbalances-object" class="toc-h2 toc-link" data-title="BrokerAccountBalances (object)">BrokerAccountBalances (object)</a>
                   </li>
+                  <li>
+                    <a href="#transactioninfo-object" class="toc-h2 toc-link" data-title="TransactionInfo (object)">TransactionInfo (object)</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -4829,6 +4832,16 @@ for each asset in each broker account.</p>
 <li><code>reservedBalance</code> (<em>number</em>) - Balance which is being withdrawn, but not completely transferred yet.</li>
 <li><code>createdAt</code> (<em>timestamp</em>) - Creation time of the balances.</li>
 <li><code>updatedAt</code> (<em>timestamp</em>) - The update time of the balances.</li>
+</ul>
+<h2 id='transactioninfo-object'>TransactionInfo (object)</h2>
+<p>TransactionInfo contains information about the transaction which happened on the blockchain.</p>
+
+<ul>
+<li><code>transactionId</code> (<em>string</em>) - Transaction ID (Hash).</li>
+<li><code>transaction_block</code> (<em>number</em>) - Block number in which transaction was included in the blockchain.</li>
+<li><code>confirmationsCount</code> (<em>number</em>) - Count of blocks after the transaction block.</li>
+<li><code>requiredVonfirmationsCount</code> (<em>number</em>) - Required count of blocks for this transaction.</li>
+<li><code>date</code> (<em>timestamp</em>) - Date of the block.</li>
 </ul>
 
       </div>
