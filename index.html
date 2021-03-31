@@ -4231,37 +4231,48 @@ too small to transfer funds from the account address to the broker account addre
 
 
 </span><span class="err">```protobuf</span><span class="w">
-</span><span class="err">swisschain.sirius.api.brokerAccounts/Search</span><span class="w">
+</span><span class="err">swisschain.sirius.api.deposits.Deposits.Search</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="err">(application/grpc)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
-</span><span class="err">message</span><span class="w"> </span><span class="err">BrokerAccountSearchResponse</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">message</span><span class="w"> </span><span class="err">DepositSearchResponse</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="err">oneof</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="err">BrokerAccountSearchResponseBody</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">                   </span><span class="err">//</span><span class="w"> </span><span class="err">Object</span><span class="w">
-    </span><span class="err">swisschain.sirius.api.common.ErrorResponseBody</span><span class="w"> </span><span class="err">error</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">Object</span><span class="w">
+    </span><span class="err">DepositSearchResponseBody</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
+    </span><span class="err">swisschain.sirius.api.common.ErrorResponseBody</span><span class="w"> </span><span class="err">error</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">
   </span><span class="p">}</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 
-</span><span class="err">message</span><span class="w"> </span><span class="err">BrokerAccountSearchResponseBody</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="err">swisschain.sirius.api.common.PaginatedInt</span><span class="mi">64</span><span class="err">Response</span><span class="w"> </span><span class="err">pagination</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">Object</span><span class="w">
-  </span><span class="err">repeated</span><span class="w"> </span><span class="err">BrokerAccountResponse</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">                             </span><span class="err">//</span><span class="w"> </span><span class="err">Object</span><span class="w">
+</span><span class="err">message</span><span class="w"> </span><span class="err">DepositSearchResponseBody</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="err">swisschain.sirius.api.common.PaginatedInt</span><span class="mi">64</span><span class="err">Response</span><span class="w"> </span><span class="err">pagination</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
+  </span><span class="err">repeated</span><span class="w"> </span><span class="err">DepositResponse</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="err">message</span><span class="w"> </span><span class="err">BrokerAccountResponse</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="err">string</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">                                              </span><span class="err">//</span><span class="w"> </span><span class="s2">"Broker Account Name"</span><span class="w">
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">                                                 </span><span class="err">//</span><span class="w"> </span><span class="mi">100000115</span><span class="w">
-  </span><span class="err">BrokerAccountState</span><span class="w"> </span><span class="err">state</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">3</span><span class="err">;</span><span class="w">                                 </span><span class="err">//</span><span class="w"> </span><span class="err">BrokerAccountState.Creating</span><span class="w">
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">accounts_count</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">4</span><span class="err">;</span><span class="w">                                     </span><span class="err">//</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">blockchains_count</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">5</span><span class="err">;</span><span class="w">                                  </span><span class="err">//</span><span class="w"> </span><span class="mi">2</span><span class="w">
-  </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">created_at</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">6</span><span class="err">;</span><span class="w">                     </span><span class="err">//</span><span class="w"> </span><span class="s2">"2021-03-30T09:02:44.7726151+00:00"</span><span class="w">
-  </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">updated_at</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">7</span><span class="err">;</span><span class="w">                     </span><span class="err">//</span><span class="w"> </span><span class="s2">"2021-03-30T09:02:44.7726151+00:00"</span><span class="w">
-  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">custody_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">8</span><span class="err">;</span><span class="w">                                         </span><span class="err">//</span><span class="w"> </span><span class="mi">404000009</span><span class="w">
-  </span><span class="err">string</span><span class="w"> </span><span class="err">custody_name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">9</span><span class="err">;</span><span class="w">                                      </span><span class="err">//</span><span class="w"> </span><span class="s2">"NewSharedHSM"</span><span class="w">
-  </span><span class="err">repeated</span><span class="w"> </span><span class="err">string</span><span class="w"> </span><span class="err">blockchain_ids</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">10</span><span class="err">;</span><span class="w">                          </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="s2">"bitcoin-test"</span><span class="p">,</span><span class="s2">"ethereum-ropsten"</span><span class="p">]</span><span class="w">
-  </span><span class="err">repeated</span><span class="w"> </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">aml_connection_ids</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">11</span><span class="err">;</span><span class="w">                       </span><span class="err">//</span><span class="w"> </span><span class="p">[</span><span class="mi">600000012</span><span class="p">]</span><span class="w">
+</span><span class="err">message</span><span class="w"> </span><span class="err">DepositResponse</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">;</span><span class="w">
+  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">broker_account_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">2</span><span class="err">;</span><span class="w">
+  </span><span class="err">swisschain.sirius.api.common.BrokerAccountDetails</span><span class="w"> </span><span class="err">broker_account_details</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">3</span><span class="err">;</span><span class="w">
+  </span><span class="err">google.protobuf.Int</span><span class="mi">64</span><span class="err">Value</span><span class="w"> </span><span class="err">account_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">4</span><span class="err">;</span><span class="w">
+  </span><span class="err">google.protobuf.StringValue</span><span class="w"> </span><span class="err">reference_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">5</span><span class="err">;</span><span class="w">
+  </span><span class="err">swisschain.sirius.api.common.AccountDetails</span><span class="w"> </span><span class="err">account_details</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">6</span><span class="err">;</span><span class="w">
+  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">asset_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">7</span><span class="err">;</span><span class="w">
+  </span><span class="err">string</span><span class="w"> </span><span class="err">blockchain_id</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">8</span><span class="err">;</span><span class="w">
+  </span><span class="err">repeated</span><span class="w"> </span><span class="err">swisschain.sirius.api.common.Fee</span><span class="w"> </span><span class="err">fees</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">9</span><span class="err">;</span><span class="w">
+  </span><span class="err">swisschain.sirius.api.common.TransactionInfo</span><span class="w"> </span><span class="err">transaction_info</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">10</span><span class="err">;</span><span class="w">
+  </span><span class="err">DepositState</span><span class="w"> </span><span class="err">state</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">11</span><span class="err">;</span><span class="w">
+  </span><span class="err">repeated</span><span class="w"> </span><span class="err">DepositSource</span><span class="w"> </span><span class="err">sources</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">12</span><span class="err">;</span><span class="w">
+  </span><span class="err">swisschain.sirius.api.common.BigDecimal</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">=</span><span class="mi">13</span><span class="err">;</span><span class="w">
+  </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">created_at</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">14</span><span class="err">;</span><span class="w">
+  </span><span class="err">google.protobuf.Timestamp</span><span class="w"> </span><span class="err">updated_at</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">15</span><span class="err">;</span><span class="w">   
+  </span><span class="err">int</span><span class="mi">64</span><span class="w"> </span><span class="err">required_confirmations_count</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">16</span><span class="err">;</span><span class="w">
+  </span><span class="err">string</span><span class="w"> </span><span class="err">asset_symbol</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">17</span><span class="err">;</span><span class="w">
+  </span><span class="err">google.protobuf.StringValue</span><span class="w"> </span><span class="err">asset_address</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">18</span><span class="err">;</span><span class="w">
+  </span><span class="err">string</span><span class="w"> </span><span class="err">blockchain_name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">19</span><span class="err">;</span><span class="w">
+  </span><span class="err">string</span><span class="w"> </span><span class="err">broker_account_name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">20</span><span class="err">;</span><span class="w">
+  </span><span class="err">DepositType</span><span class="w"> </span><span class="err">deposit_type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">21</span><span class="err">;</span><span class="w">
+  </span><span class="err">swisschain.sirius.api.aml.AmlChecks</span><span class="w"> </span><span class="err">aml_checks</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">22</span><span class="err">;</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Paginated response of the broker accounts:</p>
+<p>Paginated response of the deposits:</p>
 
 <table><thead>
 <tr>
@@ -4271,72 +4282,6 @@ too small to transfer funds from the account address to the broker account addre
 <th>description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td><code>id</code></td>
-<td><code>id</code></td>
-<td><em>number</em></td>
-<td>ID of the broker account</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td><code>name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
-</tr>
-<tr>
-<td><code>accountsCount</code></td>
-<td><code>accounts_count</code></td>
-<td><em>number</em></td>
-<td>Number of accounts that are attached to the broker account</td>
-</tr>
-<tr>
-<td><code>blockchainsCount</code></td>
-<td><code>blockchains_count</code></td>
-<td><em>number</em></td>
-<td>Number of already created broker account details</td>
-</tr>
-<tr>
-<td><code>state</code></td>
-<td><code>state</code></td>
-<td><em><a href="#brokeraccountstate-enum">BrokerAccountState</a></em></td>
-<td>Status of the broker account</td>
-</tr>
-<tr>
-<td><code>createdAt</code></td>
-<td><code>created_at</code></td>
-<td><em>timestamp</em></td>
-<td>Date of the broker account creation</td>
-</tr>
-<tr>
-<td><code>updatedAt</code></td>
-<td><code>updated_at</code></td>
-<td><em>timestamp</em></td>
-<td>Date of the latest broker account update</td>
-</tr>
-<tr>
-<td><code>custodyId</code></td>
-<td><code>custody_id</code></td>
-<td><em>number</em></td>
-<td><em>body</em></td>
-</tr>
-<tr>
-<td><code>custodyName</code></td>
-<td><code>custody_name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
-</tr>
-<tr>
-<td><code>blockchain_ids</code></td>
-<td><code>blockchain_ids</code></td>
-<td><em>Array of string</em></td>
-<td><em>body</em></td>
-</tr>
-<tr>
-<td><code>amlConnectionIds</code></td>
-<td><code>aml_connection_ids</code></td>
-<td><em>Array of numbers</em></td>
-<td><em>body</em></td>
-</tr>
 </tbody></table>
 <h2 id='searches-deposit-updates'>Searches deposit updates</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/deposit-updates</code></p>
