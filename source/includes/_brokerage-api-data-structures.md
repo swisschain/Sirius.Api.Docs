@@ -74,6 +74,35 @@ Type of the vault
 + `private` - The vault executing on the customer's environment
 + `shared` - The shared vault executing on the SwissChain environment used by different customers
 
+## DepositState (enum)
+
+State of the deposit
+
++ `detected` -
++ `confirmed` -
++ `completed` -
++ `failed` -
++ `cancelled` -
++ `provisioned` -
++ `unknownAsset` - 
++ `amlValidation` -
++ `amlFailed` -
++ `amlReviewed` -
++ `amlFailureAccepting` -
++ `refunding` -
++ `refundingProvisioned` -
++ `refunded` -
+
+## DepositType (enum)
+
+Type of the deposit
+
++ `tiny` - tiny deposit in native asset
++ `broker` - deposit on the broker account details
++ `regular` - deposit on account details in native token (ETH, BTC)
++ `token` - deposit on account details in custom token (ERC20)
++ `tinyToken` - deposit on account details in custom token (ERC20)
+
 ## BrokerAccountDetails (object)
 
 Details of the broker account
