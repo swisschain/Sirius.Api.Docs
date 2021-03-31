@@ -132,52 +132,52 @@ GET /api/deposits
                 
 
 ```protobuf
-swisschain.sirius.api.brokerAccounts/Search
+swisschain.sirius.api.deposits.Deposits.Search
 
 > Response: (application/grpc) - success response
 
-message BrokerAccountSearchResponse {
+message DepositSearchResponse {
   oneof result {
-    BrokerAccountSearchResponseBody body = 1;                   // Object
-    swisschain.sirius.api.common.ErrorResponseBody error = 2;   // Object
+    DepositSearchResponseBody body = 1;
+    swisschain.sirius.api.common.ErrorResponseBody error = 2;
   } 
 }
 
-message BrokerAccountSearchResponseBody {
-  swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;   // Object
-  repeated BrokerAccountResponse items = 2;                             // Object
+message DepositSearchResponseBody {
+  swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;
+  repeated DepositResponse items = 2;
 }
 
-message BrokerAccountResponse {
-  string name = 1;                                              // "Broker Account Name"
-  int64 id = 2;                                                 // 100000115
-  BrokerAccountState state = 3;                                 // BrokerAccountState.Creating
-  int64 accounts_count = 4;                                     // 0
-  int64 blockchains_count = 5;                                  // 2
-  google.protobuf.Timestamp created_at = 6;                     // "2021-03-30T09:02:44.7726151+00:00"
-  google.protobuf.Timestamp updated_at = 7;                     // "2021-03-30T09:02:44.7726151+00:00"
-  int64 custody_id = 8;                                         // 404000009
-  string custody_name = 9;                                      // "NewSharedHSM"
-  repeated string blockchain_ids = 10;                          // ["bitcoin-test","ethereum-ropsten"]
-  repeated int64 aml_connection_ids = 11;                       // [600000012]
+message DepositResponse {
+  int64 id = 1;
+  int64 broker_account_id = 2;
+  swisschain.sirius.api.common.BrokerAccountDetails broker_account_details = 3;
+  google.protobuf.Int64Value account_id = 4;
+  google.protobuf.StringValue reference_id = 5;
+  swisschain.sirius.api.common.AccountDetails account_details = 6;
+  int64 asset_id = 7;
+  string blockchain_id = 8;
+  repeated swisschain.sirius.api.common.Fee fees = 9;
+  swisschain.sirius.api.common.TransactionInfo transaction_info = 10;
+  DepositState state = 11;
+  repeated DepositSource sources = 12;
+  swisschain.sirius.api.common.BigDecimal amount =13;
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp updated_at = 15;   
+  int64 required_confirmations_count = 16;
+  string asset_symbol = 17;
+  google.protobuf.StringValue asset_address = 18;
+  string blockchain_name = 19;
+  string broker_account_name = 20;
+  DepositType deposit_type = 21;
+  swisschain.sirius.api.aml.AmlChecks aml_checks = 22;
 }
 ```
 
-Paginated response of the broker accounts:
+Paginated response of the deposits:
 
 REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the broker account
-`name` | `name` | *string* | *body* | Broker account name
-`accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
-`blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
-`state` | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
-`createdAt` | `created_at` | *timestamp* | Date of the broker account creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
-`custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
-`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
-`blockchain_ids` | `blockchain_ids` | *Array of string* | *body* | Blockchains ids that are connected to the broker account
-`amlConnectionIds` | `aml_connection_ids` | *Array of numbers* | *body* | AML Connections that are enabled for the broker account
 
 
 ## Searches deposit updates
