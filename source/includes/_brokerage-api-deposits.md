@@ -86,7 +86,18 @@ GET /api/deposits
          "assetId":100004,
          "blockchainId":"ethereum-ropsten",
          "fees":[
-            
+            {
+               "assetId":100004,
+               "amount":0.000957528
+            },
+            {
+               "assetId":100006,
+               "amount":0.0000000176
+            },
+            {
+               "assetId":100007,
+               "amount":0.000000000000054405
+            }
          ],
          "transactionInfo":{
             "transactionId":"0x29f5b19e76977118d96dba56306c46b6a5406d12da11a1f20add96d002b6d139",
@@ -130,6 +141,7 @@ GET /api/deposits
       }, ...]
 }
                 
+```
 
 ```protobuf
 swisschain.sirius.api.deposits.Deposits.Search
@@ -178,7 +190,28 @@ Paginated response of the deposits:
 
 REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
-
+`id` | `id`| *number* | ID of the deposit
+`brokerAccountId` | `broker_account_id`| *number* | Relevant broker account ID
+`brokerAccountDetails` | `broker_account_details`| *[BrokerAccountDetails](#brokeraccountdetails-object)* | Broker account details
+`accountId` | `account_id`| *optional*, *number* | Account ID if type is not Broker
+`referenceId` | `reference_id`| *optional*, *string* | Account reference ID if type is not Broker
+`accountDetails` | `account_details`| *optional*, *[AccountDetails](#accountdetails-object)* | Account details if type is not Broker
+`assetId` | `asset_id`| *number* | Asset ID of the deposit transaction
+`blockchainId` | `blockchain_id`| *string* | Blockchain ID of the deposit transaction
+`fees` | `fees`| *Array of [Fee](#fee-object)* | Array of spent fees if type is not Broker
+`transactionInfo` | `transaction_info`| *[TransactionInfo](#transactioninfo-object)* | Transaction info of incoming transaction
+`state` | `state`| *[DepositState](#depositstate-enum)* | State of the deposit
+`sources` | `sources`| *Array of [DepositSources](#depositsource-object)* | Sources of the deposit transaction
+`amount` | `amount`| *decimal* | Amount of the deposit transaction
+`createdAt` | `created_at` | *timestamp* | Date of the deposit creation
+`updatedAt` | `updated_at` | *timestamp* | Date of the latest deposit update
+`requiredConfirmationsCount` | `required_confirmations_count` | *number* | Required confirmations count for transaction
+`assetSymbol` | `asset_symbol` | *string* | Asset symbol (BTC, ETH)
+`assetAddress` | `asset_address` | *string* | Asset address (ERC20)
+`blockchainName` | `blockchain_name` | *string* | Name of the blockchain
+`brokerAccountName` | `broker_account_name` | *string* | Name of the broker account
+`depositYype` | `deposit_type` | *[DepositType](#deposittype-enum)* | Deposit type
+`amlChecks` | `aml_checks` | *[AmlChecks](#amlchecks-object)* | AML checks root object 
 
 ## Searches deposit updates
 
