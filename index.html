@@ -4309,8 +4309,67 @@ too small to transfer funds from the account address to the broker account addre
 <p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/withdrawal-lyfecycle.png" alt="Withdrawal lifecycle"/></p>
 <h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/withdrawals</code></p>
-<h3 id='parameters'>Parameters</h3>
-<p><code>document</code> field of the request should be a JSON-formatted document describing the withdrawals parameters.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"document"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">version</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">1.0</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">brokerAccountId</span><span class="se">\"</span><span class="s2">:100000162,</span><span class="se">\"</span><span class="s2">accountId</span><span class="se">\"</span><span class="s2">:103000171,</span><span class="se">\"</span><span class="s2">accountReferenceId</span><span class="se">\"</span><span class="s2">:99,</span><span class="se">\"</span><span class="s2">withdrawalReferenceId</span><span class="se">\"</span><span class="s2">:76766,</span><span class="se">\"</span><span class="s2">assetId</span><span class="se">\"</span><span class="s2">:112248,</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">0.053</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">destinationDetails</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">0x45238387503b485ae1a279d8B420f0e8562bfa35</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">tag</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">tag_type</span><span class="se">\"</span><span class="s2">:null}}"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CBAirYR2d6vmRV6d1GEfdA3Kv11pOvdebhEyx8pGNKvTaQcbc0IiBUKCESX9eiOlxorkMDuOEMVs4HZ6JnKg6aY8akb72723cBTxvNIHb/P3OyHQWECcIKwmruWXEunWS8ZlFjxy/nWr/XGD0G8N8/xREGhGCcHCjdwrMmMQBSg="</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals</span><span class="o">/</span><span class="n">Execute</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalExecuteRequest</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 3a2b59a1-07e5-48b1-ba8b-4b3c750a2aa1</span>
+    <span class="kt">string</span> <span class="na">document</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// "{\"version\":\"1.0\",\"brokerAccountId\":100000162,\"accountId\":103000171,\"accountReferenceId\":99,\"withdrawalReferenceId\":76766,\"assetId\":112248,\"amount\":\"0.053\",\"destinationDetails\":{\"address\":\"0x45238387503b485ae1a279d8B420f0e8562bfa35\",\"tag\":null,\"tag_type\":null}}"</span>
+    <span class="kt">string</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// "CBAirYR2d6vmRV6d1GEfdA3Kv11pOvdebhEyx8pGNKvTaQcbc0IiBUKCESX9eiOlxorkMDuOEMVs4HZ6JnKg6aY8akb72723cBTxvNIHb/P3OyHQWECcIKwmruWXEunWS8ZlFjxy/nWr/XGD0G8N8/xREGhGCcHCjdwrMmMQBSg="</span>
+<span class="p">}</span>
+
+</code></pre></div><h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-Request-ID</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>request_id</code></td>
+<td><em>string</em></td>
+<td>-</td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td><code>document</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+<td>JSON-formatted document describing the withdrawals parameters</td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td><code>signature</code></td>
+<td><em>string</em></td>
+<td><em>body</em></td>
+<td>document signature</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>Withdral document format:
 
 {
@@ -4327,13 +4386,117 @@ too small to transfer funds from the account address to the broker account addre
         "tagType": "string", // Optional - ("text", "number")
     }
 }
-</code></pre></div><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3>
-<blockquote>
-<p>POST /api/withdrawals 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</code></pre></div><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"brokerAccountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"brokerAccountDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"accountDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tagType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"assetSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"assetAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"blockchainName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"destinationDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tagType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transactionInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transactionBlock"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"confirmationsCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requiredConfirmationsCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-31T08:09:46.258Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notEnoughBalance"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"operationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"requiredConfirmationsCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transferContext"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"accountReferenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"withdrawalReferenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"document"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requestContext"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"apiKeyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-31T08:09:46.258Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"validatorContext"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"document"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-31T08:09:46.258Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-31T08:09:46.258Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-withdrawals'>Searches withdrawals</h2><h3 id='request-2'>Request</h3>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals</span><span class="o">/</span><span class="n">Execute</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalExecuteResponse</span> <span class="p">{</span>
+    <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="n">WithdrawalExecuteResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">WithdrawalExecuteErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalExecuteResponseBody</span> <span class="p">{</span>
+    <span class="n">WithdrawalResponse</span> <span class="na">withdrawal</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalResponse</span> <span class="p">{</span>
+    <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">broker_account_name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.BrokerAccountDetails</span> <span class="na">broker_account_details</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.AccountDetails</span> <span class="na">account_details</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">account_reference_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">int64</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">asset_symbol</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">asset_address</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.BigDecimal</span> <span class="na">amount</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">blockchain_name</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">swisschain.sirius.api.common.Fee</span> <span class="na">fee</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+    <span class="n">DestinationDetails</span> <span class="na">destination_details</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="n">WithdrawalState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.TransactionInfo</span> <span class="na">transaction_info</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+    <span class="n">WithdrawalError</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">operation_id</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+    <span class="kt">int64</span> <span class="na">required_confirmations_count</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+    <span class="n">TransferContext</span> <span class="na">transfer_context</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+    <span class="n">ValidatorContext</span> <span class="na">validator_context</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id='searches-withdrawals'>Searches withdrawals</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/withdrawals</code></p>
 <h3 id='parameters-2'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-2'>Response</h3>
 <blockquote>
