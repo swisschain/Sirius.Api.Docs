@@ -155,3 +155,13 @@ for each asset in each broker account.
 + `reservedBalance` (*number*) - Balance which is being withdrawn, but not completely transferred yet.
 + `createdAt` (*timestamp*) - Creation time of the balances.
 + `updatedAt` (*timestamp*) - The update time of the balances.
+
+## TransactionInfo (object)
+
+TransactionInfo contains information about the transaction which happened on the blockchain.
+
++ `transactionId` (*string*) - Transaction ID (Hash).
++ `transaction_block ` (*number*) - Block number in which transaction was included in the blockchain.
++ `confirmationsCount` (*number*) - Count of blocks after the transaction block.
++ `requiredVonfirmationsCount` (*number*) - Required count of blocks for this transaction.
++ `date` (*timestamp*) - Date of the block.
