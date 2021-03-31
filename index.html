@@ -4449,14 +4449,302 @@ too small to transfer funds from the account address to the broker account addre
 </tr>
 </tbody></table>
 <h2 id='searches-deposit-updates'>Searches deposit updates</h2><h3 id='request-2'>Request</h3>
-<p><strong>Rest API:</strong> <code>GET /api/deposit-updates</code></p>
-<h3 id='parameters'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3><h3 id='response-2'>Response</h3>
-<blockquote>
-<p>GET /api/deposit-updates 200 OK</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='withdrawals'>Withdrawals</h1>
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.deposits.Deposits.GetUpdates</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-</td>
+<td><code>deposit_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact deposit ID to search</td>
+<td>500000113</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>deposit_update_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact deposit update ID to search</td>
+<td>600000001</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>broker_account_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the broker account</td>
+<td>100000113</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>state</code></td>
+<td><em>optional</em>, <em>Array of <a href="#depositstate-enum">DepositState</a></em></td>
+<td>State of the deposit</td>
+<td>detected</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>deposit_type</code></td>
+<td><em>optional</em>, <em>Array of <a href="#deposittype-enum">DepositType</a></em></td>
+<td>State of the deposit</td>
+<td>regular</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>accountId</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the account</td>
+<td>200000113</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>asset_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the asset</td>
+<td>100000</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>blockchain_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>ID of the blockchain</td>
+<td>ethereum-test</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>reference_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID of the account</td>
+<td>ethereum-test</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>pagination.order</code></td>
+<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td>Result items sorting order</td>
+<td>asc</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>pagination.cursor</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Cursor to continue the search</td>
+<td>11111110</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>pagination.limit</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Maximum number of items to return in the search results</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.deposits.Deposits.GetUpdates</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">DepositUpdateSearchRequest</span> <span class="p">{</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">deposit_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">reference_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">DepositState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">deposit_update_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">cursor</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">DepositType</span> <span class="na">deposit_type</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.deposits.Deposits.Search</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">DepositUpdateArrayResponse</span><span class="p">{</span>
+  <span class="k">repeated</span> <span class="n">DepositUpdateResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">DepositUpdateResponse</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">deposit_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.BrokerAccountDetails</span> <span class="na">broker_account_details</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">reference_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.AccountDetails</span> <span class="na">account_details</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">swisschain.sirius.api.common.Fee</span> <span class="na">fees</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.TransactionInfo</span> <span class="na">transaction_info</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">DepositState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">DepositSource</span> <span class="na">sources</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.BigDecimal</span> <span class="na">amount</span> <span class="o">=</span><span class="mi">13</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">required_confirmations_count</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">asset_symbol</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">asset_address</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_name</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">broker_account_name</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">deposit_update_id</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+  <span class="n">DepositType</span> <span class="na">deposit_type</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.aml.AmlChecks</span> <span class="na">aml_checks</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Paginated response of the deposits:</p>
+
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-</td>
+<td><code>deposit_id</code></td>
+<td><em>number</em></td>
+<td>ID of the deposit</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>deposit_update_id</code></td>
+<td><em>number</em></td>
+<td>ID of the deposit update</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td>Relevant broker account ID</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>broker_account_details</code></td>
+<td><em><a href="#brokeraccountdetails-object">BrokerAccountDetails</a></em></td>
+<td>Broker account details</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>account_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Account ID if type is not Broker</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>reference_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Account reference ID if type is not Broker</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>account_details</code></td>
+<td><em>optional</em>, <em><a href="#accountdetails-object">AccountDetails</a></em></td>
+<td>Account details if type is not Broker</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>asset_id</code></td>
+<td><em>number</em></td>
+<td>Asset ID of the deposit transaction</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>blockchain_id</code></td>
+<td><em>string</em></td>
+<td>Blockchain ID of the deposit transaction</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>fees</code></td>
+<td><em>Array of <a href="#fee-object">Fee</a></em></td>
+<td>Array of spent fees if type is not Broker</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>transaction_info</code></td>
+<td><em><a href="#transactioninfo-object">TransactionInfo</a></em></td>
+<td>Transaction info of incoming transaction</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>state</code></td>
+<td><em><a href="#depositstate-enum">DepositState</a></em></td>
+<td>State of the deposit</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>sources</code></td>
+<td><em>Array of <a href="#depositsource-object">DepositSources</a></em></td>
+<td>Sources of the deposit transaction</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>amount</code></td>
+<td><em>decimal</em></td>
+<td>Amount of the deposit transaction</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the deposit creation</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Date of the latest deposit update</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>required_confirmations_count</code></td>
+<td><em>number</em></td>
+<td>Required confirmations count for transaction</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>asset_symbol</code></td>
+<td><em>string</em></td>
+<td>Asset symbol (BTC, ETH)</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>asset_address</code></td>
+<td><em>string</em></td>
+<td>Asset address (ERC20)</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>blockchain_name</code></td>
+<td><em>string</em></td>
+<td>Name of the blockchain</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>broker_account_name</code></td>
+<td><em>string</em></td>
+<td>Name of the broker account</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>deposit_type</code></td>
+<td><em><a href="#deposittype-enum">DepositType</a></em></td>
+<td>Deposit type</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>aml_checks</code></td>
+<td><em><a href="#amlchecks-object">AmlChecks</a></em></td>
+<td>AML checks root object</td>
+</tr>
+</tbody></table>
+<h1 id='withdrawals'>Withdrawals</h1>
 <p>Withdrawals reflects outgoing transfers of the funds from a broker account. You can get withdrawals history, or be notified about new withdrawals and state changing of the existing withdrawals. There are different options to be notified about withdrawals state changing:</p>
 
 <ul>
