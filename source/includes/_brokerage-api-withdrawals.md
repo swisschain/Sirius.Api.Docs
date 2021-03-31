@@ -67,7 +67,7 @@ Withdral document format:
     "accountReferenceId": "string", // Optional
     "withdrawalReferenceId": "string", // Optional
     "assetId": 1000000,
-    "amount": 12.345,
+    "amount": "decimal", // 12.345,
     "destinationDetails": {
         "address": "string", // Blockchain address
         "tag": "string", // Optional
@@ -87,69 +87,47 @@ POST /api/withdrawals
 > Response: 200 (application/json) - success response
 
 {
-  "id": 0,
-  "brokerAccountId": 0,
-  "brokerAccountName": "string",
-  "brokerAccountDetails": {
-    "id": 0,
-    "address": "string"
+ "id":106000003,
+ "brokerAccountId":100000005,
+ "brokerAccountName":"Hot wallet",
+ "brokerAccountDetails":  {
+  "id":101000015,
+  "address":"0xB335c0a4c4D07164788682Abb9806B0aBd8AB096"
+   },
+ "accountId":null,
+ "accountDetails":null,
+ "assetId":112248,
+ "assetSymbol":"ETH",
+ "assetAddress":null,
+ "amount":0.0001,
+ "blockchainId":"ethereum-ropsten",
+ "blockchainName":"Ethereum Ropsten",
+ "fees":[],
+ "destinationDetails":{
+  "address":"0x45238387503b485ae1a279d8B420f0e8562bfa35",
+  "tag":null,
+  "tagType":null
   },
-  "accountId": 0,
-  "accountDetails": {
-    "id": 0,
-    "address": "string",
-    "tag": "string",
-    "tagType": "text"
+ "state":"processing",
+ "transactionInfo":null,
+ "error":null,
+ "operationId":null,
+ "requiredConfirmationsCount":-1,
+ "transferContext": {
+  "accountReferenceId":null,
+  "withdrawalReferenceId":null,
+  "document":"{\"version\":\"1.0\",\"brokerAccountId\":100000005,\"accountId\":null,\"accountReferenceId\":null,\"withdrawalReferenceId\":null,\"assetId\":112248,\"amount\":0.0001,\"destinationDetails\":{\"address\":\"0x45238387503b485ae1a279d8B420f0e8562bfa35\",\"tagType\":null,\"tag\":null}}",
+  "signature":null,
+  "requestContext":{
+   "userId":"67070a1f-033a-4ed9-ad1e-1214291687d0",
+   "apiKeyId":null,
+   "ip":"192.168.16.36",
+   "timestamp":"2021-03-31T11:46:46.059629Z"
+   }
   },
-  "assetId": 0,
-  "assetSymbol": "string",
-  "assetAddress": "string",
-  "amount": 0,
-  "blockchainId": "string",
-  "blockchainName": "string",
-  "fees": [
-    {
-      "assetId": 0,
-      "amount": 0
-    }
-  ],
-  "destinationDetails": {
-    "address": "string",
-    "tag": "string",
-    "tagType": "text"
-  },
-  "state": "processing",
-  "transactionInfo": {
-    "transactionId": "string",
-    "transactionBlock": 0,
-    "confirmationsCount": 0,
-    "requiredConfirmationsCount": 0,
-    "date": "2021-03-31T08:09:46.258Z"
-  },
-  "error": {
-    "message": "string",
-    "code": "notEnoughBalance"
-  },
-  "operationId": 0,
-  "requiredConfirmationsCount": 0,
-  "transferContext": {
-    "accountReferenceId": "string",
-    "withdrawalReferenceId": "string",
-    "document": "string",
-    "signature": "string",
-    "requestContext": {
-      "userId": "string",
-      "apiKeyId": "string",
-      "ip": "string",
-      "timestamp": "2021-03-31T08:09:46.258Z"
-    }
-  },
-  "validatorContext": {
-    "document": "string",
-    "signature": "string"
-  },
-  "createdAt": "2021-03-31T08:09:46.258Z",
-  "updatedAt": "2021-03-31T08:09:46.258Z"
+  "validatorContext":null,
+  "createdAt":"2021-03-31T11:46:46.614955Z",
+  "updatedAt":"2021-03-31T11:46:46.614955Z"
 }
 ```
 
@@ -196,6 +174,35 @@ message WithdrawalResponse {
     google.protobuf.Timestamp updated_at = 24;
 }
 ```
+### Parameters
+
+REST name | gRPC name | type | description 
+--------- | --------- | ---- | -------------- | -----------
+`id ` | `id ` | *number* | ID of the withdrawal
+`brokerAccountId` | `broker_account_id` | *number* |ID of the broker account
+`brokerAccountName` | `broker_account_name` | *string* | Name of the broker account
+`brokerAccountDetails` | `broker_account_details` | *string* | Details of broker account wallet
+`accountId` | `account_id` | *number* |ID of the account
+`accountDetails` | `account_details` | *string* | Details of account wallet
+ - | `account_reference_id ` | *string* | Reference of account
+`assetId` | `asset_id` | *number* | ID of the asset
+`assetSymbol` | `asset_symbol` | *string* |Symbol of the asset
+`assetAddress` | `asset_address` | *string* | Address of the asset (for ERC20/223)
+`amount` | `amount` | *decimal* | Withdrawal amount
+`blockchainId` | `blockchain_id` | *number* | Id of blockhain used for withdrawal
+`blockchainName` | `blockchain_name` | *string* | Name of blockhain used for withdrawal
+`fees` | `fee` | *decimal* | Fee details
+`destinationDetails` | `destination_details` | *string* | Details of destination wallet
+`state` | `state` | *string* | State of withdrawal
+`transactionInfo` | `transaction_info` | *string* |Unique ID of the request
+`error` | `error` | *string* | Error details if withdrawal failed
+`operationId` | `operation_id` | *number* | Id of operation
+`requiredConfirmationsCount` | `required_confirmations_count` | *number* | -
+`transferContext` | `transfer_context` | *string* | Details of initial transfer with document
+`validatorContext` | `validator_context` | *string* | Details of validator response
+`createdAt` | `created_at` | *timestamp* | Datetime of withdrawal creation
+`updatedAt` | `updated_at` | *timestamp* | Datetime of latest withdrawal update
+
 
 ## Searches withdrawals
 
