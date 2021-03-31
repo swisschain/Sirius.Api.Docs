@@ -36,7 +36,7 @@ x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 ```
 
 ```protobuf
-swisschain.sirius.api.withdrawals/Execute
+swisschain.sirius.api.withdrawals.Withdrawals.Execute
 
 > Requets: (application/grpc)
 
@@ -154,7 +154,7 @@ POST /api/withdrawals
 ```
 
 ```protobuf
-swisschain.sirius.api.withdrawals/Execute
+swisschain.sirius.api.withdrawals.Withdrawals.Execute
 
 > Response: (application/grpc) - success response
 
