@@ -11,9 +11,9 @@ Every deposit is associated with a broker account, an asset, optionally an accou
 In the case if the deposit amount is
 too small to transfer funds from the account address to the broker account address because amount even doesn't cover fees or not significantly greater than fees, the deposited funds will be keept on the account address until the next deposit with enough amount. We use term "Tiny" for such deposits. If deposit destination is a broker account instead of an account, we name such deposits "Broker deposits".
 
-The lifecycle of a deposit:
+If user deposited an asset which is not blockchain native (a token), the deposit is classified as "Token" deposit. The lifecycle of a "Token" deposit:
 
-<img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/deposit-lyfecycle.png" alt="Deposit lifecycle"/>
+<img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/token-deposit-lyfecycle.png" alt="Deposit lifecycle"/>
 
 ## Searches deposits
 
