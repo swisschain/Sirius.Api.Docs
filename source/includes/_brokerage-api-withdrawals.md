@@ -12,7 +12,7 @@ The fees required for the withdrawal transaction are paid atop of the specified 
 
 The lifecycle of a withdrawal:
 
-<img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/withdrawal-lifecycle.png" alt="Withdrawal lifecycle"/>
+<img src="https://raw.githubusercontent.com/swisschain/Sirius.Api.Docs/master/source/images/withdrawal-lifecycle.png" alt="Withdrawal lifecycle"/>
 
 ## Starts a withdrawal
 

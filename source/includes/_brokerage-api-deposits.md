@@ -13,7 +13,7 @@ too small to transfer funds from the account address to the broker account addre
 
 If user deposited an asset which is not blockchain native (a token), the deposit is classified as "Token" deposit. The lifecycle of a "Token" deposit:
 
-<img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/token-deposit-lyfecycle.png" alt="Deposit lifecycle"/>
+<img src="https://raw.githubusercontent.com/swisschain/Sirius.Api.Docs/master/source/images/token-deposit-lifecycle.png" alt="Deposit lifecycle"/>
 
 ## Searches deposits
 
