@@ -227,11 +227,6 @@
           </li>
           <li>
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#2020-09-29-beta-1" class="toc-h2 toc-link" data-title="2020-09-29 | Beta 1">2020-09-29 | Beta 1</a>
-                  </li>
-              </ul>
           </li>
           <li>
             <a href="#protocol-description" class="toc-h1 toc-link" data-title="Protocol description">Protocol description</a>
@@ -471,9 +466,7 @@
 <p>For more information about Swisschain, please visit <a href="https://swisschain.io/">swisschain.io</a>.</p>
 <h1 id='feedback'>Feedback</h1>
 <p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/swagger/ui/index.html">REST API</a>, <a href="https://sirius-grpc.swisschain.io">gRPC API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius.Public/issues/new">GitHub issue</a>. Thank you!</p>
-<h1 id='change-log'>Change Log</h1><h2 id='2020-09-29-beta-1'>2020-09-29 | Beta 1</h2>
-<p>First public release of the API</p>
-<h1 id='protocol-description'>Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
+<h1 id='change-log'>Change Log</h1><h1 id='protocol-description'>Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
 <li><code>POST</code> : Creates a resource.</li>
@@ -4074,9 +4067,9 @@
 <p>In the case if the deposit amount is
 too small to transfer funds from the account address to the broker account address because amount even doesn&#39;t cover fees or not significantly greater than fees, the deposited funds will be keept on the account address until the next deposit with enough amount. We use term &quot;Tiny&quot; for such deposits. If deposit destination is a broker account instead of an account, we name such deposits &quot;Broker deposits&quot;.</p>
 
-<p>The lifecycle of a deposit:</p>
+<p>If user deposited an asset which is not blockchain native (a token), the deposit is classified as &quot;Token&quot; deposit. The lifecycle of a &quot;Token&quot; deposit:</p>
 
-<p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/deposit-lyfecycle.png" alt="Deposit lifecycle"/></p>
+<p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/token-deposit-lyfecycle.png" alt="Deposit lifecycle"/></p>
 <h2 id='searches-deposits'>Searches deposits</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/deposits</code></p>
 
@@ -4759,7 +4752,7 @@ too small to transfer funds from the account address to the broker account addre
 
 <p>The lifecycle of a withdrawal:</p>
 
-<p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/withdrawal-lyfecycle.png" alt="Withdrawal lifecycle"/></p>
+<p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/withdrawal-lifecycle.png" alt="Withdrawal lifecycle"/></p>
 <h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/withdrawals</code></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
