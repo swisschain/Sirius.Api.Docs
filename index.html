@@ -220,7 +220,7 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#sirius-brokerage-api" class="toc-h1 toc-link" data-title="Sirius - Brokerage API">Sirius - Brokerage API</a>
+            <a href="#sirius-digital-custody" class="toc-h1 toc-link" data-title="Sirius Digital Custody">Sirius Digital Custody</a>
           </li>
           <li>
             <a href="#feedback" class="toc-h1 toc-link" data-title="Feedback">Feedback</a>
@@ -229,7 +229,7 @@
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
           </li>
           <li>
-            <a href="#protocol-description" class="toc-h1 toc-link" data-title="Protocol description">Protocol description</a>
+            <a href="#rest-protocol-description" class="toc-h1 toc-link" data-title="REST Protocol description">REST Protocol description</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#allowed-http-verbs" class="toc-h2 toc-link" data-title="Allowed HTTP Verbs">Allowed HTTP Verbs</a>
@@ -280,28 +280,28 @@
               </ul>
           </li>
           <li>
-            <a href="#vaults" class="toc-h1 toc-link" data-title="Vaults">Vaults</a>
+            <a href="#custodies" class="toc-h1 toc-link" data-title="Custodies">Custodies</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#vault-creation" class="toc-h2 toc-link" data-title="Vault creation">Vault creation</a>
+                    <a href="#custody-creation" class="toc-h2 toc-link" data-title="Custody creation">Custody creation</a>
                   </li>
                   <li>
-                    <a href="#vault-update" class="toc-h2 toc-link" data-title="Vault update">Vault update</a>
+                    <a href="#custody-update" class="toc-h2 toc-link" data-title="Custody update">Custody update</a>
                   </li>
                   <li>
-                    <a href="#vaults-search" class="toc-h2 toc-link" data-title="Vaults search">Vaults search</a>
+                    <a href="#custodies-search" class="toc-h2 toc-link" data-title="Custodies search">Custodies search</a>
                   </li>
                   <li>
-                    <a href="#vault-api-key-creation" class="toc-h2 toc-link" data-title="Vault API key creation">Vault API key creation</a>
+                    <a href="#custody-api-key-creation" class="toc-h2 toc-link" data-title="Custody API key creation">Custody API key creation</a>
                   </li>
                   <li>
-                    <a href="#vault-api-keys-search" class="toc-h2 toc-link" data-title="Vault API keys search">Vault API keys search</a>
+                    <a href="#custody-api-keys-search" class="toc-h2 toc-link" data-title="Custody API keys search">Custody API keys search</a>
                   </li>
                   <li>
-                    <a href="#vault-api-key-token-obtaining" class="toc-h2 toc-link" data-title="Vault API key token obtaining">Vault API key token obtaining</a>
+                    <a href="#custody-api-key-token-obtaining" class="toc-h2 toc-link" data-title="Custody API key token obtaining">Custody API key token obtaining</a>
                   </li>
                   <li>
-                    <a href="#vault-api-key-token-revocation" class="toc-h2 toc-link" data-title="Vault API key token revocation">Vault API key token revocation</a>
+                    <a href="#custody-api-key-token-revocation" class="toc-h2 toc-link" data-title="Custody API key token revocation">Custody API key token revocation</a>
                   </li>
               </ul>
           </li>
@@ -404,7 +404,7 @@
                     <a href="#accountstate-enum" class="toc-h2 toc-link" data-title="AccountState (enum)">AccountState (enum)</a>
                   </li>
                   <li>
-                    <a href="#vaulttype-enum" class="toc-h2 toc-link" data-title="VaultType (enum)">VaultType (enum)</a>
+                    <a href="#custodytype-enum" class="toc-h2 toc-link" data-title="CustodyType (enum)">CustodyType (enum)</a>
                   </li>
                   <li>
                     <a href="#depositstate-enum" class="toc-h2 toc-link" data-title="DepositState (enum)">DepositState (enum)</a>
@@ -426,6 +426,9 @@
                   </li>
                   <li>
                     <a href="#brokeraccountbalances-object" class="toc-h2 toc-link" data-title="BrokerAccountBalances (object)">BrokerAccountBalances (object)</a>
+                  </li>
+                  <li>
+                    <a href="#destinationdetails-object" class="toc-h2 toc-link" data-title="DestinationDetails (object)">DestinationDetails (object)</a>
                   </li>
                   <li>
                     <a href="#transactioninfo-object" class="toc-h2 toc-link" data-title="TransactionInfo (object)">TransactionInfo (object)</a>
@@ -452,13 +455,13 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='sirius-brokerage-api'>Sirius - Brokerage API</h1>
+        <h1 id='sirius-digital-custody'>Sirius Digital Custody</h1>
 <p>Sirius is a Digital Assets custody and a blockchain infrastructure API allowing consumers to manage blockchain wallets, keep their assets safe in self-managed custody, flexibly control transaction signing policies, receive deposits and execute withdrawals leveraging omnibus model, deploy and invoke smart contracts, receive smart contract events and read smart contract storage in many different blockchains in a general manner using the same API, data models and management UI. You don&#39;t need to learn the particularities of all the blockchains to get into the crypto world and use all top blockchains with ease.</p>
 
 <p>For more information about Sirius, please contact us <a href="mailto:info@swisschain.io">info@swisschain.io</a>.</p>
 <h1 id='feedback'>Feedback</h1>
 <p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/swagger/ui/index.html">REST API</a>, <a href="https://sirius-grpc.swisschain.io">gRPC API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius.Public/issues/new">GitHub issue</a>. Thank you!</p>
-<h1 id='change-log'>Change Log</h1><h1 id='protocol-description'>Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
+<h1 id='change-log'>Change Log</h1><h1 id='rest-protocol-description'>REST Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
 <li><code>POST</code> : Creates a resource.</li>
@@ -476,7 +479,7 @@
 <li>404 <code>Not Found</code> : resource was not found.</li>
 </ul>
 <h2 id='authentication'>Authentication</h2>
-<p>Sirius API uses <code>Bearer authentication</code>. To get the token, register in our <a href="https://universe.swisschain.io/">Universe portal</a>, create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using <a href="https://jwt.io">jwt.io</a> online service.</p>
+<p>Sirius API uses <code>Bearer authentication</code>. To get the token, <a href="mailto:info@swisschain.io">contact us</a> to get invitation code, then register in our <a href="https://universe.swisschain.io/">Universe portal</a>, create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using <a href="https://jwt.io">jwt.io</a> online service.</p>
 
 <blockquote>
 <p>Request Header</p>
@@ -523,6 +526,8 @@
 
 <p>The response is:</p>
 <h3 id='paginated'>Paginated</h3>
+<p>Paginated response</p>
+
 <ul>
 <li><code>pagination</code> - pagination state.
 
@@ -602,13 +607,13 @@
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td><em>optional</em>, <em><a href="#networkType">NetworkType</a></em></td>
+<td><em>optional</em>, <em><a href="#networktype-enum">NetworkType</a></em></td>
 <td>List of the network types to search. Repeat the parameter to specify multiple items</td>
 <td>private</td>
 </tr>
 <tr>
 <td><code>order</code></td>
-<td><em>optional</em>, <em><a href="#order">Order</a></em></td>
+<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -656,13 +661,13 @@
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td><em><a href="#networkType">NetworkType</a></em></td>
+<td><em><a href="#networktype-enum">NetworkType</a></em></td>
 <td>Type of the network</td>
 <td></td>
 </tr>
 <tr>
 <td><code>protocol</code></td>
-<td><em><a href="#BlockchainProtocol">BlockchainProtocol</a></em></td>
+<td><em><a href="#blockchainprotocol-object">BlockchainProtocol</a></em></td>
 <td>Protocol of the blockchain.</td>
 <td></td>
 </tr>
@@ -804,7 +809,7 @@
   </span><span class="nl">"blockNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">5933</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='assets'>Assets</h1>
-<p>Sirius provides the set of crypto assets available to use. You can get notifications about a deposit or initiate a withdrawal in any asset presented in this set. Each asset has a symbol, accuracy, optional address, ID of the blockchain containing this asset and unique ID. It&#39;s possible that in the different blockchains assets with the same symbol and/or address are existed, so you have to rely only on the asset ID if you need to deterministically identify it. In fact asset ID corresponds to its blockchain ID + symbol + address.</p>
+<p>Sirius provides the set of crypto assets available to use. You can get notifications about a deposit or initiate a withdrawal in any asset presented in this set. Each asset has a symbol, accuracy, optional address, ID of the blockchain containing this asset and unique ID. It&#39;s possible that in the different blockchains assets with the same symbol and/or address are existed, so you have to rely only on the asset ID if you need to deterministically identify it. In fact asset ID corresponds to its blockchain ID + symbol + address. If you&#39;ve received a deposit of an asset which is not supported by Sirius yet, you can add this particular asset to your personal list by specifying all needed asset parameters.</p>
 <h2 id='search-assets'>Search assets</h2><h3 id='request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/assets</code></p>
 <h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3>
@@ -848,7 +853,7 @@
 </tr>
 <tr>
 <td><code>order</code></td>
-<td><em>optional</em>, <em><a href="#order">Order</a></em></td>
+<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -942,37 +947,37 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='vaults'>Vaults</h1>
-<p>A Vault is a place where private keys of your blockchain wallets are kept. It generates public/private key pairs and signs transactions using these private keys. In order to create any broker-account or account, receive or send transactions in Sirius, you have to create a Vault first. There are two types of the Vault:</p>
+</span></code></pre></div><h1 id='custodies'>Custodies</h1>
+<p>A Custody is a place where private keys of your blockchain wallets are generated and kept, where your transaction signing policy can be edited and where it executes. In order to create any broker-account or account, receive or send transactions in Sirius, you have to create a Custody first. There are two types of the Custody:</p>
 
 <ul>
-<li>Shared - run and managed by SwissChain, shared between all the customers which uses it.</li>
-<li>Private - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong>. It&#39;s fully secure and protected solution to keep your funds in save. The solutions is based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help deploying of this type of the Vault.</li>
+<li>Shared - run and managed by SwissChain, shared between all the customers that use it.</li>
+<li>Self-Managed - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong> on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It&#39;s fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can&#39;t get unauthorized access to your funds. The solutions is based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It provides a flexible way to control you transaction signing policy. It includes Multi Party Signature mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help with deploying of the self-managed Custody.</li>
 </ul>
 
-<p>We recommend using Shared Vault for the testing purposes and private for the production environment.</p>
-<h2 id='vault-creation'>Vault creation</h2><h3 id='request'>Request</h3>
-<p><strong>Rest API:</strong> <code>POST /api/vaults</code></p>
+<p>We recommend using Shared Custody for the testing purposes only.</p>
+<h2 id='custody-creation'>Custody creation</h2><h3 id='request'>Request</h3>
+<p><strong>Rest API:</strong> <code>POST /api/custodies</code></p>
 
-<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.vaults.Vaults/Create</code></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/vaults</span><span class="w">
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/Create</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
 
 </span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Vault"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Custody"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Create</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">Create</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
 
-<span class="kd">message</span> <span class="nc">VaultCreateRequest</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyCreateRequest</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>    <span class="c1">// 1a5c0b3d15494ec8a390fd3b22d757d6</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>          <span class="c1">// "My Vault"</span>
-  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>       <span class="c1">// VaultType.PRIVATE</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>          <span class="c1">// "My Custody"</span>
+  <span class="n">CustodyType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>     <span class="c1">// CustodyType.PRIVATE</span>
 <span class="p">}</span>
 </code></pre></div>
 <table><thead>
@@ -1003,48 +1008,48 @@
 <td><code>name</code></td>
 <td><em>string</em></td>
 <td><em>body</em></td>
-<td>Name of the vault</td>
+<td>Name of the custody</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#VaultType">VaultType</a></em></td>
+<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
 <td><em>body</em></td>
-<td>Type of the vault</td>
+<td>Type of the custody</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/vaults</span><span class="w"> 
+<h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies</span><span class="w"> 
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Vault"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Custody"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Create</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">Create</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
-<span class="kd">message</span> <span class="nc">VaultCreateResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyCreateResponse</span> <span class="p">{</span>
     <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
-      <span class="n">VaultCreateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                         <span class="c1">// Object</span>
+      <span class="n">CustodyCreateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                       <span class="c1">// Object</span>
       <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// NULL</span>
     <span class="p">}</span> 
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultCreateResponseBody</span> <span class="p">{</span>
-  <span class="n">VaultResponse</span> <span class="na">vault</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                      <span class="c1">// Object</span>
+<span class="kd">message</span> <span class="nc">CustodyCreateResponseBody</span> <span class="p">{</span>
+  <span class="n">CustodyResponse</span> <span class="na">custody</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                  <span class="c1">// Object</span>
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyResponse</span> <span class="p">{</span>
   <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                 <span class="c1">// 100010</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                              <span class="c1">// "My Vault"</span>
-  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                           <span class="c1">// VaultType.PRIVATE</span>
-  <span class="n">VaultStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                       <span class="c1">// VaultStatus.OFFLINE</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                              <span class="c1">// "My Custody"</span>
+  <span class="n">CustodyType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                         <span class="c1">// CustodyType.PRIVATE</span>
+  <span class="n">CustodyStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                     <span class="c1">// CustodyStatus.OFFLINE</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                     <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                     <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
 <span class="p">}</span>
@@ -1061,60 +1066,60 @@
 <td><code>id</code></td>
 <td><code>id</code></td>
 <td><em>number</em></td>
-<td>ID of the vault</td>
+<td>ID of the custody</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
-<td>Name of the vault</td>
+<td>Name of the custody</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#VaultType">VaultType</a></em></td>
-<td>Type of the vault</td>
+<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
+<td>Type of the custody</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#VaultStatus">VaultStatus</a></em></td>
-<td>Status of the vault</td>
+<td><em><a href="#custodystatus-enum">CustodyStatus</a></em></td>
+<td>Status of the custody</td>
 </tr>
 <tr>
 <td><code>createdAt</code></td>
 <td><code>created_at</code></td>
 <td><em>timestamp</em></td>
-<td>Date of the vault creation</td>
+<td>Date of the custody creation</td>
 </tr>
 <tr>
 <td><code>updatedAt</code></td>
 <td><code>updated_at</code></td>
 <td><em>timestamp</em></td>
-<td>Date of the vault update</td>
+<td>Date of the custody update</td>
 </tr>
 </tbody></table>
-<h2 id='vault-update'>Vault update</h2><h3 id='request-2'>Request</h3>
-<p><strong>Rest API:</strong> <code>PUT /api/vaults/{vaultId}</code></p>
+<h2 id='custody-update'>Custody update</h2><h3 id='request-2'>Request</h3>
+<p><strong>Rest API:</strong> <code>PUT /api/custodies/{custodyId}</code></p>
 
-<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.vaults.Vaults/Update</code></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="w">
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/Update</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
 
 </span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Secure Vault"</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Secure Custody"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Update</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">Update</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
 
-<span class="kd">message</span> <span class="nc">VaultUpdateRequest</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyUpdateRequest</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>    <span class="c1">// 1a5c0b3d15494ec8a390fd3b22d757d6</span>
-  <span class="kt">int64</span> <span class="na">vault_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>       <span class="c1">// 100010</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>          <span class="c1">// "My Secure Vault"</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">// 100010</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>          <span class="c1">// "My Secure Custody"</span>
 <span class="p">}</span>
 </code></pre></div>
 <table><thead>
@@ -1141,52 +1146,52 @@
 <td>Unique ID of the request</td>
 </tr>
 <tr>
-<td><code>vaultId</code></td>
-<td><code>vault_id</code></td>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
 <td><em>number</em></td>
 <td><em>path</em></td>
-<td>ID of the vault being update</td>
+<td>ID of the custody being update</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
 <td><em>body</em></td>
-<td>Name of the vault to set</td>
+<td>Name of the custody to set</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="w">
+<h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Secure Vault"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Secure Custody"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Update</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">Update</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
-<span class="kd">message</span> <span class="nc">VaultUpdateResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyUpdateResponse</span> <span class="p">{</span>
   <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
-    <span class="n">VaultUpdateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                           <span class="c1">// Object</span>
+    <span class="n">CustodyUpdateResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                         <span class="c1">// Object</span>
     <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>   <span class="c1">// NULL</span>
   <span class="p">}</span> 
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultUpdateResponseBody</span> <span class="p">{</span>
-  <span class="n">VaultResponse</span> <span class="na">vault</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                      <span class="c1">// Object</span>
+<span class="kd">message</span> <span class="nc">CustodyUpdateResponseBody</span> <span class="p">{</span>
+  <span class="n">CustodyResponse</span> <span class="na">custody</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                  <span class="c1">// Object</span>
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyResponse</span> <span class="p">{</span>
   <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                 <span class="c1">// 100010</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                              <span class="c1">// "My Secure Vault"</span>
-  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                           <span class="c1">// VaultType.PRIVATE</span>
-  <span class="n">VaultStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                       <span class="c1">// VaultStatus.OFFLINE</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                              <span class="c1">// "My Secure Custody"</span>
+  <span class="n">CustodyType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                         <span class="c1">// CustodyType.PRIVATE</span>
+  <span class="n">CustodyStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                     <span class="c1">// CustodyStatus.OFFLINE</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                     <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                     <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
 <span class="p">}</span>
@@ -1203,52 +1208,52 @@
 <td><code>id</code></td>
 <td><code>id</code></td>
 <td><em>number</em></td>
-<td>ID of the vault</td>
+<td>ID of the custody</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
-<td>Name of the vault</td>
+<td>Name of the custody</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#VaultType">VaultType</a></em></td>
-<td>Type of the vault</td>
+<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
+<td>Type of the custody</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#VaultStatus">VaultStatus</a></em></td>
-<td>Status of the vault</td>
+<td><em><a href="#custodystatus-enum">CustodyStatus</a></em></td>
+<td>Status of the custody</td>
 </tr>
 <tr>
 <td><code>createdAt</code></td>
 <td><code>created_at</code></td>
 <td><em>timestamp</em></td>
-<td>Date of the vault creation</td>
+<td>Date of the custody creation</td>
 </tr>
 <tr>
 <td><code>updatedAt</code></td>
 <td><code>updated_at</code></td>
 <td><em>timestamp</em></td>
-<td>Date of the vault update</td>
+<td>Date of the custody update</td>
 </tr>
 </tbody></table>
-<h2 id='vaults-search'>Vaults search</h2><h3 id='request-3'>Request</h3>
-<p><strong>Rest API:</strong> <code>GET /api/vaults</code></p>
+<h2 id='custodies-search'>Custodies search</h2><h3 id='request-3'>Request</h3>
+<p><strong>Rest API:</strong> <code>GET /api/custodies</code></p>
 
-<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.vaults.Vaults/Search</code></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/vaults?id=</span><span class="mi">100010</span><span class="err">&amp;name=My%</span><span class="mi">20</span><span class="err">Vault&amp;type=private&amp;order=asc&amp;cursor=</span><span class="mi">100009</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Search</span>
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/Search</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies?id=</span><span class="mi">100010</span><span class="err">&amp;name=My%</span><span class="mi">20</span><span class="err">Custody&amp;type=private&amp;order=asc&amp;cursor=</span><span class="mi">100009</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">Search</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
 
-<span class="kd">message</span> <span class="nc">VaultSearchRequest</span> <span class="p">{</span>  
+<span class="kd">message</span> <span class="nc">CustodySearchRequest</span> <span class="p">{</span>  
   <span class="n">google.protobuf.Int64Value</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                            <span class="c1">// 100010</span>
-  <span class="n">google.protobuf.StringValue</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                         <span class="c1">// "My Vault"</span>
-  <span class="k">repeated</span> <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                  <span class="c1">// Array&lt;VaultType&gt;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                         <span class="c1">// "My Custody"</span>
+  <span class="k">repeated</span> <span class="n">CustodyType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                <span class="c1">// Array&lt;CustodyType&gt;</span>
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>  <span class="c1">// Object</span>
 <span class="p">}</span>
 
@@ -1272,26 +1277,26 @@
 <td><code>id</code></td>
 <td><em>number, optional</em></td>
 <td><em>query</em></td>
-<td>Exact ID of the vault to search</td>
+<td>Exact ID of the custody to search</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string, optional</em></td>
 <td><em>query</em></td>
-<td>Name of the vault to search</td>
+<td>Name of the custody to search</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em>Array&lt;<a href="#VaultType">VaultType</a>&gt;, optional</em></td>
+<td><em>Array&lt;<a href="#custodytype-enum">CustodyType</a>&gt;, optional</em></td>
 <td><em>query</em></td>
-<td>Zero or several vault types to search</td>
+<td>Zero or several custody types to search</td>
 </tr>
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em><a href="#order">Order</a>, optional</em></td>
+<td><em><a href="#order-enum">Order</a>, optional</em></td>
 <td><em>query</em></td>
 <td>Results sorting order</td>
 </tr>
@@ -1310,7 +1315,7 @@
 <td>Max numbers of the items to return from the server</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/vaults?&amp;name=Vault&amp;type=private&amp;order=asc&amp;cursor=</span><span class="mi">100009</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+<h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies?&amp;name=Custody&amp;type=private&amp;order=asc&amp;cursor=</span><span class="mi">100009</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -1319,12 +1324,12 @@
     </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="mi">100009</span><span class="p">,</span><span class="w">
     </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asc"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/vaults?&amp;name=Vault&amp;type=private&amp;order=asc&amp;cursor=100012&amp;limit=3"</span><span class="w">
+    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/custodies?&amp;name=Custody&amp;type=private&amp;order=asc&amp;cursor=100012&amp;limit=3"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Custody"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shared"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-27T22:08:56.976533Z"</span><span class="p">,</span><span class="w">
@@ -1332,7 +1337,7 @@
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100011</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Secure Vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Secure Custody"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-27T22:08:56.976533Z"</span><span class="p">,</span><span class="w">
@@ -1340,7 +1345,7 @@
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100012</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Custody"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shared"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-27T22:08:56.976533Z"</span><span class="p">,</span><span class="w">
@@ -1348,24 +1353,24 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">Search</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">Search</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
-<span class="kd">message</span> <span class="nc">VaultSearchResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodySearchResponse</span> <span class="p">{</span>
   <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
-    <span class="n">VaultSearchResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                   <span class="c1">// Object</span>
+    <span class="n">CustodySearchResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                 <span class="c1">// Object</span>
     <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>           <span class="c1">// NULL</span>
   <span class="p">}</span> 
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultSearchResponseBody</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodySearchResponseBody</span> <span class="p">{</span>
   <span class="n">swisschain.sirius.api.common.PaginatedInt64Response</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// Object</span>
-  <span class="k">repeated</span> <span class="n">VaultResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                     <span class="c1">// Array&lt;Object&gt;</span>
+  <span class="k">repeated</span> <span class="n">CustodyResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                   <span class="c1">// Array&lt;Object&gt;</span>
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultUpdateResponseBody</span> <span class="p">{</span>
-  <span class="n">VaultResponse</span> <span class="na">vault</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                              <span class="c1">// Object</span>
+<span class="kd">message</span> <span class="nc">CustodyUpdateResponseBody</span> <span class="p">{</span>
+  <span class="n">CustodyResponse</span> <span class="na">custody</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                          <span class="c1">// Object</span>
 <span class="p">}</span>
 
 <span class="kd">message</span> <span class="nc">PaginatedInt64Response</span> <span class="p">{</span>
@@ -1374,11 +1379,11 @@
   <span class="n">PaginationOrder</span> <span class="na">order</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                            <span class="c1">// PaginationOrder.ASC</span>
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyResponse</span> <span class="p">{</span>
   <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                         <span class="c1">// 100010</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                                      <span class="c1">// "My Secure Vault"</span>
-  <span class="n">VaultType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                                   <span class="c1">// VaultType.PRIVATE</span>
-  <span class="n">VaultStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                               <span class="c1">// VaultStatus.OFFLINE</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                                      <span class="c1">// "My Secure Custody"</span>
+  <span class="n">CustodyType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                                 <span class="c1">// CustodyType.PRIVATE</span>
+  <span class="n">CustodyStatus</span> <span class="na">status</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                             <span class="c1">// CustodyStatus.OFFLINE</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                             <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                             <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
 <span class="p">}</span>
@@ -1397,61 +1402,61 @@
 <td><code>id</code></td>
 <td><code>id</code></td>
 <td><em>number</em></td>
-<td>ID of the vault</td>
+<td>ID of the custody</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
-<td>Name of the vault</td>
+<td>Name of the custody</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#VaultType">VaultType</a></em></td>
-<td>Type of the vault</td>
+<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
+<td>Type of the custody</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#VaultStatus">VaultStatus</a></em></td>
-<td>Status of the vault</td>
+<td><em><a href="#custodystatus-enum">CustodyStatus</a></em></td>
+<td>Status of the custody</td>
 </tr>
 <tr>
 <td><code>createdAt</code></td>
 <td><code>created_at</code></td>
 <td><em>timestamp</em></td>
-<td>Date of the vault creation</td>
+<td>Date of the custody creation</td>
 </tr>
 <tr>
 <td><code>updatedAt</code></td>
 <td><code>updated_at</code></td>
 <td><em>timestamp</em></td>
-<td>Date of the vault update</td>
+<td>Date of the custody update</td>
 </tr>
 </tbody></table>
-<h2 id='vault-api-key-creation'>Vault API key creation</h2><h3 id='request-4'>Request</h3>
-<p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys</code></p>
+<h2 id='custody-api-key-creation'>Custody API key creation</h2><h3 id='request-4'>Request</h3>
+<p><strong>Rest API:</strong> <code>POST /api/custodies/{custodyId}/api-keys</code></p>
 
-<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.vaults.Vaults/AddApiKey</code></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys</span><span class="w">
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/AddApiKey</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
 
 </span><span class="err">x-request-id:</span><span class="w"> </span><span class="err">d</span><span class="mi">5125</span><span class="err">d</span><span class="mi">2</span><span class="err">d</span><span class="mi">4</span><span class="err">d</span><span class="mi">9445</span><span class="err">efa</span><span class="mi">5414</span><span class="err">a</span><span class="mi">3926</span><span class="err">ab</span><span class="mi">00</span><span class="err">a</span><span class="mi">7</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key for my vault"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key for my custody"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-24T21:43:02.6554641Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">AddApiKey</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">AddApiKey</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
 
-<span class="kd">message</span> <span class="nc">VaultAddApiKeyRequest</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyAddApiKeyRequest</span> <span class="p">{</span>
   <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                        <span class="c1">// d5125d2d4d9445efa5414a3926ab00a7</span>
-  <span class="kt">int64</span> <span class="na">vault_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                           <span class="c1">// 100010</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                              <span class="c1">// "API key for my vault"</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                         <span class="c1">// 100010</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                              <span class="c1">// "API key for my custody"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">expires_at</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>     <span class="c1">// "2020-09-24T21:43:02.6554641Z"</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1479,18 +1484,18 @@
 <td>Unique ID of the request</td>
 </tr>
 <tr>
-<td><code>vaultId</code></td>
-<td><code>vault_id</code></td>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
 <td><em>number</em></td>
 <td><em>path</em></td>
-<td>ID of the vault being update</td>
+<td>ID of the custody being update</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
 <td><em>body</em></td>
-<td>Name of the vault to set</td>
+<td>Name of the custody to set</td>
 </tr>
 <tr>
 <td><code>expiresAt</code></td>
@@ -1500,37 +1505,37 @@
 <td>Date of the API key expiration</td>
 </tr>
 </tbody></table>
-<h3 id='response-4'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys</span><span class="w">
+<h3 id='response-4'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100014</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"vaultId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key for my vault"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"custodyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key for my custody"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-24T21:43:02.6554641Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-24T21:43:02.6554641Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"isRevoked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">AddApiKey</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">AddApiKey</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
-<span class="kd">message</span> <span class="nc">VaultAddApiKeyResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyAddApiKeyResponse</span> <span class="p">{</span>
   <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
-    <span class="n">VaultAddApiKeyResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                            <span class="c1">// Object</span>
+    <span class="n">CustodyAddApiKeyResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                          <span class="c1">// Object</span>
     <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>       <span class="c1">// NULL</span>
   <span class="p">}</span> 
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultAddApiKeyResponseBody</span> <span class="p">{</span>
-  <span class="n">VaultApiKeyResponse</span> <span class="na">vault_api_key</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                            <span class="c1">// Object</span>
+<span class="kd">message</span> <span class="nc">CustodyAddApiKeyResponseBody</span> <span class="p">{</span>
+  <span class="n">CustodyApiKeyResponse</span> <span class="na">custody_api_key</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                        <span class="c1">// Object</span>
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultApiKeyResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyApiKeyResponse</span> <span class="p">{</span>
   <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                     <span class="c1">// 100014</span>
-  <span class="kt">int64</span> <span class="na">vault_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                               <span class="c1">// 100010</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                                  <span class="c1">// "API key for my vault"</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                             <span class="c1">// 100010</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                                  <span class="c1">// "API key for my custody"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">expires_at</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                         <span class="c1">// "2020-09-24T21:43:02.6554641Z"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">issued_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                          <span class="c1">// "2020-08-24T21:43:02.6554641Z"</span>
   <span class="kt">bool</span> <span class="na">is_revoked</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                                              <span class="c1">// FALSE</span>
@@ -1548,19 +1553,19 @@
 <td><code>id</code></td>
 <td><code>id</code></td>
 <td><em>number</em></td>
-<td>ID of the vault API key</td>
+<td>ID of the custody API key</td>
 </tr>
 <tr>
-<td><code>vaultId</code></td>
-<td><code>vault_id</code></td>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
 <td><em>number</em></td>
-<td>ID of the vault</td>
+<td>ID of the custody</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
-<td>Name of the vault</td>
+<td>Name of the custody</td>
 </tr>
 <tr>
 <td><code>expiresAt</code></td>
@@ -1581,19 +1586,19 @@
 <td>Flag indicating if the API key is revoked</td>
 </tr>
 </tbody></table>
-<h2 id='vault-api-keys-search'>Vault API keys search</h2><h3 id='request-5'>Request</h3>
-<p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys</code></p>
+<h2 id='custody-api-keys-search'>Custody API keys search</h2><h3 id='request-5'>Request</h3>
+<p><strong>Rest API:</strong> <code>GET /api/custodies/{custodyId}/api-keys</code></p>
 
-<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.vaults.Vaults/SearchApiKeys</code></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys?id=</span><span class="mi">100014</span><span class="err">&amp;name=API%</span><span class="mi">20</span><span class="err">key%</span><span class="mi">20</span><span class="err">for%</span><span class="mi">20</span><span class="err">my%</span><span class="mi">20</span><span class="err">vault&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">SearchApiKeys</span>
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/SearchApiKeys</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys?id=</span><span class="mi">100014</span><span class="err">&amp;name=API%</span><span class="mi">20</span><span class="err">key%</span><span class="mi">20</span><span class="err">for%</span><span class="mi">20</span><span class="err">my%</span><span class="mi">20</span><span class="err">custody&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">SearchApiKeys</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
 
-<span class="kd">message</span> <span class="nc">VaultSearchApiKeyRequest</span> <span class="p">{</span>  
+<span class="kd">message</span> <span class="nc">CustodySearchApiKeyRequest</span> <span class="p">{</span>  
   <span class="n">google.protobuf.Int64Value</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                            <span class="c1">// 100014</span>
-  <span class="n">google.protobuf.StringValue</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                         <span class="c1">// "API key for my vault"</span>
-  <span class="kt">int64</span> <span class="na">vault_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                           <span class="c1">// 100010</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                         <span class="c1">// "API key for my custody"</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                                         <span class="c1">// 100010</span>
   <span class="n">google.protobuf.BoolValue</span> <span class="na">is_revoked</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                     <span class="c1">// false</span>
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>  <span class="c1">// Object</span>
 <span class="p">}</span>
@@ -1614,37 +1619,37 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><code>vaultId</code></td>
-<td><code>vault_id</code></td>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
 <td><em>number</em></td>
 <td><em>path</em></td>
-<td>Exact ID of the vault to search</td>
+<td>Exact ID of the custody to search</td>
 </tr>
 <tr>
 <td><code>id</code></td>
 <td><code>id</code></td>
 <td><em>number, optional</em></td>
 <td><em>query</em></td>
-<td>Exact ID of the vault API key to search</td>
+<td>Exact ID of the custody API key to search</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string, optional</em></td>
 <td><em>query</em></td>
-<td>Name of the vault API key to search</td>
+<td>Name of the custody API key to search</td>
 </tr>
 <tr>
 <td><code>isRevoked</code></td>
 <td><code>is_revoked</code></td>
 <td><em>bool, optional</em></td>
 <td><em>query</em></td>
-<td>Flag indicating if only revoked or only not revoked vault API keys should be searched</td>
+<td>Flag indicating if only revoked or only not revoked custody API keys should be searched</td>
 </tr>
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em><a href="#order">Order</a>, optional</em></td>
+<td><em><a href="#order-enum">Order</a>, optional</em></td>
 <td><em>query</em></td>
 <td>Results sorting order</td>
 </tr>
@@ -1663,7 +1668,7 @@
 <td>Max numbers of the items to return from the server</td>
 </tr>
 </tbody></table>
-<h3 id='response-5'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+<h3 id='response-5'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -1672,55 +1677,55 @@
     </span><span class="nl">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="mi">100009</span><span class="p">,</span><span class="w">
     </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asc"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="err">/api/vaults/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100016</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+    </span><span class="nl">"nextUrl"</span><span class="p">:</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100016</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100014</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"vaultId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key for my vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custodyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API key for my custody"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"isRevoked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100015</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"vaultId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another one API key for my vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custodyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another one API key for my custody"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"isRevoked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100016</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"vaultId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One more API key for my vault"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custodyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100010</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One more API key for my custody"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-10T20:26:22.845Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"isRevoked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.vaults.Vaults</span><span class="o">/</span><span class="n">SearchApiKeys</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.custodies.Custodies</span><span class="o">/</span><span class="n">SearchApiKeys</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
-<span class="kd">message</span> <span class="nc">VaultSearchApiKeyResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodySearchApiKeyResponse</span> <span class="p">{</span>
   <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
-    <span class="n">VaultSearchApiKeyResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                             <span class="c1">// Object</span>
+    <span class="n">CustodySearchApiKeyResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                           <span class="c1">// Object</span>
     <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>           <span class="c1">// NULL</span>
   <span class="p">}</span> 
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultSearchApiKeyResponseBody</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodySearchApiKeyResponseBody</span> <span class="p">{</span>
   <span class="n">swisschain.sirius.api.common.PaginatedInt64Response</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// Object</span>
-  <span class="k">repeated</span> <span class="n">VaultApiKeyResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                               <span class="c1">// Array&lt;Object&gt;</span>
+  <span class="k">repeated</span> <span class="n">CustodyApiKeyResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                             <span class="c1">// Array&lt;Object&gt;</span>
 <span class="p">}</span>
 
-<span class="kd">message</span> <span class="nc">VaultApiKeyResponse</span> <span class="p">{</span>
+<span class="kd">message</span> <span class="nc">CustodyApiKeyResponse</span> <span class="p">{</span>
   <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                                                         <span class="c1">// 100016</span>
-  <span class="kt">int64</span> <span class="na">vault_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                                   <span class="c1">// 100010</span>
-  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                                      <span class="c1">// "One more API key for my vault"</span>
+  <span class="kt">int64</span> <span class="na">custody_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                                                 <span class="c1">// 100010</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                                                      <span class="c1">// "One more API key for my custody"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">expires_at</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                             <span class="c1">// "2021-09-10T20:26:22.845Z"</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">issued_at</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                              <span class="c1">// "2020-09-10T20:26:22.845Z"</span>
   <span class="kt">bool</span> <span class="na">is_revoked</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                                                  <span class="c1">// FALSE</span>
@@ -1740,19 +1745,19 @@
 <td><code>id</code></td>
 <td><code>id</code></td>
 <td><em>number</em></td>
-<td>ID of the vault API key</td>
+<td>ID of the custody API key</td>
 </tr>
 <tr>
-<td><code>vaultId</code></td>
-<td><code>vault_id</code></td>
+<td><code>custodyId</code></td>
+<td><code>custody_id</code></td>
 <td><em>number</em></td>
-<td>ID of the vault</td>
+<td>ID of the custody</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
 <td><em>string</em></td>
-<td>Name of the vault API key</td>
+<td>Name of the custody API key</td>
 </tr>
 <tr>
 <td><code>expiresAt</code></td>
@@ -1770,22 +1775,22 @@
 <td><code>isRevoked</code></td>
 <td><code>is_revoked</code></td>
 <td><em>bool</em></td>
-<td>Flag indicating if the vault API key is revoked</td>
+<td>Flag indicating if the custody API key is revoked</td>
 </tr>
 </tbody></table>
-<h2 id='vault-api-key-token-obtaining'>Vault API key token obtaining</h2><h3 id='request-6'>Request</h3>
-<p><strong>Rest API:</strong> <code>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token</code></p>
+<h2 id='custody-api-key-token-obtaining'>Custody API key token obtaining</h2><h3 id='request-6'>Request</h3>
+<p><strong>Rest API:</strong> <code>GET /api/custodies/{custodyId}/api-keys/{apiKeyId}/token</code></p>
 <h4 id='parameters'>Parameters</h4><h4 id='query-parameters'>Query Parameters</h4><h3 id='response-6'>Response</h3>
 <blockquote>
-<p>GET /api/vaults/{vaultId}/api-keys/{apiKeyId}/token 200 OK</p>
+<p>GET /api/custodies/{custodyId}/api-keys/{apiKeyId}/token 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='vault-api-key-token-revocation'>Vault API key token revocation</h2><h3 id='request-7'>Request</h3>
-<p><strong>Rest API:</strong> <code>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke</code></p>
+</span></code></pre></div><h2 id='custody-api-key-token-revocation'>Custody API key token revocation</h2><h3 id='request-7'>Request</h3>
+<p><strong>Rest API:</strong> <code>POST /api/custodies/{custodyId}/api-keys/{apiKeyId}/revoke</code></p>
 <h4 id='parameters-2'>Parameters</h4><h4 id='query-parameters-2'>Query Parameters</h4><h3 id='response-7'>Response</h3>
 <blockquote>
-<p>POST /api/vaults/{vaultId}/api-keys/{apiKeyId}/revoke 200 OK</p>
+<p>POST /api/custodies/{custodyId}/api-keys/{apiKeyId}/revoke 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -3632,7 +3637,7 @@
 <tr>
 <td><code>tag_type</code></td>
 <td><code>tag_type</code></td>
-<td><em>optional</em>, <em><a href="#tag-type">TagType</a></em></td>
+<td><em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em></td>
 <td>tag type</td>
 <td>null</td>
 </tr>
@@ -3770,7 +3775,7 @@
 <tr>
 <td><code>tagType</code></td>
 <td><code>tag_type</code></td>
-<td><em>optional</em>, <em><a href="#tag-type">TagType</a></em></td>
+<td><em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em></td>
 <td>Tag type</td>
 </tr>
 </tbody></table>
@@ -3896,7 +3901,7 @@
 <tr>
 <td><code>tagType</code></td>
 <td><code>tag_type</code></td>
-<td><em>optional</em>, <em><a href="#tag-type">TagType</a></em></td>
+<td><em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em></td>
 <td>Tag type</td>
 </tr>
 </tbody></table>
@@ -4730,15 +4735,15 @@ too small to transfer funds from the account address to the broker account addre
 </tr>
 </tbody></table>
 <h1 id='withdrawals'>Withdrawals</h1>
-<p>Withdrawals reflects outgoing transfers of the funds from a broker account. You can get withdrawals history, or be notified about new withdrawals and state changing of the existing withdrawals. There are different options to be notified about withdrawals state changing:</p>
+<p>Withdrawal refers to outgoing transfers of the funds from a broker account. You can get withdrawals history, or be notified about new withdrawals and state changing of the existing withdrawals. There are different options to be notified about withdrawals state changing:</p>
 
 <ul>
 <li>You can pull withdrawals updates REST API</li>
 <li>You can listen for withdrawal updates gRPC stream</li>
-<li>You can register a web-hook get the notifications (coming soon)</li>
+<li>You can register a web-hook get the notifications</li>
 </ul>
 
-<p>Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account, an asset, optionally an account, it has amount, fees and state. If you use reference ID for the accounts, you can specify either account ID or reference ID, to associate an account to the withdrawal. This link doesn&#39;t affect funds flow, it&#39;s used just for the reporting.</p>
+<p>Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account, an asset, optionally an account, your internal ID, it has amount, fees and state. If you use reference ID for the accounts, you can specify either account ID or reference ID, to associate an account to the withdrawal. This link doesn&#39;t affect funds flow, it&#39;s used just for the reporting and notifying you back with withdrawal updates.</p>
 
 <p>The fees required for the withdrawal transaction are paid atop of the specified amount.</p>
 
@@ -4796,16 +4801,16 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>document</code></td>
 <td><code>document</code></td>
-<td><em>string</em></td>
+<td><em>optional</em>, <em>string</em></td>
 <td><em>body</em></td>
 <td>JSON-formatted document describing the withdrawals parameters</td>
 </tr>
 <tr>
 <td><code>signature</code></td>
 <td><code>signature</code></td>
-<td><em>string</em></td>
+<td><em>optional</em>, <em>string</em></td>
 <td><em>body</em></td>
-<td>document signature</td>
+<td>Base64 encoded RSA signature of the document signed with the Customer&#39;s private key</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>Withdral document format:
@@ -4824,7 +4829,56 @@ too small to transfer funds from the account address to the broker account addre
         "tagType": "string", // Optional - ("text", "number")
     }
 }
-</code></pre></div><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
+</code></pre></div><h3 id='withdrawal-document'>Withdrawal document</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>version</code></td>
+<td><em>string</em></td>
+<td>Document version. Should be <code>1.0</code></td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the account. Either <code>accountId</code> or <code>accountReferenceId</code> can be specified.</td>
+</tr>
+<tr>
+<td><code>accountReferenceId</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID of the account. Either <code>accountReferenceId</code> or <code>accountId</code> can be specified.</td>
+</tr>
+<tr>
+<td><code>withdrawalReferenceId</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID of the withdrawal. It can be internal ID of the withdrawal in your system.</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><em>number</em></td>
+<td>ID of the asset</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><em>decimal</em></td>
+<td>Withdrawal amount</td>
+</tr>
+<tr>
+<td><code>destinationDetails</code> <em><a href="#destinationdetails-object">DestinationDetails</a></em></td>
+<td>Destination details</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -5126,7 +5180,7 @@ too small to transfer funds from the account address to the broker account addre
 <li><code>maxLength</code> (<em>number</em>) - Mximum length of the <code>Text</code> destination tag. (eg. 28).</li>
 <li><code>name</code> (<em>string</em>) - Name of the <code>Text</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo text&quot;).</li>
 </ul></li>
-<li><code>doubleSpendingProtectionType</code> (<em><a href="#DoubleSpendingProtectionType">DoubleSpendingProtectionType</a></em>) - Type of the protection agains funds double spending (eg. <code>coins</code>).</li>
+<li><code>doubleSpendingProtectionType</code> (<em><a href="#DoubleSpendingProtectionType-enum">DoubleSpendingProtectionType</a></em>) - Type of the protection agains funds double spending (eg. <code>coins</code>).</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -5164,7 +5218,7 @@ and you have to specify exact type in this case.</p>
 <li><code>active</code> - The account is active and can be used as usual.</li>
 <li><code>blocked</code> - The account is blocked - processing of all deposits and withdrawals is on hold.</li>
 </ul>
-<h2 id='vaulttype-enum'>VaultType (enum)</h2>
+<h2 id='custodytype-enum'>CustodyType (enum)</h2>
 <p>Type of the vault</p>
 
 <ul>
@@ -5175,20 +5229,20 @@ and you have to specify exact type in this case.</p>
 <p>State of the deposit</p>
 
 <ul>
-<li><code>detected</code> -</li>
-<li><code>confirmed</code> -</li>
-<li><code>completed</code> -</li>
-<li><code>failed</code> -</li>
-<li><code>cancelled</code> -</li>
-<li><code>provisioned</code> -</li>
-<li><code>unknownAsset</code> - </li>
-<li><code>amlValidation</code> -</li>
-<li><code>amlFailed</code> -</li>
-<li><code>amlReviewed</code> -</li>
-<li><code>amlFailureAccepting</code> -</li>
-<li><code>refunding</code> -</li>
-<li><code>refundingProvisioned</code> -</li>
-<li><code>refunded</code> -</li>
+<li><code>detected</code> - deposit incoming transaction is detected</li>
+<li><code>confirmed</code> - deposit incoming transaction is confirmed (it&#39;s included in X blockchain blocks. X depends on particulaer blockchain)</li>
+<li><code>completed</code> - deposit consolidation transaction is confirmed</li>
+<li><code>failed</code> - deposit processing is failed</li>
+<li><code>cancelled</code> - the block with incoming transaction is removed from the blockchain due to reorganization of the network. It can happedn when deposit is detected</li>
+<li><code>provisioned</code> - token or tiny token deposit is provisioned with fee</li>
+<li><code>unknownAsset</code> - deposit of unknown asset is detected. Deposit processing will be continued once the asset is configured</li>
+<li><code>amlValidation</code> - AML validation of the deposit is in-progress</li>
+<li><code>amlFailed</code> - AML validation of the deposit is failed</li>
+<li><code>amlReviewed</code> - AML validation failure has been reviwed by the customer</li>
+<li><code>amlFailureAccepting</code> - AML validation failure is being accepted by the customer</li>
+<li><code>refunding</code> - deposit is being refunded</li>
+<li><code>refundingProvisioned</code> - token or tiny token deposit refund transaction is provisioned</li>
+<li><code>refunded</code> - deposit has been refunded</li>
 </ul>
 <h2 id='deposittype-enum'>DepositType (enum)</h2>
 <p>Type of the deposit</p>
@@ -5206,7 +5260,7 @@ and you have to specify exact type in this case.</p>
 <ul>
 <li><code>id</code> (<em>number</em>) - Unique ID.</li>
 <li><code>brokerAccountId</code> (<em>number</em>) - Broker account ID.</li>
-<li><code>createdAt</code> (<em>timestamp</em>)- Creation time of the details.</li>
+<li><code>createdAt</code> (<em>timestamp</em>) - Creation time of the details.</li>
 <li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
 <li><code>blockchainId</code> (<em>string</em>) - Blockchain ID of the details.</li>
 </ul>
@@ -5227,7 +5281,7 @@ and you have to specify exact type in this case.</p>
 <li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
 <li><code>blockchainId</code> (<em>string</em>) - Blockchain ID of the details.</li>
 <li><code>tag</code> (<em>optional</em>, <em>string</em>) - Tag of the details.</li>
-<li><code>tagType</code> (<em>optional</em>, <em><a href="#/data-structures/0/tag-type">TagType</a></em>) - Type of the details tag.</li>
+<li><code>tagType</code> (<em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em> - Type of the details tag.</li>
 </ul>
 <h2 id='accountdetailsbrief-object'>AccountDetailsBrief (object)</h2>
 <p>Brief details of the account</p>
@@ -5236,7 +5290,7 @@ and you have to specify exact type in this case.</p>
 <li><code>id</code> (<em>number</em>) - Unique ID.</li>
 <li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
 <li><code>tag</code> (<em>optional</em>, <em>string</em>) - Tag of the details.</li>
-<li><code>tagType</code> (<em>optional</em>, <em>[TagType](#TagType</em>) - Type of the details tag.</li>
+<li><code>tagType</code> (<em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em> - Type of the details tag.</li>
 </ul>
 <h2 id='brokeraccountbalances-object'>BrokerAccountBalances (object)</h2>
 <p>Balances of the broker account in a particular asset. We distinguish 4 different balances
@@ -5252,6 +5306,14 @@ for each asset in each broker account.</p>
 <li><code>reservedBalance</code> (<em>number</em>) - Balance which is being withdrawn, but not completely transferred yet.</li>
 <li><code>createdAt</code> (<em>timestamp</em>) - Creation time of the balances.</li>
 <li><code>updatedAt</code> (<em>timestamp</em>) - The update time of the balances.</li>
+</ul>
+<h2 id='destinationdetails-object'>DestinationDetails (object)</h2>
+<p>Destination details for a transfer</p>
+
+<ul>
+<li><code>address</code> (<em>string</em>) - Blockchain address.</li>
+<li><code>tag</code> (<em>optional</em>, <em>number</em>) - Broker account ID.</li>
+<li><code>tagType</code> (<em>optional</em>, <em>timestamp</em>)- Creation time of the details.</li>
 </ul>
 <h2 id='transactioninfo-object'>TransactionInfo (object)</h2>
 <p>TransactionInfo contains information about the transaction which happened on the blockchain.</p>
