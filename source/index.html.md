@@ -27,13 +27,6 @@ search: true
 
 # Sirius - Brokerage API
 
-Sirius is an API allowing consumers to work with wallets and transfers in many different blockchains in the common manner. You don't need to learn particularities of all the blockchains to receive crypto or tockens from your users or to send withdrawals to someone.
+Sirius is a Digital Assets custody and a blockchain infrastructure API allowing consumers to manage blockchain wallets, keep their assets safe in self-managed custody, flexibly control transaction signing policies, receive deposits and execute withdrawals leveraging omnibus model, deploy and invoke smart contracts, receive smart contract events and read smart contract storage in many different blockchains in a general manner using the same API, data models and management UI. You don't need to learn the particularities of all the blockchains to get into the crypto world and use all top blockchains with ease.
 
-It's easy as one, two, three!
-
-- Create as many brokerage accounts as you need.
-- Create accounts associated with your users, contracts, bills, or whatever you need whithin these broker accounts.
-- You are ready to receive deposits and send withdrawals using our awesome API!
-
-For more information about Swisschain, please visit [swisschain.io](https://swisschain.io/).
-
+For more information about Sirius, please contact us [info@swisschain.io](mailto:info@swisschain.io).
