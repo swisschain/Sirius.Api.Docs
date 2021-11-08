@@ -160,9 +160,9 @@ for each asset in each broker account.
 
 Destination details for a transfer
 
-+ `address` (*string*) - Blockchain address.
-+ `tag` (*optional*, *number*) - Broker account ID.
-+ `tagType` (*optional*, *timestamp*)- Creation time of the details.
++ `address` (*number*) - Details public address
++ `tag` (*optional*, *string*) - Tag which is related to address (applicable for Stellar)
++ `tagType` (*optional*, *[TagType](#tagtype-enum)*) - Tag type 
 
 ## WithdrawalDocument (object)
 
