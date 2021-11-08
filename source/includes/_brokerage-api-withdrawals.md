@@ -54,40 +54,27 @@ REST name | gRPC name | type | REST placement | description
 --------- | --------- | ---- | -------------- | -----------
 `X-Request-ID` | - | *string* | *header* | Unique ID of the request
  - | `request_id` | *string* | - | Unique ID of the request
-`document` | `document` | *optional*, *string* | *body* | JSON-formatted document describing the withdrawals parameters
-`signature` | `signature` | *optional*, *string* | *body* | Base64 encoded RSA signature of the document signed with the Customer's private key
+`document` | `document` | *optional*, *serialized-as-string*, *[WithdrawalDocument](#withdrawaldocument-object)* | *body* | JSON-formatted document describing the withdrawals parameters serialized as string
+`signature` | `signature` | *optional*, *string* | *body* | Base64-encoded RSA signature of the document signed with the Customer's private key
 
 ```
 Withdral document format:
 
 {
-    "version": "string", // "1.0"
+    "version": "string", 				// "1.0"
     "brokerAccountId": 1000000,
-    "accountId": 1000000, // Optional
-    "accountReferenceId": "string", // Optional
-    "withdrawalReferenceId": "string", // Optional
+    "accountId": 1000000, 				// Optional
+    "accountReferenceId": "string",		// Optional
+    "withdrawalReferenceId": "string",	// Optional
     "assetId": 1000000,
-    "amount": "decimal", // 12.345,
+    "amount": "decimal", 				// 12.345,
     "destinationDetails": {
-        "address": "string", // Blockchain address
-        "tag": "string", // Optional
-        "tagType": "string", // Optional - ("text", "number")
+        "address": "string",			// Blockchain address
+        "tag": "string", 				// Optional
+        "tagType": "string", 			// Optional - ("text", "number")
     }
 }
 ```
-
-### Withdrawal document
-
-REST name | type | description 
---------- | --------- | ---- | -------------- | -----------
-`version` | *string* | Document version. Should be `1.0`
-`brokerAccountId` | *number* |ID of the broker account
-`accountId` | *optional*, *number* | ID of the account. Either `accountId` or `accountReferenceId` can be specified.
-`accountReferenceId` | *optional*, *string* | Reference ID of the account. Either `accountReferenceId` or `accountId` can be specified.
-`withdrawalReferenceId` | *optional*, *string* | Reference ID of the withdrawal. It can be internal ID of the withdrawal in your system.
-`assetId` | *number* | ID of the asset
-`amount` | *decimal* | Withdrawal amount
-`destinationDetails` *[DestinationDetails](#destinationdetails-object)* | Destination details
 
 ### Query Parameters
 

@@ -164,6 +164,17 @@ Destination details for a transfer
 + `tag` (*optional*, *number*) - Broker account ID.
 + `tagType` (*optional*, *timestamp*)- Creation time of the details.
 
+## WithdrawalDocument (object)
+
++ `version` (*string*) - Document version. Should be `1.0`
++ `brokerAccountId` (*number*) - ID of the broker account
++ `accountId` (*optional*, *number*) - ID of the account. Either `accountId` or `accountReferenceId` can be specified.
++ `accountReferenceId` (*optional*, *string*) - Reference ID of the account. Either `accountReferenceId` or `accountId` can be specified.
++ `withdrawalReferenceId` (*optional*, *string*) - Reference ID of the withdrawal. It can be internal ID of the withdrawal in your system.
++ `assetId` (*number*) - ID of the asset
++ `amount` (*decimal*) - Withdrawal amount
++ `destinationDetails` (*[DestinationDetails](#destinationdetails-object)*) - Destination details
+
 ## TransactionInfo (object)
 
 TransactionInfo contains information about the transaction which happened on the blockchain.
