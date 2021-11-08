@@ -954,8 +954,8 @@
 <p>A Custody is a place where private keys of your blockchain wallets are generated and kept, where your transaction signing policy can be edited and where it executes. In order to create any broker-account or account, receive or send transactions in Sirius, you have to create a Custody first. There are two types of the Custody:</p>
 
 <ul>
-<li>Shared - run and managed by SwissChain, shared between all the customers that use it.</li>
 <li>Self-Managed - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong> on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It&#39;s fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can&#39;t get unauthorized access to your funds. The solutions is based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It provides a flexible way to control you transaction signing policy. It includes <strong>Multi Party Signature</strong> mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help with deploying of the self-managed Custody.</li>
+<li>Shared - run and managed by SwissChain, shared between all the customers that use it.</li>
 </ul>
 
 <p>We recommend using Shared Custody for the testing purposes only.</p>
@@ -5176,8 +5176,8 @@ and you have to specify exact type in this case.</p>
 <p>Type of the vault</p>
 
 <ul>
-<li><code>private</code> - The vault executing on the customer&#39;s environment</li>
-<li><code>shared</code> - The shared vault executing on the SwissChain environment used by different customers</li>
+<li><code>selfManaged</code> - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong> on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It&#39;s fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can&#39;t get unauthorized access to your funds. The solutions is based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It provides a flexible way to control you transaction signing policy. It includes <strong>Multi Party Signature</strong> mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help with deploying of the self-managed Custody.</li>
+<li><code>shared</code> - run and managed by SwissChain, shared between all the customers that use it.</li>
 </ul>
 <h2 id='depositstate-enum'>DepositState (enum)</h2>
 <p>State of the deposit</p>
