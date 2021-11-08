@@ -31,7 +31,7 @@ Type of a blockchain network
         + `text` (*optional*, *object*) - Capabilities of the protocol related to the `Text` [TagType](#TagType). `null` if the `Text` tag is not supported.
             + `maxLength` (*number*) - Mximum length of the `Text` destination tag. (eg. 28).
             + `name` (*string*) - Name of the `Text` tag field which is accepted in the given blockchain. (eg. "Memo text").
-        + `doubleSpendingProtectionType` (*[DoubleSpendingProtectionType](#DoubleSpendingProtectionType)*) - Type of the protection agains funds double spending (eg. `coins`).
+        + `doubleSpendingProtectionType` (*[DoubleSpendingProtectionType](#DoubleSpendingProtectionType-enum)*) - Type of the protection agains funds double spending (eg. `coins`).
 
 ## TagType (enum)
 
@@ -67,7 +67,7 @@ State of the account
 + `active` - The account is active and can be used as usual.
 + `blocked` - The account is blocked - processing of all deposits and withdrawals is on hold.
 
-## VaultType (enum)
+## CustodyType (enum)
 
 Type of the vault
 
@@ -78,20 +78,20 @@ Type of the vault
 
 State of the deposit
 
-+ `detected` -
-+ `confirmed` -
-+ `completed` -
-+ `failed` -
-+ `cancelled` -
-+ `provisioned` -
-+ `unknownAsset` - 
-+ `amlValidation` -
-+ `amlFailed` -
-+ `amlReviewed` -
-+ `amlFailureAccepting` -
-+ `refunding` -
-+ `refundingProvisioned` -
-+ `refunded` -
++ `detected` - deposit incoming transaction is detected
++ `confirmed` - deposit incoming transaction is confirmed (it's included in X blockchain blocks. X depends on particulaer blockchain)
++ `completed` - deposit consolidation transaction is confirmed
++ `failed` - deposit processing is failed
++ `cancelled` - the block with incoming transaction is removed from the blockchain due to reorganization of the network. It can happedn when deposit is detected
++ `provisioned` - token or tiny token deposit is provisioned with fee
++ `unknownAsset` - deposit of unknown asset is detected. Deposit processing will be continued once the asset is configured
++ `amlValidation` - AML validation of the deposit is in-progress
++ `amlFailed` - AML validation of the deposit is failed
++ `amlReviewed` - AML validation failure has been reviwed by the customer
++ `amlFailureAccepting` - AML validation failure is being accepted by the customer
++ `refunding` - deposit is being refunded
++ `refundingProvisioned` - token or tiny token deposit refund transaction is provisioned
++ `refunded` - deposit has been refunded
 
 ## DepositType (enum)
 
@@ -109,7 +109,7 @@ Details of the broker account
 
 + `id` (*number*) - Unique ID.
 + `brokerAccountId` (*number*) - Broker account ID.
-+ `createdAt` (*timestamp*)- Creation time of the details.
++ `createdAt` (*timestamp*) - Creation time of the details.
 + `address` (*string*) - Blockchain address of the details.
 + `blockchainId` (*string*) - Blockchain ID of the details.
 
@@ -130,7 +130,7 @@ Details of the account
 + `address` (*string*) - Blockchain address of the details.
 + `blockchainId` (*string*) - Blockchain ID of the details.
 + `tag` (*optional*, *string*) - Tag of the details.
-+ `tagType` (*optional*, *[TagType](#/data-structures/0/tag-type)*) - Type of the details tag.
++ `tagType` (*optional*, *[TagType](#tagtype-enum)* - Type of the details tag.
 
 ## AccountDetailsBrief (object)
 
@@ -139,7 +139,7 @@ Brief details of the account
 + `id` (*number*) - Unique ID.
 + `address` (*string*) - Blockchain address of the details.
 + `tag` (*optional*, *string*) - Tag of the details.
-+ `tagType` (*optional*, *[TagType](#TagType*) - Type of the details tag.
++ `tagType` (*optional*, *[TagType](#tagtype-enum)* - Type of the details tag.
 
 ## BrokerAccountBalances (object)
 
@@ -155,6 +155,14 @@ for each asset in each broker account.
 + `reservedBalance` (*number*) - Balance which is being withdrawn, but not completely transferred yet.
 + `createdAt` (*timestamp*) - Creation time of the balances.
 + `updatedAt` (*timestamp*) - The update time of the balances.
+
+## DestinationDetails (object)
+
+Destination details for a transfer
+
++ `address` (*string*) - Blockchain address.
++ `tag` (*optional*, *number*) - Broker account ID.
++ `tagType` (*optional*, *timestamp*)- Creation time of the details.
 
 ## TransactionInfo (object)
 

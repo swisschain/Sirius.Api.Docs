@@ -1,4 +1,4 @@
-# Protocol description
+# REST Protocol description
 
 ## Allowed HTTP Verbs
 
@@ -19,7 +19,7 @@
 
 ## Authentication
 
-Sirius API uses `Bearer authentication`. To get the token, register in our [Universe portal](https://universe.swisschain.io/), create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using [jwt.io](https://jwt.io) online service.
+Sirius API uses `Bearer authentication`. To get the token, [contact us](mailto:info@swisschain.io) to get invitation code, then register in our [Universe portal](https://universe.swisschain.io/), create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using [jwt.io](https://jwt.io) online service.
 
 > Request Header
 
@@ -67,6 +67,8 @@ Pagination parameters are passed via query string. The parameters can be:
 The response is:
 
 ### Paginated
+
+Paginated response
 
 - `pagination` - pagination state.
   - `cursor` - current cursor.

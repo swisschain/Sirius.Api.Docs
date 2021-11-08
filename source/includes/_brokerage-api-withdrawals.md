@@ -1,12 +1,12 @@
 # Withdrawals
 
-Withdrawals reflects outgoing transfers of the funds from a broker account. You can get withdrawals history, or be notified about new withdrawals and state changing of the existing withdrawals. There are different options to be notified about withdrawals state changing:
+Withdrawal refers to outgoing transfers of the funds from a broker account. You can get withdrawals history, or be notified about new withdrawals and state changing of the existing withdrawals. There are different options to be notified about withdrawals state changing:
 
 * You can pull withdrawals updates REST API
 * You can listen for withdrawal updates gRPC stream
-* You can register a web-hook get the notifications (coming soon)
+* You can register a web-hook get the notifications
 
-Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account, an asset, optionally an account, it has amount, fees and state. If you use reference ID for the accounts, you can specify either account ID or reference ID, to associate an account to the withdrawal. This link doesn't affect funds flow, it's used just for the reporting.
+Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account, an asset, optionally an account, your internal ID, it has amount, fees and state. If you use reference ID for the accounts, you can specify either account ID or reference ID, to associate an account to the withdrawal. This link doesn't affect funds flow, it's used just for the reporting and notifying you back with withdrawal updates.
 
 The fees required for the withdrawal transaction are paid atop of the specified amount.
 
@@ -54,8 +54,8 @@ REST name | gRPC name | type | REST placement | description
 --------- | --------- | ---- | -------------- | -----------
 `X-Request-ID` | - | *string* | *header* | Unique ID of the request
  - | `request_id` | *string* | - | Unique ID of the request
-`document` | `document` | *string* | *body* | JSON-formatted document describing the withdrawals parameters
-`signature` | `signature` | *string* | *body* | document signature
+`document` | `document` | *optional*, *string* | *body* | JSON-formatted document describing the withdrawals parameters
+`signature` | `signature` | *optional*, *string* | *body* | Base64 encoded RSA signature of the document signed with the Customer's private key
 
 ```
 Withdral document format:
@@ -76,10 +76,22 @@ Withdral document format:
 }
 ```
 
+### Withdrawal document
+
+REST name | type | description 
+--------- | --------- | ---- | -------------- | -----------
+`version` | *string* | Document version. Should be `1.0`
+`brokerAccountId` | *number* |ID of the broker account
+`accountId` | *optional*, *number* | ID of the account. Either `accountId` or `accountReferenceId` can be specified.
+`accountReferenceId` | *optional*, *string* | Reference ID of the account. Either `accountReferenceId` or `accountId` can be specified.
+`withdrawalReferenceId` | *optional*, *string* | Reference ID of the withdrawal. It can be internal ID of the withdrawal in your system.
+`assetId` | *number* | ID of the asset
+`amount` | *decimal* | Withdrawal amount
+`destinationDetails` *[DestinationDetails](#destinationdetails-object)* | Destination details
+
 ### Query Parameters
 
 ### Response
-
 
 ```json
 POST /api/withdrawals

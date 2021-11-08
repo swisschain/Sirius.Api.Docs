@@ -291,7 +291,7 @@ REST name | gRPC name | type | description | example
 `blockchainId` | `blockchain_id` | *optional*, *number* | ID of the blockchain | bitcoin-private
 `address` | `address` | *optional*, *string* | Address of the account details | bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank
 `tag` | `tag` | *optional*, *string* | related tag | null
-`tag_type` | `tag_type` | *optional*, *[TagType](#tag-type)* | tag type | null
+`tag_type` | `tag_type` | *optional*, *[TagType](#tagtype-enum)* | tag type | null
 `order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
@@ -378,7 +378,7 @@ REST name | gRPC name | type | description
 `createdAt` | `created_at` | *timestamp* | Date of the account details creation
 `address` | `address` | *number* | Details public address
 `tag` | `tag` | *optional*, *string* | Tag which is related to address (applicable for Stellar)
-`tagType` | `tag_type` | *optional*, *[TagType](#tag-type)* | Tag type 
+`tagType` | `tag_type` | *optional*, *[TagType](#tagtype-enum)* | Tag type 
 
 ## Gets the account details by the asset id
 
@@ -460,7 +460,7 @@ REST name | gRPC name | type | description
 `createdAt` | `created_at` | *timestamp* | Date of the account details creation
 `address` | `address` | *number* | Details public address
 `tag` | `tag` | *optional*, *string* | Tag which is related to address (applicable for Stellar)
-`tagType` | `tag_type` | *optional*, *[TagType](#tag-type)* | Tag type 
+`tagType` | `tag_type` | *optional*, *[TagType](#tagtype-enum)* | Tag type 
 
 
 ## Search for account updates

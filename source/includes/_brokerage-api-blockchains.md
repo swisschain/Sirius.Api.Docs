@@ -24,8 +24,8 @@ name | type | description | example
 `name` | *optional*, *string* | Text to search in the name of the blockchain | Bitcoin private network
 `protocolCode` | *optional*, *string* | Exact ode of the protocol to search | bitcoin
 `protocolName` | *optional*, *string* | Text to search in the name of the protocol | Bitcoin
-`networkType` | *optional*, *[NetworkType](#networkType)* | List of the network types to search. Repeat the parameter to specify multiple items | private
-`order` | *optional*, *[Order](#order)* | Result items sorting order | asc
+`networkType` | *optional*, *[NetworkType](#networktype-enum)* | List of the network types to search. Repeat the parameter to specify multiple items | private
+`order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | *optional*, *string* | Cursor to continue the search | stellar-test
 `limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -38,8 +38,8 @@ name | type | description | example
 `id` | string | Unique identifier. | `bitcoin-private`
 `tenantId` | *optional*, *string* | Id of the tenant that owns the blockchain | 100000
 `name` | *string* | Name of the blockchain | `bitcoin-private`
-`networkType` | *[NetworkType](#networkType)* | Type of the network
-`protocol` | *[BlockchainProtocol](#BlockchainProtocol)* | Protocol of the blockchain.
+`networkType` | *[NetworkType](#networktype-enum)* | Type of the network
+`protocol` | *[BlockchainProtocol](#blockchainprotocol-object)* | Protocol of the blockchain.
 `latestBlockNumber` | *number* | Number of the latest block | 1567432
 
 > GET /api/blockchains 200 OK

@@ -10,12 +10,12 @@ toc_footers:
 includes:
   - feedback.md
   - change-log.md
-  - protocol-description.md
+  - rest_protocol-description.md
   - api_usage.md
   - examples.md
   - brokerage-api-blockchains.md
   - brokerage-api-assets.md
-  - brokerage-api-vaults.md
+  - brokerage-api-custodies
   - brokerage-api-broker-accounts.md
   - brokerage-api-accounts.md
   - brokerage-api-deposits.md
@@ -25,7 +25,7 @@ includes:
 search: true
 ---
 
-# Sirius - Brokerage API
+# Sirius Digital Custody
 
 Sirius is a Digital Assets custody and a blockchain infrastructure API allowing consumers to manage blockchain wallets, keep their assets safe in self-managed custody, flexibly control transaction signing policies, receive deposits and execute withdrawals leveraging omnibus model, deploy and invoke smart contracts, receive smart contract events and read smart contract storage in many different blockchains in a general manner using the same API, data models and management UI. You don't need to learn the particularities of all the blockchains to get into the crypto world and use all top blockchains with ease.
 
