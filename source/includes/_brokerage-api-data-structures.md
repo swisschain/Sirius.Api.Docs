@@ -222,3 +222,29 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `normal` - AML has passed without issues.
 + `unknown` - AML provider can't asses risks.
 + `assetNotConfigured` - Asset is not configured for AML.
+
+## withdrawalState (enum)
++ `PROCESSING = 0;`
++ `EXECUTING = 1;`
++ `SENT = 2;`
++ `COMPLETED = 3;`
++ `FAILED = 4;`
++ `POLICY_VALIDATION = 5;`
++ `SIGNING = 6;`
++ `REJECTED = 7;`
++ `AML_VALIDATION = 8;`
++ `AML_FAILED = 9;`
++ `AML_REVIEWED = 10;`
++ `NOTIFYING_AML = 11;`
++ `REFUNDED = 12;`
++ `AML_FAILURE_ACCEPTING = 13;`
+
+
+## withdrawalError (enum)
++ `NOT_ENOUGH_BALANCE = 0;`
++ `INVALID_DESTINATION_ADDRESS = 1;`
++ `DESTINATION_TAG_REQUIRED = 2;`
++ `TECHNICAL_PROBLEM = 3;`
++ `VALIDATION_REJECTED = 4;`
++ `SIGNING_REJECTED = 5;`
+

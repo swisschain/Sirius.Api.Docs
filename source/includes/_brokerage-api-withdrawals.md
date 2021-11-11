@@ -226,50 +226,18 @@ REST name | gRPC name | type | description | example
 `userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
 `assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
 `blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
-`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalstate-enum)* | State of the withdrawal | sent
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState)* | State of the withdrawal | sent
 `transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
-`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalerror-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError)* | Reason of the failed withdrawal | invalidDestinationAddress
 `operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
 `destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
 `destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
 `destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
-`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
+`order` | `pagination.order` | *optional*, *[Order](#Order)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
-#withdrawalstate-enum
-`enum WithdrawalState {
-PROCESSING = 0;
-EXECUTING = 1;
-SENT = 2;
-COMPLETED = 3;
-FAILED = 4;
-POLICY_VALIDATION = 5;
-SIGNING = 6;
-REJECTED = 7;
-AML_VALIDATION = 8;
-AML_FAILED = 9;
-AML_REVIEWED = 10;
-NOTIFYING_AML = 11;
-REFUNDED = 12;
-AML_FAILURE_ACCEPTING = 13;
-}`
 
-#withdrawalerror-enum
-`enum WithdrawalErrorCode {
-NOT_ENOUGH_BALANCE = 0;
-INVALID_DESTINATION_ADDRESS = 1;
-DESTINATION_TAG_REQUIRED = 2;
-TECHNICAL_PROBLEM = 3;
-VALIDATION_REJECTED = 4;
-SIGNING_REJECTED = 5;
-}`
-
-#order-enum
-`enum Order {
-ask = 0;
-desc = 1;
-}`
 
 ```protobuf
 swisschain.sirius.api.withdrawals.Withdrawals.Search
@@ -545,15 +513,15 @@ message ValidatorContext {
 `userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
 `assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
 `blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
-`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalstate-enum)* | State of the withdrawal | sent
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState-enum)* | State of the withdrawal | sent
 `transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
-`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalerror-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
 `operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
 `destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
 `destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
 `destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
 `withdrawalUpdateId` | `withdrawal_update_id` | *optional*, *number* | Exact deposit update ID to search | 600000001
-`order` | - | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
+`order` | - | *optional*, *[Order](#Order)* | Result items sorting order | asc
 `cursor` | `cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | - | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -747,3 +715,7 @@ int64 withdrawal_update_id = 1;
 WithdrawalResponse withdrawal = 2;
 }
 ```
+
+
+
+
