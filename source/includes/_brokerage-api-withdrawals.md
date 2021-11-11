@@ -19,6 +19,8 @@ The lifecycle of a withdrawal:
 ### Request
 
 **Rest API:** `POST /api/withdrawals`
+**gRPC API:** `swisschain.sirius.api.withdrawals.Withdrawals.Execute`
+
 
 ```json
 POST /api/withdrawals
@@ -208,10 +210,32 @@ REST name | gRPC name | type | description
 ### Request
 
 **Rest API:** `GET /api/withdrawals`
+**gRPC API:** `swisschain.sirius.api.withdrawals.Withdrawals.Search`
 
 ### Parameters
 
 ### Query Parameters
+
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`id` | `id` | *optional*, *number* | Exact deposit ID to search | 106000107
+`brokerAccountId` | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000062
+`accountId` | `account_id` | *optional*, *number* | ID of the account  | 103001270
+`accountReferenceId` | `account_reference_id` | *optional*, *string* | Reference ID of the account  | newerc
+`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
+`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
+`assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
+`blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalstate-enum)* | State of the withdrawal | sent
+`transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalerror-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
+`operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
+`destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
+`destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
+`destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
+`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
+`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
 ### Response
 
@@ -219,7 +243,97 @@ REST name | gRPC name | type | description
 
 ```json
 {
-}
+  "pagination":
+  {
+    "cursor": null,
+    "count": 1,
+    "order": "desc",
+    "nextUrl": null
+  },
+  "items":
+  [
+    {
+      "id": 106000107,
+      "brokerAccountId": 100000062,
+      "brokerAccountName": "broker3",
+      "brokerAccountDetails":
+      {
+        "id": 101000172,
+        "address": "0x0DB6947809533142C0D8993FD466A5fa890DB68a"
+      },
+      "accountId": 103001270,
+      "accountReferenceId": "newerc",
+      "userId": 108000015,
+      "userNativeId": "us1",
+      "assetId": 300000004,
+      "assetSymbol": "ETH",
+      "assetAddress": null,
+      "amount": 0.1,
+      "blockchainId": "ethereum-ropsten",
+      "blockchainName": "Ethereum Ropsten",
+      "fees":
+      [],
+      "destinationDetails":
+      {
+        "address": "0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71",
+        "tag": null,
+        "tagType": null
+      },
+      "state": "completed",
+      "transactionInfo":
+      {
+        "transactionId": "0x64e3283c885ad7a75e7c79de4eddce59db1c8c753da291181c093f45d70e5374",
+        "transactionBlock": 11360334,
+        "confirmationsCount": 43983,
+        "requiredConfirmationsCount": 0,
+        "date": "0001-01-01T00:00:00Z"
+      },
+      "error": null,
+      "operationId": 200000270,
+      "requiredConfirmationsCount": 0,
+      "transferContext":
+      {
+        "accountReferenceId": "newerc",
+        "withdrawalReferenceId": null,
+        "document": "{\"version\":\"1.0\",\"brokerAccountId\":100000062,\"accountId\":null,\"accountReferenceId\":\"newerc\",\"withdrawalReferenceId\":null,\"assetId\":300000004,\"amount\":0.1,\"destinationDetails\":
+    {\"address\":\"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71\",\"tagType\":null,\"tag\":null}}",
+    "signature": null,
+    "requestContext":
+    {
+      "userId": "0dde3a01-f675-439a-9439-0d1198ddaf8b",
+      "apiKeyId": null,
+      "ip": "10.244.4.0",
+      "timestamp": "2021-11-04T10:46:39.7480342Z"
+    }
+    },
+    "validatorContext":
+    {
+      "document": "{\"validationRequestId\":419000075,\"tenantId\":\"b25e5938-83d5-4d37-b3d1-858f65bfb52b\",\"validatorResolutions\":
+    [{\"validatorId\":\"bEJgk7EgkPhKeoN4r+xI7sLzhLDYRf7IQ5XW86KdN7E=\",\"document\":\"{\\\"resolution\\\":\\\"Approved\\\",\\\"resolutionMessage\\\":\\\"\\\",\\\"transfer\\\":{\\\"blockchain\\\":{\\\"id\\\":\\\"ethereum-ropsten\\\",\\\"protocolId\\\":\\\"ethereum\\\",\\\"networkType\\\":\\\"Test\\\"},\\\"context\\\":{\\\"component\\\":\\\"Brokerage\\\",\\\"document\\\":\\\"{\\\\\\\"version\\\\\\\":\\\\\\\"1.0\\\\\\\",\\\\\\\"brokerAccountId\\\\\\\":100000062,\\\\\\\"accountId\\\\\\\":null,\\\\\\\"accountReferenceId\\\\\\\":\\\\\\\"newerc\\\\\\\",\\\\\\\"withdrawalReferenceId\\\\\\\":null,\\\\\\\"assetId\\\\\\\":300000004,\\\\\\\"amount\\\\\\\":0.1,\\\\\\\"destinationDetails\\\\\\\":{\\\\\\\"address\\\\\\\":\\\\\\\"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71\\\\\\\",\\\\\\\"tagType\\\\\\\":null,\\\\\\\"tag\\\\\\\":null}}\\\",\\\"documentVersion\\\":null,\\\"operationType\\\":\\\"Withdrawal\\\",\\\"signature\\\":null,\\\"withdrawalReferenceId\\\":null,\\\"requestContext\\\":{\\\"apiKeyId\\\":null,\\\"ip\\\":\\\"10.244.4.0\\\",\\\"timestamp\\\":\\\"2021-11-04T10:46:39.748034200Z\\\",\\\"userId\\\":\\\"0dde3a01-f675-439a-9439-0d1198ddaf8b\\\"}},\\\"destination\\\":{\\\"address\\\":\\\"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71\\\",\\\"tag\\\":null,\\\"tagType\\\":null},\\\"fee\\\":{\\\"amount\\\":0.000063,\\\"asset\\\":{\\\"address\\\":null,\\\"id\\\":300000004,\\\"symbol\\\":\\\"ETH\\\"}},\\\"id\\\":200000270,\\\"source\\\":{\\\"address\\\":\\\"0x0DB6947809533142C0D8993FD466A5fa890DB68a\\\",\\\"brokerAccount\\\":{\\\"id\\\":100000062,\\\"name\\\":\\\"broker3\\\"}},\\\"value\\\":{\\\"amount\\\":0.1,\\\"asset\\\":{\\\"address\\\":null,\\\"id\\\":300000004,\\\"symbol\\\":\\\"ETH\\\"}}}}\",\"signature\":\"fAF7MzJ0EhsLEqUKtUkZqd19nETlBHMmIg6oz1Ur+JYJYEV37Wjw30rqpciVe7YInKifdzxcvYYlGx+nvgyGjlJATJOsdWSu3nUa/YYbx9eUGX2m18h7FHoQI4CCXBwJkwTJ/aKkbdwkaOzEy6/4eel34xpLeji957Q7DF1j/ig=\",\"resolution\":\"Approved\",\"resolutionMessage\":\"\",\"deviceInfo\":\"{\\\"deviceUID\\\":\\\"8CCC5E5B-38B2-4ACB-B42C-A6713920654F\\\",\\\"platform\\\":\\\"iOS\\\"}\",\"ip\":\"ipv4:10.244.6.0:1728\",\"timestamp\":\"2021-11-04T10:46:55.171321Z\"}],\"requestedValidators\":[\"bEJgk7EgkPhKeoN4r+xI7sLzhLDYRf7IQ5XW86KdN7E=\"],\"status\":\"Approved\",\"rejectReasonMessage\":null,\"timestamp\":\"2021-11-04T10:46:55.263737Z\",\"transfer\":{\"id\":200000270,\"blockchain\":{\"id\":\"ethereum-ropsten\",\"protocolId\":\"ethereum\",\"networkType\":\"Test\"},\"source\":{\"address\":\"0x0DB6947809533142C0D8993FD466A5fa890DB68a\",\"brokerAccount\":{\"id\":100000062,\"name\":\"broker3\"},\"account\":null},\"destination\":{\"address\":\"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71\",\"tag\":null,\"tagType\":null,\"brokerAccount\":null,\"account\":null},\"value\":{\"asset\":{\"id\":300000004,\"symbol\":\"ETH\",\"address\":null},\"amount\":0.1},\"fee\":{\"asset\":{\"id\":300000004,\"symbol\":\"ETH\",\"address\":null},\"amount\":0.0000630},\"context\":{\"document\":\"{\\\"version\\\":\\\"1.0\\\",\\\"brokerAccountId\\\":100000062,\\\"accountId\\\":null,\\\"accountReferenceId\\\":\\\"newerc\\\",\\\"withdrawalReferenceId\\\":null,\\\"assetId\\\":300000004,\\\"amount\\\":0.1,\\\"destinationDetails\\\":{\\\"address\\\":\\\"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71\\\",\\\"tagType\\\":null,\\\"tag\\\":null}}\",\"documentVersion\":null,\"signature\":null,\"withdrawalReferenceId\":null,\"component\":\"Brokerage\",\"operationType\":\"Withdrawal\",\"requestContext\":{\"userId\":\"0dde3a01-f675-439a-9439-0d1198ddaf8b\",\"apiKeyId\":null,\"ip\":\"10.244.4.0\",\"timestamp\":\"2021-11-04T10:46:39.748034200Z\"}}}}",
+      "signature": "VKwnK35dJaq3ZayUlMtpiZo2T7eCxmwTYHgJbfPjWcwnCzdLLVHU6y5WZaBYgQcVCapZRKnZQUA+5ppjOT2YYZEOUz5vsAWLrIB4U6bJ9/aJ937FnG8rXChWCRzTB/qDxRzv2X/hJFE5RobF9k8M2n6uYi3aHpshX9YUh5qo5Rk="
+      },
+      "amlChecks":
+      {
+        "overallResolution": "succeeded",
+        "startedAt": "2021-11-04T10:46:40.143002Z",
+        "completedChecks":
+        [
+          {
+            "amlCheckId": 602000027,
+            "amlConnectionId": 600000010,
+            "resolution": "normal",
+            "finishedAt": "2021-11-04T10:46:40.2917194Z",
+            "description": "Allowed by the whitelist item 603000017 (anyw)"
+          }
+        ],
+        "requiredChecks": 1
+      },
+      "createdAt": "2021-11-04T10:46:40.00195Z",
+      "updatedAt": "2021-11-04T10:48:19.100099Z",
+      "sequence": 6
+      }
+    ]
+  }
 ```
 
 ## Searches withdrawal updates
