@@ -5328,8 +5328,183 @@ desc = 1;
 <span class="p">}</span>
 </code></pre></div><h3 id='response-2'>Response</h3>
 <blockquote>
-<p>GET /api/withdrawals 200 OK</p>
+<p>GET /api/withdrawals 200 OK
+swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
 </blockquote>
+
+<p>Paginated response of the withdrawals:</p>
+
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the withdrawal</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>brokerAccountName</code></td>
+<td><code>broker_account_name</code></td>
+<td><em>string</em></td>
+<td>Name of the broker account</td>
+</tr>
+<tr>
+<td><code>brokerAccountDetails</code></td>
+<td><code>broker_account_details</code></td>
+<td><em>string</em></td>
+<td>Details of broker account wallet</td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the account</td>
+</tr>
+<tr>
+<td><code>accountDetails</code></td>
+<td><code>account_details</code></td>
+<td><em>string</em></td>
+<td>Details of account wallet</td>
+</tr>
+<tr>
+<td><code>accountReferenceId</code></td>
+<td><code>account_reference_id</code></td>
+<td><em>string</em></td>
+<td>Reference of account</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
+<td><em>number</em></td>
+<td>ID of the asset</td>
+</tr>
+<tr>
+<td><code>assetSymbol</code></td>
+<td><code>asset_symbol</code></td>
+<td><em>string</em></td>
+<td>Symbol of the asset</td>
+</tr>
+<tr>
+<td><code>assetAddress</code></td>
+<td><code>asset_address</code></td>
+<td><em>string</em></td>
+<td>Address of the asset (for tokens like ERC20/223)</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><code>amount</code></td>
+<td><em>decimal</em></td>
+<td>Withdrawal amount</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>number</em></td>
+<td>Id of blockhain used for withdrawal</td>
+</tr>
+<tr>
+<td><code>blockchainName</code></td>
+<td><code>blockchain_name</code></td>
+<td><em>string</em></td>
+<td>Name of blockhain used for withdrawal</td>
+</tr>
+<tr>
+<td><code>fees</code></td>
+<td><code>fee</code></td>
+<td><em>decimal</em></td>
+<td>Fee details</td>
+</tr>
+<tr>
+<td><code>destinationDetails</code></td>
+<td><code>destination_details</code></td>
+<td><em>string</em></td>
+<td>Details of destination wallet</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em>string</em></td>
+<td>State of withdrawal</td>
+</tr>
+<tr>
+<td><code>transactionId</code></td>
+<td><code>transaction_id</code></td>
+<td><em>string</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>error</code></td>
+<td><em>string</em></td>
+<td>Error details if withdrawal failed</td>
+</tr>
+<tr>
+<td><code>operationId</code></td>
+<td><code>operation_id</code></td>
+<td><em>number</em></td>
+<td>Id of operation</td>
+</tr>
+<tr>
+<td><code>requiredConfirmationsCount</code></td>
+<td><code>required_confirmations_count</code></td>
+<td><em>number</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>transferContext</code></td>
+<td><code>transfer_context</code></td>
+<td><em>string</em></td>
+<td>Details of initial transfer with document, signature and request context</td>
+</tr>
+<tr>
+<td><code>validatorContext</code></td>
+<td><code>validator_context</code></td>
+<td><em>string</em></td>
+<td>Details of validator response</td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>user_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID of the user with AML relations</td>
+</tr>
+<tr>
+<td><code>userNativeId</code></td>
+<td><code>user_native_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID or Name of the account inside AML system</td>
+</tr>
+<tr>
+<td><code>amlChecks</code></td>
+<td><code>aml_checks</code></td>
+<td><em>string</em></td>
+<td>Details of aml providers response</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of withdrawal creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of latest withdrawal update</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -5655,6 +5830,186 @@ desc = 1;
 <p>GET /api/withdrawal-updates 200 OK
 Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 </blockquote>
+
+<p>Paginated response of the withdrawals update:</p>
+
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>withdrawalUpdateId</code></td>
+<td><code>withdrawal_update_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact deposit update ID to search</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the withdrawal</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>brokerAccountName</code></td>
+<td><code>broker_account_name</code></td>
+<td><em>string</em></td>
+<td>Name of the broker account</td>
+</tr>
+<tr>
+<td><code>brokerAccountDetails</code></td>
+<td><code>broker_account_details</code></td>
+<td><em>string</em></td>
+<td>Details of broker account wallet</td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the account</td>
+</tr>
+<tr>
+<td><code>accountDetails</code></td>
+<td><code>account_details</code></td>
+<td><em>string</em></td>
+<td>Details of account wallet</td>
+</tr>
+<tr>
+<td><code>accountReferenceId</code></td>
+<td><code>account_reference_id</code></td>
+<td><em>string</em></td>
+<td>Reference of account</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
+<td><em>number</em></td>
+<td>ID of the asset</td>
+</tr>
+<tr>
+<td><code>assetSymbol</code></td>
+<td><code>asset_symbol</code></td>
+<td><em>string</em></td>
+<td>Symbol of the asset</td>
+</tr>
+<tr>
+<td><code>assetAddress</code></td>
+<td><code>asset_address</code></td>
+<td><em>string</em></td>
+<td>Address of the asset (for tokens like ERC20/223)</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><code>amount</code></td>
+<td><em>decimal</em></td>
+<td>Withdrawal amount</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>number</em></td>
+<td>Id of blockhain used for withdrawal</td>
+</tr>
+<tr>
+<td><code>blockchainName</code></td>
+<td><code>blockchain_name</code></td>
+<td><em>string</em></td>
+<td>Name of blockhain used for withdrawal</td>
+</tr>
+<tr>
+<td><code>fees</code></td>
+<td><code>fee</code></td>
+<td><em>decimal</em></td>
+<td>Fee details</td>
+</tr>
+<tr>
+<td><code>destinationDetails</code></td>
+<td><code>destination_details</code></td>
+<td><em>string</em></td>
+<td>Details of destination wallet</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em>string</em></td>
+<td>State of withdrawal</td>
+</tr>
+<tr>
+<td><code>transactionId</code></td>
+<td><code>transaction_id</code></td>
+<td><em>string</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>error</code></td>
+<td><em>string</em></td>
+<td>Error details if withdrawal failed</td>
+</tr>
+<tr>
+<td><code>operationId</code></td>
+<td><code>operation_id</code></td>
+<td><em>number</em></td>
+<td>Id of operation</td>
+</tr>
+<tr>
+<td><code>requiredConfirmationsCount</code></td>
+<td><code>required_confirmations_count</code></td>
+<td><em>number</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>transferContext</code></td>
+<td><code>transfer_context</code></td>
+<td><em>string</em></td>
+<td>Details of initial transfer with document, signature and request context</td>
+</tr>
+<tr>
+<td><code>validatorContext</code></td>
+<td><code>validator_context</code></td>
+<td><em>string</em></td>
+<td>Details of validator response</td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>user_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID of the user with AML relations</td>
+</tr>
+<tr>
+<td><code>userNativeId</code></td>
+<td><code>user_native_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID or Name of the account inside AML system</td>
+</tr>
+<tr>
+<td><code>amlChecks</code></td>
+<td><code>aml_checks</code></td>
+<td><em>string</em></td>
+<td>Details of aml providers response</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of withdrawal creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of latest withdrawal update</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
