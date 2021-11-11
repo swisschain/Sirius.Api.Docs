@@ -374,6 +374,20 @@
                   <li>
                     <a href="#searches-withdrawals" class="toc-h2 toc-link" data-title="Searches withdrawals">Searches withdrawals</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#withdrawalstate-enum" class="toc-h1 toc-link" data-title="withdrawalstate-enum">withdrawalstate-enum</a>
+          </li>
+          <li>
+            <a href="#withdrawalerror-enum" class="toc-h1 toc-link" data-title="withdrawalerror-enum">withdrawalerror-enum</a>
+          </li>
+          <li>
+            <a href="#order-enum" class="toc-h1 toc-link" data-title="order-enum">order-enum</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#response-2" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
                   <li>
                     <a href="#searches-withdrawal-updates" class="toc-h2 toc-link" data-title="Searches withdrawal updates">Searches withdrawal updates</a>
                   </li>
@@ -5078,7 +5092,7 @@ too small to transfer funds from the account address to the broker account addre
 <h2 id='searches-withdrawals'>Searches withdrawals</h2><h3 id='request-2'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/withdrawals</code>
 <strong>gRPC API:</strong> <code>swisschain.sirius.api.withdrawals.Withdrawals.Search</code></p>
-<h3 id='parameters-3'>Parameters</h3><h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -5215,7 +5229,104 @@ too small to transfer funds from the account address to the broker account addre
 <td>10</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h1 id='withdrawalstate-enum'>withdrawalstate-enum</h1>
+<p>enum WithdrawalState {
+PROCESSING = 0;
+EXECUTING = 1;
+SENT = 2;
+COMPLETED = 3;
+FAILED = 4;
+POLICY_VALIDATION = 5;
+SIGNING = 6;
+REJECTED = 7;
+AML_VALIDATION = 8;
+AML_FAILED = 9;
+AML_REVIEWED = 10;
+NOTIFYING_AML = 11;
+REFUNDED = 12;
+AML_FAILURE_ACCEPTING = 13;
+}</p>
+<h1 id='withdrawalerror-enum'>withdrawalerror-enum</h1>
+<p>enum WithdrawalErrorCode {
+NOT_ENOUGH_BALANCE = 0;
+INVALID_DESTINATION_ADDRESS = 1;
+DESTINATION_TAG_REQUIRED = 2;
+TECHNICAL_PROBLEM = 3;
+VALIDATION_REJECTED = 4;
+SIGNING_REJECTED = 5;
+}</p>
+<h1 id='order-enum'>order-enum</h1>
+<p>enum Order {
+ask = 0;
+desc = 1;
+}</p>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals.Withdrawals.Search</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="s">"id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">106000107</span>
+  <span class="p">},</span>
+  <span class="s">"broker_account_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">100000062</span>
+  <span class="p">},</span>
+  <span class="s">"account_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">103001270</span>
+  <span class="p">},</span>
+  <span class="s">"asset_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">300000004</span>
+  <span class="p">},</span>
+  <span class="s">"blockchain_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="s">"ethereum-ropsten"</span>
+  <span class="p">},</span>
+  <span class="s">"state"</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+  <span class="s">"transaction_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"error_code"</span><span class="o">:</span> <span class="p">[</span> <span class="p">],</span>
+  <span class="s">"operation_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"destination_address"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="s">"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71"</span>
+  <span class="p">},</span>
+  <span class="s">"destination_tag"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"destination_tag_type"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"pagination"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"order"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s">"cursor"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s">"value"</span><span class="o">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="s">"limit"</span><span class="o">:</span> <span class="mi">10</span>
+  <span class="p">},</span>
+  <span class="s">"account_reference_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="s">"newerc"</span>
+  <span class="p">},</span>
+  <span class="s">"user_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">108000015</span>
+  <span class="p">},</span>
+  <span class="s">"user_native_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="s">"us1"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">message</span> <span class="nc">WithdrawalSearchRequest</span> <span class="p">{</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">WithdrawalState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">transaction_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">WithdrawalErrorCode</span> <span class="na">error_code</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">operation_id</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">destination_address</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">destination_tag</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.NullableTagType</span> <span class="na">destination_tag_type</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">account_reference_id</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">user_native_id</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='response-2'>Response</h3>
 <blockquote>
 <p>GET /api/withdrawals 200 OK</p>
 </blockquote>
@@ -5311,15 +5422,331 @@ too small to transfer funds from the account address to the broker account addre
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='searches-withdrawal-updates'>Searches withdrawal updates</h2><h3 id='request-3'>Request</h3>
-<p><strong>Rest API:</strong> <code>GET /api/withdrawal-updates</code></p>
-<h3 id='parameters-4'>Parameters</h3><h3 id='query-parameters-3'>Query Parameters</h3><h3 id='response-3'>Response</h3>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">WithdrawalResponse</span> <span class="p">{</span>
+    <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">broker_account_name</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.BrokerAccountDetails</span> <span class="na">broker_account_details</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">account_reference_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">int64</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">asset_symbol</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">asset_address</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.BigDecimal</span> <span class="na">amount</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">blockchain_name</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">swisschain.sirius.api.common.Fee</span> <span class="na">fee</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+    <span class="n">DestinationDetails</span> <span class="na">destination_details</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="n">WithdrawalState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.TransactionInfo</span> <span class="na">transaction_info</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+    <span class="n">WithdrawalError</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">operation_id</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+    <span class="kt">int64</span> <span class="na">required_confirmations_count</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+    <span class="n">TransferContext</span> <span class="na">transfer_context</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+    <span class="n">ValidatorContext</span> <span class="na">validator_context</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+    <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">user_native_id</span> <span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.aml.AmlChecks</span> <span class="na">aml_checks</span> <span class="o">=</span> <span class="mi">27</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">TransferContext</span> <span class="p">{</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">account_reference_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">withdrawal_reference_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">document</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">RequestContext</span> <span class="na">request_context</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">RequestContext</span> <span class="p">{</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">api_key_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">ip</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">google.protobuf.Timestamp</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">ValidatorContext</span> <span class="p">{</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">document</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">google.protobuf.StringValue</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div><h2 id='searches-withdrawal-updates'>Searches withdrawal updates</h2><h3 id='request-3'>Request</h3>
+<p><strong>Rest API:</strong> <code>GET /api/withdrawal-updates</code>
+<strong>gRPC API:</strong> <code>swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>withdrawal_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact deposit ID to search</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>account_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the account</td>
+</tr>
+<tr>
+<td><code>accountReferenceId</code></td>
+<td><code>account_reference_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID of the account</td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>user_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID of the user with AML relations</td>
+</tr>
+<tr>
+<td><code>userNativeId</code></td>
+<td><code>user_native_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Reference ID or Name of the account inside AML system</td>
+</tr>
+<tr>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the asset</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>ID of the blockchain</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em>optional</em>, <em>Array of <a href="#withdrawalstate-enum">WithdrawalState</a></em></td>
+<td>State of the withdrawal</td>
+</tr>
+<tr>
+<td><code>transactionId</code></td>
+<td><code>transaction_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the transaction</td>
+</tr>
+<tr>
+<td><code>errorCode</code></td>
+<td><code>error_code</code></td>
+<td><em>optional</em>, <em>Array of <a href="#withdrawalerror-enum">WithdrawalErrorCode</a></em></td>
+<td>Reason of the failed withdrawal</td>
+</tr>
+<tr>
+<td><code>operationId</code></td>
+<td><code>operation_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>ID of the operation</td>
+</tr>
+<tr>
+<td><code>destinationAddress</code></td>
+<td><code>destination_address</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Address of destination wallet</td>
+</tr>
+<tr>
+<td><code>destinationTag</code></td>
+<td><code>destination_Tag</code></td>
+<td><em>optional</em>, <em>string</em> or <em>number</em></td>
+<td>Address extension of destination wallet</td>
+</tr>
+<tr>
+<td><code>destinationTagType</code></td>
+<td><code>destination_tag_type</code></td>
+<td><em>optional</em>, <em>string</em> or <em>number</em></td>
+<td>Select type of destination tag</td>
+</tr>
+<tr>
+<td><code>withdrawalUpdateId</code></td>
+<td><code>withdrawal_update_id</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Exact deposit update ID to search</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>-</td>
+<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td>Result items sorting order</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td><code>cursor</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Cursor to continue the search</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>-</td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Maximum number of items to return in the search results</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">WithdrawalUpdateSearchRequest</span> <span class="p">{</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">withdrawal_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">google.protobuf.StringValue</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">repeated</span> <span class="n">WithdrawalState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="n">google.protobuf.StringValue</span> <span class="na">transaction_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="k">repeated</span> <span class="n">WithdrawalErrorCode</span> <span class="na">error_code</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">operation_id</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+<span class="n">google.protobuf.StringValue</span> <span class="na">destination_address</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">google.protobuf.StringValue</span> <span class="na">destination_tag</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="n">swisschain.sirius.api.common.NullableTagType</span> <span class="na">destination_tag_type</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">withdrawal_update_id</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">cursor</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+<span class="n">google.protobuf.StringValue</span> <span class="na">account_reference_id</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+<span class="n">google.protobuf.StringValue</span> <span class="na">user_native_id</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">example</span><span class="o">:</span>
+<span class="p">{</span>
+  <span class="s">"withdrawal_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"broker_account_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">100000062</span>
+  <span class="p">},</span>
+  <span class="s">"account_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"asset_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">300000004</span>
+  <span class="p">},</span>
+  <span class="s">"blockchain_id"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="s">"ethereum-ropsten"</span>
+  <span class="p">},</span>
+  <span class="s">"state"</span><span class="o">:</span> <span class="p">[</span>
+
+  <span class="p">],</span>
+  <span class="s">"transaction_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"error_code"</span><span class="o">:</span> <span class="p">[</span>
+
+  <span class="p">],</span>
+  <span class="s">"operation_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"destination_address"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"destination_tag"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"destination_tag_type"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"withdrawal_update_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"cursor"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"value"</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="s">"account_reference_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"user_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s">"user_native_id"</span><span class="o">:</span> <span class="n">null</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='response-3'>Response</h3>
 <blockquote>
-<p>GET /api/withdrawal-updates 200 OK</p>
+<p>GET /api/withdrawal-updates 200 OK
+Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"withdrawal_update_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"501000593"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"withdrawal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106000107"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"broker_account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000062"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"broker_account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"broker3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"broker_account_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101000172"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x0DB6947809533142C0D8993FD466A5fa890DB68a"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"103001270"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"account_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newerc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"asset_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300000004"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"asset_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"blockchain_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum-ropsten"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"blockchain_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum Ropsten"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"destination_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"tag_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"null"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NULL_VALUE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"null"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROCESSING"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"transaction_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"operation_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"required_confirmations_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"transfer_context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"account_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newerc"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"withdrawal_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"document"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">version</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">1.0</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">brokerAccountId</span><span class="se">\"</span><span class="s2">:100000062,</span><span class="se">\"</span><span class="s2">accountId</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">accountReferenceId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">newerc</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">withdrawalReferenceId</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">assetId</span><span class="se">\"</span><span class="s2">:300000004,</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">:0.1,</span><span class="se">\"</span><span class="s2">destinationDetails</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">tagType</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">tag</span><span class="se">\"</span><span class="s2">:null}}"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"request_context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0dde3a01-f675-439a-9439-0d1198ddaf8b"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"api_key_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.4.0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"seconds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1636022799"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"nanos"</span><span class="p">:</span><span class="w"> </span><span class="mi">748034200</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"validator_context"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"seconds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1636022800"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"nanos"</span><span class="p">:</span><span class="w"> </span><span class="mi">1950000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"seconds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1636022800"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"nanos"</span><span class="p">:</span><span class="w"> </span><span class="mi">1950000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000015"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"user_native_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"aml_checks"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='data-structures'>Data structures</h1><h2 id='order-enum'>Order (enum)</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">WithdrawalUpdateArrayResponse</span> <span class="p">{</span>
+<span class="k">repeated</span> <span class="n">WithdrawalUpdateResponse</span> <span class="na">items</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalUpdateResponse</span> <span class="p">{</span>
+<span class="kt">int64</span> <span class="na">withdrawal_update_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">WithdrawalResponse</span> <span class="na">withdrawal</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id='data-structures'>Data structures</h1><h2 id='order-enum'>Order (enum)</h2>
 <p>Order of the sorting</p>
 
 <ul>
