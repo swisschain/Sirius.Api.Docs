@@ -5230,7 +5230,7 @@ too small to transfer funds from the account address to the broker account addre
 </tr>
 </tbody></table>
 <h1 id='withdrawalstate-enum'>withdrawalstate-enum</h1>
-<p>enum WithdrawalState {
+<p><code>enum WithdrawalState {
 PROCESSING = 0;
 EXECUTING = 1;
 SENT = 2;
@@ -5245,21 +5245,21 @@ AML_REVIEWED = 10;
 NOTIFYING_AML = 11;
 REFUNDED = 12;
 AML_FAILURE_ACCEPTING = 13;
-}</p>
+}</code></p>
 <h1 id='withdrawalerror-enum'>withdrawalerror-enum</h1>
-<p>enum WithdrawalErrorCode {
+<p><code>enum WithdrawalErrorCode {
 NOT_ENOUGH_BALANCE = 0;
 INVALID_DESTINATION_ADDRESS = 1;
 DESTINATION_TAG_REQUIRED = 2;
 TECHNICAL_PROBLEM = 3;
 VALIDATION_REJECTED = 4;
 SIGNING_REJECTED = 5;
-}</p>
+}</code></p>
 <h1 id='order-enum'>order-enum</h1>
-<p>enum Order {
+<p><code>enum Order {
 ask = 0;
 desc = 1;
-}</p>
+}</code></p>
 <div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals.Withdrawals.Search</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
