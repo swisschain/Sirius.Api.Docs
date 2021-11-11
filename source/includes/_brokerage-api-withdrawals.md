@@ -212,7 +212,7 @@ REST name | gRPC name | type | description
 **Rest API:** `GET /api/withdrawals`
 **gRPC API:** `swisschain.sirius.api.withdrawals.Withdrawals.Search`
 
-### Parameters
+
 
 ### Query Parameters
 
@@ -236,6 +236,110 @@ REST name | gRPC name | type | description | example
 `order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
+
+#withdrawalstate-enum
+enum WithdrawalState {
+PROCESSING = 0;
+EXECUTING = 1;
+SENT = 2;
+COMPLETED = 3;
+FAILED = 4;
+POLICY_VALIDATION = 5;
+SIGNING = 6;
+REJECTED = 7;
+AML_VALIDATION = 8;
+AML_FAILED = 9;
+AML_REVIEWED = 10;
+NOTIFYING_AML = 11;
+REFUNDED = 12;
+AML_FAILURE_ACCEPTING = 13;
+}
+
+#withdrawalerror-enum
+enum WithdrawalErrorCode {
+NOT_ENOUGH_BALANCE = 0;
+INVALID_DESTINATION_ADDRESS = 1;
+DESTINATION_TAG_REQUIRED = 2;
+TECHNICAL_PROBLEM = 3;
+VALIDATION_REJECTED = 4;
+SIGNING_REJECTED = 5;
+}
+
+#order-enum
+enum Order {
+ask = 0;
+desc = 1;
+}
+
+```protobuf
+swisschain.sirius.api.withdrawals.Withdrawals.Search
+
+> Requets: (application/grpc)
+
+{
+  "id": {
+    "value": 106000107
+  },
+  "broker_account_id": {
+    "value": 100000062
+  },
+  "account_id": {
+    "value": 103001270
+  },
+  "asset_id": {
+    "value": 300000004
+  },
+  "blockchain_id": {
+    "value": "ethereum-ropsten"
+  },
+  "state": [ ],
+  "transaction_id": null,
+  "error_code": [ ],
+  "operation_id": null,
+  "destination_address": {
+    "value": "0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71"
+  },
+  "destination_tag": null,
+  "destination_tag_type": null,
+  "pagination": {
+    "order": 0,
+    "cursor": {
+      "value": 0
+    },
+    "limit": 10
+  },
+  "account_reference_id": {
+    "value": "newerc"
+  },
+  "user_id": {
+    "value": 108000015
+  },
+  "user_native_id": {
+    "value": "us1"
+  }
+}
+
+
+message WithdrawalSearchRequest {
+    google.protobuf.Int64Value id = 1;
+    google.protobuf.Int64Value broker_account_id = 2;
+    google.protobuf.Int64Value account_id = 3;
+    google.protobuf.Int64Value asset_id = 4;
+    google.protobuf.StringValue blockchain_id = 5;
+    repeated WithdrawalState state = 6;
+    google.protobuf.StringValue transaction_id = 7;
+    repeated WithdrawalErrorCode error_code = 8;
+    google.protobuf.Int64Value operation_id = 9;
+    google.protobuf.StringValue destination_address = 10;
+    google.protobuf.StringValue destination_tag = 11;
+    swisschain.sirius.api.common.NullableTagType destination_tag_type = 12;
+    swisschain.sirius.api.common.PaginationInt64 pagination = 13;
+    google.protobuf.StringValue account_reference_id = 14;
+    google.protobuf.Int64Value user_id = 15;
+    google.protobuf.StringValue user_native_id = 16;
+}
+```
+
 
 ### Response
 
@@ -336,21 +440,243 @@ REST name | gRPC name | type | description | example
   }
 ```
 
+```protobuf
+message WithdrawalResponse {
+    int64 id = 1;
+    int64 broker_account_id = 2;
+    string broker_account_name = 3;
+    swisschain.sirius.api.common.BrokerAccountDetails broker_account_details = 4;
+    google.protobuf.Int64Value account_id = 5;
+    google.protobuf.StringValue account_reference_id = 7;
+    int64 asset_id = 8;
+    string asset_symbol = 9;
+    google.protobuf.StringValue asset_address = 10;
+    swisschain.sirius.api.common.BigDecimal amount = 11;
+    string blockchain_id = 12;
+    string blockchain_name = 13;
+    repeated swisschain.sirius.api.common.Fee fee = 14;
+    DestinationDetails destination_details = 15;
+    WithdrawalState state = 16;
+    swisschain.sirius.api.common.TransactionInfo transaction_info = 17;
+    WithdrawalError error = 18;
+    google.protobuf.Int64Value operation_id = 19;
+    int64 required_confirmations_count = 20;
+    TransferContext transfer_context = 21;
+    ValidatorContext validator_context = 22;
+    google.protobuf.Timestamp created_at = 23;
+    google.protobuf.Timestamp updated_at = 24;
+    google.protobuf.Int64Value user_id = 25;
+    google.protobuf.StringValue user_native_id = 26;
+    swisschain.sirius.api.aml.AmlChecks aml_checks = 27;
+}
+
+message TransferContext {
+    google.protobuf.StringValue account_reference_id = 1;
+    google.protobuf.StringValue withdrawal_reference_id = 2;
+    google.protobuf.StringValue document = 3;
+    google.protobuf.StringValue signature = 4;
+    RequestContext request_context = 5;
+}
+
+message RequestContext {
+    google.protobuf.StringValue user_id = 1;
+    google.protobuf.StringValue api_key_id = 2;
+    google.protobuf.StringValue ip = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
+
+message ValidatorContext {
+    google.protobuf.StringValue document = 1;
+    google.protobuf.StringValue signature = 2;
+}
+
+```
+
 ## Searches withdrawal updates
 
 ### Request
 
 **Rest API:** `GET /api/withdrawal-updates`
-
-### Parameters
+**gRPC API:** `swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates`
 
 ### Query Parameters
+
+ gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`id` | `withdrawal_id` | *optional*, *number* | Exact deposit ID to search | 106000107
+`brokerAccountId` | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000062
+`accountId` | `account_id` | *optional*, *number* | ID of the account  | 103001270
+`accountReferenceId` | `account_reference_id` | *optional*, *string* | Reference ID of the account  | newerc
+`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
+`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
+`assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
+`blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalstate-enum)* | State of the withdrawal | sent
+`transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalerror-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
+`operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
+`destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
+`destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
+`destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
+`withdrawalUpdateId` | `withdrawal_update_id` | *optional*, *number* | Exact deposit update ID to search | 600000001
+`order` | - | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
+`cursor` | `cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | - | *optional*, *number* | Maximum number of items to return in the search results | 10
+
+```protobuf
+message WithdrawalUpdateSearchRequest {
+google.protobuf.Int64Value withdrawal_id = 1;
+google.protobuf.Int64Value broker_account_id = 2;
+google.protobuf.Int64Value account_id = 3;
+google.protobuf.Int64Value asset_id = 4;
+google.protobuf.StringValue blockchain_id = 5;
+repeated WithdrawalState state = 6;
+google.protobuf.StringValue transaction_id = 7;
+repeated WithdrawalErrorCode error_code = 8;
+google.protobuf.Int64Value operation_id = 9;
+google.protobuf.StringValue destination_address = 10;
+google.protobuf.StringValue destination_tag = 11;
+swisschain.sirius.api.common.NullableTagType destination_tag_type = 12;
+google.protobuf.Int64Value withdrawal_update_id = 13;
+google.protobuf.Int64Value cursor = 14;
+google.protobuf.StringValue account_reference_id = 15;
+google.protobuf.Int64Value user_id = 16;
+google.protobuf.StringValue user_native_id = 17;
+}
+
+example:
+{
+  "withdrawal_id": null,
+  "broker_account_id": {
+    "value": 100000062
+  },
+  "account_id": null,
+  "asset_id": {
+    "value": 300000004
+  },
+  "blockchain_id": {
+    "value": "ethereum-ropsten"
+  },
+  "state": [
+    
+  ],
+  "transaction_id": null,
+  "error_code": [
+    
+  ],
+  "operation_id": null,
+  "destination_address": null,
+  "destination_tag": null,
+  "destination_tag_type": null,
+  "withdrawal_update_id": null,
+  "cursor": {
+    "value": 0
+  },
+  "account_reference_id": null,
+  "user_id": null,
+  "user_native_id": null
+}
+```
+
 
 ### Response
 
 > GET /api/withdrawal-updates 200 OK
+> Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates
+
 
 ```json
 {
+  "items": [
+    {
+      "withdrawal_update_id": "501000593",
+      "withdrawal": {
+        "fee": [],
+        "id": "106000107",
+        "broker_account_id": "100000062",
+        "broker_account_name": "broker3",
+        "broker_account_details": {
+          "id": "101000172",
+          "address": "0x0DB6947809533142C0D8993FD466A5fa890DB68a"
+        },
+        "account_id": {
+          "value": "103001270"
+        },
+        "account_reference_id": {
+          "value": "newerc"
+        },
+        "asset_id": "300000004",
+        "asset_symbol": "ETH",
+        "asset_address": null,
+        "amount": {
+          "value": "0.1"
+        },
+        "blockchain_id": "ethereum-ropsten",
+        "blockchain_name": "Ethereum Ropsten",
+        "destination_details": {
+          "address": "0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71",
+          "tag": null,
+          "tag_type": {
+            "null": "NULL_VALUE",
+            "kind": "null"
+          }
+        },
+        "state": "PROCESSING",
+        "transaction_info": null,
+        "error": null,
+        "operation_id": null,
+        "required_confirmations_count": "-1",
+        "transfer_context": {
+          "account_reference_id": {
+            "value": "newerc"
+          },
+          "withdrawal_reference_id": null,
+          "document": {
+            "value": "{\"version\":\"1.0\",\"brokerAccountId\":100000062,\"accountId\":null,\"accountReferenceId\":\"newerc\",\"withdrawalReferenceId\":null,\"assetId\":300000004,\"amount\":0.1,\"destinationDetails\":{\"address\":\"0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71\",\"tagType\":null,\"tag\":null}}"
+          },
+          "signature": null,
+          "request_context": {
+            "user_id": {
+              "value": "0dde3a01-f675-439a-9439-0d1198ddaf8b"
+            },
+            "api_key_id": null,
+            "ip": {
+              "value": "192.168.4.0"
+            },
+            "timestamp": {
+              "seconds": "1636022799",
+              "nanos": 748034200
+            }
+          }
+        },
+        "validator_context": null,
+        "created_at": {
+          "seconds": "1636022800",
+          "nanos": 1950000
+        },
+        "updated_at": {
+          "seconds": "1636022800",
+          "nanos": 1950000
+        },
+        "user_id": {
+          "value": "108000015"
+        },
+        "user_native_id": {
+          "value": "us1"
+        },
+        "aml_checks": null
+      }
+    }
+  ]
+}
+```
+```protobuf
+message WithdrawalUpdateArrayResponse {
+repeated WithdrawalUpdateResponse items = 1;
+}
+
+message WithdrawalUpdateResponse {
+int64 withdrawal_update_id = 1;
+WithdrawalResponse withdrawal = 2;
 }
 ```
