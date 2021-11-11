@@ -238,7 +238,7 @@ REST name | gRPC name | type | description | example
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
 #withdrawalstate-enum
-enum WithdrawalState {
+`enum WithdrawalState {
 PROCESSING = 0;
 EXECUTING = 1;
 SENT = 2;
@@ -253,23 +253,23 @@ AML_REVIEWED = 10;
 NOTIFYING_AML = 11;
 REFUNDED = 12;
 AML_FAILURE_ACCEPTING = 13;
-}
+}`
 
 #withdrawalerror-enum
-enum WithdrawalErrorCode {
+`enum WithdrawalErrorCode {
 NOT_ENOUGH_BALANCE = 0;
 INVALID_DESTINATION_ADDRESS = 1;
 DESTINATION_TAG_REQUIRED = 2;
 TECHNICAL_PROBLEM = 3;
 VALIDATION_REJECTED = 4;
 SIGNING_REJECTED = 5;
-}
+}`
 
 #order-enum
-enum Order {
+`enum Order {
 ask = 0;
 desc = 1;
-}
+}`
 
 ```protobuf
 swisschain.sirius.api.withdrawals.Withdrawals.Search
