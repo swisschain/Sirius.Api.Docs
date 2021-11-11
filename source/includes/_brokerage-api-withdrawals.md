@@ -212,33 +212,6 @@ REST name | gRPC name | type | description
 **Rest API:** `GET /api/withdrawals`
 **gRPC API:** `swisschain.sirius.api.withdrawals.Withdrawals.Search`
 
-
-
-### Query Parameters
-
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`id` | `id` | *optional*, *number* | Exact deposit ID to search | 106000107
-`brokerAccountId` | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000062
-`accountId` | `account_id` | *optional*, *number* | ID of the account  | 103001270
-`accountReferenceId` | `account_reference_id` | *optional*, *string* | Reference ID of the account  | newerc
-`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
-`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
-`assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
-`blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
-`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState)* | State of the withdrawal | sent
-`transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
-`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError)* | Reason of the failed withdrawal | invalidDestinationAddress
-`operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
-`destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
-`destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
-`destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
-`order` | `pagination.order` | *optional*, *[Order](#Order)* | Result items sorting order | asc
-`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
-
-
 ```protobuf
 swisschain.sirius.api.withdrawals.Withdrawals.Search
 
@@ -308,44 +281,34 @@ message WithdrawalSearchRequest {
 }
 ```
 
+### Query Parameters
+
+REST name | gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`id` | `id` | *optional*, *number* | Exact deposit ID to search | 106000107
+`brokerAccountId` | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000062
+`accountId` | `account_id` | *optional*, *number* | ID of the account  | 103001270
+`accountReferenceId` | `account_reference_id` | *optional*, *string* | Reference ID of the account  | newerc
+`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
+`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
+`assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
+`blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState)* | State of the withdrawal | sent
+`transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError)* | Reason of the failed withdrawal | invalidDestinationAddress
+`operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
+`destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
+`destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
+`destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
+`order` | `pagination.order` | *optional*, *[Order](#Order)* | Result items sorting order | asc
+`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
+
 
 ### Response
 
 > GET /api/withdrawals 200 OK
 > swisschain.sirius.api.withdrawals.Withdrawals.Search Success
-
-
-Paginated response of the withdrawals:
-
-REST name | gRPC name | type | description
---------- | --------- | ---- | -------------- | -----------
-`id ` | `id ` | *number* | ID of the withdrawal
-`brokerAccountId` | `broker_account_id` | *number* |ID of the broker account
-`brokerAccountName` | `broker_account_name` | *string* | Name of the broker account
-`brokerAccountDetails` | `broker_account_details` | *string* | Details of broker account wallet
-`accountId` | `account_id` | *number* |ID of the account
-`accountDetails` | `account_details` | *string* | Details of account wallet
-`accountReferenceId` | `account_reference_id ` | *string* | Reference of account
-`assetId` | `asset_id` | *number* | ID of the asset
-`assetSymbol` | `asset_symbol` | *string* |Symbol of the asset
-`assetAddress` | `asset_address` | *string* | Address of the asset (for tokens like ERC20/223)
-`amount` | `amount` | *decimal* | Withdrawal amount
-`blockchainId` | `blockchain_id` | *number* | Id of blockhain used for withdrawal
-`blockchainName` | `blockchain_name` | *string* | Name of blockhain used for withdrawal
-`fees` | `fee` | *decimal* | Fee details
-`destinationDetails` | `destination_details` | *string* | Details of destination wallet
-`state` | `state` | *string* | State of withdrawal
-`transactionId` | `transaction_id` | *string* |Unique ID of the request
-`error` | `error` | *string* | Error details if withdrawal failed
-`operationId` | `operation_id` | *number* | Id of operation
-`requiredConfirmationsCount` | `required_confirmations_count` | *number* | -
-`transferContext` | `transfer_context` | *string* | Details of initial transfer with document, signature and request context
-`validatorContext` | `validator_context` | *string* | Details of validator response
-`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
-`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
-`amlChecks` | `aml_checks` | *string* | Details of aml providers response
-`createdAt` | `created_at` | *timestamp* | Datetime of withdrawal creation
-`updatedAt` | `updated_at` | *timestamp* | Datetime of latest withdrawal update
 
 ```json
 {
@@ -493,6 +456,39 @@ message ValidatorContext {
 }
 
 ```
+### Parameters
+
+Paginated response of the withdrawals:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -------------- | -----------
+`id ` | `id ` | *number* | ID of the withdrawal
+`brokerAccountId` | `broker_account_id` | *number* |ID of the broker account
+`brokerAccountName` | `broker_account_name` | *string* | Name of the broker account
+`brokerAccountDetails` | `broker_account_details` | *string* | Details of broker account wallet
+`accountId` | `account_id` | *number* |ID of the account
+`accountDetails` | `account_details` | *string* | Details of account wallet
+`accountReferenceId` | `account_reference_id ` | *string* | Reference of account
+`assetId` | `asset_id` | *number* | ID of the asset
+`assetSymbol` | `asset_symbol` | *string* |Symbol of the asset
+`assetAddress` | `asset_address` | *string* | Address of the asset (for tokens like ERC20/223)
+`amount` | `amount` | *decimal* | Withdrawal amount
+`blockchainId` | `blockchain_id` | *number* | Id of blockhain used for withdrawal
+`blockchainName` | `blockchain_name` | *string* | Name of blockhain used for withdrawal
+`fees` | `fee` | *decimal* | Fee details
+`destinationDetails` | `destination_details` | *string* | Details of destination wallet
+`state` | `state` | *string* | State of withdrawal
+`transactionId` | `transaction_id` | *string* |Unique ID of the request
+`error` | `error` | *string* | Error details if withdrawal failed
+`operationId` | `operation_id` | *number* | Id of operation
+`requiredConfirmationsCount` | `required_confirmations_count` | *number* | -
+`transferContext` | `transfer_context` | *string* | Details of initial transfer with document, signature and request context
+`validatorContext` | `validator_context` | *string* | Details of validator response
+`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
+`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
+`amlChecks` | `aml_checks` | *string* | Details of aml providers response
+`createdAt` | `created_at` | *timestamp* | Datetime of withdrawal creation
+`updatedAt` | `updated_at` | *timestamp* | Datetime of latest withdrawal update
 
 ## Searches withdrawal updates
 
@@ -500,30 +496,6 @@ message ValidatorContext {
 
 **Rest API:** `GET /api/withdrawal-updates`
 **gRPC API:** `swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates`
-
-### Query Parameters
-
- gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`id` | `withdrawal_id` | *optional*, *number* | Exact deposit ID to search | 106000107
-`brokerAccountId` | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000062
-`accountId` | `account_id` | *optional*, *number* | ID of the account  | 103001270
-`accountReferenceId` | `account_reference_id` | *optional*, *string* | Reference ID of the account  | newerc
-`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
-`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
-`assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
-`blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
-`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState-enum)* | State of the withdrawal | sent
-`transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
-`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
-`operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
-`destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
-`destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
-`destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
-`withdrawalUpdateId` | `withdrawal_update_id` | *optional*, *number* | Exact deposit update ID to search | 600000001
-`order` | - | *optional*, *[Order](#Order)* | Result items sorting order | asc
-`cursor` | `cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | - | *optional*, *number* | Maximum number of items to return in the search results | 10
 
 ```protobuf
 message WithdrawalUpdateSearchRequest {
@@ -580,44 +552,34 @@ example:
 }
 ```
 
+### Query Parameters
 
-### Response
-
-> GET /api/withdrawal-updates 200 OK
-> Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates
-
-Paginated response of the withdrawals update:
-
-REST name | gRPC name | type | description
---------- | --------- | ---- | -------------- | -----------
-`withdrawalUpdateId` | `withdrawal_update_id` | *optional*, *number* | Exact deposit update ID to search | 600000001
-`id ` | `id ` | *number* | ID of the withdrawal
-`brokerAccountId` | `broker_account_id` | *number* |ID of the broker account
-`brokerAccountName` | `broker_account_name` | *string* | Name of the broker account
-`brokerAccountDetails` | `broker_account_details` | *string* | Details of broker account wallet
-`accountId` | `account_id` | *number* |ID of the account
-`accountDetails` | `account_details` | *string* | Details of account wallet
-`accountReferenceId` | `account_reference_id ` | *string* | Reference of account
-`assetId` | `asset_id` | *number* | ID of the asset
-`assetSymbol` | `asset_symbol` | *string* |Symbol of the asset
-`assetAddress` | `asset_address` | *string* | Address of the asset (for tokens like ERC20/223)
-`amount` | `amount` | *decimal* | Withdrawal amount
-`blockchainId` | `blockchain_id` | *number* | Id of blockhain used for withdrawal
-`blockchainName` | `blockchain_name` | *string* | Name of blockhain used for withdrawal
-`fees` | `fee` | *decimal* | Fee details
-`destinationDetails` | `destination_details` | *string* | Details of destination wallet
-`state` | `state` | *string* | State of withdrawal
-`transactionId` | `transaction_id` | *string* |Unique ID of the request
-`error` | `error` | *string* | Error details if withdrawal failed
-`operationId` | `operation_id` | *number* | Id of operation
-`requiredConfirmationsCount` | `required_confirmations_count` | *number* | -
-`transferContext` | `transfer_context` | *string* | Details of initial transfer with document, signature and request context
-`validatorContext` | `validator_context` | *string* | Details of validator response
+ gRPC name | type | description | example
+--------- | --------- | ---- | ----------- | -------
+`id` | `withdrawal_id` | *optional*, *number* | Exact deposit ID to search | 106000107
+`brokerAccountId` | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000062
+`accountId` | `account_id` | *optional*, *number* | ID of the account  | 103001270
+`accountReferenceId` | `account_reference_id` | *optional*, *string* | Reference ID of the account  | newerc
 `userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
 `userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
-`amlChecks` | `aml_checks` | *string* | Details of aml providers response
-`createdAt` | `created_at` | *timestamp* | Datetime of withdrawal creation
-`updatedAt` | `updated_at` | *timestamp* | Datetime of latest withdrawal update
+`assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
+`blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState-enum)* | State of the withdrawal | sent
+`transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
+`operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
+`destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
+`destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
+`destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
+`withdrawalUpdateId` | `withdrawal_update_id` | *optional*, *number* | Exact deposit update ID to search | 600000001
+`order` | - | *optional*, *[Order](#Order)* | Result items sorting order | asc
+`cursor` | `cursor` | *optional*, *string* | Cursor to continue the search | 11111110
+`limit` | - | *optional*, *number* | Maximum number of items to return in the search results | 10
+
+
+
+
+### Response
 
 
 ```json
@@ -705,6 +667,7 @@ REST name | gRPC name | type | description
   ]
 }
 ```
+
 ```protobuf
 message WithdrawalUpdateArrayResponse {
 repeated WithdrawalUpdateResponse items = 1;
@@ -715,6 +678,44 @@ int64 withdrawal_update_id = 1;
 WithdrawalResponse withdrawal = 2;
 }
 ```
+
+### Parameters
+
+> GET /api/withdrawal-updates 200 OK
+> Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates
+
+Paginated response of the withdrawals update:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -------------- | -----------
+`withdrawalUpdateId` | `withdrawal_update_id` | *optional*, *number* | Exact deposit update ID to search | 600000001
+`id ` | `id ` | *number* | ID of the withdrawal
+`brokerAccountId` | `broker_account_id` | *number* |ID of the broker account
+`brokerAccountName` | `broker_account_name` | *string* | Name of the broker account
+`brokerAccountDetails` | `broker_account_details` | *string* | Details of broker account wallet
+`accountId` | `account_id` | *number* |ID of the account
+`accountDetails` | `account_details` | *string* | Details of account wallet
+`accountReferenceId` | `account_reference_id ` | *string* | Reference of account
+`assetId` | `asset_id` | *number* | ID of the asset
+`assetSymbol` | `asset_symbol` | *string* |Symbol of the asset
+`assetAddress` | `asset_address` | *string* | Address of the asset (for tokens like ERC20/223)
+`amount` | `amount` | *decimal* | Withdrawal amount
+`blockchainId` | `blockchain_id` | *number* | Id of blockhain used for withdrawal
+`blockchainName` | `blockchain_name` | *string* | Name of blockhain used for withdrawal
+`fees` | `fee` | *decimal* | Fee details
+`destinationDetails` | `destination_details` | *string* | Details of destination wallet
+`state` | `state` | *string* | State of withdrawal
+`transactionId` | `transaction_id` | *string* |Unique ID of the request
+`error` | `error` | *string* | Error details if withdrawal failed
+`operationId` | `operation_id` | *number* | Id of operation
+`requiredConfirmationsCount` | `required_confirmations_count` | *number* | -
+`transferContext` | `transfer_context` | *string* | Details of initial transfer with document, signature and request context
+`validatorContext` | `validator_context` | *string* | Details of validator response
+`userId` | `user_id` | *optional*, *string* | Reference ID of the user with AML relations | 108000015
+`userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
+`amlChecks` | `aml_checks` | *string* | Details of aml providers response
+`createdAt` | `created_at` | *timestamp* | Datetime of withdrawal creation
+`updatedAt` | `updated_at` | *timestamp* | Datetime of latest withdrawal update
 
 
 
