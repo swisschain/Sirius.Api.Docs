@@ -293,14 +293,14 @@ REST name | gRPC name | type | description | example
 `userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
 `assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
 `blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
-`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState)* | State of the withdrawal | sent
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalstate-enum)* | State of the withdrawal | sent
 `transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
-`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError)* | Reason of the failed withdrawal | invalidDestinationAddress
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalError](#withdrawalerror-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
 `operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
 `destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
 `destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004
 `destinationTagType` | `destination_tag_type` | *optional*, *string* or *number* | Select type of destination tag  | Text / Number
-`order` | `pagination.order` | *optional*, *[Order](#Order)* | Result items sorting order | asc
+`order` | `pagination.order` | *optional*, *[Order](#order)* | Result items sorting order | asc
 `cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
 `limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
 
@@ -564,9 +564,9 @@ example:
 `userNativeId` | `user_native_id` | *optional*, *string* | Reference ID or Name of the account inside AML system | us1
 `assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 300000004
 `blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-ropsten
-`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalState-enum)* | State of the withdrawal | sent
+`state` | `state` | *optional*, *Array of [WithdrawalState](#withdrawalstate-enum)* | State of the withdrawal | sent
 `transactionId` | `transaction_id` | *optional*, *number* | ID of the transaction  | 300000123
-`errorCode` | `error_code` | *optional*, *Array of [WithdrawalErrorCode](#withdrawalError-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
+`errorCode` | `error_code` | *optional*, *Array of [WithdrawalError](#withdrawalerror-enum)* | Reason of the failed withdrawal | invalidDestinationAddress
 `operationId` | `operation_id` | *optional*, *number* | ID of the operation  | 400000543
 `destinationAddress` | `destination_address` | *optional*, *string* | Address of destination wallet | 0xBB7cfa448FedDe5c5593ca4487d76A580aFfef71
 `destinationTag` | `destination_Tag` | *optional*, *string* or *number*  | Address extension of destination wallet | MyStellarMemo / 200004

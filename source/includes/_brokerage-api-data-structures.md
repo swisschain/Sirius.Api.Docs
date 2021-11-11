@@ -223,7 +223,7 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `unknown` - AML provider can't asses risks.
 + `assetNotConfigured` - Asset is not configured for AML.
 
-## withdrawalState (enum)
+## WithdrawalState (enum)
 + `PROCESSING = 0;`
 + `EXECUTING = 1;`
 + `SENT = 2;`
@@ -240,7 +240,7 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `AML_FAILURE_ACCEPTING = 13;`
 
 
-## withdrawalError (enum)
+## WithdrawalError (enum)
 + `NOT_ENOUGH_BALANCE = 0;`
 + `INVALID_DESTINATION_ADDRESS = 1;`
 + `DESTINATION_TAG_REQUIRED = 2;`
