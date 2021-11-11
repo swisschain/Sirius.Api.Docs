@@ -374,20 +374,6 @@
                   <li>
                     <a href="#searches-withdrawals" class="toc-h2 toc-link" data-title="Searches withdrawals">Searches withdrawals</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#withdrawalstate-enum" class="toc-h1 toc-link" data-title="withdrawalstate-enum">withdrawalstate-enum</a>
-          </li>
-          <li>
-            <a href="#withdrawalerror-enum" class="toc-h1 toc-link" data-title="withdrawalerror-enum">withdrawalerror-enum</a>
-          </li>
-          <li>
-            <a href="#order-enum" class="toc-h1 toc-link" data-title="order-enum">order-enum</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#response-2" class="toc-h2 toc-link" data-title="Response">Response</a>
-                  </li>
                   <li>
                     <a href="#searches-withdrawal-updates" class="toc-h2 toc-link" data-title="Searches withdrawal updates">Searches withdrawal updates</a>
                   </li>
@@ -464,6 +450,12 @@
                   </li>
                   <li>
                     <a href="#amlresolution-enum" class="toc-h2 toc-link" data-title="AmlResolution (enum)">AmlResolution (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#withdrawalstate-enum" class="toc-h2 toc-link" data-title="withdrawalState (enum)">withdrawalState (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#withdrawalerror-enum" class="toc-h2 toc-link" data-title="withdrawalError (enum)">withdrawalError (enum)</a>
                   </li>
               </ul>
           </li>
@@ -5161,7 +5153,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em>Array of <a href="#withdrawalstate-enum">WithdrawalState</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="#withdrawalState">WithdrawalState</a></em></td>
 <td>State of the withdrawal</td>
 <td>sent</td>
 </tr>
@@ -5175,7 +5167,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>errorCode</code></td>
 <td><code>error_code</code></td>
-<td><em>optional</em>, <em>Array of <a href="#withdrawalerror-enum">WithdrawalErrorCode</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="#withdrawalError">WithdrawalErrorCode</a></em></td>
 <td>Reason of the failed withdrawal</td>
 <td>invalidDestinationAddress</td>
 </tr>
@@ -5210,7 +5202,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="#Order">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -5229,37 +5221,6 @@ too small to transfer funds from the account address to the broker account addre
 <td>10</td>
 </tr>
 </tbody></table>
-<h1 id='withdrawalstate-enum'>withdrawalstate-enum</h1>
-<p><code>enum WithdrawalState {
-PROCESSING = 0;
-EXECUTING = 1;
-SENT = 2;
-COMPLETED = 3;
-FAILED = 4;
-POLICY_VALIDATION = 5;
-SIGNING = 6;
-REJECTED = 7;
-AML_VALIDATION = 8;
-AML_FAILED = 9;
-AML_REVIEWED = 10;
-NOTIFYING_AML = 11;
-REFUNDED = 12;
-AML_FAILURE_ACCEPTING = 13;
-}</code></p>
-<h1 id='withdrawalerror-enum'>withdrawalerror-enum</h1>
-<p><code>enum WithdrawalErrorCode {
-NOT_ENOUGH_BALANCE = 0;
-INVALID_DESTINATION_ADDRESS = 1;
-DESTINATION_TAG_REQUIRED = 2;
-TECHNICAL_PROBLEM = 3;
-VALIDATION_REJECTED = 4;
-SIGNING_REJECTED = 5;
-}</code></p>
-<h1 id='order-enum'>order-enum</h1>
-<p><code>enum Order {
-ask = 0;
-desc = 1;
-}</code></p>
 <div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals.Withdrawals.Search</span>
 
 <span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
@@ -5709,7 +5670,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em>Array of <a href="#withdrawalstate-enum">WithdrawalState</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="#withdrawalState-enum">WithdrawalState</a></em></td>
 <td>State of the withdrawal</td>
 </tr>
 <tr>
@@ -5721,7 +5682,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
 <tr>
 <td><code>errorCode</code></td>
 <td><code>error_code</code></td>
-<td><em>optional</em>, <em>Array of <a href="#withdrawalerror-enum">WithdrawalErrorCode</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="#withdrawalError-enum">WithdrawalErrorCode</a></em></td>
 <td>Reason of the failed withdrawal</td>
 </tr>
 <tr>
@@ -5757,7 +5718,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
 <tr>
 <td><code>order</code></td>
 <td>-</td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="#Order">Order</a></em></td>
 <td>Result items sorting order</td>
 </tr>
 <tr>
@@ -6338,6 +6299,32 @@ for each asset in each broker account.</p>
 <li><code>normal</code> - AML has passed without issues.</li>
 <li><code>unknown</code> - AML provider can&#39;t asses risks.</li>
 <li><code>assetNotConfigured</code> - Asset is not configured for AML.</li>
+</ul>
+<h2 id='withdrawalstate-enum'>withdrawalState (enum)</h2>
+<ul>
+<li><code>PROCESSING = 0;</code></li>
+<li><code>EXECUTING = 1;</code></li>
+<li><code>SENT = 2;</code></li>
+<li><code>COMPLETED = 3;</code></li>
+<li><code>FAILED = 4;</code></li>
+<li><code>POLICY_VALIDATION = 5;</code></li>
+<li><code>SIGNING = 6;</code></li>
+<li><code>REJECTED = 7;</code></li>
+<li><code>AML_VALIDATION = 8;</code></li>
+<li><code>AML_FAILED = 9;</code></li>
+<li><code>AML_REVIEWED = 10;</code></li>
+<li><code>NOTIFYING_AML = 11;</code></li>
+<li><code>REFUNDED = 12;</code></li>
+<li><code>AML_FAILURE_ACCEPTING = 13;</code></li>
+</ul>
+<h2 id='withdrawalerror-enum'>withdrawalError (enum)</h2>
+<ul>
+<li><code>NOT_ENOUGH_BALANCE = 0;</code></li>
+<li><code>INVALID_DESTINATION_ADDRESS = 1;</code></li>
+<li><code>DESTINATION_TAG_REQUIRED = 2;</code></li>
+<li><code>TECHNICAL_PROBLEM = 3;</code></li>
+<li><code>VALIDATION_REJECTED = 4;</code></li>
+<li><code>SIGNING_REJECTED = 5;</code></li>
 </ul>
 
       </div>
