@@ -20,6 +20,7 @@ includes:
   - brokerage-api-accounts.md
   - brokerage-api-deposits.md
   - brokerage-api-withdrawals.md
+  - brokerage-api-smart-contracts.md
   - brokerage-api-data-structures.md
 
 search: true
