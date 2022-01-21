@@ -380,6 +380,20 @@
               </ul>
           </li>
           <li>
+            <a href="#smartcontracts" class="toc-h1 toc-link" data-title="SmartContracts">SmartContracts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#deploy-a-smart-contract" class="toc-h2 toc-link" data-title="Deploy a smart contract">Deploy a smart contract</a>
+                  </li>
+                  <li>
+                    <a href="#parse-smart-contract-metamodel" class="toc-h2 toc-link" data-title="Parse smart contract metamodel">Parse smart contract metamodel</a>
+                  </li>
+                  <li>
+                    <a href="#invoke-smart-contract-method" class="toc-h2 toc-link" data-title="Invoke smart contract method">Invoke smart contract method</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#data-structures" class="toc-h1 toc-link" data-title="Data structures">Data structures</a>
               <ul class="toc-list-h2">
                   <li>
@@ -6060,6 +6074,942 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 <td><code>updated_at</code></td>
 <td><em>timestamp</em></td>
 <td>Datetime of latest withdrawal update</td>
+</tr>
+</tbody></table>
+<h1 id='smartcontracts'>SmartContracts</h1>
+<p><Placeholder_for_description></p>
+<h2 id='deploy-a-smart-contract'>Deploy a smart contract</h2><h3 id='request'>Request</h3>
+<p><strong>Rest API:</strong> <code>POST /api/smart-contracts/deploy</code>
+<strong>gRPC API:</strong> <code>swisschain.sirius.api.smart_contracts.SmartContracts.Deploy</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/deploy</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json,</span><span class="w"> </span><span class="err">text/plain,</span><span class="w"> </span><span class="err">*/*)</span><span class="w">
+
+</span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+</span><span class="err">x-tfa-code:</span><span class="w"> </span><span class="mi">000000</span><span class="w">  
+
+
+</span><span class="err">code:</span><span class="w"> </span><span class="err">(binary)</span><span class="w">
+</span><span class="err">document:</span><span class="w"> </span><span class="p">{</span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"mew"</span><span class="p">,</span><span class="nl">"referenceId"</span><span class="p">:</span><span class="s2">"qwe"</span><span class="p">,</span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="mi">100000074</span><span class="p">,</span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="s2">"ethereum-goerli"</span><span class="p">,</span><span class="nl">"arguments"</span><span class="p">:[],</span><span class="nl">"payment"</span><span class="p">:{</span><span class="nl">"assetId"</span><span class="p">:</span><span class="mi">300000010</span><span class="p">}}</span><span class="w">
+</span><span class="err">signature:</span><span class="w"> </span><span class="p">{</span><span class="s2">"JiOtcENJqblnWFcTZ4DiXwUZudlKBUtYnSkUjmfAH/8a1jeMPwFBu8MGjffITh3PRl/VLRTj8kjKWFT8EUR/8Qb3E8dTeuBlCIDU2RlHRRfb6iuTvjlPmUYQ/+Es6oZlH+Tapvjfa57N19poNZ7zimqadsASe3FGt0ME9J5vufE="</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.smart_contracts.SmartContracts.Deploy</span>
+
+<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractDeployRequest</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 1a5c0b3d15494ec8a390fd3b22d757d6</span>
+  <span class="kt">string</span> <span class="na">document</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// {"name":"grpc","brokerAccountId":100000071,"blockchainId":"ethereum-ropsten","arguments":[],"payment":{"assetId":300000004}}</span>
+  <span class="kt">string</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// mRMfKO7x3TZYkW4uLOrDfhBOAqAY5hIdAyLLHT/BxzrO8Ophwx/qVHlyQevgj4QVS4RnVMQHJaRDAbyIueduScRSoTXCd6XhZ6m8vA3enWogUuW41CX3+2C1GOF9KvJSBznRb6w5AaUbTaiBcixILz7tcE7hqEW2sZt2LSDGcKs=</span>
+  <span class="kt">bytes</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// binary(BaseSecurityToken.json)</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>x-request-id</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>x-2fa-code</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>2fa code for corresponding Universe user</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>request_id</code></td>
+<td><em>string</em></td>
+<td>-</td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td><code>document</code></td>
+<td><em>optional</em>, <em>serialized-as-string</em>, <em><a href="#smartcontractdocument-object">SmartContractDocument</a></em></td>
+<td><em>body</em></td>
+<td>JSON-formatted document describing the deployment parameters serialized as string</td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td><code>signature</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td><em>body</em></td>
+<td>Base64-encoded RSA signature of the document signed with the Customer&#39;s private key</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>
+</code></pre></div><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/deploy</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109000044</span><span class="p">,</span><span class="w">
+</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mew"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum-goerli"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"blockchainName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum Goerli"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000074</span><span class="p">,</span><span class="w">
+</span><span class="nl">"brokerAccountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCV2New"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"creatorAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x94afa005a395e470EB56a26E9081dC650EF84732"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"payment"</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">300000010</span><span class="p">,</span><span class="w">
+</span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"arguments"</span><span class="p">:</span><span class="w">
+</span><span class="p">[],</span><span class="w">
+</span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"deploymentContext"</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"document"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">mew</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">referenceId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">qwe</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">brokerAccountId</span><span class="se">\"</span><span class="s2">:100000074,</span><span class="se">\"</span><span class="s2">blockchainId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">ethereum-goerli</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">arguments</span><span class="se">\"</span><span class="s2">:
+[],</span><span class="se">\"</span><span class="s2">payment</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">assetId</span><span class="se">\"</span><span class="s2">:300000010}}"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"codeHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x88604ca3b6d365a9bd9527be0065b6db"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"referenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qwe"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"requestContext"</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0dde3a01-f675-439a-9439-0d1198ddaf8b"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.4.0"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-09T18:02:42.8053937Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-09T18:02:43.0570272Z"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-09T18:02:43.0570272Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="err">`</span><span class="n">swisschain.sirius.api.smart_contracts.SmartContracts.Deploy</span><span class="err">`</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractDeployResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">SmartContractDeployResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractDeployResponseBody</span> <span class="p">{</span>
+  <span class="n">SmartContractModel</span> <span class="na">item</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kd">message</span> <span class="nc">SmartContractModel</span> <span class="p">{</span>
+  <span class="kd">enum</span> <span class="n">SmartContractState</span>
+  <span class="p">{</span>
+    <span class="na">PROCESSING</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">VALIDATING</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="na">SIGNING</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="na">SENT</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="na">ON_CHAIN</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="na">COMPLETED</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="na">FAILED</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="na">REJECTED</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_name</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">broker_account_name</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">creator_address</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">PaymentModel</span> <span class="na">payment</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">smart_connect.data_model.Argument</span> <span class="na">arguments</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">SmartContractState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+  <span class="n">common.TransactionInfo</span> <span class="na">transaction_info</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="n">SmartContractDeploymentContext</span> <span class="na">deployment_context</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+  <span class="n">ValidatorContext</span> <span class="na">validator_context</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">sequence</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+  <span class="n">SmartContractError</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>  
+<span class="p">}</span>
+</code></pre></div><h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the deployment</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><em>string</em></td>
+<td>Name of the smart contract</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><code>address</code></td>
+<td><em>string</em></td>
+<td>address of the smart contract</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>number</em></td>
+<td>Id of blockchain used for deployment</td>
+</tr>
+<tr>
+<td><code>blockchainName</code></td>
+<td><code>blockchain_name</code></td>
+<td><em>string</em></td>
+<td>Name of blockchain used for deployment</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>broker_account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>brokerAccountName</code></td>
+<td><code>broker_account_name</code></td>
+<td><em>string</em></td>
+<td>Name of the broker account</td>
+</tr>
+<tr>
+<td><code>creator_address</code></td>
+<td><code>creator_address</code></td>
+<td><em>string</em></td>
+<td>address of the contract creator</td>
+</tr>
+<tr>
+<td><code>payment</code></td>
+<td><code>payment</code></td>
+<td><em>PaymentModel</em></td>
+<td>details for payments executed during deployment</td>
+</tr>
+<tr>
+<td><code>arguments</code></td>
+<td><code>arguments</code></td>
+<td><em>repeated smart_connect.data_model.Argument</em></td>
+<td>arguments used for deployment</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em>string</em></td>
+<td>State of deployment</td>
+</tr>
+<tr>
+<td><code>transactionInfo</code></td>
+<td><code>transaction_info</code></td>
+<td><em>string</em></td>
+<td>tx details like hash and confirmations count</td>
+</tr>
+<tr>
+<td><code>deploymentContext</code></td>
+<td><code>deployment_context</code></td>
+<td><em>string</em></td>
+<td>Details of initial deploy with document</td>
+</tr>
+<tr>
+<td><code>validatorContext</code></td>
+<td><code>validator_context</code></td>
+<td><em>string</em></td>
+<td>Details of validator response</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td><code>sequence</code></td>
+<td><em>int</em></td>
+<td>update sequence</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>error</code></td>
+<td><em>string</em></td>
+<td>Error details if smart contract failed</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of deploy creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of last deploy update</td>
+</tr>
+</tbody></table>
+<h2 id='parse-smart-contract-metamodel'>Parse smart contract metamodel</h2><h3 id='request-2'>Request</h3>
+<p><strong>Rest API:</strong> <code>Post /api/smart-contracts/parse</code>
+<strong>gRPC API:</strong> <code>swisschain.sirius.api.smart_contracts.SmartContracts.Parse</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/parse</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json,</span><span class="w"> </span><span class="err">text/plain,</span><span class="w"> </span><span class="err">*/*)</span><span class="w">
+
+
+</span><span class="err">code:</span><span class="w"> </span><span class="err">(binary)</span><span class="w">
+</span><span class="err">blockchainId:</span><span class="w"> </span><span class="err">ethereum</span><span class="w">
+
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.smart_contracts.SmartContracts.Parse</span>
+
+
+<span class="kd">message</span> <span class="nc">SmartContractParseRequest</span><span class="p">{</span>
+  <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// ethereum</span>
+  <span class="kt">bytes</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// BaseSecurityToken.json</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>required</em>, <em>string</em></td>
+<td>ID of the blockchain</td>
+<td>ethereum</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>code</code></td>
+<td><em>required</em>, <em>binary</em></td>
+<td>compiled smart contract</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<blockquote>
+<p>POST /api/smart-contracts/parse 200 OK</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"constructor"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"isPayable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1e6c5609"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"parameters"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"readFunctions"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"decimals"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"return"</span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"returnType"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"prototype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"void"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"constraints"</span><span class="p">:</span><span class="w">
+          </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"313ce567"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"parameters"</span><span class="p">:</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out_1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"parameterType"</span><span class="p">:</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"prototype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"nativeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uint8"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"constraints"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"required"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value is required"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maxInt"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"maxInt"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max value is 255"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minInt"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"minInt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errorMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Min value is 0"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="mi">1942</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">rows</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.smart_contracts.SmartContracts.Parse</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractParseResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">SmartContractParseResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractParseResponseBody</span> <span class="p">{</span>
+  <span class="n">smart_connect.metamodel.SmartContractInfo</span> <span class="na">metamodel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractInfo</span> <span class="p">{</span>
+    <span class="n">ConstructorInfo</span> <span class="na">ctor</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">ReadFunctionInfo</span> <span class="na">read_functions</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">WriteFunctionInfo</span> <span class="na">write_functions</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">EventInfo</span> <span class="na">events</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="kt">bytes</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="c1">// Functions</span>
+
+<span class="kd">message</span> <span class="nc">ConstructorInfo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="na">is_payable</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">ParameterInfo</span> <span class="na">parameters</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">ReadFunctionInfo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">ParameterInfo</span> <span class="na">parameters</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">ReturnInfo</span> <span class="na">return</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">WriteFunctionInfo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="na">is_payable</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">ParameterInfo</span> <span class="na">parameters</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">ReturnInfo</span> <span class="na">return</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">ParameterInfo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">TypeInfo</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">ParameterDirection</span> <span class="na">direction</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="n">ParameterDirection</span> <span class="p">{</span>
+    <span class="na">IN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">OUT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">ReturnInfo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">TypeInfo</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Events</span>
+
+<span class="kd">message</span> <span class="nc">EventInfo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">TypeInfo</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Types</span>
+
+<span class="kd">message</span> <span class="nc">TypeInfo</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">native_type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">PrototypeInfo</span> <span class="na">prototype</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">Constraint</span> <span class="na">constraints</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">PrototypeInfo</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">kind</span> <span class="p">{</span>
+    <span class="n">EnumTypeInfo</span> <span class="kd">enum</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">AddressTypeInfo</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">BoolTypeInfo</span> <span class="kt">bool</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">BytesTypeInfo</span> <span class="kt">bytes</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">DecimalTypeInfo</span> <span class="na">decimal</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">IntTypeInfo</span> <span class="na">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="n">StringTypeInfo</span> <span class="kt">string</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="n">TimestampTypeInfo</span> <span class="na">timestamp</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="n">VoidTypeInfo</span> <span class="na">void</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="n">ArrayTypeInfo</span> <span class="na">array</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">CompositeTypeInfo</span> <span class="na">composite</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="n">EitherTypeInfo</span> <span class="na">either</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="n">MapTypeInfo</span> <span class="na">map</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">EnumTypeInfo</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="n">EnumFieldInfo</span> <span class="na">fields</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">EnumFieldInfo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int32</span> <span class="na">value</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">AddressTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BoolTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">BytesTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">DecimalTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">IntTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">StringTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">TimestampTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">VoidTypeInfo</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">ArrayTypeInfo</span> <span class="p">{</span>
+  <span class="n">TypeInfo</span> <span class="na">element_type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">ArrayBoundaries</span> <span class="na">dimension_boundaries</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">ArrayBoundaries</span> <span class="p">{</span>
+  <span class="kt">int32</span> <span class="na">min</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int32</span> <span class="k">max</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">CompositeTypeInfo</span> <span class="p">{</span>
+  <span class="k">repeated</span> <span class="n">FieldInfo</span> <span class="na">components</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">FieldInfo</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">TypeInfo</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">EitherTypeInfo</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="n">FieldInfo</span> <span class="na">options</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MapTypeInfo</span> <span class="p">{</span>
+    <span class="n">TypeInfo</span> <span class="na">key_type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">TypeInfo</span> <span class="na">value_type</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Constraints</span>
+
+<span class="kd">message</span> <span class="nc">Constraint</span> <span class="p">{</span>
+    <span class="n">ConstraintType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">error_message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">message</span> <span class="nc">ConstraintType</span> <span class="p">{</span>
+    <span class="k">oneof</span> <span class="n">kind</span> <span class="p">{</span>
+        <span class="n">LengthConstraint</span> <span class="na">length</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">MaxDateConstraint</span> <span class="na">max_date</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">MinDateConstraint</span> <span class="na">min_date</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="n">MaxDecimalConstraint</span> <span class="na">max_decimal</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+        <span class="n">MinDecimalConstraint</span> <span class="na">min_decimal</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="n">MaxIntConstraint</span> <span class="na">max_int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+        <span class="n">MinIntConstraint</span> <span class="na">min_int</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+        <span class="n">MaxLengthConstraint</span> <span class="na">max_length</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+        <span class="n">MinLengthConstraint</span> <span class="na">min_length</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+        <span class="n">RegexConstraint</span> <span class="na">regex</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">RequiredConstraint</span> <span class="k">required</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+        <span class="n">UniqueItemsConstraint</span> <span class="na">unique_items</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">LengthConstraint</span> <span class="p">{</span>
+  <span class="kt">int32</span> <span class="na">length</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MaxDateConstraint</span> <span class="p">{</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="k">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MinDateConstraint</span> <span class="p">{</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">min</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MaxDecimalConstraint</span> <span class="p">{</span>
+  <span class="n">common.BigDecimal</span> <span class="k">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MinDecimalConstraint</span> <span class="p">{</span>
+  <span class="n">common.BigDecimal</span> <span class="na">min</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MaxIntConstraint</span> <span class="p">{</span>
+  <span class="n">common.BigInt</span> <span class="k">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MinIntConstraint</span> <span class="p">{</span>
+  <span class="n">common.BigInt</span> <span class="na">min</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MaxLengthConstraint</span> <span class="p">{</span>
+  <span class="kt">int32</span> <span class="k">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">MinLengthConstraint</span> <span class="p">{</span>
+  <span class="kt">int32</span> <span class="na">min</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">RegexConstraint</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">regex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">RequiredConstraint</span> <span class="p">{</span>  
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">UniqueItemsConstraint</span> <span class="p">{</span>
+<span class="p">}</span> 
+
+</code></pre></div><h3 id='parameters-4'>Parameters</h3>
+<p>response of the parsing:
+Structured smart contract metadata</p>
+<h2 id='invoke-smart-contract-method'>Invoke smart contract method</h2><h3 id='request-3'>Request</h3>
+<p><strong>Rest API:</strong> <code>POST /api/smart-contracts//{smartContractId}/invoke</code>
+<strong>gRPC API:</strong> <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/</span><span class="p">{</span><span class="err">smartContractId</span><span class="p">}</span><span class="err">/invoke</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json,</span><span class="w"> </span><span class="err">text/plain,</span><span class="w"> </span><span class="err">*/*)</span><span class="w">
+
+</span><span class="err">x-request-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+</span><span class="err">x-tfa-code:</span><span class="w"> </span><span class="mi">000000</span><span class="w">
+
+
+</span><span class="err">document:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">methodName</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">mint</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">methodAddress</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">40c10f19</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">brokerAccountId</span><span class="se">\"</span><span class="s2">:100000074,</span><span class="se">\"</span><span class="s2">arguments</span><span class="se">\"</span><span class="s2">:[{</span><span class="se">\"</span><span class="s2">parameterName</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">account</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">prototype</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">0x94afa005a395e470EB56a26E9081dC650EF84732</span><span class="se">\"</span><span class="s2">}},{</span><span class="se">\"</span><span class="s2">parameterName</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">prototype</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">int</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">int</span><span class="se">\"</span><span class="s2">:100000000000000000}}],</span><span class="se">\"</span><span class="s2">payment</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">assetId</span><span class="se">\"</span><span class="s2">:300000010,</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">:0}}"</span><span class="w">
+</span><span class="err">signature:</span><span class="w"> </span><span class="s2">"JiOtcENJqblnWFcTZ4DiXwUZudlKBUtYnSkUjmfAH/8a1jeMPwFBu8MGjffITh3PRl/VLRTj8kjKWFT8EUR/8Qb3E8dTeuBlCIDU2RlHRRfb6iuTvjlPmUYQ/+Es6oZlH+Tapvjfa57N19poNZ7zimqadsASe3FGt0ME9J5vufE="</span><span class="w">
+
+
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code>
+<span class="kd">message</span> <span class="nc">SmartContractInvokeRequest</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">document</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">smart_contract_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">example</span><span class="o">:</span>
+<span class="p">{</span>
+  <span class="s">"request_id"</span><span class="o">:</span> <span class="s">"60f0cea8-1836-4ff5-b81d-422c1f705bce"</span><span class="p">,</span>
+  <span class="s">"document"</span><span class="o">:</span> <span class="s">"{\"</span><span class="n">methodName</span><span class="err">\</span><span class="s">":\"</span><span class="n">mint</span><span class="err">\</span><span class="s">",\"</span><span class="n">methodAddress</span><span class="err">\</span><span class="s">":\"</span><span class="mi">40</span><span class="n">c10f19</span><span class="err">\</span><span class="s">",\"</span><span class="n">brokerAccountId</span><span class="err">\</span><span class="s">":100000074,\"</span><span class="n">arguments</span><span class="err">\</span><span class="s">":[{\"</span><span class="n">parameterName</span><span class="err">\</span><span class="s">":\"</span><span class="n">account</span><span class="err">\</span><span class="s">",\"</span><span class="n">value</span><span class="err">\</span><span class="s">":{\"</span><span class="n">prototype</span><span class="err">\</span><span class="s">":\"</span><span class="n">address</span><span class="err">\</span><span class="s">",\"</span><span class="n">address</span><span class="err">\</span><span class="s">":\"</span><span class="mh">0x94afa005a395e470EB56a26E9081dC650EF84732</span><span class="err">\</span><span class="s">"}},{\"</span><span class="n">parameterName</span><span class="err">\</span><span class="s">":\"</span><span class="n">amount</span><span class="err">\</span><span class="s">",\"</span><span class="n">value</span><span class="err">\</span><span class="s">":{\"</span><span class="n">prototype</span><span class="err">\</span><span class="s">":\"</span><span class="n">int</span><span class="err">\</span><span class="s">",\"</span><span class="n">int</span><span class="err">\</span><span class="s">":100000000000000000}}],\"</span><span class="n">payment</span><span class="err">\</span><span class="s">":{\"</span><span class="n">assetId</span><span class="err">\</span><span class="s">":300000010,\"</span><span class="n">amount</span><span class="err">\</span><span class="s">":0}}"</span><span class="p">,</span>
+  <span class="s">"signature"</span><span class="o">:</span> <span class="s">"JiOtcENJqblnWFcTZ4DiXwUZudlKBUtYnSkUjmfAH/8a1jeMPwFBu8MGjffITh3PRl/VLRTj8kjKWFT8EUR/8Qb3E8dTeuBlCIDU2RlHRRfb6iuTvjlPmUYQ/+Es6oZlH+Tapvjfa57N19poNZ7zimqadsASe3FGt0ME9J5vufE="</span><span class="p">,</span>
+  <span class="s">"smart_contract_id"</span><span class="o">:</span> <span class="mi">109000043</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>smartContractId</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>path</em></td>
+</tr>
+<tr>
+<td><code>x-request-id</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+</tr>
+<tr>
+<td><code>x-2fa-code</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>request_id</code></td>
+<td><em>string</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td><code>document</code></td>
+<td><em>optional</em>, <em>serialized-as-string</em>, <em><a href="#smartcontractinvocationdocument-object">SmartContractInvocationDocument</a></em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td><code>signature</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td><em>body</em></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>smart_contract_id</code></td>
+<td><em>string</em></td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">110000034</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"smartContractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">109000043</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"smartContractName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"goerlisec"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"smartContractAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xa4c8d6d0f64965d3083137e2ab5eaa709f389089"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"blockchainId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum-goerli"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"blockchainName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum Goerli"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"methodName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mint"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"methodAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40c10f19"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000074</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"brokerAccountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCV2New"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"brokerAccountAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x94afa005a395e470EB56a26E9081dC650EF84732"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payment"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">300000010</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"arguments"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"parameterName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"prototype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x94afa005a395e470EB56a26E9081dC650EF84732"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"parameterName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"prototype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"int"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000000000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"invocationContext"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"document"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">methodName</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">mint</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">methodAddress</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">40c10f19</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">brokerAccountId</span><span class="se">\"</span><span class="s2">:100000074,</span><span class="se">\"</span><span class="s2">referenceId</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">example</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">arguments</span><span class="se">\"</span><span class="s2">:
+[{</span><span class="se">\"</span><span class="s2">parameterName</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">account</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">prototype</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">0x94afa005a395e470EB56a26E9081dC650EF84732</span><span class="se">\"</span><span class="s2">}},{</span><span class="se">\"</span><span class="s2">parameterName</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">prototype</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">int</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">int</span><span class="se">\"</span><span class="s2">:100000000000000}}],</span><span class="se">\"</span><span class="s2">payment</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">assetId</span><span class="se">\"</span><span class="s2">:300000010,</span><span class="se">\"</span><span class="s2">amount</span><span class="se">\"</span><span class="s2">:0}}"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"codeHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x88604ca3b6d365a9bd9527be0065b6db"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"referenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"requestContext"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0dde3a01-f675-439a-9439-0d1198ddaf8b"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.244.4.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-10T05:51:54.1925873Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-10T05:51:54.5763207Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-10T05:51:54.5763207Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">SmartContractInvokeResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">SmartContractInvokeResponseBody</span> <span class="na">body</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">swisschain.sirius.api.common.ErrorResponseBody</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractInvokeResponseBody</span> <span class="p">{</span>
+  <span class="n">SmartContractInvocation</span> <span class="na">item</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractInvocation</span> <span class="p">{</span>
+  <span class="kd">enum</span> <span class="n">SmartContractInvocationState</span><span class="p">{</span>
+    <span class="na">PROCESSING</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">VALIDATING</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="na">SIGNING</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="na">SENT</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="na">ON_CHAIN</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="na">COMPLETED</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="na">FAILED</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="na">REJECTED</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">tenant_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">smart_contract_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">smart_contract_name</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">smart_contract_address</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">blockchain_name</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">method_name</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">method_address</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">invoker_broker_account_id</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">invoker_broker_account_name</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">invoker_broker_account_address</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">invoker_broker_account_details_id</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+  <span class="n">PaymentModel</span> <span class="na">payment</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">smart_connect.data_model.Argument</span> <span class="na">arguments</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+  <span class="n">SmartContractInvocationState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+  <span class="n">common.TransactionInfo</span> <span class="na">transaction_info</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+  <span class="n">SmartContractInvocationContext</span> <span class="na">invocation_context</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+  <span class="n">google.protobuf.Int64Value</span> <span class="na">invocation_operation_id</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+  <span class="n">ValidatorContext</span> <span class="na">validator_context</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">sequence</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>
+  <span class="n">SmartContractError</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+  <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</code></pre></div><h3 id='parameters-5'>Parameters</h3>
+<blockquote>
+<p>POST /api/smart-contracts/{smartContractId}/invoke 200 OK
+GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p>
+</blockquote>
+
+<p>Paginated response of the withdrawals update:</p>
+
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the invocation</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>tenant_id</code></td>
+<td><em>number</em></td>
+<td>address of the contract creator</td>
+</tr>
+<tr>
+<td><code>smartContractId</code></td>
+<td><code>smart_contract_id</code></td>
+<td><em>number</em></td>
+<td>address of the contract creator</td>
+</tr>
+<tr>
+<td><code>smartContractName</code></td>
+<td><code>smart_contract_name</code></td>
+<td><em>string</em></td>
+<td>Name of the smart contract</td>
+</tr>
+<tr>
+<td><code>smartContractAddress</code></td>
+<td><code>smart_contract_address</code></td>
+<td><em>string</em></td>
+<td>address of the smart contract</td>
+</tr>
+<tr>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
+<td><em>number</em></td>
+<td>Id of blockchain used for deployment</td>
+</tr>
+<tr>
+<td><code>blockchainName</code></td>
+<td><code>blockchain_name</code></td>
+<td><em>string</em></td>
+<td>Name of blockchain used for deployment</td>
+</tr>
+<tr>
+<td><code>methodName</code></td>
+<td><code>method_name</code></td>
+<td><em>string</em></td>
+<td>Name of method used for invocation</td>
+</tr>
+<tr>
+<td><code>methodAddress</code></td>
+<td><code>method_address</code></td>
+<td><em>string</em></td>
+<td>Name of method used for invocation</td>
+</tr>
+<tr>
+<td><code>brokerAccountId</code></td>
+<td><code>invoker_broker_account_id</code></td>
+<td><em>number</em></td>
+<td>ID of the broker account</td>
+</tr>
+<tr>
+<td><code>brokerAccountName</code></td>
+<td><code>invoker_broker_account_name</code></td>
+<td><em>string</em></td>
+<td>Name of the broker account</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>invoker_broker_account_details</code></td>
+<td><em>string</em></td>
+<td>Name of the broker account</td>
+</tr>
+<tr>
+<td><code>payment</code></td>
+<td><code>payment</code></td>
+<td><em>PaymentModel</em></td>
+<td>details for payments executed during invocation</td>
+</tr>
+<tr>
+<td><code>arguments</code></td>
+<td><code>arguments</code></td>
+<td><em>repeated smart_connect.data_model.Argument</em></td>
+<td>arguments used for deployment</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>state</code></td>
+<td><em>string</em></td>
+<td>State of invocation</td>
+</tr>
+<tr>
+<td><code>transactionInfo</code></td>
+<td><code>transaction_info</code></td>
+<td><em>string</em></td>
+<td>tx details like hash and confirmations count</td>
+</tr>
+<tr>
+<td><code>invocationContext</code></td>
+<td><code>invocation_context</code></td>
+<td><em>string</em></td>
+<td>Details of initial invoke with document</td>
+</tr>
+<tr>
+<td><code>validatorContext</code></td>
+<td><code>validator_context</code></td>
+<td><em>string</em></td>
+<td>Details of validator response</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td><code>sequence</code></td>
+<td><em>int</em></td>
+<td>update sequence</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>error</code></td>
+<td><em>string</em></td>
+<td>Error details if transaction failed</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of invoke creation</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
+<td><em>timestamp</em></td>
+<td>Datetime of last invoke update</td>
 </tr>
 </tbody></table>
 <h1 id='data-structures'>Data structures</h1><h2 id='order-enum'>Order (enum)</h2>
