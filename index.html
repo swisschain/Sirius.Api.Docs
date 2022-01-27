@@ -478,7 +478,7 @@
                     <a href="#smartcontractinvokationdocument-object" class="toc-h2 toc-link" data-title="SmartContractInvokationDocument (object)">SmartContractInvokationDocument (object)</a>
                   </li>
                   <li>
-                    <a href="#dataitem" class="toc-h2 toc-link" data-title="DataItem">DataItem</a>
+                    <a href="#dataitem-string" class="toc-h2 toc-link" data-title="DataItem (string)">DataItem (string)</a>
                   </li>
               </ul>
           </li>
@@ -7299,10 +7299,10 @@ for each asset in each broker account.</p>
 
 <ul>
 <li><code>prototype</code>  (<em>string</em>) - data type which used in argument # address</li>
-<li><code>*oneofDataItem*</code>  (<em>string</em>) - Method address</li>
+<li><code>*oneofDataItem*</code>  (<em>string</em>) - value depend on (#dataitem-string)</li>
 </ul></li>
 </ul></li>
-<li><code>payment</code>  (<em>object</em>) - Object which contatin payment details during invokation</li>
+<li><code>payment</code>  (<em>object</em>) - Object which contatin payment details during deployment</li>
 <li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
 <li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
 </ul>
@@ -7320,14 +7320,14 @@ for each asset in each broker account.</p>
 
 <ul>
 <li><code>prototype</code>  (<em>string</em>) - data type which used in argument # address</li>
-<li><code>*oneofDataItem*</code>  (<em>string</em>) - Method address</li>
+<li><code>*oneofDataItem*</code>  (<em>string</em>) - value depend on (#dataitem-string)</li>
 </ul></li>
 </ul></li>
 <li><code>payment</code>  (<em>object</em>) - Object which contatin payment details during invokation</li>
 <li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
 <li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
 </ul>
-<h2 id='dataitem'>DataItem</h2>
+<h2 id='dataitem-string'>DataItem (string)</h2>
 <ul>
 <li><code>void</code> {}</li>
 <li><code>bool</code> bool value</li>
