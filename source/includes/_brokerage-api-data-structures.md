@@ -259,8 +259,8 @@ CompletedAmlCheck contains information about passed AML check for deposit.
     + `parameterName`  (*string*) - parameterName
     + `value`  (*object*) - Object wich contain `prototype` and *type* value
         + `prototype`  (*string*) - data type which used in argument # address
-        + `*oneofDataItem*`  (*string*) - Method address
-+ `payment`  (*object*) - Object which contatin payment details during invokation
+        + `*oneofDataItem*`  (*string*) - value depend on (#dataitem-string)
++ `payment`  (*object*) - Object which contatin payment details during deployment
 + `assetId`  (*int*) - Asset id for payment
 + `amount`  (*double*) - amount can be 0
 
@@ -275,14 +275,14 @@ CompletedAmlCheck contains information about passed AML check for deposit.
     + `parameterName`  (*string*) - parameterName
     + `value`  (*object*) - Object wich contain `prototype` and *type* value
         + `prototype`  (*string*) - data type which used in argument # address
-        + `*oneofDataItem*`  (*string*) - Method address
+        + `*oneofDataItem*`  (*string*) - value depend on (#dataitem-string)
 + `payment`  (*object*) - Object which contatin payment details during invokation
 + `assetId`  (*int*) - Asset id for payment
 + `amount`  (*double*) - amount can be 0
 
   
 
-## DataItem
+## DataItem (string)
 + `void` {}
 + `bool` bool value
 + `bytes` bytes value
