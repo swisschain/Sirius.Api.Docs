@@ -471,6 +471,12 @@
                   <li>
                     <a href="#withdrawalerror-enum" class="toc-h2 toc-link" data-title="WithdrawalError (enum)">WithdrawalError (enum)</a>
                   </li>
+                  <li>
+                    <a href="#smartcontractdeploydocument-object" class="toc-h2 toc-link" data-title="SmartContractDeployDocument (object)">SmartContractDeployDocument (object)</a>
+                  </li>
+                  <li>
+                    <a href="#dataitem" class="toc-h2 toc-link" data-title="DataItem">DataItem</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -7275,6 +7281,43 @@ for each asset in each broker account.</p>
 <li><code>TECHNICAL_PROBLEM = 3;</code></li>
 <li><code>VALIDATION_REJECTED = 4;</code></li>
 <li><code>SIGNING_REJECTED = 5;</code></li>
+</ul>
+<h2 id='smartcontractdeploydocument-object'>SmartContractDeployDocument (object)</h2>
+<ul>
+<li><code>methodName</code> (<em>string</em>) - Method name.</li>
+<li><code>methodAddress</code>  (<em>string</em>) - Method address</li>
+<li><code>brokerAccountId</code>  (<em>string</em>) - ID of broker account which initiate invokation</li>
+<li><code>referenceId</code>  (<em>string</em>) - uniq identificatior of request</li>
+<li><code>arguments</code>  (<em>array</em>) - Array of repeatable object with <code>parameterName</code>  and <code>value</code> (can be empty)
+
+<ul>
+<li><code>parameterName</code>  (<em>string</em>) - parameterName</li>
+<li><code>value</code>  (<em>object</em>) - Object wich contain <code>prototype</code> and <em>type</em> value
+
+<ul>
+<li><code>prototype</code>  (<em>string</em>) - data type which used in argument # address</li>
+<li><code>*oneofDataItem*</code>  (<em>string</em>) - Method address</li>
+</ul></li>
+</ul></li>
+<li><code>payment</code>  (<em>object</em>) - Object which contatin payment details during invokation</li>
+<li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
+<li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
+</ul>
+<h2 id='dataitem'>DataItem</h2>
+<ul>
+<li><code>void</code> {}</li>
+<li><code>bool</code> bool value</li>
+<li><code>bytes</code> bytes value</li>
+<li><code>decimal</code> BigDecimal value</li>
+<li><code>int</code> BigInt value</li>
+<li><code>string</code> string value</li>
+<li><code>address</code> strint value</li>
+<li><code>timestamp</code> Timestamp value</li>
+<li><code>array</code> repeated #DataItem</li>
+<li><code>composite</code> repeated #Field (string name  &amp; DataItem value) components</li>
+<li><code>either</code> - #Field (string name  &amp; DataItem value) option</li>
+<li><code>map</code> repeated #MapItem (DataItem key / DataItem value)</li>
+<li><code>enum</code> string name</li>
 </ul>
 
       </div>
