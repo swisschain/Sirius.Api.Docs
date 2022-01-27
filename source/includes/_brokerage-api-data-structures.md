@@ -248,3 +248,36 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `VALIDATION_REJECTED = 4;`
 + `SIGNING_REJECTED = 5;`
 
+
+## SmartContractDeployDocument (object)
+
++ `methodName` (*string*) - Method name.
++ `methodAddress`  (*string*) - Method address
++ `brokerAccountId`  (*string*) - ID of broker account which initiate invokation
++ `referenceId`  (*string*) - uniq identificatior of request
++ `arguments`  (*array*) - Array of repeatable object with `parameterName`  and `value` (can be empty)
+    + `parameterName`  (*string*) - parameterName
+    + `value`  (*object*) - Object wich contain `prototype` and *type* value
+        + `prototype`  (*string*) - data type which used in argument # address
+        + `*oneofDataItem*`  (*string*) - Method address
++ `payment`  (*object*) - Object which contatin payment details during invokation
++ `assetId`  (*int*) - Asset id for payment
++ `amount`  (*double*) - amount can be 0
+
+  
+
+## DataItem
++ `void` {}
++ `bool` bool value
++ `bytes` bytes value
++ `decimal` BigDecimal value
++ `int` BigInt value
++ `string` string value
++ `address` strint value
++ `timestamp` Timestamp value
++ `array` repeated #DataItem
++ `composite` repeated #Field (string name  & DataItem value) components
++ `either` - #Field (string name  & DataItem value) option
++ `map` repeated #MapItem (DataItem key / DataItem value)
++ `enum` string name
+
