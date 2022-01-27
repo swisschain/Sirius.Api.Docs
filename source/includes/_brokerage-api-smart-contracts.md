@@ -45,7 +45,7 @@ REST name | gRPC name | type | REST placement | description
 `x-request-id` | - | *string* | *header* | Unique ID of the request
 `x-2fa-code` | - | *string* | *header* | 2fa code for corresponding Universe user
  - | `request_id` | *string* | - | Unique ID of the request
-`document` | `document` | *optional*, *serialized-as-string*, *[SmartContractDocument](#smartcontractdocument-object)* | *body* | JSON-formatted document describing the deployment parameters serialized as string
+`document` | `document` | *optional*, *serialized-as-string*, *[SmartContractDocument](#smartcontractdeploymentdocument-object)* | *body* | JSON-formatted document describing the deployment parameters serialized as string
 `signature` | `signature` | *optional*, *string* | *body* | Base64-encoded RSA signature of the document signed with the Customer's private key
 
 ```

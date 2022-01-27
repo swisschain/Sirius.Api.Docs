@@ -249,7 +249,23 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `SIGNING_REJECTED = 5;`
 
 
-## SmartContractDeployDocument (object)
+## SmartContractDeploymentDocument (object)
+
++ `name` (*string*) - SmartContract internal name.
++ `blockchainId`  (*string*) - ID of blockchain used for deployment
++ `brokerAccountId`  (*string*) - ID of broker account which initiate invokation
++ `referenceId`  (*string*) - uniq identificatior of request
++ `arguments`  (*array*) - Array of repeatable object with `parameterName`  and `value` (can be empty)
+    + `parameterName`  (*string*) - parameterName
+    + `value`  (*object*) - Object wich contain `prototype` and *type* value
+        + `prototype`  (*string*) - data type which used in argument # address
+        + `*oneofDataItem*`  (*string*) - Method address
++ `payment`  (*object*) - Object which contatin payment details during invokation
++ `assetId`  (*int*) - Asset id for payment
++ `amount`  (*double*) - amount can be 0
+
+
+## SmartContractInvokationDocument (object)
 
 + `methodName` (*string*) - Method name.
 + `methodAddress`  (*string*) - Method address
