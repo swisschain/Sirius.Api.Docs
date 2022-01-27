@@ -472,7 +472,10 @@
                     <a href="#withdrawalerror-enum" class="toc-h2 toc-link" data-title="WithdrawalError (enum)">WithdrawalError (enum)</a>
                   </li>
                   <li>
-                    <a href="#smartcontractdeploydocument-object" class="toc-h2 toc-link" data-title="SmartContractDeployDocument (object)">SmartContractDeployDocument (object)</a>
+                    <a href="#smartcontractdeploymentdocument-object" class="toc-h2 toc-link" data-title="SmartContractDeploymentDocument (object)">SmartContractDeploymentDocument (object)</a>
+                  </li>
+                  <li>
+                    <a href="#smartcontractinvokationdocument-object" class="toc-h2 toc-link" data-title="SmartContractInvokationDocument (object)">SmartContractInvokationDocument (object)</a>
                   </li>
                   <li>
                     <a href="#dataitem" class="toc-h2 toc-link" data-title="DataItem">DataItem</a>
@@ -6144,7 +6147,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 <tr>
 <td><code>document</code></td>
 <td><code>document</code></td>
-<td><em>optional</em>, <em>serialized-as-string</em>, <em><a href="#smartcontractdocument-object">SmartContractDocument</a></em></td>
+<td><em>optional</em>, <em>serialized-as-string</em>, <em><a href="#smartcontractdeploymentdocument-object">SmartContractDocument</a></em></td>
 <td><em>body</em></td>
 <td>JSON-formatted document describing the deployment parameters serialized as string</td>
 </tr>
@@ -7282,7 +7285,28 @@ for each asset in each broker account.</p>
 <li><code>VALIDATION_REJECTED = 4;</code></li>
 <li><code>SIGNING_REJECTED = 5;</code></li>
 </ul>
-<h2 id='smartcontractdeploydocument-object'>SmartContractDeployDocument (object)</h2>
+<h2 id='smartcontractdeploymentdocument-object'>SmartContractDeploymentDocument (object)</h2>
+<ul>
+<li><code>name</code> (<em>string</em>) - SmartContract internal name.</li>
+<li><code>blockchainId</code>  (<em>string</em>) - ID of blockchain used for deployment</li>
+<li><code>brokerAccountId</code>  (<em>string</em>) - ID of broker account which initiate invokation</li>
+<li><code>referenceId</code>  (<em>string</em>) - uniq identificatior of request</li>
+<li><code>arguments</code>  (<em>array</em>) - Array of repeatable object with <code>parameterName</code>  and <code>value</code> (can be empty)
+
+<ul>
+<li><code>parameterName</code>  (<em>string</em>) - parameterName</li>
+<li><code>value</code>  (<em>object</em>) - Object wich contain <code>prototype</code> and <em>type</em> value
+
+<ul>
+<li><code>prototype</code>  (<em>string</em>) - data type which used in argument # address</li>
+<li><code>*oneofDataItem*</code>  (<em>string</em>) - Method address</li>
+</ul></li>
+</ul></li>
+<li><code>payment</code>  (<em>object</em>) - Object which contatin payment details during invokation</li>
+<li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
+<li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
+</ul>
+<h2 id='smartcontractinvokationdocument-object'>SmartContractInvokationDocument (object)</h2>
 <ul>
 <li><code>methodName</code> (<em>string</em>) - Method name.</li>
 <li><code>methodAddress</code>  (<em>string</em>) - Method address</li>
