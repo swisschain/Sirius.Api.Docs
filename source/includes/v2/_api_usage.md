@@ -59,7 +59,7 @@ var pagination = response.Body.Pagination;
 name | type | description 
 ---- | ---- | ----------- 
 `Items` | *List<T>* | The array of an objects
-`Pagination` | *[Pagination](#api-usage-models-pagination-information)* | Result items sorting order
+`Pagination` | *[Pagination](#api-usage-models-pagination-information)* | Pagination state to continue search
 
 ## Models
 
@@ -76,7 +76,7 @@ var order = response.Body.Pagination.Order;
 name | type | description | example
 ---- | ---- | ----------- | -------
 `Cursor` | *optional*, *string* | Cursor to continue the search | stellar-test
-`Count` | *optional*, *number* | Maximum number of items to return in the search results | 10
+`Count` | *optional*, *number* | Number of items in the current page | 10
 `Order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 
 ### Order (enum)

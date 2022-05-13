@@ -2,8 +2,7 @@
 
 Sirius provides the set of crypto assets available to use.
 You can get notifications about a deposit or initiate a withdrawal in any asset presented in this set.
-The asset has a generic model which represents a native assets an tokens.
-Each asset has a symbol, accuracy, optional address, ID of the blockchain containing this asset and unique ID.
+The asset is a generic model which represents a native asset, fungible token or a non-fungible token.
 It's possible that in the different blockchains assets with the same symbol and/or address are existed, so you have to rely only on the asset ID if you need to deterministically identify it.
 If you've received a deposit of an asset which is not supported by Sirius yet, you can add this particular asset to your personal list by specifying all needed asset parameters.
 
@@ -61,7 +60,7 @@ name | type | description | example
 `Accuracy` | *int* | Exact accuracy | 8
 `Name` | *string* | The name of token | Toy
 `MetadataUrl` | *string* | The token metadata URL | ipfs://metadata.json
-`Type` | *string* | The type of token | ERC-20
+`Type` | *string* | The blockchain-specific type of token | ERC-20
 `Brokerage` | *[BrokerageAssetAttributesInfo](#assets-models-brokerageassetattributesinfo)* | The brokerage attributes |
 `Aml` | *[AmlAssetAttributesInfo](#assets-models-amlassetattributesinfo)* | The AML attributes |
 
