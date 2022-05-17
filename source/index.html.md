@@ -6,24 +6,31 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - json
 
 toc_footers:
+- API V1 <a href='/v2'>API V2</a>
+- <a href='https://github.com/swisschain/Sirius.Api.Docs'>GitHub</a>
+
+meta:
+- name: description
+  content: Sirius API Reference
 
 includes:
-  - feedback.md
-  - change-log.md
-  - rest_protocol-description.md
-  - api_usage.md
-  - examples.md
-  - brokerage-api-blockchains.md
-  - brokerage-api-assets.md
-  - brokerage-api-custodies
-  - brokerage-api-broker-accounts.md
-  - brokerage-api-accounts.md
-  - brokerage-api-deposits.md
-  - brokerage-api-withdrawals.md
-  - brokerage-api-smart-contracts.md
-  - brokerage-api-data-structures.md
+  - v1/feedback.md
+  - v1/change-log.md
+  - v1/rest_protocol-description.md
+  - v1/api_usage.md
+  - v1/examples.md
+  - v1/brokerage-api-blockchains.md
+  - v1/brokerage-api-assets.md
+  - v1/brokerage-api-custodies
+  - v1/brokerage-api-broker-accounts.md
+  - v1/brokerage-api-accounts.md
+  - v1/brokerage-api-deposits.md
+  - v1/brokerage-api-withdrawals.md
+  - v1/brokerage-api-smart-contracts.md
+  - v1/brokerage-api-data-structures.md
 
 search: true
+code_clipboard: true
 ---
 
 # Sirius Digital Custody
