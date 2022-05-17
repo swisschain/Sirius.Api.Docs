@@ -5,9 +5,13 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta
+            name="description"
+            content="Sirius API Reference"
+        >
     <title>Sirius API Reference</title>
 
-    <style>
+    <style media="screen">
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .gh {
@@ -196,9 +200,101 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-ff9a2c76.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-c5541673.js"></script>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-16d31104.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-b12a2749.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+
+    <link href="images/favicon-5c12dd4d.ico" rel="icon" type="image/ico" />
   </head>
 
   <body class="index" data-languages="[&quot;protobuf&quot;,&quot;json&quot;]">
@@ -209,7 +305,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/Lykke_White.png" class="logo" alt="" />
+      <img src="images/logo-92d25c52.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="protobuf">protobuf</a>
               <a href="#" data-language-name="json">json</a>
@@ -232,25 +328,25 @@
             <a href="#rest-protocol-description" class="toc-h1 toc-link" data-title="REST Protocol description">REST Protocol description</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#allowed-http-verbs" class="toc-h2 toc-link" data-title="Allowed HTTP Verbs">Allowed HTTP Verbs</a>
+                    <a href="#rest-protocol-description-allowed-http-verbs" class="toc-h2 toc-link" data-title="Allowed HTTP Verbs">Allowed HTTP Verbs</a>
                   </li>
                   <li>
-                    <a href="#description-of-http-server-responses" class="toc-h2 toc-link" data-title="Description Of HTTP Server Responses">Description Of HTTP Server Responses</a>
+                    <a href="#rest-protocol-description-description-of-http-server-responses" class="toc-h2 toc-link" data-title="Description Of HTTP Server Responses">Description Of HTTP Server Responses</a>
                   </li>
                   <li>
-                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                    <a href="#rest-protocol-description-authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
                   </li>
                   <li>
-                    <a href="#error-responses" class="toc-h2 toc-link" data-title="Error responses">Error responses</a>
+                    <a href="#rest-protocol-description-error-responses" class="toc-h2 toc-link" data-title="Error responses">Error responses</a>
                   </li>
                   <li>
-                    <a href="#pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                    <a href="#rest-protocol-description-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
                   </li>
                   <li>
-                    <a href="#decimal-number" class="toc-h2 toc-link" data-title="Decimal number">Decimal number</a>
+                    <a href="#rest-protocol-description-decimal-number" class="toc-h2 toc-link" data-title="Decimal number">Decimal number</a>
                   </li>
                   <li>
-                    <a href="#timestamp" class="toc-h2 toc-link" data-title="Timestamp">Timestamp</a>
+                    <a href="#rest-protocol-description-timestamp" class="toc-h2 toc-link" data-title="Timestamp">Timestamp</a>
                   </li>
               </ul>
           </li>
@@ -264,10 +360,10 @@
             <a href="#blockchains" class="toc-h1 toc-link" data-title="Blockchains">Blockchains</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#search-blockchains" class="toc-h2 toc-link" data-title="Search blockchains">Search blockchains</a>
+                    <a href="#blockchains-search-blockchains" class="toc-h2 toc-link" data-title="Search blockchains">Search blockchains</a>
                   </li>
                   <li>
-                    <a href="#get-latest-block" class="toc-h2 toc-link" data-title="Get latest block">Get latest block</a>
+                    <a href="#blockchains-get-latest-block" class="toc-h2 toc-link" data-title="Get latest block">Get latest block</a>
                   </li>
               </ul>
           </li>
@@ -275,7 +371,7 @@
             <a href="#assets" class="toc-h1 toc-link" data-title="Assets">Assets</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#search-assets" class="toc-h2 toc-link" data-title="Search assets">Search assets</a>
+                    <a href="#assets-search-assets" class="toc-h2 toc-link" data-title="Search assets">Search assets</a>
                   </li>
               </ul>
           </li>
@@ -283,25 +379,25 @@
             <a href="#custodies" class="toc-h1 toc-link" data-title="Custodies">Custodies</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#custody-creation" class="toc-h2 toc-link" data-title="Custody creation">Custody creation</a>
+                    <a href="#custodies-custody-creation" class="toc-h2 toc-link" data-title="Custody creation">Custody creation</a>
                   </li>
                   <li>
-                    <a href="#custody-update" class="toc-h2 toc-link" data-title="Custody update">Custody update</a>
+                    <a href="#custodies-custody-update" class="toc-h2 toc-link" data-title="Custody update">Custody update</a>
                   </li>
                   <li>
-                    <a href="#custodies-search" class="toc-h2 toc-link" data-title="Custodies search">Custodies search</a>
+                    <a href="#custodies-custodies-search" class="toc-h2 toc-link" data-title="Custodies search">Custodies search</a>
                   </li>
                   <li>
-                    <a href="#custody-api-key-creation" class="toc-h2 toc-link" data-title="Custody API key creation">Custody API key creation</a>
+                    <a href="#custodies-custody-api-key-creation" class="toc-h2 toc-link" data-title="Custody API key creation">Custody API key creation</a>
                   </li>
                   <li>
-                    <a href="#custody-api-keys-search" class="toc-h2 toc-link" data-title="Custody API keys search">Custody API keys search</a>
+                    <a href="#custodies-custody-api-keys-search" class="toc-h2 toc-link" data-title="Custody API keys search">Custody API keys search</a>
                   </li>
                   <li>
-                    <a href="#custody-api-key-token-obtaining" class="toc-h2 toc-link" data-title="Custody API key token obtaining">Custody API key token obtaining</a>
+                    <a href="#custodies-custody-api-key-token-obtaining" class="toc-h2 toc-link" data-title="Custody API key token obtaining">Custody API key token obtaining</a>
                   </li>
                   <li>
-                    <a href="#custody-api-key-token-revocation" class="toc-h2 toc-link" data-title="Custody API key token revocation">Custody API key token revocation</a>
+                    <a href="#custodies-custody-api-key-token-revocation" class="toc-h2 toc-link" data-title="Custody API key token revocation">Custody API key token revocation</a>
                   </li>
               </ul>
           </li>
@@ -309,25 +405,25 @@
             <a href="#broker-accounts" class="toc-h1 toc-link" data-title="Broker accounts">Broker accounts</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-a-broker-account" class="toc-h2 toc-link" data-title="Create a broker account">Create a broker account</a>
+                    <a href="#broker-accounts-create-a-broker-account" class="toc-h2 toc-link" data-title="Create a broker account">Create a broker account</a>
                   </li>
                   <li>
-                    <a href="#update-the-broker-account" class="toc-h2 toc-link" data-title="Update the broker account">Update the broker account</a>
+                    <a href="#broker-accounts-update-the-broker-account" class="toc-h2 toc-link" data-title="Update the broker account">Update the broker account</a>
                   </li>
                   <li>
-                    <a href="#searches-broker-accounts" class="toc-h2 toc-link" data-title="Searches broker accounts">Searches broker accounts</a>
+                    <a href="#broker-accounts-searches-broker-accounts" class="toc-h2 toc-link" data-title="Searches broker accounts">Searches broker accounts</a>
                   </li>
                   <li>
-                    <a href="#searches-the-broker-account-balances" class="toc-h2 toc-link" data-title="Searches the broker account balances">Searches the broker account balances</a>
+                    <a href="#broker-accounts-searches-the-broker-account-balances" class="toc-h2 toc-link" data-title="Searches the broker account balances">Searches the broker account balances</a>
                   </li>
                   <li>
-                    <a href="#searches-the-broker-account-details" class="toc-h2 toc-link" data-title="Searches the broker account details">Searches the broker account details</a>
+                    <a href="#broker-accounts-searches-the-broker-account-details" class="toc-h2 toc-link" data-title="Searches the broker account details">Searches the broker account details</a>
                   </li>
                   <li>
-                    <a href="#gets-the-broker-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets the broker account details by the asset id">Gets the broker account details by the asset id</a>
+                    <a href="#broker-accounts-gets-the-broker-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets the broker account details by the asset id">Gets the broker account details by the asset id</a>
                   </li>
                   <li>
-                    <a href="#search-for-broker-account-updates" class="toc-h2 toc-link" data-title="Search for broker account updates">Search for broker account updates</a>
+                    <a href="#broker-accounts-search-for-broker-account-updates" class="toc-h2 toc-link" data-title="Search for broker account updates">Search for broker account updates</a>
                   </li>
               </ul>
           </li>
@@ -335,22 +431,22 @@
             <a href="#accounts" class="toc-h1 toc-link" data-title="Accounts">Accounts</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-an-account" class="toc-h2 toc-link" data-title="Create an account">Create an account</a>
+                    <a href="#accounts-create-an-account" class="toc-h2 toc-link" data-title="Create an account">Create an account</a>
                   </li>
                   <li>
-                    <a href="#update-an-account" class="toc-h2 toc-link" data-title="Update an account">Update an account</a>
+                    <a href="#accounts-update-an-account" class="toc-h2 toc-link" data-title="Update an account">Update an account</a>
                   </li>
                   <li>
-                    <a href="#search-for-accounts" class="toc-h2 toc-link" data-title="Search for accounts">Search for accounts</a>
+                    <a href="#accounts-search-for-accounts" class="toc-h2 toc-link" data-title="Search for accounts">Search for accounts</a>
                   </li>
                   <li>
-                    <a href="#searches-the-account-details" class="toc-h2 toc-link" data-title="Searches the account details">Searches the account details</a>
+                    <a href="#accounts-searches-the-account-details" class="toc-h2 toc-link" data-title="Searches the account details">Searches the account details</a>
                   </li>
                   <li>
-                    <a href="#gets-the-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets the account details by the asset id">Gets the account details by the asset id</a>
+                    <a href="#accounts-gets-the-account-details-by-the-asset-id" class="toc-h2 toc-link" data-title="Gets the account details by the asset id">Gets the account details by the asset id</a>
                   </li>
                   <li>
-                    <a href="#search-for-account-updates" class="toc-h2 toc-link" data-title="Search for account updates">Search for account updates</a>
+                    <a href="#accounts-search-for-account-updates" class="toc-h2 toc-link" data-title="Search for account updates">Search for account updates</a>
                   </li>
               </ul>
           </li>
@@ -358,10 +454,10 @@
             <a href="#deposits" class="toc-h1 toc-link" data-title="Deposits">Deposits</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#searches-deposits" class="toc-h2 toc-link" data-title="Searches deposits">Searches deposits</a>
+                    <a href="#deposits-searches-deposits" class="toc-h2 toc-link" data-title="Searches deposits">Searches deposits</a>
                   </li>
                   <li>
-                    <a href="#searches-deposit-updates" class="toc-h2 toc-link" data-title="Searches deposit updates">Searches deposit updates</a>
+                    <a href="#deposits-searches-deposit-updates" class="toc-h2 toc-link" data-title="Searches deposit updates">Searches deposit updates</a>
                   </li>
               </ul>
           </li>
@@ -369,13 +465,13 @@
             <a href="#withdrawals" class="toc-h1 toc-link" data-title="Withdrawals">Withdrawals</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#starts-a-withdrawal" class="toc-h2 toc-link" data-title="Starts a withdrawal">Starts a withdrawal</a>
+                    <a href="#withdrawals-starts-a-withdrawal" class="toc-h2 toc-link" data-title="Starts a withdrawal">Starts a withdrawal</a>
                   </li>
                   <li>
-                    <a href="#searches-withdrawals" class="toc-h2 toc-link" data-title="Searches withdrawals">Searches withdrawals</a>
+                    <a href="#withdrawals-searches-withdrawals" class="toc-h2 toc-link" data-title="Searches withdrawals">Searches withdrawals</a>
                   </li>
                   <li>
-                    <a href="#searches-withdrawal-updates" class="toc-h2 toc-link" data-title="Searches withdrawal updates">Searches withdrawal updates</a>
+                    <a href="#withdrawals-searches-withdrawal-updates" class="toc-h2 toc-link" data-title="Searches withdrawal updates">Searches withdrawal updates</a>
                   </li>
               </ul>
           </li>
@@ -383,13 +479,13 @@
             <a href="#smartcontracts" class="toc-h1 toc-link" data-title="SmartContracts">SmartContracts</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#deploy-a-smart-contract" class="toc-h2 toc-link" data-title="Deploy a smart contract">Deploy a smart contract</a>
+                    <a href="#smartcontracts-deploy-a-smart-contract" class="toc-h2 toc-link" data-title="Deploy a smart contract">Deploy a smart contract</a>
                   </li>
                   <li>
-                    <a href="#parse-smart-contract-metamodel" class="toc-h2 toc-link" data-title="Parse smart contract metamodel">Parse smart contract metamodel</a>
+                    <a href="#smartcontracts-parse-smart-contract-metamodel" class="toc-h2 toc-link" data-title="Parse smart contract metamodel">Parse smart contract metamodel</a>
                   </li>
                   <li>
-                    <a href="#invoke-smart-contract-method" class="toc-h2 toc-link" data-title="Invoke smart contract method">Invoke smart contract method</a>
+                    <a href="#smartcontracts-invoke-smart-contract-method" class="toc-h2 toc-link" data-title="Invoke smart contract method">Invoke smart contract method</a>
                   </li>
               </ul>
           </li>
@@ -397,92 +493,96 @@
             <a href="#data-structures" class="toc-h1 toc-link" data-title="Data structures">Data structures</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#order-enum" class="toc-h2 toc-link" data-title="Order (enum)">Order (enum)</a>
+                    <a href="#data-structures-order-enum" class="toc-h2 toc-link" data-title="Order (enum)">Order (enum)</a>
                   </li>
                   <li>
-                    <a href="#networktype-enum" class="toc-h2 toc-link" data-title="NetworkType (enum)">NetworkType (enum)</a>
+                    <a href="#data-structures-networktype-enum" class="toc-h2 toc-link" data-title="NetworkType (enum)">NetworkType (enum)</a>
                   </li>
                   <li>
-                    <a href="#blockchainprotocol-object" class="toc-h2 toc-link" data-title="BlockchainProtocol (object)">BlockchainProtocol (object)</a>
+                    <a href="#data-structures-blockchainprotocol-object" class="toc-h2 toc-link" data-title="BlockchainProtocol (object)">BlockchainProtocol (object)</a>
                   </li>
                   <li>
-                    <a href="#tagtype-enum" class="toc-h2 toc-link" data-title="TagType (enum)">TagType (enum)</a>
+                    <a href="#data-structures-tagtype-enum" class="toc-h2 toc-link" data-title="TagType (enum)">TagType (enum)</a>
                   </li>
                   <li>
-                    <a href="#doublespendingprotectiontype-enum" class="toc-h2 toc-link" data-title="DoubleSpendingProtectionType (enum)">DoubleSpendingProtectionType (enum)</a>
+                    <a href="#data-structures-doublespendingprotectiontype-enum" class="toc-h2 toc-link" data-title="DoubleSpendingProtectionType (enum)">DoubleSpendingProtectionType (enum)</a>
                   </li>
                   <li>
-                    <a href="#brokeraccountstate-enum" class="toc-h2 toc-link" data-title="BrokerAccountState (enum)">BrokerAccountState (enum)</a>
+                    <a href="#data-structures-brokeraccountstate-enum" class="toc-h2 toc-link" data-title="BrokerAccountState (enum)">BrokerAccountState (enum)</a>
                   </li>
                   <li>
-                    <a href="#accountstate-enum" class="toc-h2 toc-link" data-title="AccountState (enum)">AccountState (enum)</a>
+                    <a href="#data-structures-accountstate-enum" class="toc-h2 toc-link" data-title="AccountState (enum)">AccountState (enum)</a>
                   </li>
                   <li>
-                    <a href="#custodytype-enum" class="toc-h2 toc-link" data-title="CustodyType (enum)">CustodyType (enum)</a>
+                    <a href="#data-structures-custodytype-enum" class="toc-h2 toc-link" data-title="CustodyType (enum)">CustodyType (enum)</a>
                   </li>
                   <li>
-                    <a href="#depositstate-enum" class="toc-h2 toc-link" data-title="DepositState (enum)">DepositState (enum)</a>
+                    <a href="#data-structures-depositstate-enum" class="toc-h2 toc-link" data-title="DepositState (enum)">DepositState (enum)</a>
                   </li>
                   <li>
-                    <a href="#deposittype-enum" class="toc-h2 toc-link" data-title="DepositType (enum)">DepositType (enum)</a>
+                    <a href="#data-structures-deposittype-enum" class="toc-h2 toc-link" data-title="DepositType (enum)">DepositType (enum)</a>
                   </li>
                   <li>
-                    <a href="#brokeraccountdetails-object" class="toc-h2 toc-link" data-title="BrokerAccountDetails (object)">BrokerAccountDetails (object)</a>
+                    <a href="#data-structures-brokeraccountdetails-object" class="toc-h2 toc-link" data-title="BrokerAccountDetails (object)">BrokerAccountDetails (object)</a>
                   </li>
                   <li>
-                    <a href="#brokeraccountdetailsbrief-object" class="toc-h2 toc-link" data-title="BrokerAccountDetailsBrief (object)">BrokerAccountDetailsBrief (object)</a>
+                    <a href="#data-structures-brokeraccountdetailsbrief-object" class="toc-h2 toc-link" data-title="BrokerAccountDetailsBrief (object)">BrokerAccountDetailsBrief (object)</a>
                   </li>
                   <li>
-                    <a href="#accountdetails-object" class="toc-h2 toc-link" data-title="AccountDetails (object)">AccountDetails (object)</a>
+                    <a href="#data-structures-accountdetails-object" class="toc-h2 toc-link" data-title="AccountDetails (object)">AccountDetails (object)</a>
                   </li>
                   <li>
-                    <a href="#accountdetailsbrief-object" class="toc-h2 toc-link" data-title="AccountDetailsBrief (object)">AccountDetailsBrief (object)</a>
+                    <a href="#data-structures-accountdetailsbrief-object" class="toc-h2 toc-link" data-title="AccountDetailsBrief (object)">AccountDetailsBrief (object)</a>
                   </li>
                   <li>
-                    <a href="#brokeraccountbalances-object" class="toc-h2 toc-link" data-title="BrokerAccountBalances (object)">BrokerAccountBalances (object)</a>
+                    <a href="#data-structures-brokeraccountbalances-object" class="toc-h2 toc-link" data-title="BrokerAccountBalances (object)">BrokerAccountBalances (object)</a>
                   </li>
                   <li>
-                    <a href="#destinationdetails-object" class="toc-h2 toc-link" data-title="DestinationDetails (object)">DestinationDetails (object)</a>
+                    <a href="#data-structures-destinationdetails-object" class="toc-h2 toc-link" data-title="DestinationDetails (object)">DestinationDetails (object)</a>
                   </li>
                   <li>
-                    <a href="#withdrawaldocument-object" class="toc-h2 toc-link" data-title="WithdrawalDocument (object)">WithdrawalDocument (object)</a>
+                    <a href="#data-structures-withdrawaldocument-object" class="toc-h2 toc-link" data-title="WithdrawalDocument (object)">WithdrawalDocument (object)</a>
                   </li>
                   <li>
-                    <a href="#transactioninfo-object" class="toc-h2 toc-link" data-title="TransactionInfo (object)">TransactionInfo (object)</a>
+                    <a href="#data-structures-transactioninfo-object" class="toc-h2 toc-link" data-title="TransactionInfo (object)">TransactionInfo (object)</a>
                   </li>
                   <li>
-                    <a href="#depositsource-object" class="toc-h2 toc-link" data-title="DepositSource (object)">DepositSource (object)</a>
+                    <a href="#data-structures-depositsource-object" class="toc-h2 toc-link" data-title="DepositSource (object)">DepositSource (object)</a>
                   </li>
                   <li>
-                    <a href="#amlchecks-object" class="toc-h2 toc-link" data-title="AmlChecks (object)">AmlChecks (object)</a>
+                    <a href="#data-structures-amlchecks-object" class="toc-h2 toc-link" data-title="AmlChecks (object)">AmlChecks (object)</a>
                   </li>
                   <li>
-                    <a href="#completedamlcheck-object" class="toc-h2 toc-link" data-title="CompletedAmlCheck (object)">CompletedAmlCheck (object)</a>
+                    <a href="#data-structures-completedamlcheck-object" class="toc-h2 toc-link" data-title="CompletedAmlCheck (object)">CompletedAmlCheck (object)</a>
                   </li>
                   <li>
-                    <a href="#amloverallresolution-enum" class="toc-h2 toc-link" data-title="AmlOverallResolution (enum)">AmlOverallResolution (enum)</a>
+                    <a href="#data-structures-amloverallresolution-enum" class="toc-h2 toc-link" data-title="AmlOverallResolution (enum)">AmlOverallResolution (enum)</a>
                   </li>
                   <li>
-                    <a href="#amlresolution-enum" class="toc-h2 toc-link" data-title="AmlResolution (enum)">AmlResolution (enum)</a>
+                    <a href="#data-structures-amlresolution-enum" class="toc-h2 toc-link" data-title="AmlResolution (enum)">AmlResolution (enum)</a>
                   </li>
                   <li>
-                    <a href="#withdrawalstate-enum" class="toc-h2 toc-link" data-title="WithdrawalState (enum)">WithdrawalState (enum)</a>
+                    <a href="#data-structures-withdrawalstate-enum" class="toc-h2 toc-link" data-title="WithdrawalState (enum)">WithdrawalState (enum)</a>
                   </li>
                   <li>
-                    <a href="#withdrawalerror-enum" class="toc-h2 toc-link" data-title="WithdrawalError (enum)">WithdrawalError (enum)</a>
+                    <a href="#data-structures-withdrawalerror-enum" class="toc-h2 toc-link" data-title="WithdrawalError (enum)">WithdrawalError (enum)</a>
                   </li>
                   <li>
-                    <a href="#smartcontractdeploymentdocument-object" class="toc-h2 toc-link" data-title="SmartContractDeploymentDocument (object)">SmartContractDeploymentDocument (object)</a>
+                    <a href="#data-structures-smartcontractdeploymentdocument-object" class="toc-h2 toc-link" data-title="SmartContractDeploymentDocument (object)">SmartContractDeploymentDocument (object)</a>
                   </li>
                   <li>
-                    <a href="#smartcontractinvokationdocument-object" class="toc-h2 toc-link" data-title="SmartContractInvokationDocument (object)">SmartContractInvokationDocument (object)</a>
+                    <a href="#data-structures-smartcontractinvokationdocument-object" class="toc-h2 toc-link" data-title="SmartContractInvokationDocument (object)">SmartContractInvokationDocument (object)</a>
                   </li>
                   <li>
-                    <a href="#dataitem" class="toc-h2 toc-link" data-title="DataItem">DataItem</a>
+                    <a href="#data-structures-dataitem" class="toc-h2 toc-link" data-title="DataItem">DataItem</a>
                   </li>
               </ul>
           </li>
       </ul>
+        <ul class="toc-footer">
+            <li>API V1 <a href='/v2'>API V2</a></li>
+            <li><a href='https://github.com/swisschain/Sirius.Api.Docs'>GitHub</a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -493,14 +593,14 @@
 <p>For more information about Sirius, please contact us <a href="mailto:info@swisschain.io">info@swisschain.io</a>.</p>
 <h1 id='feedback'>Feedback</h1>
 <p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/swagger/ui/index.html">REST API</a>, <a href="https://sirius-grpc.swisschain.io">gRPC API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius.Public/issues/new">GitHub issue</a>. Thank you!</p>
-<h1 id='change-log'>Change Log</h1><h1 id='rest-protocol-description'>REST Protocol description</h1><h2 id='allowed-http-verbs'>Allowed HTTP Verbs</h2>
+<h1 id='change-log'>Change Log</h1><h1 id='rest-protocol-description'>REST Protocol description</h1><h2 id='rest-protocol-description-allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
 <li><code>POST</code> : Creates a resource.</li>
 <li><code>GET</code> : Gets a resource or a list of resources.</li>
 <li><code>DELETE</code> : Deletes a resource.</li>
 </ul>
-<h2 id='description-of-http-server-responses'>Description Of HTTP Server Responses</h2>
+<h2 id='rest-protocol-description-description-of-http-server-responses'>Description Of HTTP Server Responses</h2>
 <ul>
 <li>200 <code>OK</code> : the request was successful.</li>
 <li>201 <code>Created</code> : the request was successful and a resource was created.</li>
@@ -510,14 +610,14 @@
 <li>403 <code>Forbidden</code> : access denied.</li>
 <li>404 <code>Not Found</code> : resource was not found.</li>
 </ul>
-<h2 id='authentication'>Authentication</h2>
+<h2 id='rest-protocol-description-authentication'>Authentication</h2>
 <p>Sirius API uses <code>Bearer authentication</code>. To get the token, <a href="mailto:info@swisschain.io">contact us</a> to get invitation code, then register in our <a href="https://universe.swisschain.io/">Universe portal</a>, create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using <a href="https://jwt.io">jwt.io</a> online service.</p>
 
 <blockquote>
 <p>Request Header</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="nl">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **********************************"</span><span class="w">
-</span></code></pre></div><h2 id='error-responses'>Error responses</h2>
+</span></code></pre></div><h2 id='rest-protocol-description-error-responses'>Error responses</h2>
 <p>Until other is specified for the particular endpoint and HTTP status code, the error response model is:</p>
 
 <ul>
@@ -545,7 +645,7 @@
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='pagination'>Pagination</h2>
+</span></code></pre></div><h2 id='rest-protocol-description-pagination'>Pagination</h2>
 <p>Sirius API uses cursor-based pagination model in all endpoints which can return loads of items.</p>
 
 <p>Pagination parameters are passed via query string. The parameters can be:</p>
@@ -557,7 +657,7 @@
 </ul>
 
 <p>The response is:</p>
-<h3 id='paginated'>Paginated</h3>
+<h3 id='rest-protocol-description-pagination-paginated'>Paginated</h3>
 <p>Paginated response</p>
 
 <ul>
@@ -571,7 +671,7 @@
 <li><code>items</code> (array[object]) - the array of the queried items.</li>
 </ul></li>
 </ul>
-<h2 id='decimal-number'>Decimal number</h2>
+<h2 id='rest-protocol-description-decimal-number'>Decimal number</h2>
 <p>Here you can see how <code>decimal</code> numbers are presented (Price, Volume, Amount, etc) in API contract.</p>
 
 <p>In the <code>Rest API</code>, the decimal type is presented as a number with strict precision.</p>
@@ -583,7 +683,7 @@
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">222231.33420001911</span><span class="p">,</span><span class="w">
     </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000001</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='timestamp'>Timestamp</h2>
+</span></code></pre></div><h2 id='rest-protocol-description-timestamp'>Timestamp</h2>
 <p><code>iso 8601</code> is used for the timestamps in the form <code>2020-08-04T08:05:09.039924+00:00</code></p>
 
 <blockquote>
@@ -602,9 +702,9 @@
 <p>Protocol is a set of rules on how blockchain nodes interact with each other - <code>Bitcoin</code>, <code>Ethereum</code>, <code>Ripple</code>.</p>
 
 <p>Network type can be <code>private</code>, <code>test</code>, or <code>public</code>.</p>
-<h2 id='search-blockchains'>Search blockchains</h2><h3 id='request'>Request</h3>
+<h2 id='blockchains-search-blockchains'>Search blockchains</h2><h3 id='blockchains-search-blockchains-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/blockchains</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='blockchains-search-blockchains-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>name</th>
@@ -662,7 +762,7 @@
 <td>10</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3>
+<h3 id='blockchains-search-blockchains-response'>Response</h3>
 <p>Paginated array of the blockchains:</p>
 
 <table><thead>
@@ -797,9 +897,9 @@
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='get-latest-block'>Get latest block</h2><h3 id='request-2'>Request</h3>
+</span></code></pre></div><h2 id='blockchains-get-latest-block'>Get latest block</h2><h3 id='blockchains-get-latest-block-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/blockchains/{id}/latest-block</code></p>
-<h3 id='parameters'>Parameters</h3>
+<h3 id='blockchains-get-latest-block-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>name</th>
@@ -815,7 +915,7 @@
 <td>bitcoin-private</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='blockchains-get-latest-block-response'>Response</h3>
 <p>The latest block of the specified blockchain:</p>
 
 <table><thead>
@@ -842,9 +942,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='assets'>Assets</h1>
 <p>Sirius provides the set of crypto assets available to use. You can get notifications about a deposit or initiate a withdrawal in any asset presented in this set. Each asset has a symbol, accuracy, optional address, ID of the blockchain containing this asset and unique ID. It&#39;s possible that in the different blockchains assets with the same symbol and/or address are existed, so you have to rely only on the asset ID if you need to deterministically identify it. In fact asset ID corresponds to its blockchain ID + symbol + address. If you&#39;ve received a deposit of an asset which is not supported by Sirius yet, you can add this particular asset to your personal list by specifying all needed asset parameters.</p>
-<h2 id='search-assets'>Search assets</h2><h3 id='request'>Request</h3>
+<h2 id='assets-search-assets'>Search assets</h2><h3 id='assets-search-assets-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/assets</code></p>
-<h3 id='parameters'>Parameters</h3><h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='assets-search-assets-parameters'>Parameters</h3><h3 id='assets-search-assets-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>name</th>
@@ -902,7 +1002,7 @@
 <td>10</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3>
+<h3 id='assets-search-assets-response'>Response</h3>
 <p>Paginated array of the assets:</p>
 
 <table><thead>
@@ -988,7 +1088,7 @@
 </ul>
 
 <p>We recommend using Shared Custody for the testing purposes only.</p>
-<h2 id='custody-creation'>Custody creation</h2><h3 id='request'>Request</h3>
+<h2 id='custodies-custody-creation'>Custody creation</h2><h3 id='custodies-custody-creation-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/custodies</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/Create</code></p>
@@ -1050,7 +1150,7 @@
 <td>Type of the custody</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies</span><span class="w"> 
+<h3 id='custodies-custody-creation-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies</span><span class="w"> 
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -1131,7 +1231,7 @@
 <td>Date of the custody update</td>
 </tr>
 </tbody></table>
-<h2 id='custody-update'>Custody update</h2><h3 id='request-2'>Request</h3>
+<h2 id='custodies-custody-update'>Custody update</h2><h3 id='custodies-custody-update-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>PUT /api/custodies/{custodyId}</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/Update</code></p>
@@ -1192,7 +1292,7 @@
 <td>Name of the custody to set</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="w">
+<h3 id='custodies-custody-update-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -1273,7 +1373,7 @@
 <td>Date of the custody update</td>
 </tr>
 </tbody></table>
-<h2 id='custodies-search'>Custodies search</h2><h3 id='request-3'>Request</h3>
+<h2 id='custodies-custodies-search'>Custodies search</h2><h3 id='custodies-custodies-search-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/custodies</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/Search</code></p>
@@ -1347,7 +1447,7 @@
 <td>Max numbers of the items to return from the server</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies?&amp;name=Custody&amp;type=private&amp;order=asc&amp;cursor=</span><span class="mi">100009</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+<h3 id='custodies-custodies-search-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies?&amp;name=Custody&amp;type=private&amp;order=asc&amp;cursor=</span><span class="mi">100009</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -1467,7 +1567,7 @@
 <td>Date of the custody update</td>
 </tr>
 </tbody></table>
-<h2 id='custody-api-key-creation'>Custody API key creation</h2><h3 id='request-4'>Request</h3>
+<h2 id='custodies-custody-api-key-creation'>Custody API key creation</h2><h3 id='custodies-custody-api-key-creation-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/custodies/{custodyId}/api-keys</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/AddApiKey</code></p>
@@ -1537,7 +1637,7 @@
 <td>Date of the API key expiration</td>
 </tr>
 </tbody></table>
-<h3 id='response-4'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys</span><span class="w">
+<h3 id='custodies-custody-api-key-creation-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -1618,7 +1718,7 @@
 <td>Flag indicating if the API key is revoked</td>
 </tr>
 </tbody></table>
-<h2 id='custody-api-keys-search'>Custody API keys search</h2><h3 id='request-5'>Request</h3>
+<h2 id='custodies-custody-api-keys-search'>Custody API keys search</h2><h3 id='custodies-custody-api-keys-search-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/custodies/{custodyId}/api-keys</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.custodies.Custodies/SearchApiKeys</code></p>
@@ -1700,7 +1800,7 @@
 <td>Max numbers of the items to return from the server</td>
 </tr>
 </tbody></table>
-<h3 id='response-5'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
+<h3 id='custodies-custody-api-keys-search-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/custodies/</span><span class="mi">100010</span><span class="err">/api-keys?name=API%</span><span class="mi">20</span><span class="err">key&amp;isRevoked=</span><span class="kc">false</span><span class="err">&amp;order=asc&amp;cursor=</span><span class="mi">100013</span><span class="err">&amp;limit=</span><span class="mi">3</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -1810,17 +1910,17 @@
 <td>Flag indicating if the custody API key is revoked</td>
 </tr>
 </tbody></table>
-<h2 id='custody-api-key-token-obtaining'>Custody API key token obtaining</h2><h3 id='request-6'>Request</h3>
+<h2 id='custodies-custody-api-key-token-obtaining'>Custody API key token obtaining</h2><h3 id='custodies-custody-api-key-token-obtaining-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/custodies/{custodyId}/api-keys/{apiKeyId}/token</code></p>
-<h4 id='parameters'>Parameters</h4><h4 id='query-parameters'>Query Parameters</h4><h3 id='response-6'>Response</h3>
+<h4 id='custodies-custody-api-key-token-obtaining-request-parameters'>Parameters</h4><h4 id='custodies-custody-api-key-token-obtaining-request-query-parameters'>Query Parameters</h4><h3 id='custodies-custody-api-key-token-obtaining-response'>Response</h3>
 <blockquote>
 <p>GET /api/custodies/{custodyId}/api-keys/{apiKeyId}/token 200 OK</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='custody-api-key-token-revocation'>Custody API key token revocation</h2><h3 id='request-7'>Request</h3>
+</span></code></pre></div><h2 id='custodies-custody-api-key-token-revocation'>Custody API key token revocation</h2><h3 id='custodies-custody-api-key-token-revocation-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/custodies/{custodyId}/api-keys/{apiKeyId}/revoke</code></p>
-<h4 id='parameters-2'>Parameters</h4><h4 id='query-parameters-2'>Query Parameters</h4><h3 id='response-7'>Response</h3>
+<h4 id='custodies-custody-api-key-token-revocation-request-parameters'>Parameters</h4><h4 id='custodies-custody-api-key-token-revocation-request-query-parameters'>Query Parameters</h4><h3 id='custodies-custody-api-key-token-revocation-response'>Response</h3>
 <blockquote>
 <p>POST /api/custodies/{custodyId}/api-keys/{apiKeyId}/revoke 200 OK</p>
 </blockquote>
@@ -1836,7 +1936,7 @@
 <p>Broker account structure:</p>
 
 <p><img src="https://github.com/swisschain/Sirius.Api.Docs/raw/master/source/images/broker-account-structure.png" alt="Broker account structure lifecycle"/></p>
-<h2 id='create-a-broker-account'>Create a broker account</h2><h3 id='request'>Request</h3>
+<h2 id='broker-accounts-create-a-broker-account'>Create a broker account</h2><h3 id='broker-accounts-create-a-broker-account-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/broker-accounts</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts.BrokerAccounts.Create</code></p>
@@ -1916,7 +2016,7 @@
 <td>Ids of the AML connections to enable for deposit/withdrawal checks</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w"> 
+<h3 id='broker-accounts-create-a-broker-account-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w"> 
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -2037,7 +2137,7 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='update-the-broker-account'>Update the broker account</h2><h3 id='request-2'>Request</h3>
+<h2 id='broker-accounts-update-the-broker-account'>Update the broker account</h2><h3 id='broker-accounts-update-the-broker-account-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>PUT /api/broker-accounts</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts.BrokerAccounts.Update</code></p>
@@ -2108,7 +2208,7 @@
 <td>Ids of the AML connections to enable for deposit/withdrawal checks</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w"> 
+<h3 id='broker-accounts-update-the-broker-account-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w"> 
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -2229,11 +2329,11 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='searches-broker-accounts'>Searches broker accounts</h2><h3 id='request-3'>Request</h3>
+<h2 id='broker-accounts-searches-broker-accounts'>Searches broker accounts</h2><h3 id='broker-accounts-searches-broker-accounts-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts.BrokerAccounts.Search</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='broker-accounts-searches-broker-accounts-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -2304,7 +2404,7 @@
   <span class="k">repeated</span> <span class="n">BrokerAccountState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w">
+</code></pre></div><h3 id='broker-accounts-searches-broker-accounts-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -2438,11 +2538,11 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='searches-the-broker-account-balances'>Searches the broker account balances</h2><h3 id='request-4'>Request</h3>
+<h2 id='broker-accounts-searches-the-broker-account-balances'>Searches the broker account balances</h2><h3 id='broker-accounts-searches-the-broker-account-balances-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/balances</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetBalances</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='broker-accounts-searches-the-broker-account-balances-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -2497,7 +2597,7 @@
   <span class="n">google.protobuf.Int64Value</span> <span class="na">assetId</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                       <span class="c1">// 100000113</span>
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// Object</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-4'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts/</span><span class="p">{</span><span class="err">brokerAccountId</span><span class="p">}</span><span class="err">/balances</span><span class="w">
+</code></pre></div><h3 id='broker-accounts-searches-the-broker-account-balances-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts/</span><span class="p">{</span><span class="err">brokerAccountId</span><span class="p">}</span><span class="err">/balances</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -2647,11 +2747,11 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='searches-the-broker-account-details'>Searches the broker account details</h2><h3 id='request-5'>Request</h3>
+<h2 id='broker-accounts-searches-the-broker-account-details'>Searches the broker account details</h2><h3 id='broker-accounts-searches-the-broker-account-details-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts.BrokerAccounts.SearchDetails</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='broker-accounts-searches-the-broker-account-details-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -2730,7 +2830,7 @@
   <span class="n">google.protobuf.StringValue</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                      <span class="c1">// "0x678401cf8200967a3998d1480512b3f9e79f9447"</span>
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>  <span class="c1">// Pagination object</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-5'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts/</span><span class="p">{</span><span class="err">brokerAccountId</span><span class="p">}</span><span class="err">/details</span><span class="w">
+</code></pre></div><h3 id='broker-accounts-searches-the-broker-account-details-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts/</span><span class="p">{</span><span class="err">brokerAccountId</span><span class="p">}</span><span class="err">/details</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -2827,11 +2927,11 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='request-6'>Request</h3>
+<h2 id='broker-accounts-gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='broker-accounts-gets-the-broker-account-details-by-the-asset-id-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/broker-accounts/{brokerAccountId}/details/by-asset-id/{assetId}</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts.BrokerAccounts.BrokerAccounts.GetDetails</code></p>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='broker-accounts-gets-the-broker-account-details-by-the-asset-id-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -2864,7 +2964,7 @@
   <span class="kt">int64</span> <span class="na">brokerAccountId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                        
   <span class="kt">int64</span> <span class="na">assetId</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-6'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts/</span><span class="p">{</span><span class="err">brokerAccountId</span><span class="p">}</span><span class="err">/details/by-asset-id/</span><span class="p">{</span><span class="err">assetId</span><span class="p">}</span><span class="w">
+</code></pre></div><h3 id='broker-accounts-gets-the-broker-account-details-by-the-asset-id-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/broker-accounts/</span><span class="p">{</span><span class="err">brokerAccountId</span><span class="p">}</span><span class="err">/details/by-asset-id/</span><span class="p">{</span><span class="err">assetId</span><span class="p">}</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -2949,9 +3049,9 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='search-for-broker-account-updates'>Search for broker account updates</h2><h3 id='request-7'>Request</h3>
+<h2 id='broker-accounts-search-for-broker-account-updates'>Search for broker account updates</h2><h3 id='broker-accounts-search-for-broker-account-updates-request'>Request</h3>
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetUpdates</code></p>
-<h3 id='parameters'>Parameters</h3>
+<h3 id='broker-accounts-search-for-broker-account-updates-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -3008,7 +3108,7 @@
   <span class="k">repeated</span> <span class="n">BrokerAccountState</span> <span class="na">state</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
   <span class="n">google.protobuf.Int64Value</span> <span class="na">cursor</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-7'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts.BrokerAccounts.GetUpdates</span>
+</code></pre></div><h3 id='broker-accounts-search-for-broker-account-updates-response'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts.BrokerAccounts.GetUpdates</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
@@ -3114,7 +3214,7 @@
 </tbody></table>
 <h1 id='accounts'>Accounts</h1>
 <p>Account is the multi-currency (multi-blockchain) account which is associated with a particular broker account. Account has the same blockchains enabled as the parent broker account has. Account can be associated with a thing in your system by using the &quot;reference ID&quot;. You can pass ID of your end-user, invoice, contract or any other things with which you want to associate deposits received on the account. Reference ID is optional, so you can avoid passing your internal IDs to Sirius and keep mapping between your objects and Sirius accounts on your side.</p>
-<h2 id='create-an-account'>Create an account</h2><h3 id='request'>Request</h3>
+<h2 id='accounts-create-an-account'>Create an account</h2><h3 id='accounts-create-an-account-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/accounts</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts.Accounts.Create</code></p>
@@ -3188,7 +3288,7 @@
 <td>Id of the related user in the system (Needed for enabling AML on broker Account)</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/accounts</span><span class="w"> 
+<h3 id='accounts-create-an-account-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/accounts</span><span class="w"> 
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -3285,7 +3385,7 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='update-an-account'>Update an account</h2><h3 id='request-2'>Request</h3>
+<h2 id='accounts-update-an-account'>Update an account</h2><h3 id='accounts-update-an-account-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>PUT /api/accounts</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts.Accounts.Update</code></p>
@@ -3331,7 +3431,7 @@
 <td>Id of the related user in the system (Needed for enabling AML on broker Account)</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/accounts</span><span class="w"> 
+<h3 id='accounts-update-an-account-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/accounts</span><span class="w"> 
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -3403,11 +3503,11 @@
 <td><em>body</em></td>
 </tr>
 </tbody></table>
-<h2 id='search-for-accounts'>Search for accounts</h2><h3 id='request-3'>Request</h3>
+<h2 id='accounts-search-for-accounts'>Search for accounts</h2><h3 id='accounts-search-for-accounts-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts.Accounts.Search</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='accounts-search-for-accounts-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -3486,7 +3586,7 @@
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// Pagination object</span>
   <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>                       <span class="c1">//108000004 (could be empty)</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/accounts?id=</span><span class="mi">103000022</span><span class="w">
+</code></pre></div><h3 id='accounts-search-for-accounts-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/accounts?id=</span><span class="mi">103000022</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -3596,11 +3696,11 @@
 <td>Native Id of the user in customer&#39;s system</td>
 </tr>
 </tbody></table>
-<h2 id='searches-the-account-details'>Searches the account details</h2><h3 id='request-4'>Request</h3>
+<h2 id='accounts-searches-the-account-details'>Searches the account details</h2><h3 id='accounts-searches-the-account-details-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts.Accounts.SearchDetails</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='accounts-searches-the-account-details-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -3711,7 +3811,7 @@
   <span class="k">repeated</span> <span class="o">.</span><span class="n">swisschain.sirius.api.common.NullableTagType</span> <span class="na">tag_type</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>  <span class="c1">// NullableTagType.Value.Text</span>
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>         <span class="c1">// Pagination object</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-4'>Response</h3>
+</code></pre></div><h3 id='accounts-searches-the-account-details-response'>Response</h3>
 <blockquote>
 <p>GET /api/accounts/{accountId}/details 200 OK</p>
 </blockquote>
@@ -3811,11 +3911,11 @@
 <td>Tag type</td>
 </tr>
 </tbody></table>
-<h2 id='gets-the-account-details-by-the-asset-id'>Gets the account details by the asset id</h2><h3 id='request-5'>Request</h3>
+<h2 id='accounts-gets-the-account-details-by-the-asset-id'>Gets the account details by the asset id</h2><h3 id='accounts-gets-the-account-details-by-the-asset-id-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/accounts/{accountId}/details/by-asset-id/{assetId}</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts.Accounts.GetDetails</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='accounts-gets-the-account-details-by-the-asset-id-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -3848,7 +3948,7 @@
   <span class="kt">int64</span> <span class="na">account_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                         <span class="c1">// 103000000</span>
   <span class="kt">int64</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>                           <span class="c1">// 100000113</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-5'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/accounts/</span><span class="mi">103000000</span><span class="err">/details/by-asset-id/</span><span class="mi">100000113</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</code></pre></div><h3 id='accounts-gets-the-account-details-by-the-asset-id-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/accounts/</span><span class="mi">103000000</span><span class="err">/details/by-asset-id/</span><span class="mi">100000113</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -3937,9 +4037,9 @@
 <td>Tag type</td>
 </tr>
 </tbody></table>
-<h2 id='search-for-account-updates'>Search for account updates</h2><h3 id='request-6'>Request</h3>
+<h2 id='accounts-search-for-account-updates'>Search for account updates</h2><h3 id='accounts-search-for-account-updates-request'>Request</h3>
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.accounts.Accounts.GetUpdates</code></p>
-<h3 id='parameters'>Parameters</h3>
+<h3 id='accounts-search-for-account-updates-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -3996,7 +4096,7 @@
   <span class="n">google.protobuf.StringValue</span> <span class="na">reference_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>         <span class="c1">// user reference</span>
   <span class="n">google.protobuf.Int64Value</span> <span class="na">cursor</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                <span class="c1">// 108000004 (could be empty)</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-6'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts.Accounts.GetUpdates</span>
+</code></pre></div><h3 id='accounts-search-for-account-updates-response'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.accounts.Accounts.GetUpdates</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
@@ -4099,11 +4199,11 @@ too small to transfer funds from the account address to the broker account addre
 <p>If user deposited an asset which is not blockchain native (a token), the deposit is classified as &quot;Token&quot; deposit. The lifecycle of a &quot;Token&quot; deposit:</p>
 
 <p><img src="https://raw.githubusercontent.com/swisschain/Sirius.Api.Docs/master/source/images/token-deposit-lifecycle.png" alt="Deposit lifecycle"/></p>
-<h2 id='searches-deposits'>Searches deposits</h2><h3 id='request'>Request</h3>
+<h2 id='deposits-searches-deposits'>Searches deposits</h2><h3 id='deposits-searches-deposits-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/deposits</code></p>
 
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.deposits.Deposits.Search</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='deposits-searches-deposits-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -4206,7 +4306,7 @@ too small to transfer funds from the account address to the broker account addre
   <span class="n">swisschain.sirius.api.common.PaginationInt64</span> <span class="na">pagination</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">DepositType</span> <span class="na">deposit_type</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/deposits</span><span class="w">
+</code></pre></div><h3 id='deposits-searches-deposits-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/api/deposits</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -4470,9 +4570,9 @@ too small to transfer funds from the account address to the broker account addre
 <td>AML checks root object</td>
 </tr>
 </tbody></table>
-<h2 id='searches-deposit-updates'>Searches deposit updates</h2><h3 id='request-2'>Request</h3>
+<h2 id='deposits-searches-deposit-updates'>Searches deposit updates</h2><h3 id='deposits-searches-deposit-updates-request'>Request</h3>
 <p><strong>gRPC API:</strong> <code>swisschain.sirius.api.deposits.Deposits.GetUpdates</code></p>
-<h3 id='parameters'>Parameters</h3>
+<h3 id='deposits-searches-deposit-updates-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -4583,7 +4683,7 @@ too small to transfer funds from the account address to the broker account addre
   <span class="n">google.protobuf.Int64Value</span> <span class="na">cursor</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
   <span class="k">repeated</span> <span class="n">DepositType</span> <span class="na">deposit_type</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='response-2'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.deposits.Deposits.Search</span>
+</code></pre></div><h3 id='deposits-searches-deposit-updates-response'>Response</h3><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.deposits.Deposits.Search</span>
 
 <span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
 
@@ -4782,7 +4882,7 @@ too small to transfer funds from the account address to the broker account addre
 <p>The lifecycle of a withdrawal:</p>
 
 <p><img src="https://raw.githubusercontent.com/swisschain/Sirius.Api.Docs/master/source/images/withdrawal-lifecycle.png" alt="Withdrawal lifecycle"/></p>
-<h2 id='starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='request'>Request</h3>
+<h2 id='withdrawals-starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='withdrawals-starts-a-withdrawal-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/withdrawals</code>
 <strong>gRPC API:</strong> <code>swisschain.sirius.api.withdrawals.Withdrawals.Execute</code></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
@@ -4807,7 +4907,7 @@ too small to transfer funds from the account address to the broker account addre
     <span class="kt">string</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// "CBAirYR2d6vmRV6d1GEfdA3Kv11pOvdebhEyx8pGNKvTaQcbc0IiBUKCESX9eiOlxorkMDuOEMVs4HZ6JnKg6aY8akb72723cBTxvNIHb/P3OyHQWECcIKwmruWXEunWS8ZlFjxy/nWr/XGD0G8N8/xREGhGCcHCjdwrMmMQBSg="</span>
 <span class="p">}</span>
 
-</code></pre></div><h3 id='parameters'>Parameters</h3>
+</code></pre></div><h3 id='withdrawals-starts-a-withdrawal-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -4862,7 +4962,7 @@ too small to transfer funds from the account address to the broker account addre
         "tagType": "string",            // Optional - ("text", "number")
     }
 }
-</code></pre></div><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
+</code></pre></div><h3 id='withdrawals-starts-a-withdrawal-query-parameters'>Query Parameters</h3><h3 id='withdrawals-starts-a-withdrawal-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/withdrawals</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -4950,7 +5050,7 @@ too small to transfer funds from the account address to the broker account addre
     <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
     <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='parameters-2'>Parameters</h3>
+</code></pre></div><h3 id='withdrawals-starts-a-withdrawal-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -5104,7 +5204,7 @@ too small to transfer funds from the account address to the broker account addre
 <td>Datetime of latest withdrawal update</td>
 </tr>
 </tbody></table>
-<h2 id='searches-withdrawals'>Searches withdrawals</h2><h3 id='request-2'>Request</h3>
+<h2 id='withdrawals-searches-withdrawals'>Searches withdrawals</h2><h3 id='withdrawals-searches-withdrawals-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/withdrawals</code>
 <strong>gRPC API:</strong> <code>swisschain.sirius.api.withdrawals.Withdrawals.Search</code></p>
 <div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals.Withdrawals.Search</span>
@@ -5173,7 +5273,7 @@ too small to transfer funds from the account address to the broker account addre
     <span class="n">google.protobuf.Int64Value</span> <span class="na">user_id</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
     <span class="n">google.protobuf.StringValue</span> <span class="na">user_native_id</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='query-parameters-2'>Query Parameters</h3>
+</code></pre></div><h3 id='withdrawals-searches-withdrawals-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -5310,7 +5410,7 @@ too small to transfer funds from the account address to the broker account addre
 <td>10</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='withdrawals-searches-withdrawals-response'>Response</h3>
 <blockquote>
 <p>GET /api/withdrawals 200 OK
 swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
@@ -5456,7 +5556,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
     <span class="n">google.protobuf.StringValue</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
 
-</code></pre></div><h3 id='parameters-3'>Parameters</h3>
+</code></pre></div><h3 id='withdrawals-searches-withdrawals-parameters'>Parameters</h3>
 <p>Paginated response of the withdrawals:</p>
 
 <table><thead>
@@ -5630,7 +5730,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
 <td>Datetime of latest withdrawal update</td>
 </tr>
 </tbody></table>
-<h2 id='searches-withdrawal-updates'>Searches withdrawal updates</h2><h3 id='request-3'>Request</h3>
+<h2 id='withdrawals-searches-withdrawal-updates'>Searches withdrawal updates</h2><h3 id='withdrawals-searches-withdrawal-updates-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>GET /api/withdrawal-updates</code>
 <strong>gRPC API:</strong> <code>swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</code></p>
 <div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">WithdrawalUpdateSearchRequest</span> <span class="p">{</span>
@@ -5685,7 +5785,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
   <span class="s">"user_id"</span><span class="o">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s">"user_native_id"</span><span class="o">:</span> <span class="n">null</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='query-parameters-3'>Query Parameters</h3>
+</code></pre></div><h3 id='withdrawals-searches-withdrawal-updates-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>gRPC name</th>
@@ -5809,7 +5909,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
 <td>Maximum number of items to return in the search results</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='withdrawals-searches-withdrawal-updates-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"withdrawal_update_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"501000593"</span><span class="p">,</span><span class="w">
@@ -5900,7 +6000,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search Success</p>
 <span class="kt">int64</span> <span class="na">withdrawal_update_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">WithdrawalResponse</span> <span class="na">withdrawal</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='parameters-4'>Parameters</h3>
+</code></pre></div><h3 id='withdrawals-searches-withdrawal-updates-parameters'>Parameters</h3>
 <blockquote>
 <p>GET /api/withdrawal-updates 200 OK
 Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
@@ -6087,7 +6187,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 </tbody></table>
 <h1 id='smartcontracts'>SmartContracts</h1>
 <p><Placeholder_for_description></p>
-<h2 id='deploy-a-smart-contract'>Deploy a smart contract</h2><h3 id='request'>Request</h3>
+<h2 id='smartcontracts-deploy-a-smart-contract'>Deploy a smart contract</h2><h3 id='smartcontracts-deploy-a-smart-contract-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/smart-contracts/deploy</code>
 <strong>gRPC API:</strong> <code>swisschain.sirius.api.smart_contracts.SmartContracts.Deploy</code></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/deploy</span><span class="w">
@@ -6113,7 +6213,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
   <span class="kt">string</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// mRMfKO7x3TZYkW4uLOrDfhBOAqAY5hIdAyLLHT/BxzrO8Ophwx/qVHlyQevgj4QVS4RnVMQHJaRDAbyIueduScRSoTXCd6XhZ6m8vA3enWogUuW41CX3+2C1GOF9KvJSBznRb6w5AaUbTaiBcixILz7tcE7hqEW2sZt2LSDGcKs=</span>
   <span class="kt">bytes</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// binary(BaseSecurityToken.json)</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='parameters'>Parameters</h3>
+</code></pre></div><h3 id='smartcontracts-deploy-a-smart-contract-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -6160,7 +6260,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>
-</code></pre></div><h3 id='query-parameters'>Query Parameters</h3><h3 id='response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/deploy</span><span class="w">
+</code></pre></div><h3 id='smartcontracts-deploy-a-smart-contract-query-parameters'>Query Parameters</h3><h3 id='smartcontracts-deploy-a-smart-contract-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/deploy</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
@@ -6242,7 +6342,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">created_at</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
   <span class="n">google.protobuf.Timestamp</span> <span class="na">updated_at</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>  
 <span class="p">}</span>
-</code></pre></div><h3 id='parameters-2'>Parameters</h3>
+</code></pre></div><h3 id='smartcontracts-deploy-a-smart-contract-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -6360,7 +6460,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 <td>Datetime of last deploy update</td>
 </tr>
 </tbody></table>
-<h2 id='parse-smart-contract-metamodel'>Parse smart contract metamodel</h2><h3 id='request-2'>Request</h3>
+<h2 id='smartcontracts-parse-smart-contract-metamodel'>Parse smart contract metamodel</h2><h3 id='smartcontracts-parse-smart-contract-metamodel-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>Post /api/smart-contracts/parse</code>
 <strong>gRPC API:</strong> <code>swisschain.sirius.api.smart_contracts.SmartContracts.Parse</code></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/parse</span><span class="w">
@@ -6378,7 +6478,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
   <span class="kt">string</span> <span class="na">blockchain_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// ethereum</span>
   <span class="kt">bytes</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// BaseSecurityToken.json</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='parameters-3'>Parameters</h3>
+</code></pre></div><h3 id='smartcontracts-parse-smart-contract-metamodel-parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>REST name</th>
@@ -6403,7 +6503,7 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='smartcontracts-parse-smart-contract-metamodel-response'>Response</h3>
 <blockquote>
 <p>POST /api/smart-contracts/parse 200 OK</p>
 </blockquote>
@@ -6683,10 +6783,10 @@ Stream  swisschain.sirius.api.withdrawals.Withdrawals.GetUpdates</p>
 <span class="kd">message</span> <span class="nc">UniqueItemsConstraint</span> <span class="p">{</span>
 <span class="p">}</span> 
 
-</code></pre></div><h3 id='parameters-4'>Parameters</h3>
+</code></pre></div><h3 id='smartcontracts-parse-smart-contract-metamodel-parameters'>Parameters</h3>
 <p>response of the parsing:
 Structured smart contract metadata</p>
-<h2 id='invoke-smart-contract-method'>Invoke smart contract method</h2><h3 id='request-3'>Request</h3>
+<h2 id='smartcontracts-invoke-smart-contract-method'>Invoke smart contract method</h2><h3 id='smartcontracts-invoke-smart-contract-method-request'>Request</h3>
 <p><strong>Rest API:</strong> <code>POST /api/smart-contracts//{smartContractId}/invoke</code>
 <strong>gRPC API:</strong> <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/smart-contracts/</span><span class="p">{</span><span class="err">smartContractId</span><span class="p">}</span><span class="err">/invoke</span><span class="w">
@@ -6717,7 +6817,7 @@ Structured smart contract metadata</p>
   <span class="s">"signature"</span><span class="o">:</span> <span class="s">"JiOtcENJqblnWFcTZ4DiXwUZudlKBUtYnSkUjmfAH/8a1jeMPwFBu8MGjffITh3PRl/VLRTj8kjKWFT8EUR/8Qb3E8dTeuBlCIDU2RlHRRfb6iuTvjlPmUYQ/+Es6oZlH+Tapvjfa57N19poNZ7zimqadsASe3FGt0ME9J5vufE="</span><span class="p">,</span>
   <span class="s">"smart_contract_id"</span><span class="o">:</span> <span class="mi">109000043</span>
 <span class="p">}</span>
-</code></pre></div><h3 id='query-parameters-2'>Query Parameters</h3>
+</code></pre></div><h3 id='smartcontracts-invoke-smart-contract-method-query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>gRPC name</th>
@@ -6769,7 +6869,7 @@ Structured smart contract metadata</p>
 <td>-</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='smartcontracts-invoke-smart-contract-method-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">110000034</span><span class="p">,</span><span class="w">
   </span><span class="nl">"smartContractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">109000043</span><span class="p">,</span><span class="w">
   </span><span class="nl">"smartContractName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"goerlisec"</span><span class="p">,</span><span class="w">
@@ -6872,7 +6972,7 @@ Structured smart contract metadata</p>
 <span class="p">}</span>
 
 
-</code></pre></div><h3 id='parameters-5'>Parameters</h3>
+</code></pre></div><h3 id='smartcontracts-invoke-smart-contract-method-parameters'>Parameters</h3>
 <blockquote>
 <p>POST /api/smart-contracts/{smartContractId}/invoke 200 OK
 GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p>
@@ -7021,14 +7121,14 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 <td>Datetime of last invoke update</td>
 </tr>
 </tbody></table>
-<h1 id='data-structures'>Data structures</h1><h2 id='order-enum'>Order (enum)</h2>
+<h1 id='data-structures'>Data structures</h1><h2 id='data-structures-order-enum'>Order (enum)</h2>
 <p>Order of the sorting</p>
 
 <ul>
 <li><code>asc</code> - Ascending sorting order</li>
 <li><code>desc</code> - Descending sorting order</li>
 </ul>
-<h2 id='networktype-enum'>NetworkType (enum)</h2>
+<h2 id='data-structures-networktype-enum'>NetworkType (enum)</h2>
 <p>Type of a blockchain network</p>
 
 <ul>
@@ -7036,7 +7136,7 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 <li><code>test</code> - Public test blockchain.</li>
 <li><code>public</code> - Public mainnet blockchain.</li>
 </ul>
-<h2 id='blockchainprotocol-object'>BlockchainProtocol (object)</h2>
+<h2 id='data-structures-blockchainprotocol-object'>BlockchainProtocol (object)</h2>
 <ul>
 <li><code>code</code> (<em>string</em>) - Code of the protocol. (eg. &quot;bitcoin&quot;).</li>
 <li><code>name</code> (<em>string</em>) - Name of the protocol. (eg. &quot;Bitcoin&quot;).</li>
@@ -7069,7 +7169,7 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 </ul></li>
 </ul></li>
 </ul>
-<h2 id='tagtype-enum'>TagType (enum)</h2>
+<h2 id='data-structures-tagtype-enum'>TagType (enum)</h2>
 <p>Tag type of the account. Tag is an additional information associated with particular account, 
 which can be specified in the blockchain transaction. This allows to use single blockchain 
 address to handle many accounts on it. This feature is available only on some blockchains: 
@@ -7080,14 +7180,14 @@ and you have to specify exact type in this case.</p>
 <li><code>text</code> - text tag</li>
 <li><code>number</code> - numeric tag</li>
 </ul>
-<h2 id='doublespendingprotectiontype-enum'>DoubleSpendingProtectionType (enum)</h2>
+<h2 id='data-structures-doublespendingprotectiontype-enum'>DoubleSpendingProtectionType (enum)</h2>
 <p>Each blockchain use some protection mechanism agains funds double-spending. Sirius distinguish next types:</p>
 
 <ul>
 <li><code>coins</code> - Coins are used to transfer funds. (eg. Bitcoin, Dash)</li>
 <li><code>nonce</code> - Nonce number (sequence) is used to distinguish outgoing transactions. (eg. Ethereum, Stellar)</li>
 </ul>
-<h2 id='brokeraccountstate-enum'>BrokerAccountState (enum)</h2>
+<h2 id='data-structures-brokeraccountstate-enum'>BrokerAccountState (enum)</h2>
 <p>State of the broker account</p>
 
 <ul>
@@ -7095,7 +7195,7 @@ and you have to specify exact type in this case.</p>
 <li><code>active</code> - The broker account is active and can be used as usual.</li>
 <li><code>blocked</code> - The broker account is blocked - processing of all deposits and withdrawals is on hold.</li>
 </ul>
-<h2 id='accountstate-enum'>AccountState (enum)</h2>
+<h2 id='data-structures-accountstate-enum'>AccountState (enum)</h2>
 <p>State of the account</p>
 
 <ul>
@@ -7103,14 +7203,14 @@ and you have to specify exact type in this case.</p>
 <li><code>active</code> - The account is active and can be used as usual.</li>
 <li><code>blocked</code> - The account is blocked - processing of all deposits and withdrawals is on hold.</li>
 </ul>
-<h2 id='custodytype-enum'>CustodyType (enum)</h2>
+<h2 id='data-structures-custodytype-enum'>CustodyType (enum)</h2>
 <p>Type of the vault</p>
 
 <ul>
 <li><code>selfManaged</code> - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong> on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It&#39;s fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can&#39;t get unauthorized access to your funds. The solutions is based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It provides a flexible way to control you transaction signing policy. It includes <strong>Multi Party Signature</strong> mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help with deploying of the self-managed Custody.</li>
 <li><code>shared</code> - run and managed by SwissChain, shared between all the customers that use it.</li>
 </ul>
-<h2 id='depositstate-enum'>DepositState (enum)</h2>
+<h2 id='data-structures-depositstate-enum'>DepositState (enum)</h2>
 <p>State of the deposit</p>
 
 <ul>
@@ -7129,7 +7229,7 @@ and you have to specify exact type in this case.</p>
 <li><code>refundingProvisioned</code> - token or tiny token deposit refund transaction is provisioned</li>
 <li><code>refunded</code> - deposit has been refunded</li>
 </ul>
-<h2 id='deposittype-enum'>DepositType (enum)</h2>
+<h2 id='data-structures-deposittype-enum'>DepositType (enum)</h2>
 <p>Type of the deposit</p>
 
 <ul>
@@ -7139,7 +7239,7 @@ and you have to specify exact type in this case.</p>
 <li><code>token</code> - deposit on account details in custom token (ERC20)</li>
 <li><code>tinyToken</code> - deposit on account details in custom token (ERC20)</li>
 </ul>
-<h2 id='brokeraccountdetails-object'>BrokerAccountDetails (object)</h2>
+<h2 id='data-structures-brokeraccountdetails-object'>BrokerAccountDetails (object)</h2>
 <p>Details of the broker account</p>
 
 <ul>
@@ -7149,14 +7249,14 @@ and you have to specify exact type in this case.</p>
 <li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
 <li><code>blockchainId</code> (<em>string</em>) - Blockchain ID of the details.</li>
 </ul>
-<h2 id='brokeraccountdetailsbrief-object'>BrokerAccountDetailsBrief (object)</h2>
+<h2 id='data-structures-brokeraccountdetailsbrief-object'>BrokerAccountDetailsBrief (object)</h2>
 <p>Brief broker account details</p>
 
 <ul>
 <li><code>id</code> (<em>number</em>) - Unique ID.</li>
 <li><code>address</code> (<em>string</em>) - Blockchain address of the details.</li>
 </ul>
-<h2 id='accountdetails-object'>AccountDetails (object)</h2>
+<h2 id='data-structures-accountdetails-object'>AccountDetails (object)</h2>
 <p>Details of the account</p>
 
 <ul>
@@ -7168,7 +7268,7 @@ and you have to specify exact type in this case.</p>
 <li><code>tag</code> (<em>optional</em>, <em>string</em>) - Tag of the details.</li>
 <li><code>tagType</code> (<em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em> - Type of the details tag.</li>
 </ul>
-<h2 id='accountdetailsbrief-object'>AccountDetailsBrief (object)</h2>
+<h2 id='data-structures-accountdetailsbrief-object'>AccountDetailsBrief (object)</h2>
 <p>Brief details of the account</p>
 
 <ul>
@@ -7177,7 +7277,7 @@ and you have to specify exact type in this case.</p>
 <li><code>tag</code> (<em>optional</em>, <em>string</em>) - Tag of the details.</li>
 <li><code>tagType</code> (<em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em> - Type of the details tag.</li>
 </ul>
-<h2 id='brokeraccountbalances-object'>BrokerAccountBalances (object)</h2>
+<h2 id='data-structures-brokeraccountbalances-object'>BrokerAccountBalances (object)</h2>
 <p>Balances of the broker account in a particular asset. We distinguish 4 different balances
 for each asset in each broker account.</p>
 
@@ -7192,7 +7292,7 @@ for each asset in each broker account.</p>
 <li><code>createdAt</code> (<em>timestamp</em>) - Creation time of the balances.</li>
 <li><code>updatedAt</code> (<em>timestamp</em>) - The update time of the balances.</li>
 </ul>
-<h2 id='destinationdetails-object'>DestinationDetails (object)</h2>
+<h2 id='data-structures-destinationdetails-object'>DestinationDetails (object)</h2>
 <p>Destination details for a transfer</p>
 
 <ul>
@@ -7200,7 +7300,7 @@ for each asset in each broker account.</p>
 <li><code>tag</code> (<em>optional</em>, <em>string</em>) - Tag which is related to address (applicable for Stellar)</li>
 <li><code>tagType</code> (<em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em>) - Tag type </li>
 </ul>
-<h2 id='withdrawaldocument-object'>WithdrawalDocument (object)</h2>
+<h2 id='data-structures-withdrawaldocument-object'>WithdrawalDocument (object)</h2>
 <ul>
 <li><code>version</code> (<em>string</em>) - Document version. Should be <code>1.0</code></li>
 <li><code>brokerAccountId</code> (<em>number</em>) - ID of the broker account</li>
@@ -7211,7 +7311,7 @@ for each asset in each broker account.</p>
 <li><code>amount</code> (<em>decimal</em>) - Withdrawal amount</li>
 <li><code>destinationDetails</code> (<em><a href="#destinationdetails-object">DestinationDetails</a></em>) - Destination details</li>
 </ul>
-<h2 id='transactioninfo-object'>TransactionInfo (object)</h2>
+<h2 id='data-structures-transactioninfo-object'>TransactionInfo (object)</h2>
 <p>TransactionInfo contains information about the transaction which happened on the blockchain.</p>
 
 <ul>
@@ -7221,14 +7321,14 @@ for each asset in each broker account.</p>
 <li><code>requiredVonfirmationsCount</code> (<em>number</em>) - Required count of blocks for this transaction.</li>
 <li><code>date</code> (<em>timestamp</em>) - Date of the block.</li>
 </ul>
-<h2 id='depositsource-object'>DepositSource (object)</h2>
+<h2 id='data-structures-depositsource-object'>DepositSource (object)</h2>
 <p>DepositSource indicates from which address amount came form.</p>
 
 <ul>
 <li><code>address</code> (<em>string</em>) - Address of the sender.</li>
 <li><code>amount</code> (<em>decimal</em>) - Amount in deposit asset.</li>
 </ul>
-<h2 id='amlchecks-object'>AmlChecks (object)</h2>
+<h2 id='data-structures-amlchecks-object'>AmlChecks (object)</h2>
 <p>AmlChecks contains information about passed AML checks for deposit.</p>
 
 <ul>
@@ -7237,7 +7337,7 @@ for each asset in each broker account.</p>
 <li><code>completedChecks</code> (<em>Array of <a href="#completedamlcheck-object">CompletedAmlCheck</a></em>) - Array of completed AML checks.</li>
 <li><code>requiredChecks</code> (<em>timestamp</em>) - Amount of running parallel checks for deposit/withdrawal.</li>
 </ul>
-<h2 id='completedamlcheck-object'>CompletedAmlCheck (object)</h2>
+<h2 id='data-structures-completedamlcheck-object'>CompletedAmlCheck (object)</h2>
 <p>CompletedAmlCheck contains information about passed AML check for deposit.</p>
 
 <ul>
@@ -7246,20 +7346,20 @@ for each asset in each broker account.</p>
 <li><code>resolution</code> (<em><a href="#amlresolution-enum">AmlResolution</a></em>) - Resolution for specified AML check.</li>
 <li><code>finishedAt</code> (<em>timestamp</em>) - Time when AML check was completed.</li>
 </ul>
-<h2 id='amloverallresolution-enum'>AmlOverallResolution (enum)</h2>
+<h2 id='data-structures-amloverallresolution-enum'>AmlOverallResolution (enum)</h2>
 <ul>
 <li><code>pending</code> - Indicates that not all checks were completed</li>
 <li><code>failed</code> - Indicates that some checks are in HighRisk state. Manual check required</li>
 <li><code>succeeded</code> - Indicates that AML passed with lowRisk!</li>
 </ul>
-<h2 id='amlresolution-enum'>AmlResolution (enum)</h2>
+<h2 id='data-structures-amlresolution-enum'>AmlResolution (enum)</h2>
 <ul>
 <li><code>highRisk</code> - Indicates that deposit/withdrawal has a high risk. Dirty money!</li>
 <li><code>normal</code> - AML has passed without issues.</li>
 <li><code>unknown</code> - AML provider can&#39;t asses risks.</li>
 <li><code>assetNotConfigured</code> - Asset is not configured for AML.</li>
 </ul>
-<h2 id='withdrawalstate-enum'>WithdrawalState (enum)</h2>
+<h2 id='data-structures-withdrawalstate-enum'>WithdrawalState (enum)</h2>
 <ul>
 <li><code>PROCESSING = 0;</code></li>
 <li><code>EXECUTING = 1;</code></li>
@@ -7276,7 +7376,7 @@ for each asset in each broker account.</p>
 <li><code>REFUNDED = 12;</code></li>
 <li><code>AML_FAILURE_ACCEPTING = 13;</code></li>
 </ul>
-<h2 id='withdrawalerror-enum'>WithdrawalError (enum)</h2>
+<h2 id='data-structures-withdrawalerror-enum'>WithdrawalError (enum)</h2>
 <ul>
 <li><code>NOT_ENOUGH_BALANCE = 0;</code></li>
 <li><code>INVALID_DESTINATION_ADDRESS = 1;</code></li>
@@ -7285,7 +7385,7 @@ for each asset in each broker account.</p>
 <li><code>VALIDATION_REJECTED = 4;</code></li>
 <li><code>SIGNING_REJECTED = 5;</code></li>
 </ul>
-<h2 id='smartcontractdeploymentdocument-object'>SmartContractDeploymentDocument (object)</h2>
+<h2 id='data-structures-smartcontractdeploymentdocument-object'>SmartContractDeploymentDocument (object)</h2>
 <ul>
 <li><code>name</code> (<em>string</em>) - SmartContract internal name.</li>
 <li><code>blockchainId</code>  (<em>string</em>) - ID of blockchain used for deployment</li>
@@ -7306,7 +7406,7 @@ for each asset in each broker account.</p>
 <li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
 <li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
 </ul>
-<h2 id='smartcontractinvokationdocument-object'>SmartContractInvokationDocument (object)</h2>
+<h2 id='data-structures-smartcontractinvokationdocument-object'>SmartContractInvokationDocument (object)</h2>
 <ul>
 <li><code>methodName</code> (<em>string</em>) - Method name.</li>
 <li><code>methodAddress</code>  (<em>string</em>) - Method address</li>
@@ -7327,7 +7427,7 @@ for each asset in each broker account.</p>
 <li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
 <li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
 </ul>
-<h2 id='dataitem'>DataItem</h2>
+<h2 id='data-structures-dataitem'>DataItem</h2>
 <ul>
 <li><code>void</code> {}</li>
 <li><code>bool</code> bool value</li>
