@@ -316,13 +316,24 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#sirius-digital-custody" class="toc-h1 toc-link" data-title="Sirius Digital Custody">Sirius Digital Custody</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
             <a href="#feedback" class="toc-h1 toc-link" data-title="Feedback">Feedback</a>
           </li>
           <li>
-            <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
+            <a href="#api-usage" class="toc-h1 toc-link" data-title="API usage">API usage</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-usage-client-registration" class="toc-h2 toc-link" data-title="Client registration">Client registration</a>
+                  </li>
+                  <li>
+                    <a href="#api-usage-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#api-usage-models" class="toc-h2 toc-link" data-title="Models">Models</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#rest-protocol-description" class="toc-h1 toc-link" data-title="REST Protocol description">REST Protocol description</a>
@@ -349,12 +360,6 @@
                     <a href="#rest-protocol-description-timestamp" class="toc-h2 toc-link" data-title="Timestamp">Timestamp</a>
                   </li>
               </ul>
-          </li>
-          <li>
-            <a href="#api-usage" class="toc-h1 toc-link" data-title="API usage">API usage</a>
-          </li>
-          <li>
-            <a href="#examples" class="toc-h1 toc-link" data-title="Examples">Examples</a>
           </li>
           <li>
             <a href="#blockchains" class="toc-h1 toc-link" data-title="Blockchains">Blockchains</a>
@@ -580,20 +585,138 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li>API V1 <a href='/v2'>API V2</a></li>
+            <li>API V1</li>
+            <li><a href='/v2'>API V2</a></li>
             <li><a href='https://github.com/swisschain/Sirius.Api.Docs'>GitHub</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='sirius-digital-custody'>Sirius Digital Custody</h1>
+        <h1 id='introduction'>Introduction</h1>
 <p>Sirius is a Digital Assets custody and a blockchain infrastructure API allowing consumers to manage blockchain wallets, keep their assets safe in self-managed custody, flexibly control transaction signing policies, receive deposits and execute withdrawals leveraging omnibus model, deploy and invoke smart contracts, receive smart contract events and read smart contract storage in many different blockchains in a general manner using the same API, data models and management UI. You don&#39;t need to learn the particularities of all the blockchains to get into the crypto world and use all top blockchains with ease.</p>
 
 <p>For more information about Sirius, please contact us <a href="mailto:info@swisschain.io">info@swisschain.io</a>.</p>
 <h1 id='feedback'>Feedback</h1>
 <p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/swagger/ui/index.html">REST API</a>, <a href="https://sirius-grpc.swisschain.io">gRPC API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius.Public/issues/new">GitHub issue</a>. Thank you!</p>
-<h1 id='change-log'>Change Log</h1><h1 id='rest-protocol-description'>REST Protocol description</h1><h2 id='rest-protocol-description-allowed-http-verbs'>Allowed HTTP Verbs</h2>
+<h1 id='api-usage'>API usage</h1>
+<p>There are several ways to use Sirius API. The most convenient is the .NET API client library.</p>
+
+<p>Nuget Package: <a href="https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/"><img src="https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg" alt="Nuget Package" /></a></p>
+<h2 id='api-usage-client-registration'>Client registration</h2><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<span class="kt">var</span> <span class="n">options</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SiriusApiOptions</span>
+<span class="p">{</span>
+    <span class="n">ServerGrpcUrl</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Uri</span><span class="p">(</span><span class="s">"&lt;sirius api url&gt;"</span><span class="p">),</span>
+    <span class="n">ApiKey</span> <span class="p">=</span> <span class="s">"&lt;you api key&gt;"</span><span class="p">,</span>
+    <span class="n">Timeout</span> <span class="p">=</span> <span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">60</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="n">services</span><span class="p">.</span><span class="nf">AddSiriusApiClient</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+
+</code></pre></div>
+<p>In Startup on ConfigureServices add API client using IServiceCollection extension method.</p>
+<h2 id='api-usage-pagination'>Pagination</h2>
+<p>Sirius API uses cursor-based pagination model in all endpoints which can return loads of items.</p>
+<h3 id='api-usage-pagination-request'>Request</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<span class="kt">var</span> <span class="n">pagination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PaginationInt64</span>
+<span class="p">{</span>
+    <span class="n">Cursor</span> <span class="p">=</span> <span class="m">10008</span><span class="p">,</span>
+    <span class="n">Limit</span> <span class="p">=</span> <span class="m">100</span><span class="p">,</span>
+    <span class="n">Order</span> <span class="p">=</span> <span class="n">PaginationOrder</span><span class="p">.</span><span class="n">Asc</span>
+<span class="p">}</span>
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>cursor</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Cursor to continue the search</td>
+<td>stellar-test</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><em>optional</em>, <em>int</em></td>
+<td>Maximum number of items to return in the search results</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td><em>optional</em>, <em><a href="#api-usage-models-order-enum">Order</a></em></td>
+<td>Result items sorting order</td>
+<td>asc</td>
+</tr>
+</tbody></table>
+<h3 id='api-usage-pagination-response'>Response</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<span class="kt">var</span> <span class="n">items</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Items</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">pagination</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">;</span>
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Items</code></td>
+<td><em>List<T></em></td>
+<td>The array of an objects</td>
+</tr>
+<tr>
+<td><code>Pagination</code></td>
+<td><em><a href="#api-usage-models-pagination-information">Pagination</a></em></td>
+<td>Pagination state to continue search</td>
+</tr>
+</tbody></table>
+<h2 id='api-usage-models'>Models</h2><h3 id='api-usage-models-pagination-information'>Pagination information</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<span class="kt">var</span> <span class="n">cursor</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Cursor</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">count</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">order</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Order</span><span class="p">;</span>
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Cursor</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td>Cursor to continue the search</td>
+<td>stellar-test</td>
+</tr>
+<tr>
+<td><code>Count</code></td>
+<td><em>optional</em>, <em>number</em></td>
+<td>Number of items in the current page</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>Order</code></td>
+<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td>Result items sorting order</td>
+<td>asc</td>
+</tr>
+</tbody></table>
+<h3 id='api-usage-models-order-enum'>Order (enum)</h3>
+<p>Order of the sorting</p>
+
+<ul>
+<li><code>asc</code> - Ascending sorting order</li>
+<li><code>desc</code> - Descending sorting order</li>
+</ul>
+<h1 id='rest-protocol-description'>REST Protocol description</h1><h2 id='rest-protocol-description-allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
 <li><code>POST</code> : Creates a resource.</li>
@@ -692,7 +815,7 @@
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="nl">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-04T08:05:09.039924+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='api-usage'>API usage</h1><h1 id='examples'>Examples</h1><h1 id='blockchains'>Blockchains</h1>
+</span></code></pre></div><h1 id='blockchains'>Blockchains</h1>
 <p>We distinguish <em>Blockchain</em>, <em>Protocol</em>, and <em>Network Type</em>.</p>
 
 <p><em>Blockchain</em> is not just Bitcoin or Ethereum, it&#39;s a particular network. For example Bitcoin MainNet, Ethereum Ropsten are blockchains, whilst Bitcoin and Ethereum are protocols which are used by these blockchains. Networks can be one of the types - <code>private</code>, <code>test</code>, <code>public</code>. So Blockchain has a protocol and network type.</p>
