@@ -4,6 +4,8 @@ There are several ways to use Sirius API. The most convenient is the .NET API cl
 
 Nuget Package: [![Nuget Package](https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg)](https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/)
 
+Proto files: [https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto](https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto)
+
 ## Client registration
 
 ```csharp
@@ -20,7 +22,6 @@ services.AddSiriusApiClient(options);
 ```
 
 In Startup on ConfigureServices add API client using IServiceCollection extension method.
-
 
 ## Pagination
 

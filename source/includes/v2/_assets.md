@@ -46,6 +46,72 @@ name | type | description | example
 
 *[Paginated](#api-usage-pagination-response)* array of the [assets](#assets-models-asset).
 
+Error Code | Meaning
+---------- | -------
+UNKNOWN | An unspecified error code received.
+INVALID_PARAMETERS | Your request contains invalid parameters.
+TECHNICAL_PROBLEMS | We had a problem with our server. Try again later.
+
+## AddAttributes
+
+Adds asset attributes.
+
+```csharp
+var request = new AssetAddAttributesRequest
+{
+    IdempotencyId = "AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34",
+    AssetId = 10001,
+    Aml = new AmlAssetAttributesCreateInfo
+    {
+        Chainalysis = new AmlChainalysisAssetAttributesInfo
+        {
+            Symbol = "USDC",
+            TransferFormat = ChainalysisTransferFormat.HashAndAddress,
+            IsCheckDepositsEnabled = true,
+            IsCheckWithdrawalsEnabled = true,
+            IsNotifyWithdrawalsEnabled = true
+        },
+        MerkleScience = new AmlMerkleScienceAssetAttributesInfo
+        {
+            Symbol = "USDC",
+            Currency = 14,
+            IsDisabled = false
+        }
+    },
+    Brokerage = new BrokerageAssetAttributesCreateInfo
+    {
+        MinDepositThreshold = 1,
+        MinWithdrawalAmount = 1
+    }
+};
+
+var response = client.AssetsV2.AddAttributes(request);
+```
+
+### Request
+
+name | type | description | example
+---- | ---- | ----------- | -------
+`IdempotencyId` | *string* | Request unique identifier | "AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34"
+`AssetId` | *long* | Asset identifier in Sirius | 10001
+`Aml` | *[AmlAssetAttributesCreateInfo](#assets-models-amlassetattributescreateinfo)* | AML asset attributes | 
+`Brokerage` | *[BrokerageAssetAttributesCreateInfo](#assets-models-brokerageassetattributescreateinfo)* | Brokerage asset attributes |
+
+### Response
+
+name | type | description | example
+---- | ---- | ----------- | -------
+`Id` | *long* | Asset attributes identifier | 30002
+
+Error Code | Meaning
+---------- | -------
+UNKNOWN | An unspecified error code received.
+INVALID_PARAMETERS | Your request contains invalid parameters.
+NOT_AUTHORIZED | AML connection is not authorized.
+NOT_FOUND | AML connection is not found.
+BROKER_ACCOUNT_INACTIVE | Broker account is inactive.
+TECHNICAL_PROBLEMS | We had a problem with our server. Try again later.
+
 ## Models
 
 ### Asset 
@@ -61,18 +127,15 @@ name | type | description | example
 `Name` | *string* | The name of token | Toy
 `MetadataUrl` | *string* | The token metadata URL | ipfs://metadata.json
 `Type` | *string* | The blockchain-specific type of token | ERC-20
-`Brokerage` | *[BrokerageAssetAttributesInfo](#assets-models-brokerageassetattributesinfo)* | The brokerage attributes |
 `Aml` | *[AmlAssetAttributesInfo](#assets-models-amlassetattributesinfo)* | The AML attributes |
+`Brokerage` | *[BrokerageAssetAttributesInfo](#assets-models-brokerageassetattributesinfo)* | The brokerage attributes |
 
-### BrokerageAssetAttributesInfo
+### AmlAssetAttributesCreateInfo
 
 name | type | description | example
 ---- | ---- | ----------- | -------
-`Id` | *long* | ID of the info | 300001
-`MinDepositThreshold` | *decimal* | Minimum deposit threshold | 0.0001
-`MinWithdrawalAmount` | *decimal* | Minimum withdrawal amount | 0.1
-`CreatedAt` | *DateTime* | Create date time |
-`UpdatedAt` | *DateTime* | Update date time |
+`Chainalysis` | *[AmlChainalysisAssetAttributesInfo](#assets-models-amlchainalysisassetattributesinfo)* | Chainalysis attributes |
+`MerkleScience` | *[AmlMerkleScienceAssetAttributesInfo](#assets-models-amlmerklescienceassetattributesinfo)* | MerkleScience attributes |
 
 ### AmlAssetAttributesInfo
 
@@ -107,3 +170,20 @@ name | type | description | example
 `Symbol` | *string* | MerkleScience asset symbol | BTC
 `Currency` | *int* | MerkleScience currency ID | 12
 `IsDisabled` | *bool* | Indicates that asset check enabled | true
+
+### BrokerageAssetAttributesCreateInfo
+
+name | type | description | example
+---- | ---- | ----------- | -------
+`MinDepositThreshold` | *decimal* | Minimum deposit threshold | 0.0001
+`MinWithdrawalAmount` | *decimal* | Minimum withdrawal amount | 0.1
+
+### BrokerageAssetAttributesInfo
+
+name | type | description | example
+---- | ---- | ----------- | -------
+`Id` | *long* | ID of the info | 300001
+`MinDepositThreshold` | *decimal* | Minimum deposit threshold | 0.0001
+`MinWithdrawalAmount` | *decimal* | Minimum withdrawal amount | 0.1
+`CreatedAt` | *DateTime* | Create date time |
+`UpdatedAt` | *DateTime* | Update date time |
