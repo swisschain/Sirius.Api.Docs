@@ -50,7 +50,8 @@ Error Code | Meaning
 ---------- | -------
 UNKNOWN | An unspecified error code received.
 INVALID_PARAMETERS | Your request contains invalid parameters.
-TECHNICAL_PROBLEMS | We had a problem with our server. Try again later.
+DOMAIN_PROBLEM | An error occurred while processing request.
+TECHNICAL_PROBLEM | We had a problem with our server. Try again later.
 
 ## AddAttributes
 
@@ -107,10 +108,8 @@ Error Code | Meaning
 ---------- | -------
 UNKNOWN | An unspecified error code received.
 INVALID_PARAMETERS | Your request contains invalid parameters.
-NOT_AUTHORIZED | AML connection is not authorized.
-NOT_FOUND | AML connection is not found.
-BROKER_ACCOUNT_INACTIVE | Broker account is inactive.
-TECHNICAL_PROBLEMS | We had a problem with our server. Try again later.
+DOMAIN_PROBLEM | An error occurred while processing request.
+TECHNICAL_PROBLEM | We had a problem with our server. Try again later.
 
 ## Models
 
