@@ -341,6 +341,9 @@
                     <a href="#assets-search" class="toc-h2 toc-link" data-title="Search">Search</a>
                   </li>
                   <li>
+                    <a href="#assets-addattributes" class="toc-h2 toc-link" data-title="AddAttributes">AddAttributes</a>
+                  </li>
+                  <li>
                     <a href="#assets-models" class="toc-h2 toc-link" data-title="Models">Models</a>
                   </li>
               </ul>
@@ -365,6 +368,8 @@
 <p>There are several ways to use Sirius API. The most convenient is the .NET API client library.</p>
 
 <p>Nuget Package: <a href="https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/"><img src="https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg" alt="Nuget Package" /></a></p>
+
+<p>Proto files: <a href="https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto">https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto</a></p>
 <h2 id='api-usage-client-registration'>Client registration</h2><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
 <span class="kt">var</span> <span class="n">options</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SiriusApiOptions</span>
 <span class="p">{</span>
@@ -557,6 +562,135 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 </tbody></table>
 <h3 id='assets-search-response'>Response</h3>
 <p><em><a href="#api-usage-pagination-response">Paginated</a></em> array of the <a href="#assets-models-asset">assets</a>.</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UNKNOWN</td>
+<td>An unspecified error code received.</td>
+</tr>
+<tr>
+<td>INVALID_PARAMETERS</td>
+<td>Your request contains invalid parameters.</td>
+</tr>
+<tr>
+<td>DOMAIN_PROBLEM</td>
+<td>An error occurred while processing request.</td>
+</tr>
+<tr>
+<td>TECHNICAL_PROBLEM</td>
+<td>We had a problem with our server. Try again later.</td>
+</tr>
+</tbody></table>
+<h2 id='assets-addattributes'>AddAttributes</h2>
+<p>Adds asset attributes.</p>
+<div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AssetAddAttributesRequest</span>
+<span class="p">{</span>
+    <span class="n">IdempotencyId</span> <span class="p">=</span> <span class="s">"AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34"</span><span class="p">,</span>
+    <span class="n">AssetId</span> <span class="p">=</span> <span class="m">10001</span><span class="p">,</span>
+    <span class="n">Aml</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AmlAssetAttributesCreateInfo</span>
+    <span class="p">{</span>
+        <span class="n">Chainalysis</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AmlChainalysisAssetAttributesInfo</span>
+        <span class="p">{</span>
+            <span class="n">Symbol</span> <span class="p">=</span> <span class="s">"USDC"</span><span class="p">,</span>
+            <span class="n">TransferFormat</span> <span class="p">=</span> <span class="n">ChainalysisTransferFormat</span><span class="p">.</span><span class="n">HashAndAddress</span><span class="p">,</span>
+            <span class="n">IsCheckDepositsEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+            <span class="n">IsCheckWithdrawalsEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+            <span class="n">IsNotifyWithdrawalsEnabled</span> <span class="p">=</span> <span class="k">true</span>
+        <span class="p">},</span>
+        <span class="n">MerkleScience</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AmlMerkleScienceAssetAttributesInfo</span>
+        <span class="p">{</span>
+            <span class="n">Symbol</span> <span class="p">=</span> <span class="s">"USDC"</span><span class="p">,</span>
+            <span class="n">Currency</span> <span class="p">=</span> <span class="m">14</span><span class="p">,</span>
+            <span class="n">IsDisabled</span> <span class="p">=</span> <span class="k">false</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">Brokerage</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BrokerageAssetAttributesCreateInfo</span>
+    <span class="p">{</span>
+        <span class="n">MinDepositThreshold</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+        <span class="n">MinWithdrawalAmount</span> <span class="p">=</span> <span class="m">1</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">AssetsV2</span><span class="p">.</span><span class="nf">AddAttributes</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+</code></pre></div><h3 id='assets-addattributes-request'>Request</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>IdempotencyId</code></td>
+<td><em>string</em></td>
+<td>Request unique identifier</td>
+<td>&quot;AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34&quot;</td>
+</tr>
+<tr>
+<td><code>AssetId</code></td>
+<td><em>long</em></td>
+<td>Asset identifier in Sirius</td>
+<td>10001</td>
+</tr>
+<tr>
+<td><code>Aml</code></td>
+<td><em><a href="#assets-models-amlassetattributescreateinfo">AmlAssetAttributesCreateInfo</a></em></td>
+<td>AML asset attributes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Brokerage</code></td>
+<td><em><a href="#assets-models-brokerageassetattributescreateinfo">BrokerageAssetAttributesCreateInfo</a></em></td>
+<td>Brokerage asset attributes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='assets-addattributes-response'>Response</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Id</code></td>
+<td><em>long</em></td>
+<td>Asset attributes identifier</td>
+<td>30002</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UNKNOWN</td>
+<td>An unspecified error code received.</td>
+</tr>
+<tr>
+<td>INVALID_PARAMETERS</td>
+<td>Your request contains invalid parameters.</td>
+</tr>
+<tr>
+<td>DOMAIN_PROBLEM</td>
+<td>An error occurred while processing request.</td>
+</tr>
+<tr>
+<td>TECHNICAL_PROBLEM</td>
+<td>We had a problem with our server. Try again later.</td>
+</tr>
+</tbody></table>
 <h2 id='assets-models'>Models</h2><h3 id='assets-models-asset'>Asset</h3>
 <table><thead>
 <tr>
@@ -621,19 +755,19 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <td>ERC-20</td>
 </tr>
 <tr>
-<td><code>Brokerage</code></td>
-<td><em><a href="#assets-models-brokerageassetattributesinfo">BrokerageAssetAttributesInfo</a></em></td>
-<td>The brokerage attributes</td>
-<td></td>
-</tr>
-<tr>
 <td><code>Aml</code></td>
 <td><em><a href="#assets-models-amlassetattributesinfo">AmlAssetAttributesInfo</a></em></td>
 <td>The AML attributes</td>
 <td></td>
 </tr>
+<tr>
+<td><code>Brokerage</code></td>
+<td><em><a href="#assets-models-brokerageassetattributesinfo">BrokerageAssetAttributesInfo</a></em></td>
+<td>The brokerage attributes</td>
+<td></td>
+</tr>
 </tbody></table>
-<h3 id='assets-models-brokerageassetattributesinfo'>BrokerageAssetAttributesInfo</h3>
+<h3 id='assets-models-amlassetattributescreateinfo'>AmlAssetAttributesCreateInfo</h3>
 <table><thead>
 <tr>
 <th>name</th>
@@ -643,33 +777,15 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Id</code></td>
-<td><em>long</em></td>
-<td>ID of the info</td>
-<td>300001</td>
-</tr>
-<tr>
-<td><code>MinDepositThreshold</code></td>
-<td><em>decimal</em></td>
-<td>Minimum deposit threshold</td>
-<td>0.0001</td>
-</tr>
-<tr>
-<td><code>MinWithdrawalAmount</code></td>
-<td><em>decimal</em></td>
-<td>Minimum withdrawal amount</td>
-<td>0.1</td>
-</tr>
-<tr>
-<td><code>CreatedAt</code></td>
-<td><em>DateTime</em></td>
-<td>Create date time</td>
+<td><code>Chainalysis</code></td>
+<td><em><a href="#assets-models-amlchainalysisassetattributesinfo">AmlChainalysisAssetAttributesInfo</a></em></td>
+<td>Chainalysis attributes</td>
 <td></td>
 </tr>
 <tr>
-<td><code>UpdatedAt</code></td>
-<td><em>DateTime</em></td>
-<td>Update date time</td>
+<td><code>MerkleScience</code></td>
+<td><em><a href="#assets-models-amlmerklescienceassetattributesinfo">AmlMerkleScienceAssetAttributesInfo</a></em></td>
+<td>MerkleScience attributes</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -785,6 +901,68 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <td><em>bool</em></td>
 <td>Indicates that asset check enabled</td>
 <td>true</td>
+</tr>
+</tbody></table>
+<h3 id='assets-models-brokerageassetattributescreateinfo'>BrokerageAssetAttributesCreateInfo</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>MinDepositThreshold</code></td>
+<td><em>decimal</em></td>
+<td>Minimum deposit threshold</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<td><code>MinWithdrawalAmount</code></td>
+<td><em>decimal</em></td>
+<td>Minimum withdrawal amount</td>
+<td>0.1</td>
+</tr>
+</tbody></table>
+<h3 id='assets-models-brokerageassetattributesinfo'>BrokerageAssetAttributesInfo</h3>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Id</code></td>
+<td><em>long</em></td>
+<td>ID of the info</td>
+<td>300001</td>
+</tr>
+<tr>
+<td><code>MinDepositThreshold</code></td>
+<td><em>decimal</em></td>
+<td>Minimum deposit threshold</td>
+<td>0.0001</td>
+</tr>
+<tr>
+<td><code>MinWithdrawalAmount</code></td>
+<td><em>decimal</em></td>
+<td>Minimum withdrawal amount</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><code>CreatedAt</code></td>
+<td><em>DateTime</em></td>
+<td>Create date time</td>
+<td></td>
+</tr>
+<tr>
+<td><code>UpdatedAt</code></td>
+<td><em>DateTime</em></td>
+<td>Update date time</td>
+<td></td>
 </tr>
 </tbody></table>
 
