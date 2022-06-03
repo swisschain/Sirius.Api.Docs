@@ -1,0 +1,6 @@
+obj/Release/netstandard2.0/Accounts.cs \
+obj/Release/netstandard2.0/AccountsGrpc.cs: /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/struct.proto\
+ /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/timestamp.proto\
+ /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/wrappers.proto\
+ common.proto\
+ accounts.proto

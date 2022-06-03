@@ -1,0 +1,6 @@
+obj/Release/netstandard2.0/TransferSubscriptions.cs \
+obj/Release/netstandard2.0/TransferSubscriptionsGrpc.cs: /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/struct.proto\
+ /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/timestamp.proto\
+ /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/wrappers.proto\
+ common.proto\
+ transfer_subscriptions.proto
