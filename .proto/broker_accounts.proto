@@ -86,6 +86,8 @@ message BrokerAccountSearchRequest {
   repeated BrokerAccountState state = 4;
 
   swisschain.sirius.api.common.PaginationInt64 pagination = 5;
+  
+  google.protobuf.StringValue custodyName = 6;
 }
 
 message BrokerAccountSearchResponse {
