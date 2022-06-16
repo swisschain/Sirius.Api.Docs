@@ -219,6 +219,8 @@ message DepositSearchRequest {
   google.protobuf.Int64Value user_id = 10;
 
   google.protobuf.StringValue user_native_id = 11;
+  
+  google.protobuf.StringValue transaction_id = 12;
 }
 
 message DepositSearchResponse {
