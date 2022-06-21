@@ -1,0 +1,6 @@
+obj/Debug/netstandard2.0/v2/Withdrawals.cs \
+obj/Debug/netstandard2.0/v2/WithdrawalsGrpc.cs: /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/struct.proto\
+ /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/timestamp.proto\
+ /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/wrappers.proto\
+ common.proto\
+ v2/withdrawals.proto

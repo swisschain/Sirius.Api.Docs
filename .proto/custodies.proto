@@ -44,6 +44,7 @@ message CustodyCreateRequest {
   string request_id = 1;
   string name = 2;
   CustodyType type = 3;
+  google.protobuf.StringValue ip_whitelist = 4;
 }
 
 message CustodyCreateResponse {
@@ -62,7 +63,8 @@ message CustodyCreateResponseBody {
 message CustodyUpdateRequest {
   string request_id = 1;
   int64 custody_id = 2;
-  string name = 3;
+  string name = 3;;
+  google.protobuf.StringValue ip_whitelist = 4;
 }
 
 message CustodyUpdateResponse {
@@ -180,4 +182,5 @@ message CustodyResponse {
   CustodyStatus status = 4;
   google.protobuf.Timestamp created_at = 5;
   google.protobuf.Timestamp updated_at = 6;
+  google.protobuf.StringValue ip_whitelist = 7;
 }

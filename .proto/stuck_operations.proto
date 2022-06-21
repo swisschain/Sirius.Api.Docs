@@ -2,7 +2,6 @@ syntax = "proto3";
 
 option csharp_namespace = "Swisschain.Sirius.Api.ApiContract.StuckOperations";
 
-import "google/protobuf/timestamp.proto";
 import "common.proto";
 
 package services;
