@@ -4,7 +4,7 @@ Withdrawal refers to outgoing transfers of the funds from a broker account. You 
 
 * You can pull withdrawals updates REST API
 * You can listen for withdrawal updates gRPC stream
-* You can register a web-hook get the notifications
+* You can register a web-hook to get the notifications
 
 Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account, an asset, optionally an account, your internal ID, it has amount, fees and state. If you use reference ID for the accounts, you can specify either account ID or reference ID, to associate an account to the withdrawal. This link doesn't affect funds flow, it's used just for the reporting and notifying you back with withdrawal updates.
 
@@ -40,7 +40,7 @@ x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 ```protobuf
 swisschain.sirius.api.withdrawals.Withdrawals.Execute
 
-> Requets: (application/grpc)
+> Requests: (application/grpc)
 
 message WithdrawalExecuteRequest {
     string request_id = 1; // 3a2b59a1-07e5-48b1-ba8b-4b3c750a2aa1
@@ -60,7 +60,7 @@ REST name | gRPC name | type | REST placement | description
 `signature` | `signature` | *optional*, *string* | *body* | Base64-encoded RSA signature of the document signed with the Customer's private key
 
 ```
-Withdral document format:
+Withdrawal document format:
 
 {
     "version": "string", 				// "1.0"
