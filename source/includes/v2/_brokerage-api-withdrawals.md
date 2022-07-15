@@ -91,12 +91,12 @@ REST name | gRPC name                    | type                                 
 `X-TFA-code` | -                            | *string*                                           | *header* | TFA code
  - | `idempotency_id`             | *string*                                           | - | Unique ID of the request
 `document` | `document`                   | *[WithdrawalDocument](#withdrawaldocument-object)* | *body* | structured withdrawal parameters
-`document.properties` | `document.properties`        | *map<string, string>*                              | *body* | dictionary of key-value pairs with custom properties
+`document.properties` | `document.properties`        | *map<string, string>*                              | *body* | dictionary of key-value pairs with custom or *[known properties](_known-properties.md)*
 `document.assetid` | `document.asset_id`          | *int64*                                            | *body* | ID of the asset to use
 `document.brokerAccountId` | `document.broker_account_id` | *int64*                                            | *body* | ID of the broker account to use
 `document.destinationDetails` | `document.destination_details` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
 `document.Amount` | `document.amount` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
-`signature` | `signature`                  | *optional*, *string*                               | *body* | Base64-encoded RSA signature of the document signed with the Customer's private key. The exact format of the document to be signed is described below.
+`signature` | `signature`                  | *optional*, *string*                               | *body* | Base64-encoded RSA signature of the data signed with the Customer's private key. The exact format of the data to be signed is described below.
 
 Withdrawal document format (order of parameters is important):
 ```
@@ -117,7 +117,7 @@ Parameters used:
 
 Order of Properties sent from the client side is not important. However, it is important to sort them alphabetically by keys during document creation. Received pairs of properties will be sorted during signature validation internally.
  
-The presented document format is used whenever client wishes to execute signed withdrawal. Withdrawal document has to constructed on the client side and signed with customer private key.
+The presented document format is used whenever client wishes to execute signed withdrawal. Withdrawal document has to be constructed on the client side and signed with customer private key.
 
 Notes on the document format:
 - Please use string literal `null` for parameters without value

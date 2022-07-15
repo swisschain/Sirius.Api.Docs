@@ -13,7 +13,7 @@ and you have to specify exact type in this case.
 
 ## WithdrawalDocument (object)
 
-+ `properties` (*map<string,string>*) set of key-value pairs containing custom properties. 
++ `properties` (*map<string,string>*) set of key-value pairs containing custom or *[known properties](_known-properties.md)*
 + `assetId` (*number*) - ID of the asset to use
 + `brokerAccountId` (*number*) - ID of the broker account to use
 + `destinationDetails` (*[DestinationDetails](#destinationdetails-object)*) - Destination details
