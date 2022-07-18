@@ -151,7 +151,7 @@ message WithdrawalExecuteError {
     UNKNOWN = 0;
     INVALID_PARAMETERS = 1;
     DOMAIN_PROBLEM = 2;
-    TECHNICAL_PROBLEMS = 3;
+    TECHNICAL_PROBLEM = 3;
     NOT_AUTHORIZED = 4;
     NOT_ENOUGH_BALANCE = 5;
   }
