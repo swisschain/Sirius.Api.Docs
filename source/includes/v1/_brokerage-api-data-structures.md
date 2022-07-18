@@ -9,7 +9,7 @@ Order of the sorting
 
 ## NetworkType (enum)
 
-Type of a blockchain network
+Type of blockchain network
 
 + `private` - Private blockchain.
 + `test` - Public test blockchain.
@@ -29,16 +29,16 @@ Type of a blockchain network
             + `max` (*number*) - Maximum number supported by the `Number` destination tag. (eg. 9223372036854776000).
             + `name` (*string*) - Name of the `Number` tag field which is accepted in the given blockchain. (eg. "Memo ID").
         + `text` (*optional*, *object*) - Capabilities of the protocol related to the `Text` [TagType](#TagType). `null` if the `Text` tag is not supported.
-            + `maxLength` (*number*) - Mximum length of the `Text` destination tag. (eg. 28).
+            + `maxLength` (*number*) - Maximum length of the `Text` destination tag. (eg. 28).
             + `name` (*string*) - Name of the `Text` tag field which is accepted in the given blockchain. (eg. "Memo text").
         + `doubleSpendingProtectionType` (*[DoubleSpendingProtectionType](#DoubleSpendingProtectionType-enum)*) - Type of the protection agains funds double spending (eg. `coins`).
 
 ## TagType (enum)
 
-Tag type of the account. Tag is an additional information associated with particular account, 
+Tag type of the account. Tag is additional information associated with particular account, 
 which can be specified in the blockchain transaction. This allows to use single blockchain 
 address to handle many accounts on it. This feature is available only on some blockchains: 
-(Ripple, Stellar, Eos...). In some blockchains different types of the tag are supported
+(Ripple, Stellar, Eos...). In some blockchains different types of the tag are supported,
 and you have to specify exact type in this case.
 
 + `text` - text tag
@@ -46,7 +46,7 @@ and you have to specify exact type in this case.
 
 ## DoubleSpendingProtectionType (enum)
 
-Each blockchain use some protection mechanism agains funds double-spending. Sirius distinguish next types:
+Each blockchain uses some protection mechanism against funds double-spending. Sirius distinguishes the following types:
 
 + `coins` - Coins are used to transfer funds. (eg. Bitcoin, Dash)
 + `nonce` - Nonce number (sequence) is used to distinguish outgoing transactions. (eg. Ethereum, Stellar)
@@ -55,7 +55,7 @@ Each blockchain use some protection mechanism agains funds double-spending. Siri
 
 State of the broker account
 
-+ `creating` - The broker account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can create accounts within it, but not receive or send transfers.
++ `creating` - The broker account is not fully created yet, you need to wait a bit, while Sirius completes its creation. You can create accounts within it, but not receive or send transfers.
 + `active` - The broker account is active and can be used as usual.
 + `blocked` - The broker account is blocked - processing of all deposits and withdrawals is on hold.
 
@@ -79,15 +79,15 @@ Type of the vault
 State of the deposit
 
 + `detected` - deposit incoming transaction is detected
-+ `confirmed` - deposit incoming transaction is confirmed (it's included in X blockchain blocks. X depends on particulaer blockchain)
++ `confirmed` - deposit incoming transaction is confirmed (it's included in X blockchain blocks. X depends on particular blockchain)
 + `completed` - deposit consolidation transaction is confirmed
 + `failed` - deposit processing is failed
-+ `cancelled` - the block with incoming transaction is removed from the blockchain due to reorganization of the network. It can happedn when deposit is detected
++ `cancelled` - the block with incoming transaction is removed from the blockchain due to reorganization of the network. It can happen when deposit is detected
 + `provisioned` - token or tiny token deposit is provisioned with fee
 + `unknownAsset` - deposit of unknown asset is detected. Deposit processing will be continued once the asset is configured
 + `amlValidation` - AML validation of the deposit is in-progress
 + `amlFailed` - AML validation of the deposit is failed
-+ `amlReviewed` - AML validation failure has been reviwed by the customer
++ `amlReviewed` - AML validation failure has been reviewed by the customer
 + `amlFailureAccepting` - AML validation failure is being accepted by the customer
 + `refunding` - deposit is being refunded
 + `refundingProvisioned` - token or tiny token deposit refund transaction is provisioned
@@ -199,7 +199,7 @@ AmlChecks contains information about passed AML checks for deposit.
 + `overallResolution` (*[AmlOverallResolution](#amloverallresolution-enum)*) - Overall resolution of all AML checks.
 + `startedAt` (*timestamp*) - Time when AML checks was started.
 + `completedChecks` (*Array of [CompletedAmlCheck](#completedamlcheck-object)*) - Array of completed AML checks.
-+ `requiredChecks` (*timestamp*) - Amount of running parallel checks for deposit/withdrawal.
++ `requiredChecks` (*number*) - Number of checks running in parallel for deposit/withdrawal.
 
 ## CompletedAmlCheck (object)
 
@@ -220,7 +220,7 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 
 + `highRisk` - Indicates that deposit/withdrawal has a high risk. Dirty money!
 + `normal` - AML has passed without issues.
-+ `unknown` - AML provider can't asses risks.
++ `unknown` - AML provider can't assess risks.
 + `assetNotConfigured` - Asset is not configured for AML.
 
 ## WithdrawalState (enum)
@@ -253,7 +253,7 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 
 + `name` (*string*) - SmartContract internal name.
 + `blockchainId`  (*string*) - ID of blockchain used for deployment
-+ `brokerAccountId`  (*string*) - ID of broker account which initiate invokation
++ `brokerAccountId`  (*string*) - ID of broker account which initiate Invocation
 + `referenceId`  (*string*) - uniq identificatior of request
 + `arguments`  (*array*) - Array of repeatable object with `parameterName`  and `value` (can be empty)
     + `parameterName`  (*string*) - parameterName
@@ -265,18 +265,18 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `amount`  (*double*) - amount can be 0
 
 
-## SmartContractInvokationDocument (object)
+## SmartContractInvocationDocument (object)
 
 + `methodName` (*string*) - Method name.
 + `methodAddress`  (*string*) - Method address
-+ `brokerAccountId`  (*string*) - ID of broker account which initiate invokation
-+ `referenceId`  (*string*) - uniq identificatior of request
++ `brokerAccountId`  (*string*) - ID of broker account which initiate Invocation
++ `referenceId`  (*string*) - uniq identifier of request
 + `arguments`  (*array*) - Array of repeatable object with `parameterName`  and `value` (can be empty)
     + `parameterName`  (*string*) - parameterName
-    + `value`  (*object*) - Object wich contain `prototype` and *type* value
+    + `value`  (*object*) - Object which contain `prototype` and *type* value
         + `prototype`  (*string*) - data type which used in argument # address
         + `*oneofDataItem*`  (*string*) - value depend on #DataItem
-+ `payment`  (*object*) - Object which contatin payment details during invokation
++ `payment`  (*object*) - Object which contains payment details during Invocation
 + `assetId`  (*int*) - Asset id for payment
 + `amount`  (*double*) - amount can be 0
 
@@ -289,7 +289,7 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `decimal` BigDecimal value
 + `int` BigInt value
 + `string` string value
-+ `address` strint value
++ `address` string value
 + `timestamp` Timestamp value
 + `array` repeated #DataItem
 + `composite` repeated #Field (string name  & DataItem value) components
