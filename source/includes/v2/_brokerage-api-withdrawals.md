@@ -98,7 +98,7 @@ REST name | gRPC name                    | type                                 
 `document.Amount` | `document.amount` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
 `signature` | `signature`                  | *optional*, *string*                               | *body* | Base64-encoded RSA signature of the data signed with the Customer's private key. The exact format of the data to be signed is described below.
 
-Withdrawal document format (order of parameters is important):
+Withdrawal signing data format (order of parameters is important):
 ```
 ['36585f34-d311-433a-87f1-1751b08480c3','300578305','100000140','0x663e933ECdc5b1acbaCB87F4aa1636cd05837613','null','null','0.1','UserId:test','WalletId:12345']
 ```
@@ -115,11 +115,11 @@ Parameters used:
 7.1: UserId: `test` (corresponds to UserNativeId)
 7.2: WalletId: `12345` (corresponds to AccountReferenceId)
 
-Order of Properties sent from the client side is not important. However, it is important to sort them alphabetically by keys during document creation. Received pairs of properties will be sorted during signature validation internally.
+Order of Properties sent from the client side is not important. However, it is required to sort them alphabetically by keys beforehand. Received pairs of properties will be sorted during signature validation internally.
  
-The presented document format is used whenever client wishes to execute signed withdrawal. Withdrawal document has to be constructed on the client side and signed with customer private key.
+The presented signing data format is used whenever client wishes to execute signed withdrawal. Withdrawal signing data has to be constructed on the client side and signed with customer private key.
 
-Notes on the document format:
+Notes on the signing data format:
 - Please use string literal `null` for parameters without value
 - Please format numeric values with at least one fractional digit, even if the value is an integer (i.e. 2 has to become 2.0)
 
