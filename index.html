@@ -576,7 +576,7 @@
                     <a href="#data-structures-smartcontractdeploymentdocument-object" class="toc-h2 toc-link" data-title="SmartContractDeploymentDocument (object)">SmartContractDeploymentDocument (object)</a>
                   </li>
                   <li>
-                    <a href="#data-structures-smartcontractinvokationdocument-object" class="toc-h2 toc-link" data-title="SmartContractInvokationDocument (object)">SmartContractInvokationDocument (object)</a>
+                    <a href="#data-structures-smartcontractinvocationdocument-object" class="toc-h2 toc-link" data-title="SmartContractInvocationDocument (object)">SmartContractInvocationDocument (object)</a>
                   </li>
                   <li>
                     <a href="#data-structures-dataitem" class="toc-h2 toc-link" data-title="DataItem">DataItem</a>
@@ -4997,7 +4997,7 @@ too small to transfer funds from the account address to the broker account addre
 <ul>
 <li>You can pull withdrawals updates REST API</li>
 <li>You can listen for withdrawal updates gRPC stream</li>
-<li>You can register a web-hook get the notifications</li>
+<li>You can register a web-hook to get the notifications</li>
 </ul>
 
 <p>Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account, an asset, optionally an account, your internal ID, it has amount, fees and state. If you use reference ID for the accounts, you can specify either account ID or reference ID, to associate an account to the withdrawal. This link doesn&#39;t affect funds flow, it&#39;s used just for the reporting and notifying you back with withdrawal updates.</p>
@@ -5024,7 +5024,7 @@ too small to transfer funds from the account address to the broker account addre
 
 </span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals.Withdrawals.Execute</span>
 
-<span class="err">&gt;</span> <span class="n">Requets</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+<span class="err">&gt;</span> <span class="n">Requests</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
 
 <span class="kd">message</span> <span class="nc">WithdrawalExecuteRequest</span> <span class="p">{</span>
     <span class="kt">string</span> <span class="na">request_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 3a2b59a1-07e5-48b1-ba8b-4b3c750a2aa1</span>
@@ -5071,7 +5071,7 @@ too small to transfer funds from the account address to the broker account addre
 <td>Base64-encoded RSA signature of the document signed with the Customer&#39;s private key</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>Withdral document format:
+<div class="highlight"><pre class="highlight plaintext"><code>Withdrawal document format:
 
 {
     "version": "string",                // "1.0"
@@ -7254,7 +7254,7 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 <li><code>desc</code> - Descending sorting order</li>
 </ul>
 <h2 id='data-structures-networktype-enum'>NetworkType (enum)</h2>
-<p>Type of a blockchain network</p>
+<p>Type of blockchain network</p>
 
 <ul>
 <li><code>private</code> - Private blockchain.</li>
@@ -7287,7 +7287,7 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 <li><code>text</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the <code>Text</code> <a href="#TagType">TagType</a>. <code>null</code> if the <code>Text</code> tag is not supported.
 
 <ul>
-<li><code>maxLength</code> (<em>number</em>) - Mximum length of the <code>Text</code> destination tag. (eg. 28).</li>
+<li><code>maxLength</code> (<em>number</em>) - Maximum length of the <code>Text</code> destination tag. (eg. 28).</li>
 <li><code>name</code> (<em>string</em>) - Name of the <code>Text</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo text&quot;).</li>
 </ul></li>
 <li><code>doubleSpendingProtectionType</code> (<em><a href="#DoubleSpendingProtectionType-enum">DoubleSpendingProtectionType</a></em>) - Type of the protection agains funds double spending (eg. <code>coins</code>).</li>
@@ -7295,10 +7295,10 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 </ul></li>
 </ul>
 <h2 id='data-structures-tagtype-enum'>TagType (enum)</h2>
-<p>Tag type of the account. Tag is an additional information associated with particular account, 
+<p>Tag type of the account. Tag is additional information associated with particular account, 
 which can be specified in the blockchain transaction. This allows to use single blockchain 
 address to handle many accounts on it. This feature is available only on some blockchains: 
-(Ripple, Stellar, Eos...). In some blockchains different types of the tag are supported
+(Ripple, Stellar, Eos...). In some blockchains different types of the tag are supported,
 and you have to specify exact type in this case.</p>
 
 <ul>
@@ -7306,7 +7306,7 @@ and you have to specify exact type in this case.</p>
 <li><code>number</code> - numeric tag</li>
 </ul>
 <h2 id='data-structures-doublespendingprotectiontype-enum'>DoubleSpendingProtectionType (enum)</h2>
-<p>Each blockchain use some protection mechanism agains funds double-spending. Sirius distinguish next types:</p>
+<p>Each blockchain uses some protection mechanism against funds double-spending. Sirius distinguishes the following types:</p>
 
 <ul>
 <li><code>coins</code> - Coins are used to transfer funds. (eg. Bitcoin, Dash)</li>
@@ -7316,7 +7316,7 @@ and you have to specify exact type in this case.</p>
 <p>State of the broker account</p>
 
 <ul>
-<li><code>creating</code> - The broker account is not fully created yet, you need to wait a bit, while Sirius complete its creation. You can create accounts within it, but not receive or send transfers.</li>
+<li><code>creating</code> - The broker account is not fully created yet, you need to wait a bit, while Sirius completes its creation. You can create accounts within it, but not receive or send transfers.</li>
 <li><code>active</code> - The broker account is active and can be used as usual.</li>
 <li><code>blocked</code> - The broker account is blocked - processing of all deposits and withdrawals is on hold.</li>
 </ul>
@@ -7340,15 +7340,15 @@ and you have to specify exact type in this case.</p>
 
 <ul>
 <li><code>detected</code> - deposit incoming transaction is detected</li>
-<li><code>confirmed</code> - deposit incoming transaction is confirmed (it&#39;s included in X blockchain blocks. X depends on particulaer blockchain)</li>
+<li><code>confirmed</code> - deposit incoming transaction is confirmed (it&#39;s included in X blockchain blocks. X depends on particular blockchain)</li>
 <li><code>completed</code> - deposit consolidation transaction is confirmed</li>
 <li><code>failed</code> - deposit processing is failed</li>
-<li><code>cancelled</code> - the block with incoming transaction is removed from the blockchain due to reorganization of the network. It can happedn when deposit is detected</li>
+<li><code>cancelled</code> - the block with incoming transaction is removed from the blockchain due to reorganization of the network. It can happen when deposit is detected</li>
 <li><code>provisioned</code> - token or tiny token deposit is provisioned with fee</li>
 <li><code>unknownAsset</code> - deposit of unknown asset is detected. Deposit processing will be continued once the asset is configured</li>
 <li><code>amlValidation</code> - AML validation of the deposit is in-progress</li>
 <li><code>amlFailed</code> - AML validation of the deposit is failed</li>
-<li><code>amlReviewed</code> - AML validation failure has been reviwed by the customer</li>
+<li><code>amlReviewed</code> - AML validation failure has been reviewed by the customer</li>
 <li><code>amlFailureAccepting</code> - AML validation failure is being accepted by the customer</li>
 <li><code>refunding</code> - deposit is being refunded</li>
 <li><code>refundingProvisioned</code> - token or tiny token deposit refund transaction is provisioned</li>
@@ -7460,7 +7460,7 @@ for each asset in each broker account.</p>
 <li><code>overallResolution</code> (<em><a href="#amloverallresolution-enum">AmlOverallResolution</a></em>) - Overall resolution of all AML checks.</li>
 <li><code>startedAt</code> (<em>timestamp</em>) - Time when AML checks was started.</li>
 <li><code>completedChecks</code> (<em>Array of <a href="#completedamlcheck-object">CompletedAmlCheck</a></em>) - Array of completed AML checks.</li>
-<li><code>requiredChecks</code> (<em>timestamp</em>) - Amount of running parallel checks for deposit/withdrawal.</li>
+<li><code>requiredChecks</code> (<em>number</em>) - Number of checks running in parallel for deposit/withdrawal.</li>
 </ul>
 <h2 id='data-structures-completedamlcheck-object'>CompletedAmlCheck (object)</h2>
 <p>CompletedAmlCheck contains information about passed AML check for deposit.</p>
@@ -7481,7 +7481,7 @@ for each asset in each broker account.</p>
 <ul>
 <li><code>highRisk</code> - Indicates that deposit/withdrawal has a high risk. Dirty money!</li>
 <li><code>normal</code> - AML has passed without issues.</li>
-<li><code>unknown</code> - AML provider can&#39;t asses risks.</li>
+<li><code>unknown</code> - AML provider can&#39;t assess risks.</li>
 <li><code>assetNotConfigured</code> - Asset is not configured for AML.</li>
 </ul>
 <h2 id='data-structures-withdrawalstate-enum'>WithdrawalState (enum)</h2>
@@ -7514,7 +7514,7 @@ for each asset in each broker account.</p>
 <ul>
 <li><code>name</code> (<em>string</em>) - SmartContract internal name.</li>
 <li><code>blockchainId</code>  (<em>string</em>) - ID of blockchain used for deployment</li>
-<li><code>brokerAccountId</code>  (<em>string</em>) - ID of broker account which initiate invokation</li>
+<li><code>brokerAccountId</code>  (<em>string</em>) - ID of broker account which initiate Invocation</li>
 <li><code>referenceId</code>  (<em>string</em>) - uniq identificatior of request</li>
 <li><code>arguments</code>  (<em>array</em>) - Array of repeatable object with <code>parameterName</code>  and <code>value</code> (can be empty)
 
@@ -7531,24 +7531,24 @@ for each asset in each broker account.</p>
 <li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
 <li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
 </ul>
-<h2 id='data-structures-smartcontractinvokationdocument-object'>SmartContractInvokationDocument (object)</h2>
+<h2 id='data-structures-smartcontractinvocationdocument-object'>SmartContractInvocationDocument (object)</h2>
 <ul>
 <li><code>methodName</code> (<em>string</em>) - Method name.</li>
 <li><code>methodAddress</code>  (<em>string</em>) - Method address</li>
-<li><code>brokerAccountId</code>  (<em>string</em>) - ID of broker account which initiate invokation</li>
-<li><code>referenceId</code>  (<em>string</em>) - uniq identificatior of request</li>
+<li><code>brokerAccountId</code>  (<em>string</em>) - ID of broker account which initiate Invocation</li>
+<li><code>referenceId</code>  (<em>string</em>) - uniq identifier of request</li>
 <li><code>arguments</code>  (<em>array</em>) - Array of repeatable object with <code>parameterName</code>  and <code>value</code> (can be empty)
 
 <ul>
 <li><code>parameterName</code>  (<em>string</em>) - parameterName</li>
-<li><code>value</code>  (<em>object</em>) - Object wich contain <code>prototype</code> and <em>type</em> value
+<li><code>value</code>  (<em>object</em>) - Object which contain <code>prototype</code> and <em>type</em> value
 
 <ul>
 <li><code>prototype</code>  (<em>string</em>) - data type which used in argument # address</li>
 <li><code>*oneofDataItem*</code>  (<em>string</em>) - value depend on #DataItem</li>
 </ul></li>
 </ul></li>
-<li><code>payment</code>  (<em>object</em>) - Object which contatin payment details during invokation</li>
+<li><code>payment</code>  (<em>object</em>) - Object which contains payment details during Invocation</li>
 <li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
 <li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
 </ul>
@@ -7560,7 +7560,7 @@ for each asset in each broker account.</p>
 <li><code>decimal</code> BigDecimal value</li>
 <li><code>int</code> BigInt value</li>
 <li><code>string</code> string value</li>
-<li><code>address</code> strint value</li>
+<li><code>address</code> string value</li>
 <li><code>timestamp</code> Timestamp value</li>
 <li><code>array</code> repeated #DataItem</li>
 <li><code>composite</code> repeated #Field (string name  &amp; DataItem value) components</li>
