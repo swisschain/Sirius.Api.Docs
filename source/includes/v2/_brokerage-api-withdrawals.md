@@ -147,7 +147,7 @@ message WithdrawalExecutePayload {
 }
 
 message WithdrawalExecuteError {
-  enum WithdrawalExecutionErrorCode {
+  enum ErrorCode {
     UNKNOWN = 0;
     INVALID_PARAMETERS = 1;
     DOMAIN_PROBLEM = 2;
@@ -156,7 +156,7 @@ message WithdrawalExecuteError {
     NOT_ENOUGH_BALANCE = 5;
   }
 
-  WithdrawalExecutionErrorCode code = 1;
+  ErrorCode code = 1;
   string message = 2;
 }
 
