@@ -348,6 +348,34 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#data-structures" class="toc-h1 toc-link" data-title="Data structures">Data structures</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#data-structures-tagtype-enum" class="toc-h2 toc-link" data-title="TagType (enum)">TagType (enum)</a>
+                  </li>
+                  <li>
+                    <a href="#data-structures-withdrawaldocument-object" class="toc-h2 toc-link" data-title="WithdrawalDocument (object)">WithdrawalDocument (object)</a>
+                  </li>
+                  <li>
+                    <a href="#data-structures-destinationdetails-object" class="toc-h2 toc-link" data-title="DestinationDetails (object)">DestinationDetails (object)</a>
+                  </li>
+                  <li>
+                    <a href="#data-structures-destinationtag-object" class="toc-h2 toc-link" data-title="DestinationTag (object)">DestinationTag (object)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#withdrawals" class="toc-h1 toc-link" data-title="Withdrawals">Withdrawals</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#withdrawals-starts-a-withdrawal" class="toc-h2 toc-link" data-title="Starts a withdrawal">Starts a withdrawal</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#known-properties" class="toc-h1 toc-link" data-title="Known properties">Known properties</a>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='/'>API V1</a></li>
@@ -965,6 +993,279 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <td></td>
 </tr>
 </tbody></table>
+<h1 id='data-structures'>Data structures</h1><h2 id='data-structures-tagtype-enum'>TagType (enum)</h2>
+<p>Tag type of the account. Tag is additional information associated with particular account, 
+which can be specified in the blockchain transaction. This allows to use single blockchain 
+address to handle many accounts on it. This feature is available only on some blockchains: 
+(Ripple, Stellar, Eos...). In some blockchains different types of the tag are supported,
+and you have to specify exact type in this case.</p>
+
+<ul>
+<li><code>text</code> - text tag</li>
+<li><code>number</code> - numeric tag</li>
+</ul>
+<h2 id='data-structures-withdrawaldocument-object'>WithdrawalDocument (object)</h2>
+<ul>
+<li><code>properties</code> (<em>map<string,string></em>) set of key-value pairs containing custom or <em><a href="_known-properties.md">known properties</a></em></li>
+<li><code>assetId</code> (<em>number</em>) - ID of the asset to use</li>
+<li><code>brokerAccountId</code> (<em>number</em>) - ID of the broker account to use</li>
+<li><code>destinationDetails</code> (<em><a href="#destinationdetails-object">DestinationDetails</a></em>) - Destination details</li>
+<li><code>amount</code> (<em>decimal</em>) - Withdrawal amount</li>
+</ul>
+<h2 id='data-structures-destinationdetails-object'>DestinationDetails (object)</h2>
+<ul>
+<li><code>address</code> (<em>string</em>) withdrawal destination address</li>
+<li><code>destinationTag</code> (<em><a href="#destinationtag-object">DestinationTag</a></em>) - destination tag value and type</li>
+</ul>
+<h2 id='data-structures-destinationtag-object'>DestinationTag (object)</h2>
+<ul>
+<li><code>value</code> (<em>string</em> <em>optional</em>) string value of the tag</li>
+<li><code>tagType</code> (<em><a href="#tagtype-enum">TagType</a></em>) - type of the tag to use</li>
+</ul>
+<h1 id='withdrawals'>Withdrawals</h1>
+<p>Withdrawal refers to outgoing transfers of the funds from a broker account. You can get withdrawals history, or be notified about new withdrawals and state changing of the existing withdrawals. There are different options to be notified about withdrawals state changing:</p>
+
+<ul>
+<li>You can pull withdrawals updates REST API</li>
+<li>You can listen for withdrawal updates gRPC stream</li>
+<li>You can register a web-hook to get the notifications</li>
+</ul>
+
+<p>Withdrawal can be initiated by you via API or Universe portal UI. Every withdrawal is associated with a broker account,
+an asset, optionally an account, your internal ID, it has amount, fees and state. You can provide &quot;WalletId&quot; property with 
+the value of account reference ID in order to associate an account to the withdrawal. This link
+doesn&#39;t affect funds flow, it&#39;s used just for the reporting and notifying you back with withdrawal updates. Also you can 
+provide &quot;UserId&quot; property with the value of UserNativeId in the users dictionary. This association is optional and can 
+be used to enable AML verification procedure.</p>
+
+<p>The fees required for the withdrawal transaction are paid atop of the specified amount.</p>
+
+<p>The lifecycle of a withdrawal:</p>
+
+<p><img src="https://raw.githubusercontent.com/swisschain/Sirius.Api.Docs/master/source/images/withdrawal-lifecycle.png" alt="Withdrawal lifecycle"/></p>
+<h2 id='withdrawals-starts-a-withdrawal'>Starts a withdrawal</h2><h3 id='withdrawals-starts-a-withdrawal-request'>Request</h3>
+<p><strong>Rest API:</strong> <code>POST /api/v2/withdrawals</code>
+<strong>gRPC API:</strong> <code>swisschain.sirius.api.v2.withdrawals.Execute</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/v</span><span class="mi">2</span><span class="err">/withdrawals</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="err">X-Idempotency-ID:</span><span class="w"> </span><span class="mi">36585</span><span class="err">f</span><span class="mi">34</span><span class="err">-d</span><span class="mi">311-433</span><span class="err">a</span><span class="mi">-87</span><span class="err">f</span><span class="mi">1-1751</span><span class="err">b</span><span class="mi">08480</span><span class="err">c</span><span class="mi">3</span><span class="w">
+</span><span class="err">X-TFA-code:</span><span class="w"> </span><span class="mi">785441</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"document"</span><span class="p">:{</span><span class="w">
+    </span><span class="nl">"properties"</span><span class="p">:{</span><span class="w">
+      </span><span class="nl">"WalletId"</span><span class="p">:</span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"UserId"</span><span class="p">:</span><span class="s2">"test"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"assetId"</span><span class="p">:</span><span class="mi">300578305</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"brokerAccountId"</span><span class="p">:</span><span class="mi">100000140</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"destinationDetails"</span><span class="p">:{</span><span class="w">
+      </span><span class="nl">"address"</span><span class="p">:</span><span class="s2">"0x663e933ECdc5b1acbaCB87F4aa1636cd05837613"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="mf">0.1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"signature"</span><span class="p">:</span><span class="s2">"pqG0st53GVkdBHIqCHsg9cB4noO1nyXlM8UGkZ+bC0fmvCbuf0W78GYj8ZuCtPMWl0XDIh5hVjwsjIPhiUfCl5KVUIA8La3EunRJZ5UkW95IvjcPCn+z5atzb8JQxPee8q2ehaMY+UNH08p1VmIjqJE1eKFzzs8ZxITu0gtwbZ4="</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.v2.withdrawals.Execute</span>
+
+<span class="err">&gt;</span> <span class="n">Requests</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalExecuteRequest</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">idempotency_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// '36585f34-d311-433a-87f1-1751b08480c3'</span>
+  <span class="n">WithdrawalDocument</span> <span class="na">document</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">bytes</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// a6 a1 b4 b2 de 77 19 59 1d 04 72 2a 08 7b 20 f5 c0 78 9e 83 b5 9f 25 e5 33 c5 06 91 9f 9b 0b 47 e6 bc 26 ee 7f 45 bb f0 66 23 f1 9b 82 b4 f3 16 97 45 c3 22 1e 61 56 3c 2c 8c 83 e1 89 47 c2 97 92 95 50 80 3c 2d ad c4 ba 74 49 67 95 24 5b de 48 be 37 0f 0a 7f b3 e5 ab 73 6f c2 50 c4 f7 9e f2 ad 9e 85 a3 18 f9 43 47 d3 ca 75 56 62 23 a8 91 35 78 a1 73 ce cf 19 c4 84 ee d2 0b 70 6d 9e</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalDocument</span> <span class="p">{</span>
+  <span class="n">map</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="kt">string</span><span class="err">&gt;</span> <span class="na">properties</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// { "WalletId":"12345", "UserId":"test" }</span>
+  <span class="kt">int64</span> <span class="na">asset_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 300578305</span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 100000140</span>
+  <span class="n">DestinationDetails</span> <span class="na">destination_details</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.BigDecimal</span> <span class="na">amount</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// 0.1</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">DestinationDetails</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">address</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// "0x663e933ECdc5b1acbaCB87F4aa1636cd05837613"</span>
+  <span class="n">DestinationTag</span> <span class="na">destination_tag</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// null</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">DestinationTag</span> <span class="p">{</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">value</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.common.TagType</span> <span class="na">type</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div><h3 id='withdrawals-starts-a-withdrawal-parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-Idempotency-ID</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>X-TFA-code</code></td>
+<td>-</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>TFA code</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>idempotency_id</code></td>
+<td><em>string</em></td>
+<td>-</td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td><code>document</code></td>
+<td><em><a href="#withdrawaldocument-object">WithdrawalDocument</a></em></td>
+<td><em>body</em></td>
+<td>structured withdrawal parameters</td>
+</tr>
+<tr>
+<td><code>document.properties</code></td>
+<td><code>document.properties</code></td>
+<td><em>map<string, string></em></td>
+<td><em>body</em></td>
+<td>dictionary of key-value pairs with custom or <em><a href="_known-properties.md">known properties</a></em></td>
+</tr>
+<tr>
+<td><code>document.assetid</code></td>
+<td><code>document.asset_id</code></td>
+<td><em>int64</em></td>
+<td><em>body</em></td>
+<td>ID of the asset to use</td>
+</tr>
+<tr>
+<td><code>document.brokerAccountId</code></td>
+<td><code>document.broker_account_id</code></td>
+<td><em>int64</em></td>
+<td><em>body</em></td>
+<td>ID of the broker account to use</td>
+</tr>
+<tr>
+<td><code>document.destinationDetails</code></td>
+<td><code>document.destination_details</code></td>
+<td><em><a href="#destinationdetails-object">DestinationDetails</a></em></td>
+<td><em>body</em></td>
+<td>destination parameters of the withdrawal (address and tag info)</td>
+</tr>
+<tr>
+<td><code>document.Amount</code></td>
+<td><code>document.amount</code></td>
+<td><em><a href="#destinationdetails-object">DestinationDetails</a></em></td>
+<td><em>body</em></td>
+<td>destination parameters of the withdrawal (address and tag info)</td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td><code>signature</code></td>
+<td><em>optional</em>, <em>string</em></td>
+<td><em>body</em></td>
+<td>Base64-encoded RSA signature of the data signed with the Customer&#39;s private key. The exact format of the data to be signed is described below.</td>
+</tr>
+</tbody></table>
+
+<p>Withdrawal signing data format (order of parameters is important):
+<code>
+[&#39;36585f34-d311-433a-87f1-1751b08480c3&#39;,&#39;300578305&#39;,&#39;100000140&#39;,&#39;0x663e933ECdc5b1acbaCB87F4aa1636cd05837613&#39;,&#39;null&#39;,&#39;null&#39;,&#39;0.1&#39;,&#39;UserId:test&#39;,&#39;WalletId:12345&#39;]
+</code></p>
+
+<p>Parameters used:
+0: IdempotencyId <code>36585f34-d311-433a-87f1-1751b08480c3</code>
+1: AssetId <code>300578305</code> (BNB)
+2: BrokerAccountId <code>100000140</code>
+3: DestinationAddress <code>0x663e933ECdc5b1acbaCB87F4aa1636cd05837613</code>
+4: DestinationTag <code>null</code>
+5: DestinationTagType <code>null</code>
+6: Amount: <code>0.1</code>
+7: Properties:
+7.1: UserId: <code>test</code> (corresponds to UserNativeId)
+7.2: WalletId: <code>12345</code> (corresponds to AccountReferenceId)</p>
+
+<p>Order of Properties sent from the client side is not important. However, it is required to sort them alphabetically by keys beforehand. Received pairs of properties will be sorted during signature validation internally.</p>
+
+<p>The presented signing data format is used whenever client wishes to execute signed withdrawal. Withdrawal signing data has to be constructed on the client side and signed with customer private key.</p>
+
+<p>Notes on the signing data format:
+- Please use string literal <code>null</code> for parameters without value
+- Please format numeric values with at least one fractional digit, even if the value is an integer (i.e. 2 has to become 2.0)</p>
+<h3 id='withdrawals-starts-a-withdrawal-query-parameters'>Query Parameters</h3><h3 id='withdrawals-starts-a-withdrawal-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/v</span><span class="mi">2</span><span class="err">/withdrawals</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+ </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">106000003</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="n">swisschain.sirius.api.withdrawals.Withdrawals.Execute</span>
+
+<span class="err">&gt;</span> <span class="n">Response</span><span class="o">:</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">grpc</span><span class="p">)</span> <span class="o">-</span> <span class="n">success</span> <span class="n">response</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalExecutePayload</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalExecuteError</span> <span class="p">{</span>
+  <span class="kd">enum</span> <span class="n">ErrorCode</span> <span class="p">{</span>
+    <span class="na">UNKNOWN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">INVALID_PARAMETERS</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="na">DOMAIN_PROBLEM</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="na">TECHNICAL_PROBLEM</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="na">NOT_AUTHORIZED</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="na">NOT_ENOUGH_BALANCE</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">ErrorCode</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">WithdrawalExecuteResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="n">WithdrawalExecutePayload</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">WithdrawalExecuteError</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='withdrawals-starts-a-withdrawal-parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>REST name</th>
+<th>gRPC name</th>
+<th>type</th>
+<th>REST placement</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code></td>
+<td><em>number</em></td>
+<td>ID of the withdrawal</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='known-properties'>Known properties</h1>
+<p>V2 API allows assigning custom properties to some requests in the form
+of set of key-value pair where both key and value are strings. Users can provide custom
+keys or use some known properties with predefined behaviour and functionality.</p>
+
+<p>The list of the known properties and their respective behaviour is defined below:</p>
+
+<ol>
+<li><code>UserId</code>: allows passing identifier from the AML verification (formerly known as UserNativeID);</li>
+<li><code>WalletId</code>: allows linking request to specific account, the value is used to look up Account with the specified <code>AccountReferenceId</code></li>
+</ol>
 
       </div>
       <div class="dark-box">
