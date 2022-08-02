@@ -13,6 +13,7 @@ service Deposits {
   rpc Search (DepositSearchRequest) returns (DepositSearchResponse);
 
   rpc GetUpdates (DepositUpdateSearchRequest) returns (stream DepositUpdateArrayResponse);
+  rpc Proceed (ProceedRequest) returns (ProceedResponse);
 }
 
 enum DepositErrorCode {
@@ -99,6 +100,7 @@ enum DepositState
   REFUNDING = 11;
   REFUNDING_PROVISIONED = 12;
   REFUNDED = 13;
+  APPROVAL_REQUIRED = 14;
 }
 
 enum DepositType
@@ -234,4 +236,36 @@ message DepositSearchResponseBody {
   swisschain.sirius.api.common.PaginatedInt64Response pagination = 1;
 
   repeated DepositResponse items = 2;
+}
+
+
+message ProceedRequest {
+  string request_id = 1;
+  int64 deposit_id = 3;
+  int64 sequence = 4;
+  string tenant_id = 5;
+}
+
+message ProceedResponse {
+  oneof kind {
+    ProceedPayload payload = 1;
+    ProceedError error = 2;
+  }
+}
+
+message ProceedPayload { }
+message ProceedError {
+
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM = 3;
+    UNAUTHORIZED = 4;
+    WRONG_SEQUENCE = 5; 
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+
 }
