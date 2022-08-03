@@ -102,7 +102,7 @@ REST name | gRPC name                    | type                                 
 ### Signing data format
 Withdrawal signing data format (order of parameters is important):
 ```
-['36585f34-d311-433a-87f1-1751b08480c3','300578305','100000140','0x663e933ECdc5b1acbaCB87F4aa1636cd05837613','null','null','0.1','UserId:test','WalletId:12345']
+['36585f34-d311-433a-87f1-1751b08480c3','300578305','100000140','0x663e933ECdc5b1acbaCB87F4aa1636cd05837613',null,null,'0.1','UserId:test;WalletId:12345']
 ```
 
 Parameters used:
@@ -120,17 +120,14 @@ Parameters used:
 When putting together signing data, it is required to sort properties alphabetically by keys. 
 However, gRPC and REST APIs accept properties as hashmap of unordered key-value pairs.
 These key-value pairs will be sorted during signature validation internally on the serverside.
-If the properties are not present at all, simply omit them from the signing data altogether.
 
 The presented signing data format is used whenever client wishes to execute signed withdrawal. Withdrawal signing data has to be constructed on the client side and signed with customer private key.
 
 Notes on the signing data format:
-- Please use string literal `null` for parameters without value
+- Please use `null` without quotes for parameters without value (including properties)
 - Please format numeric values with at least one fractional digit, even if the value is an integer (i.e. 2 has to become 2.0)
 
 For more information on the signing data format and its usage please refer to the page dedicated to *[signing data formats](_signing-data.md)*.
-
-### Query Parameters
 
 ### Response
 
