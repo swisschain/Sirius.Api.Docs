@@ -4,7 +4,8 @@ Web page: [swisschain.github.io/Sirius.Api.Docs](https://swisschain.github.io/Si
 
 Structure
 
-- [index.html.md](https://github.com/swisschain/Sirius.Api.Docs/blob/master/source/v1/index.html.md) - root page
+- [index.html.md](https://github.com/swisschain/Sirius.Api.Docs/blob/master/source/index.html.md) - root page
+- [v2.html.md](https://github.com/swisschain/Sirius.Api.Docs/blob/master/source/v2.html.md) - root page
 - [change-log.md](https://github.com/swisschain/Sirius.Api.Docs/blob/master/source/v1/includes/_change-log.md) - change log description
 
 Local setup
@@ -17,3 +18,7 @@ Local setup
 - bundle exec middleman serve
 
 NOTE: Don't remove Gemfile.lock
+
+Whenever new API V2 endpoint is added, link to its "Signing data format" subsection should be added to the
+[signing data](https://github.com/swisschain/Sirius.Api.Docs/blob/master/source/includes/v2/_signing-data.md)
+ page.
