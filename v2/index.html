@@ -335,6 +335,14 @@
               </ul>
           </li>
           <li>
+            <a href="#v2-requests-signing" class="toc-h1 toc-link" data-title="V2 requests signing">V2 requests signing</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#v2-requests-signing-signing-format-guidelines" class="toc-h2 toc-link" data-title="Signing format guidelines">Signing format guidelines</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#assets" class="toc-h1 toc-link" data-title="Assets">Assets</a>
               <ul class="toc-list-h2">
                   <li>
@@ -511,6 +519,89 @@
 <li><code>asc</code> - Ascending sorting order</li>
 <li><code>desc</code> - Descending sorting order</li>
 </ul>
+<h1 id='v2-requests-signing'>V2 requests signing</h1>
+<p>V2 API supports signed requests with asymmetric cryptography. Since every type of request is structurally different, the
+format of the data to be signed also varies. In order to sign a request, clientside has to put together a string 
+in the specific format and sign that string with the customer&#39;s private key, thereby generating RSA signature. 
+Every V2 API definition contains special-purpose optional field called &quot;Signature&quot;, which has to be used to pass 
+the RSA signature to the serverside.</p>
+
+<p>The specific formats of the data to be signed are defined on the respective pages, describing an API endpoint. For clarity,
+each API endpoint page contains subsection called &quot;Signing data format&quot; with detailed description of the parameters 
+to be used for putting together textual data for signing.</p>
+
+<p>For convenience of use, links to all formats&#39; descriptions are compiled below:</p>
+
+<ul>
+<li><em><a href="_brokerage-api-withdrawals.md#signing-data-format">Withdrawal V2 execution signing data format</a></em></li>
+</ul>
+<h2 id='v2-requests-signing-signing-format-guidelines'>Signing format guidelines</h2>
+<p>While all requests serve various purposes and therefore consist of different parameters, they also follow several common
+patterns. The way some of these patterns are used across V2 APIs in relation to the signing functionality is described below:</p>
+<h3 id='v2-requests-signing-signing-format-guidelines-general-format-description'>General format description</h3>
+<p>Signing data is a sequence of bytes, corresponding to UTF-8-encoded string in the specific format. The beginning and ending 
+of the signing data are denoted by square brackets: <code>[]</code>. Each parameter value is encased in single quotes: <code>&#39;&#39;</code>.
+Parameters are comma-separated without any whitespace characters before or after the separator. 
+In the example below there are three parameters, two textual ones and a single numeric parameter:  </p>
+
+<p><code>[&#39;parameter Value 1&#39;,&#39;parameter Value 2&#39;,&#39;26.7&#39;]</code></p>
+<h3 id='v2-requests-signing-signing-format-guidelines-complex-parameter-values'>Complex parameter values</h3>
+<p>Complex parameter values such as hashmaps or collections are represented as a single parameter encased with single quotes,
+in which several chunks of data may appear separated by a semicolon (<code>;</code>). In the example below there are two parameters, 
+first one representing a collection of values and second one is a hashmap:</p>
+
+<p><code>[&#39;1.2;34.0;123.1;12.0&#39;,&#39;keyOne:valueOne;keyTwo:valueTwo&#39;]</code></p>
+<h3 id='v2-requests-signing-signing-format-guidelines-special-characters'>Special characters</h3>
+<p>Since original parameter values may contain special characters, used to encase values or denote boundaries between chunks 
+of data, their values have to be escaped with a backslash (<code>\</code>). The comprehensive list of special characters is defined below:
+- <code>:</code> separates key and its corresponding value in hashmaps, escaped as <code>\:</code>
+- <code>;</code> separates key-value pairs in hashmaps and values in collections, escaped as <code>\;</code>
+- <code>&#39;</code> encases parameter values, escaped as <code>\&#39;</code>
+- <code>\</code> used to escape special characters, escaped as <code>\\</code></p>
+
+<p>In the example below there are several parameters with special characters in their original values:</p>
+
+<p><code>[&#39;Ocean\&#39;s eleven&#39;,&#39;keyOne:value\:One;key\;Two:valueTwo&#39;,&#39;\\path\\to\\directory\\targetFile.txt&#39;]</code></p>
+<h3 id='v2-requests-signing-signing-format-guidelines-empty-and-unset-values'>Empty and unset values</h3>
+<p>Some parameters are optional, but since their position in the signing data format is rigid, it is not possible to simply omit them.
+Instead, the absence of its value has to be denoted explicitly with <code>null</code> without quotes.
+In the example below there are two parameters, the first one with value and the second one with value unset:</p>
+
+<p><code>[&#39;Parameter Value One&#39;,null]</code></p>
+
+<p>The absence of a complex parameter value (i.e. when a hashmap parameter is unset) should be treated in the same way.</p>
+<h3 id='v2-requests-signing-signing-format-guidelines-numeric-values'>Numeric values</h3>
+<p>Parameters with decimal (or BigDecimal) values with or without fractional part have to be formatted with at least one fractional digit. Usually such parameters represent amounts of assets.
+Thus, for example 2 has to become 2.0 in the signing data:
+<code>[&#39;2.0&#39;]</code></p>
+<h3 id='v2-requests-signing-signing-format-guidelines-configurable-properties'>Configurable properties</h3>
+<p>Most API V2 requests support assigning custom properties in the form of set of key-value pairs. Since 
+assigning properties can change the way request will be handled on the serverside (see <em><a href="_known-properties.md">known properties</a></em>),
+properties are included in the signing data. Properties normally appear at the very end of signing data format
+as a single parameter, encased in single quotes (<code>&#39;</code>). Properties data is concatenated without any whitespace characters
+with colon (<code>:</code>) as a separator between a key and its corresponding value, and semicolon (<code>;</code>) as a separator between 
+key-value pairs. In the signing data format order of properties is important. It is required to sort them alphabetically 
+by keys. </p>
+
+<p>In the example below there are two regular parameters, followed by four custom properties, sorted by keys alphabetically:</p>
+
+<p><code>[&#39;parameter Value One&#39;,&#39;124662357832&#39;,&#39;BrokerageExternalId:445566778899;UserId:12345;UserValidatorId:dr3413;WalletName:TestWallet&#39;]</code></p>
+
+<p>V2 APIs normally accept properties as a hashmap, with key-value pairs in arbitrary order. Received pairs of properties 
+will be sorted during signature validation internally on the serverside. Following this logic, properties from the example above
+can be sent to the serverside in the following way:
+<code>json
+{
+  &quot;properties&quot;: {
+    &quot;UserValidatorId&quot;: &quot;dr3413&quot;,
+    &quot;WalletName&quot;: &quot;TestWallet&quot;,
+    &quot;BrokerageExternalId&quot;: &quot;445566778899&quot;,
+    &quot;UserId&quot;: 12345
+  }
+}
+</code></p>
+
+<p>If the properties are not present at all, it is required to denote their absence with <code>null</code> similar to any other parameter.</p>
 <h1 id='assets'>Assets</h1>
 <p>Sirius provides the set of crypto assets available to use.
 You can get notifications about a deposit or initiate a withdrawal in any asset presented in this set.
@@ -1177,10 +1268,10 @@ be used to enable AML verification procedure.</p>
 <td>Base64-encoded RSA signature of the data signed with the Customer&#39;s private key. The exact format of the data to be signed is described below.</td>
 </tr>
 </tbody></table>
-
+<h3 id='withdrawals-starts-a-withdrawal-signing-data-format'>Signing data format</h3>
 <p>Withdrawal signing data format (order of parameters is important):
 <code>
-[&#39;36585f34-d311-433a-87f1-1751b08480c3&#39;,&#39;300578305&#39;,&#39;100000140&#39;,&#39;0x663e933ECdc5b1acbaCB87F4aa1636cd05837613&#39;,&#39;null&#39;,&#39;null&#39;,&#39;0.1&#39;,&#39;UserId:test&#39;,&#39;WalletId:12345&#39;]
+[&#39;36585f34-d311-433a-87f1-1751b08480c3&#39;,&#39;300578305&#39;,&#39;100000140&#39;,&#39;0x663e933ECdc5b1acbaCB87F4aa1636cd05837613&#39;,null,null,&#39;0.1&#39;,&#39;UserId:test;WalletId:12345&#39;]
 </code></p>
 
 <p>Parameters used:
@@ -1195,14 +1286,18 @@ be used to enable AML verification procedure.</p>
 7.1: UserId: <code>test</code> (corresponds to UserNativeId)
 7.2: WalletId: <code>12345</code> (corresponds to AccountReferenceId)</p>
 
-<p>Order of Properties sent from the client side is not important. However, it is required to sort them alphabetically by keys beforehand. Received pairs of properties will be sorted during signature validation internally.</p>
+<p>When putting together signing data, it is required to sort properties alphabetically by keys. 
+However, gRPC and REST APIs accept properties as hashmap of unordered key-value pairs.
+These key-value pairs will be sorted during signature validation internally on the serverside.</p>
 
 <p>The presented signing data format is used whenever client wishes to execute signed withdrawal. Withdrawal signing data has to be constructed on the client side and signed with customer private key.</p>
 
 <p>Notes on the signing data format:
-- Please use string literal <code>null</code> for parameters without value
+- Please use <code>null</code> without quotes for parameters without value (including properties)
 - Please format numeric values with at least one fractional digit, even if the value is an integer (i.e. 2 has to become 2.0)</p>
-<h3 id='withdrawals-starts-a-withdrawal-query-parameters'>Query Parameters</h3><h3 id='withdrawals-starts-a-withdrawal-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/v</span><span class="mi">2</span><span class="err">/withdrawals</span><span class="w">
+
+<p>For more information on the signing data format and its usage please refer to the page dedicated to <em><a href="_signing-data.md">signing data formats</a></em>.</p>
+<h3 id='withdrawals-starts-a-withdrawal-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/v</span><span class="mi">2</span><span class="err">/withdrawals</span><span class="w">
 
 </span><span class="err">&gt;</span><span class="w"> </span><span class="err">Response:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">success</span><span class="w"> </span><span class="err">response</span><span class="w">
 
