@@ -1,7 +1,0 @@
-obj/Release/netstandard2.0/Withdrawals.cs \
-obj/Release/netstandard2.0/WithdrawalsGrpc.cs: /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/timestamp.proto\
- /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/wrappers.proto\
- aml.proto\
- /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/struct.proto\
- common.proto\
- withdrawals.proto

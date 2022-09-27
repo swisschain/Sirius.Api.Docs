@@ -1,6 +1,0 @@
-obj/Release/netstandard2.0/SmartContractRegistrations.cs \
-obj/Release/netstandard2.0/SmartContractRegistrationsGrpc.cs: /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/struct.proto\
- /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/timestamp.proto\
- /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/wrappers.proto\
- common.proto\
- smart_contract_registrations.proto

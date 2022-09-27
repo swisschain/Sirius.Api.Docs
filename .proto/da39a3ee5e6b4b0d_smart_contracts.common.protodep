@@ -1,5 +1,0 @@
-obj/Release/netstandard2.0/SmartContractsCommon.cs: /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/struct.proto\
- /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/timestamp.proto\
- /home/runner/.nuget/packages/grpc.tools/2.42.0/build/native/include/google/protobuf/wrappers.proto\
- common.proto\
- smart_contracts.common.proto
