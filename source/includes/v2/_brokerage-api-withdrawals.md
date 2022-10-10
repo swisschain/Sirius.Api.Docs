@@ -107,14 +107,23 @@ Withdrawal signing data format (order of parameters is important):
 
 Parameters used:
 0: IdempotencyId `36585f34-d311-433a-87f1-1751b08480c3`
+
 1: AssetId `300578305` (BNB)
+
 2: BrokerAccountId `100000140`
+
 3: DestinationAddress `0x663e933ECdc5b1acbaCB87F4aa1636cd05837613`
+
 4: DestinationTag `null`
+
 5: DestinationTagType `null`
+
 6: Amount: `0.1`
+
 7: Properties:
+
 7.1: UserId: `test` (corresponds to UserNativeId)
+
 7.2: WalletId: `12345` (corresponds to AccountReferenceId)
 
 When putting together signing data, it is required to sort properties alphabetically by keys. 

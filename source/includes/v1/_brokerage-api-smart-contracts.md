@@ -697,5 +697,97 @@ REST name | gRPC name | type | description
 `updatedAt` | `updated_at` | *timestamp* | Datetime of last invoke update
 
 
+## Register known smart contract
 
+### Request
+
+**Rest API:** `POST /api/known-contracts/register`
+**gRPC API:** `swisschain.sirius.api.smart_contracts.SmartContracts.RegisterKnown`
+
+
+```json
+POST /api/known-contracts/register
+
+> Request: (application/json, text/plain, */*)
+
+X-Idempotency-ID: 1a5c0b3d15494ec8a390fd3b22d757d6
+X-TFA-Code: 234567
+
+{
+  "familyCode": "CAST-Bond",
+  "blockchainId": "ethereum-ropsten"
+}
+
+```
+
+
+```protobuf
+
+message RegisterKnownSmartContractRequest {
+  string idempotency_id = 1;
+  string tenant_id = 2;
+  string family_code = 3;
+  string blockchain_id = 4;
+}
+
+message RegisterKnownSmartContractResponse {
+  oneof kind {
+    RegisterKnownSmartContractPayload payload = 1;
+    RegisterKnownContractError error = 2;
+  }
+}
+
+message RegisterKnownSmartContractPayload {
+  int64 id = 1;
+}
+
+message RegisterKnownContractError {
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM = 3;
+    NOT_AUTHORIZED = 4;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+
+example:
+{
+  "idempotency_id": "60f0cea8-1836-4ff5-b81d-422c1f705bce",
+  "tenant_id": "1960bc2f-884b-43a4-bf4a-8a9163fb4807"
+  "family_code": "CAST-Bond",
+  "blockchain_id": "ethereum-ropsten"
+}
+```
+
+### Query Parameters
+
+
+REST name | gRPC name        | type | REST placement    | description
+--------- |------------------| ---- |-------------------| -----------
+`X-idempotency-ID` | -                | *string* | *header*          | Unique ID of the request
+- | `idempotency_id` | *string* | -                 | Unique ID of the request
+`family_code` | `family_code`       | *string* | *body*            | short codename of a known smart contract family
+`blockchain_id` | `blockchain_id`      | *string* | *body*            | ID of target blockchain
+`tenant_id` | `tenant_id`      | *string* | *JWT token claim* | ID of tenant 
+
+### Response
+
+```json
+{
+  "id": 130000004
+}
+```
+
+### Parameters
+
+Response:
+
+REST name | gRPC name | type | description
+--------- | --------- | ---- | -------------- | -----------
+`id ` | `id ` | *number* | ID of the known contract registration
 
