@@ -1275,16 +1275,25 @@ be used to enable AML verification procedure.</p>
 </code></p>
 
 <p>Parameters used:
-0: IdempotencyId <code>36585f34-d311-433a-87f1-1751b08480c3</code>
-1: AssetId <code>300578305</code> (BNB)
-2: BrokerAccountId <code>100000140</code>
-3: DestinationAddress <code>0x663e933ECdc5b1acbaCB87F4aa1636cd05837613</code>
-4: DestinationTag <code>null</code>
-5: DestinationTagType <code>null</code>
-6: Amount: <code>0.1</code>
-7: Properties:
-7.1: UserId: <code>test</code> (corresponds to UserNativeId)
-7.2: WalletId: <code>12345</code> (corresponds to AccountReferenceId)</p>
+0: IdempotencyId <code>36585f34-d311-433a-87f1-1751b08480c3</code></p>
+
+<p>1: AssetId <code>300578305</code> (BNB)</p>
+
+<p>2: BrokerAccountId <code>100000140</code></p>
+
+<p>3: DestinationAddress <code>0x663e933ECdc5b1acbaCB87F4aa1636cd05837613</code></p>
+
+<p>4: DestinationTag <code>null</code></p>
+
+<p>5: DestinationTagType <code>null</code></p>
+
+<p>6: Amount: <code>0.1</code></p>
+
+<p>7: Properties:</p>
+
+<p>7.1: UserId: <code>test</code> (corresponds to UserNativeId)</p>
+
+<p>7.2: WalletId: <code>12345</code> (corresponds to AccountReferenceId)</p>
 
 <p>When putting together signing data, it is required to sort properties alphabetically by keys. 
 However, gRPC and REST APIs accept properties as hashmap of unordered key-value pairs.
@@ -1352,7 +1361,7 @@ These key-value pairs will be sorted during signature validation internally on t
 </tbody></table>
 <h1 id='known-properties'>Known properties</h1>
 <p>V2 API allows assigning custom properties to some requests in the form
-of set of key-value pair where both key and value are strings. Users can provide custom
+of set of key-value pairs where both key and value are strings. Users can provide custom
 keys or use some known properties with predefined behaviour and functionality.</p>
 
 <p>The list of the known properties and their respective behaviour is defined below:</p>
