@@ -11,6 +11,7 @@ package swisschain.sirius.api.smart_contract_registrations;
 service SmartContractRegistrations {
   rpc Search (SmartContractRegistrationsSearchRequest) returns (SmartContractRegistrationsSearchResponse);
   rpc Register (SmartContractRegistrationRegisterRequest) returns (SmartContractRegistrationRegisterResponse);
+  rpc RegisterDAppInstance (RegisterDAppInstanceRequest) returns (RegisterDAppInstanceResponse);
 }
 
 // Search
@@ -57,8 +58,39 @@ message SmartContractRegistrationRegisterResponseBody {
   SmartContractRegistration smart_contract_registration = 1;
 }
 
-// Common
+// RegisterInstance
+message RegisterDAppInstanceRequest {
+  string idempotency_id = 1;
+  string tenant_id = 2;
+  int64 d_app_id = 3;
+  string blockchain_id = 4;
+}
 
+message RegisterDAppInstanceResponse {
+  oneof kind {
+    RegisterDAppInstancePayload payload = 1;
+    RegisterDAppInstanceError error = 2;
+  }
+}
+
+message RegisterDAppInstancePayload {
+  int64 id = 1;
+}
+
+message RegisterDAppInstanceError {
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM = 3;
+    NOT_AUTHORIZED = 4;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+// Common
 enum SmartContractRegistrationState {
   PROCESSING = 0;
   COMPLETED = 5;
