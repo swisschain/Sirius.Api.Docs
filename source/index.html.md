@@ -8,7 +8,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
 toc_footers:
   - API V1
   - <a href='/v2'>API V2</a>
-  - <a href='https://github.com/swisschain/Sirius.Api.Docs'>GitHub</a>
 
 meta:
 - name: description
