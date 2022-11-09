@@ -1,0 +1,61 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Swisschain.Sirius.Api.ApiContract.V2.Withdrawals";
+
+import "common.proto";
+import "google/protobuf/wrappers.proto";
+
+package swisschain.sirius.api.v2.withdrawals;
+
+service WithdrawalService {
+    rpc Execute (WithdrawalExecuteRequest) returns (WithdrawalExecuteResponse);
+}
+
+message WithdrawalExecuteRequest {
+    string idempotency_id = 1;
+    WithdrawalDocument document = 2;
+    bytes signature = 3;
+}
+
+message WithdrawalDocument {
+  map<string,string> properties = 1;
+  int64 asset_id = 2;
+  int64 broker_account_id = 3;
+  DestinationDetails destination_details = 4;
+  swisschain.sirius.api.common.BigDecimal amount = 5;
+}
+
+message DestinationDetails {
+  string address = 1;
+  DestinationTag destination_tag = 2;
+}
+
+message DestinationTag {
+  google.protobuf.StringValue value = 2;
+  swisschain.sirius.api.common.TagType type = 3;
+}
+
+message WithdrawalExecuteResponse {
+  oneof result {
+    WithdrawalExecutePayload payload = 1;
+    WithdrawalExecuteError error = 2;
+  }
+}
+
+message WithdrawalExecutePayload {
+  int64 id = 1;
+}
+
+message WithdrawalExecuteError {
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM = 3;
+    NOT_AUTHORIZED = 4;
+    NOT_ENOUGH_BALANCE = 5;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
