@@ -1,0 +1,46 @@
+﻿syntax = "proto3";
+option csharp_namespace = "Swisschain.Sirius.Api.ApiContract.V2.Cardano.Staking";
+
+package swisschain.sirius.api.v2.cardano.staking;
+
+service CardanoStakingService {
+  rpc Delegate (CardanoDelegateRequest) returns (CardanoDelegateResponse);
+}
+
+// Delegate
+
+message CardanoDelegateRequest {
+  string idempotency_id = 1;
+  CardanoDelegationDocument document = 2;
+  string signature = 3;   
+  string blockchain_id = 4;
+}
+
+message CardanoDelegationDocument {
+  map<string,string> properties = 1;
+  int64 broker_account_id = 2;
+  string staking_pool_hash = 4;
+}
+
+message CardanoDelegateResponse {
+  oneof result {
+    CardanoDelegatePayload payload = 1;
+    CardanoDelegateError error = 2;
+  }
+}
+
+message CardanoDelegatePayload {
+  int64 id = 1;
+}
+
+message CardanoDelegateError {
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEMS = 3;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
