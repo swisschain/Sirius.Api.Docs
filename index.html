@@ -322,16 +322,28 @@
             <a href="#feedback" class="toc-h1 toc-link" data-title="Feedback">Feedback</a>
           </li>
           <li>
-            <a href="#api-usage" class="toc-h1 toc-link" data-title="API usage">API usage</a>
+            <a href="#grpc-protocol-description" class="toc-h1 toc-link" data-title="gRPC Protocol description">gRPC Protocol description</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api-usage-client-registration" class="toc-h2 toc-link" data-title="Client registration">Client registration</a>
+                    <a href="#grpc-protocol-description-net-client-registration" class="toc-h2 toc-link" data-title=".NET client registration">.NET client registration</a>
                   </li>
                   <li>
-                    <a href="#api-usage-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                    <a href="#grpc-protocol-description-authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
                   </li>
                   <li>
-                    <a href="#api-usage-models" class="toc-h2 toc-link" data-title="Models">Models</a>
+                    <a href="#grpc-protocol-description-guid" class="toc-h2 toc-link" data-title="Guid">Guid</a>
+                  </li>
+                  <li>
+                    <a href="#grpc-protocol-description-json-string" class="toc-h2 toc-link" data-title="JSON string">JSON string</a>
+                  </li>
+                  <li>
+                    <a href="#grpc-protocol-description-json-string-timestamp" class="toc-h2 toc-link" data-title="JSON string timestamp">JSON string timestamp</a>
+                  </li>
+                  <li>
+                    <a href="#grpc-protocol-description-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#grpc-protocol-description-models" class="toc-h2 toc-link" data-title="Models">Models</a>
                   </li>
               </ul>
           </li>
@@ -601,13 +613,13 @@
 <p>For more information about Sirius, please contact us <a href="mailto:info@swisschain.io">info@swisschain.io</a>.</p>
 <h1 id='feedback'>Feedback</h1>
 <p>In the case, if you have found an issue in <a href="https://sirius.swisschain.io/swagger/ui/index.html">REST API</a>, <a href="https://sirius-grpc.swisschain.io">gRPC API</a>, <a href="https://universe.swisschain.io/">Universe portal</a>, or in this documentation, please give us feedback by adding a <a href="https://github.com/swisschain/Sirius.Public/issues/new">GitHub issue</a>. Thank you!</p>
-<h1 id='api-usage'>API usage</h1>
-<p>There are several ways to use Sirius API. The most convenient is the .NET API client library.</p>
+<h1 id='grpc-protocol-description'>gRPC Protocol description</h1>
+<p>Sirius API uses gRPC protocol as the main one. To learn more about gRPC please follow <a href="https://grpc.io">grpc.io</a></p>
 
-<p>Nuget Package: <a href="https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/"><img src="https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg" alt="Nuget Package" /></a></p>
+<p>There are several ways to use Sirius gRPC API. If you use .NET, the most convenient wayt for you is Sirius.Api.Client <a href="https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/"><img src="https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg" alt="Nuget Package" /></a>.</p>
 
-<p>Proto files: <a href="https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto">https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto</a></p>
-<h2 id='api-usage-client-registration'>Client registration</h2><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<p>Otherwise, you can get <a href="https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto">porot files</a> directly and generate client on almost any platform.</p>
+<h2 id='grpc-protocol-description-net-client-registration'>.NET client registration</h2><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
 <span class="kt">var</span> <span class="n">options</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SiriusApiOptions</span>
 <span class="p">{</span>
     <span class="n">ServerGrpcUrl</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Uri</span><span class="p">(</span><span class="s">"&lt;sirius api url&gt;"</span><span class="p">),</span>
@@ -618,10 +630,42 @@
 <span class="n">services</span><span class="p">.</span><span class="nf">AddSiriusApiClient</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
 
 </code></pre></div>
-<p>In Startup on ConfigureServices add API client using IServiceCollection extension method.</p>
-<h2 id='api-usage-pagination'>Pagination</h2>
+<p>In <code>startup.cs</code> file in <code>ConfigureServices</code> method add API client using <code>IServiceCollection</code> extension method <code>AddSiriusApiClient</code>.</p>
+<h2 id='grpc-protocol-description-authentication'>Authentication</h2>
+<p>Sirius API uses <code>Bearer authentication</code>. Authorization token that a client needs to send with a request is a JWT token.
+To get the token, <a href="mailto:info@swisschain.io">contact us</a> to get invitation code, then register in our <a href="https://universe.swisschain.io/">Universe portal</a>, create a subscription and create an API key. We use JWT as the API key, so you can explore which claims particular token contains using <a href="https://jwt.io">jwt.io</a> online service.</p>
+
+<p>Authorization token should be passed as a gRPC metadata item with the key <code>Authorization</code> and value prefix <code>Bearer</code>:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>placement</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Authorization</code></td>
+<td><em>string</em></td>
+<td>metadata</td>
+<td>API key of the validator returned by the <em><a href="#invites-accept-an-invitation">Accept</a></em> method prepended with <code>Bearer</code> prefix</td>
+<td><code>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc</code></td>
+</tr>
+</tbody></table>
+
+<p>For simplicity this metadata item is not shown in every request that requires authorization.</p>
+<h2 id='grpc-protocol-description-guid'>Guid</h2>
+<p>Some API objects have string fields that in fact contain <a href="http://guid.one/guid">Guid</a>. Exact format is <code>xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx</code></p>
+<h2 id='grpc-protocol-description-json-string'>JSON string</h2>
+<p>Although given API is a gRPC API, some gRPC objects may have string fields that contain some data serialized in the JSON format. Mainly such JSON strings are used
+to represent data that should be signed. Data can be serialized to JSON using any serialization options, the only requirement - JSON should follow <a href="https://datatracker.ietf.org/doc/rfc8259">RFC 8259</a></p>
+<h2 id='grpc-protocol-description-json-string-timestamp'>JSON string timestamp</h2>
+<p>Since timestamp representation is not fixed in the RFC 8259, given API uses textual representation following <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>. Exact format is <code>yyyy-MM-ddThh:mm:ss.ffffffZ</code>. Timestamps are always in UTC time zone</p>
+<h2 id='grpc-protocol-description-pagination'>Pagination</h2>
 <p>Sirius API uses cursor-based pagination model in all endpoints which can return loads of items.</p>
-<h3 id='api-usage-pagination-request'>Request</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<h3 id='grpc-protocol-description-pagination-request'>Request</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
 <span class="kt">var</span> <span class="n">pagination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PaginationInt64</span>
 <span class="p">{</span>
     <span class="n">Cursor</span> <span class="p">=</span> <span class="m">10008</span><span class="p">,</span>
@@ -657,7 +701,7 @@
 <td>asc</td>
 </tr>
 </tbody></table>
-<h3 id='api-usage-pagination-response'>Response</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<h3 id='grpc-protocol-description-pagination-response'>Response</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
 <span class="kt">var</span> <span class="n">items</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Items</span><span class="p">;</span>
 <span class="kt">var</span> <span class="n">pagination</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">;</span>
 
@@ -680,7 +724,7 @@
 <td>Pagination state to continue search</td>
 </tr>
 </tbody></table>
-<h2 id='api-usage-models'>Models</h2><h3 id='api-usage-models-pagination-information'>Pagination information</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<h2 id='grpc-protocol-description-models'>Models</h2><h3 id='grpc-protocol-description-models-pagination-information'>Pagination information</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
 <span class="kt">var</span> <span class="n">cursor</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Cursor</span><span class="p">;</span>
 <span class="kt">var</span> <span class="n">count</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
 <span class="kt">var</span> <span class="n">order</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Order</span><span class="p">;</span>
@@ -713,14 +757,16 @@
 <td>asc</td>
 </tr>
 </tbody></table>
-<h3 id='api-usage-models-order-enum'>Order (enum)</h3>
+<h3 id='grpc-protocol-description-models-order-enum'>Order (enum)</h3>
 <p>Order of the sorting</p>
 
 <ul>
 <li><code>asc</code> - Ascending sorting order</li>
 <li><code>desc</code> - Descending sorting order</li>
 </ul>
-<h1 id='rest-protocol-description'>REST Protocol description</h1><h2 id='rest-protocol-description-allowed-http-verbs'>Allowed HTTP Verbs</h2>
+<h1 id='rest-protocol-description'>REST Protocol description</h1>
+<p>It&#39;s recommended to user <a href="#gRPC-Protocol-description">gRPC API</a> but if your platform doesn&#39;t support gRPC, you can revert to the Sirius REST API.</p>
+<h2 id='rest-protocol-description-allowed-http-verbs'>Allowed HTTP Verbs</h2>
 <ul>
 <li><code>PUT</code> : Updates a resource.</li>
 <li><code>POST</code> : Creates a resource.</li>
@@ -743,7 +789,7 @@
 <blockquote>
 <p>Request Header</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="nl">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **********************************"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="nl">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc
 </span></code></pre></div><h2 id='rest-protocol-description-error-responses'>Error responses</h2>
 <p>Until other is specified for the particular endpoint and HTTP status code, the error response model is:</p>
 
