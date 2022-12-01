@@ -342,9 +342,6 @@
                   <li>
                     <a href="#grpc-protocol-description-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
                   </li>
-                  <li>
-                    <a href="#grpc-protocol-description-models" class="toc-h2 toc-link" data-title="Models">Models</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -618,11 +615,11 @@
 
 <p>There are several ways to use Sirius gRPC API. If you use .NET, the most convenient wayt for you is Sirius.Api.Client <a href="https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/"><img src="https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg" alt="Nuget Package" /></a>.</p>
 
-<p>Otherwise, you can get <a href="https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto">porot files</a> directly and generate client on almost any platform.</p>
+<p>Otherwise, you can get <a href="https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto">proto files</a> directly and generate client on almost any platform.</p>
 <h2 id='grpc-protocol-description-net-client-registration'>.NET client registration</h2><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
 <span class="kt">var</span> <span class="n">options</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SiriusApiOptions</span>
 <span class="p">{</span>
-    <span class="n">ServerGrpcUrl</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Uri</span><span class="p">(</span><span class="s">"&lt;sirius api url&gt;"</span><span class="p">),</span>
+    <span class="n">ServerGrpcUrl</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Uri</span><span class="p">(</span><span class="s">"https://sirius-grpc.swisschain.io"</span><span class="p">),</span>
     <span class="n">ApiKey</span> <span class="p">=</span> <span class="s">"&lt;you api key&gt;"</span><span class="p">,</span>
     <span class="n">Timeout</span> <span class="p">=</span> <span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">60</span><span class="p">)</span>
 <span class="p">};</span>
@@ -650,7 +647,7 @@ To get the token, <a href="mailto:info@swisschain.io">contact us</a> to get invi
 <td><code>Authorization</code></td>
 <td><em>string</em></td>
 <td>metadata</td>
-<td>API key of the validator returned by the <em><a href="#invites-accept-an-invitation">Accept</a></em> method prepended with <code>Bearer</code> prefix</td>
+<td>Sirius API key obtained via Universe portal prepended with the <code>Bearer</code> prefix</td>
 <td><code>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc</code></td>
 </tr>
 </tbody></table>
@@ -724,7 +721,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <td>Pagination state to continue search</td>
 </tr>
 </tbody></table>
-<h2 id='grpc-protocol-description-models'>Models</h2><h3 id='grpc-protocol-description-models-pagination-information'>Pagination information</h3><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
+<h3 id='grpc-protocol-description-pagination-models'>Models</h3><h4 id='grpc-protocol-description-pagination-models-pagination-information'>Pagination information</h4><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
 <span class="kt">var</span> <span class="n">cursor</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Cursor</span><span class="p">;</span>
 <span class="kt">var</span> <span class="n">count</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
 <span class="kt">var</span> <span class="n">order</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Body</span><span class="p">.</span><span class="n">Pagination</span><span class="p">.</span><span class="n">Order</span><span class="p">;</span>
@@ -757,7 +754,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <td>asc</td>
 </tr>
 </tbody></table>
-<h3 id='grpc-protocol-description-models-order-enum'>Order (enum)</h3>
+<h4 id='grpc-protocol-description-pagination-models-order-enum'>Order (enum)</h4>
 <p>Order of the sorting</p>
 
 <ul>
