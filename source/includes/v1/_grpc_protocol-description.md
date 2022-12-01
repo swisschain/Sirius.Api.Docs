@@ -4,7 +4,7 @@ Sirius API uses gRPC protocol as the main one. To learn more about gRPC please f
 
 There are several ways to use Sirius gRPC API. If you use .NET, the most convenient wayt for you is Sirius.Api.Client [![Nuget Package](https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg)](https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/).
 
-Otherwise, you can get [porot files](https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto) directly and generate client on almost any platform.
+Otherwise, you can get [proto files](https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto) directly and generate client on almost any platform.
 
 ## .NET client registration
 
@@ -12,7 +12,7 @@ Otherwise, you can get [porot files](https://github.com/swisschain/Sirius.Api.Do
 
 var options = new SiriusApiOptions
 {
-    ServerGrpcUrl = new Uri("<sirius api url>"),
+    ServerGrpcUrl = new Uri("https://sirius-grpc.swisschain.io"),
     ApiKey = "<you api key>",
     Timeout = TimeSpan.FromSeconds(60)
 };
@@ -32,7 +32,7 @@ Authorization token should be passed as a gRPC metadata item with the key `Autho
 
 name | type | placement | description | example
 ---- | ---- | --------- | ----------- | -------
-`Authorization` | *string* | metadata | API key of the validator returned by the *[Accept](#invites-accept-an-invitation)* method prepended with `Bearer ` prefix | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc`
+`Authorization` | *string* | metadata | Sirius API key obtained via Universe portal prepended with the `Bearer ` prefix | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc`
 
 For simplicity this metadata item is not shown in every request that requires authorization.
 
@@ -86,9 +86,9 @@ name | type | description
 `Items` | *List<T>* | The array of an objects
 `Pagination` | *[Pagination](#api-usage-models-pagination-information)* | Pagination state to continue search
 
-## Models
+### Models
 
-### Pagination information 
+#### Pagination information 
 
 ```csharp
 
@@ -104,7 +104,7 @@ name | type | description | example
 `Count` | *optional*, *number* | Number of items in the current page | 10
 `Order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
 
-### Order (enum)
+#### Order (enum)
 
 Order of the sorting
 
