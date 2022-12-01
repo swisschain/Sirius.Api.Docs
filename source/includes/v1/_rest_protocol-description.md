@@ -1,5 +1,7 @@
 # REST Protocol description
 
+It's recommended to user [gRPC API](#gRPC-Protocol-description) but if your platform doesn't support gRPC, you can revert to the Sirius REST API.
+
 ## Allowed HTTP Verbs
 
 - `PUT` : Updates a resource.
@@ -24,7 +26,7 @@ Sirius API uses `Bearer authentication`. To get the token, [contact us](mailto:i
 > Request Header
 
 ```json
-  "Authorization": "Bearer **********************************"
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc
 ```
 
 ## Error responses

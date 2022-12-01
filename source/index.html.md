@@ -16,7 +16,7 @@ meta:
 includes:
   - introduction.md
   - feedback.md
-  - api_usage.md
+  - v1/grpc_protocol-description
   - v1/rest_protocol-description.md
   - v1/brokerage-api-blockchains.md
   - v1/brokerage-api-assets.md
