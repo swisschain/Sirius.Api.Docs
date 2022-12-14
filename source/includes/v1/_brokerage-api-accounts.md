@@ -40,13 +40,13 @@ message AccountCreateRequest {
 }
 ```
 
-REST name | gRPC name | type | REST placement | description 
---------- | --------- | ---- | -------------- | -----------
-`X-Request-ID` | - | *string* | *header* | Unique ID of the request
- - | `request_id` | *string* | - | Unique ID of the request
-`brokerAccountId` | `broker_account_id` | *optional*, *number* | *body* | Id of the related Broker Account
-`referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
-`userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
+| REST name         | gRPC name           | type                 | REST placement | description                                                                      |
+|-------------------|---------------------|----------------------|----------------|----------------------------------------------------------------------------------|
+| `X-Request-ID`    | -                   | *string*             | *header*       | Unique ID of the request                                                         |
+| -                 | `request_id`        | *string*             | -              | Unique ID of the request                                                         |
+| `brokerAccountId` | `broker_account_id` | *optional*, *number* | *body*         | Id of the related Broker Account                                                 |
+| `referenceId`     | `reference_id`      | *optional*, *string* | *body*         | Account reference id                                                             |
+| `userId`          | `user_id`           | *optional*, *number* | *body*         | Id of the related user in the system (Needed for enabling AML on broker Account) |
 
 ### Response
 
@@ -95,16 +95,16 @@ message AccountResponse {
 }
 ```
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the account
-`referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
-`brokerAccountId` | `broker_account_id` | *number* | *body* | Id of the related Broker Account
-`status` | `status` | *[AccountState](#accountstate-enum)* | Status of the account
-`createdAt` | `created_at` | *timestamp* | Date of the account creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
-`userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
-`userNativeId` | `user_native_id` | *optional*, *string* | *body* | Native Id of the user in customer's system
+| REST name         | gRPC name           | type                                                                  | description                       |
+|-------------------|---------------------|-----------------------------------------------------------------------|-----------------------------------|
+| `id`              | `id`                | *number*                                                              | ID of the account                 |
+| `referenceId`     | `reference_id`      | *optional*, *string*                                                  | *body*                            | Account reference id
+| `brokerAccountId` | `broker_account_id` | *number*                                                              | *body*                            | Id of the related Broker Account
+| `status`          | `status`            | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account             |
+| `createdAt`       | `created_at`        | *timestamp*                                                           | Date of the account creation      |
+| `updatedAt`       | `updated_at`        | *timestamp*                                                           | Date of the latest account update |
+| `userId`          | `user_id`           | *optional*, *number*                                                  | *body*                            | Id of the related user in the system (Needed for enabling AML on broker Account)
+| `userNativeId`    | `user_native_id`    | *optional*, *string*                                                  | *body*                            | Native Id of the user in customer's system
 
 ## Update an account
 
@@ -127,11 +127,11 @@ x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 }
 ```
 
-REST name | gRPC name | type | REST placement | description 
---------- | --------- | ---- | -------------- | -----------
-`X-Request-ID` | - | *string* | *header* | Unique ID of the request
-`accountId` | - | *optional*, *number* | *body* | Id of the related Account
-`userId` | - | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
+| REST name      | gRPC name | type                 | REST placement | description                                                                      |
+|----------------|-----------|----------------------|----------------|----------------------------------------------------------------------------------|
+| `X-Request-ID` | -         | *string*             | *header*       | Unique ID of the request                                                         |
+| `accountId`    | -         | *optional*, *number* | *body*         | Id of the related Account                                                        |
+| `userId`       | -         | *optional*, *number* | *body*         | Id of the related user in the system (Needed for enabling AML on broker Account) |
 
 ### Response
 
@@ -152,16 +152,16 @@ POST /api/accounts
 }
 ```
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the account
-`referenceId` | `reference_id` | *optional*, *string* | *body* | Account reference id
-`brokerAccountId` | `broker_account_id` | *number* | *body* | Id of the related Broker Account
-`status` | `status` | *[AccountState](#accountstate-enum)* | Status of the account
-`createdAt` | `created_at` | *timestamp* | Date of the account creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
-`userId` | `user_id` | *optional*, *number* | *body* | Id of the related user in the system (Needed for enabling AML on broker Account)
-`userNativeId` | `user_native_id` | *optional*, *string* | *body* | Native Id of the user in customer's system
+| REST name         | gRPC name           | type                                                                  | description                       |
+|-------------------|---------------------|-----------------------------------------------------------------------|-----------------------------------|
+| `id`              | `id`                | *number*                                                              | ID of the account                 |
+| `referenceId`     | `reference_id`      | *optional*, *string*                                                  | *body*                            | Account reference id
+| `brokerAccountId` | `broker_account_id` | *number*                                                              | *body*                            | Id of the related Broker Account
+| `status`          | `status`            | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account             |
+| `createdAt`       | `created_at`        | *timestamp*                                                           | Date of the account creation      |
+| `updatedAt`       | `updated_at`        | *timestamp*                                                           | Date of the latest account update |
+| `userId`          | `user_id`           | *optional*, *number*                                                  | *body*                            | Id of the related user in the system (Needed for enabling AML on broker Account)
+| `userNativeId`    | `user_native_id`    | *optional*, *string*                                                  | *body*                            | Native Id of the user in customer's system
 
 
 ## Search for accounts
@@ -174,17 +174,16 @@ REST name | gRPC name | type | description
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`id` | `id` | *optional*, *number* | ID of the account to search | 11111111
-`brokerAccountId` | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 100000113
-`userId` | `user_id` | *optional*, *number* | ID of users | 108000004
-`referenceId` | `reference_id` | *optional*, *string* | Account reference id | user reference
-`state` | `state` | *optional*, *[AccountState](#accountstate-enum)* | State of the account | creating
-`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
+| REST name         | gRPC name           | type                                                                              | description                                             | example        |
+|-------------------|---------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------|----------------|
+| `id`              | `id`                | *optional*, *number*                                                              | ID of the account to search                             | 11111111       |
+| `brokerAccountId` | `broker_account_id` | *optional*, *number*                                                              | Exact broker account id to search                       | 100000113      |
+| `userId`          | `user_id`           | *optional*, *number*                                                              | ID of users                                             | 108000004      |
+| `referenceId`     | `reference_id`      | *optional*, *string*                                                              | Account reference id                                    | user reference |
+| `state`           | `state`             | *optional*, *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | State of the account                                    | creating       |
+| `order`           | `pagination.order`  | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)*               | Result items sorting order                              | asc            |
+| `cursor`          | `pagination.cursor` | *optional*, *string*                                                              | Cursor to continue the search                           | 11111110       |
+| `limit`           | `pagination.limit`  | *optional*, *number*                                                              | Maximum number of items to return in the search results | 10             |
 
 ```protobuf
 swisschain.sirius.api.accounts.Accounts.Search
@@ -260,16 +259,16 @@ message AccountResponse {
 ```
 Paginated response of the accounts:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the account
-`referenceId` | `reference_id` | *optional*, *string* | Account reference id
-`brokerAccountId` | `broker_account_id` | *number* | Id of the related Broker Account
-`status` | `status` | *[AccountState](#accountstate-enum)* | Status of the account
-`createdAt` | `created_at` | *timestamp* | Date of the account creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest account update
-`userId` | `user_id` | *optional*, *number* | Id of the related user in the system (Needed for enabling AML on broker Account)
-`userNativeId` | `user_native_id` | *optional*, *string* | Native Id of the user in customer's system
+| REST name         | gRPC name           | type                                                                  | description                                                                      |
+|-------------------|---------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `id`              | `id`                | *number*                                                              | ID of the account                                                                |
+| `referenceId`     | `reference_id`      | *optional*, *string*                                                  | Account reference id                                                             |
+| `brokerAccountId` | `broker_account_id` | *number*                                                              | Id of the related Broker Account                                                 |
+| `status`          | `status`            | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account                                                            |
+| `createdAt`       | `created_at`        | *timestamp*                                                           | Date of the account creation                                                     |
+| `updatedAt`       | `updated_at`        | *timestamp*                                                           | Date of the latest account update                                                |
+| `userId`          | `user_id`           | *optional*, *number*                                                  | Id of the related user in the system (Needed for enabling AML on broker Account) |
+| `userNativeId`    | `user_native_id`    | *optional*, *string*                                                  | Native Id of the user in customer's system                                       |
 
 ## Searches the account details
 
@@ -281,21 +280,20 @@ REST name | gRPC name | type | description
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`id` | `id` | *optional*, *number* | ID of the account details to search | 11111111
-`accountId` | `account_id` | *optional*, *number* | Exact account id to search | 103000000
-`referenceId` | `reference_id` | *optional*, *string* | Account reference id | account reference
-`brokerAccountId` | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 103000113
-`assetId` | `asset_id` | *optional*, *number* | ID of an asset | 108000004
-`blockchainId` | `blockchain_id` | *optional*, *number* | ID of the blockchain | bitcoin-private
-`address` | `address` | *optional*, *string* | Address of the account details | bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank
-`tag` | `tag` | *optional*, *string* | related tag | null
-`tag_type` | `tag_type` | *optional*, *[TagType](#tagtype-enum)* | tag type | null
-`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
+| REST name         | gRPC name           | type                                                                    | description                                             | example                                      |
+|-------------------|---------------------|-------------------------------------------------------------------------|---------------------------------------------------------|----------------------------------------------|
+| `id`              | `id`                | *optional*, *number*                                                    | ID of the account details to search                     | 11111111                                     |
+| `accountId`       | `account_id`        | *optional*, *number*                                                    | Exact account id to search                              | 103000000                                    |
+| `referenceId`     | `reference_id`      | *optional*, *string*                                                    | Account reference id                                    | account reference                            |
+| `brokerAccountId` | `broker_account_id` | *optional*, *number*                                                    | Exact broker account id to search                       | 103000113                                    |
+| `assetId`         | `asset_id`          | *optional*, *number*                                                    | ID of an asset                                          | 108000004                                    |
+| `blockchainId`    | `blockchain_id`     | *optional*, *number*                                                    | ID of the blockchain                                    | bitcoin-private                              |
+| `address`         | `address`           | *optional*, *string*                                                    | Address of the account details                          | bcrt1qnqx8ltjez3jak8f859y20darrhawa8rq73pank |
+| `tag`             | `tag`               | *optional*, *string*                                                    | related tag                                             | null                                         |
+| `tag_type`        | `tag_type`          | *optional*, *[TagType](_brokerage-api-data-structures.md#tagtype-enum)* | tag type                                                | null                                         |
+| `order`           | `pagination.order`  | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)*     | Result items sorting order                              | asc                                          |
+| `cursor`          | `pagination.cursor` | *optional*, *string*                                                    | Cursor to continue the search                           | 11111110                                     |
+| `limit`           | `pagination.limit`  | *optional*, *number*                                                    | Maximum number of items to return in the search results | 10                                           |
 
 ```protobuf
 swisschain.sirius.api.accounts.Accounts.SearchDetails
@@ -370,15 +368,15 @@ message AccountDetailsResponse {
 
 Paginated array of the account details:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the account details
-`blockchainId` | `blockchain_id` | *string* | Blockchain ID
-`accountId` | `account_id` | *number* | Id of the related Account
-`createdAt` | `created_at` | *timestamp* | Date of the account details creation
-`address` | `address` | *number* | Details public address
-`tag` | `tag` | *optional*, *string* | Tag which is related to address (applicable for Stellar)
-`tagType` | `tag_type` | *optional*, *[TagType](#tagtype-enum)* | Tag type 
+| REST name      | gRPC name       | type                                                                    | description                                              |
+|----------------|-----------------|-------------------------------------------------------------------------|----------------------------------------------------------|
+| `id`           | `id`            | *number*                                                                | ID of the account details                                |
+| `blockchainId` | `blockchain_id` | *string*                                                                | Blockchain ID                                            |
+| `accountId`    | `account_id`    | *number*                                                                | Id of the related Account                                |
+| `createdAt`    | `created_at`    | *timestamp*                                                             | Date of the account details creation                     |
+| `address`      | `address`       | *number*                                                                | Details public address                                   |
+| `tag`          | `tag`           | *optional*, *string*                                                    | Tag which is related to address (applicable for Stellar) |
+| `tagType`      | `tag_type`      | *optional*, *[TagType](_brokerage-api-data-structures.md#tagtype-enum)* | Tag type                                                 |
 
 ## Gets the account details by the asset id
 
@@ -390,11 +388,10 @@ REST name | gRPC name | type | description
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`accountId` | `account_id` | *number* | ID of the account | 103000000
-`assetId` | `asset_id` | *number* | Id of the asset | 100000113
-
+| REST name   | gRPC name    | type     | description       | example   |
+|-------------|--------------|----------|-------------------|-----------|
+| `accountId` | `account_id` | *number* | ID of the account | 103000000 |
+| `assetId`   | `asset_id`   | *number* | Id of the asset   | 100000113 |
 
 ```protobuf
 swisschain.sirius.api.accounts.Accounts.GetDetails
@@ -452,16 +449,15 @@ message AccountDetailsResponse {
 }
 ```
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the account details
-`blockchainId` | `blockchain_id` | *string* | Blockchain ID
-`accountId` | `account_id` | *number* | Id of the related Account
-`createdAt` | `created_at` | *timestamp* | Date of the account details creation
-`address` | `address` | *number* | Details public address
-`tag` | `tag` | *optional*, *string* | Tag which is related to address (applicable for Stellar)
-`tagType` | `tag_type` | *optional*, *[TagType](#tagtype-enum)* | Tag type 
-
+| REST name      | gRPC name       | type                                                                    | description                                              |
+|----------------|-----------------|-------------------------------------------------------------------------|----------------------------------------------------------|
+| `id`           | `id`            | *number*                                                                | ID of the account details                                |
+| `blockchainId` | `blockchain_id` | *string*                                                                | Blockchain ID                                            |
+| `accountId`    | `account_id`    | *number*                                                                | Id of the related Account                                |
+| `createdAt`    | `created_at`    | *timestamp*                                                             | Date of the account details creation                     |
+| `address`      | `address`       | *number*                                                                | Details public address                                   |
+| `tag`          | `tag`           | *optional*, *string*                                                    | Tag which is related to address (applicable for Stellar) |
+| `tagType`      | `tag_type`      | *optional*, *[TagType](_brokerage-api-data-structures.md#tagtype-enum)* | Tag type                                                 |
 
 ## Search for account updates
 
@@ -471,14 +467,13 @@ REST name | gRPC name | type | description
 
 ### Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-- | `account_id` | *optional*, *number* | Exact account id to search updates for | 100000113
-- | `broker_account_id` | *optional*, *number* | Exact broker account id to search | 103000113
-- | `reference_id` | *optional*, *string* | Account reference id | user reference
-- | `state` | *optional*, *[AccountState](#accountstate-enum)* | State of the account | creating
-- | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-
+| REST name | gRPC name           | type                                                                              | description                            | example        |
+|-----------|---------------------|-----------------------------------------------------------------------------------|----------------------------------------|----------------|
+| -         | `account_id`        | *optional*, *number*                                                              | Exact account id to search updates for | 100000113      |
+| -         | `broker_account_id` | *optional*, *number*                                                              | Exact broker account id to search      | 103000113      |
+| -         | `reference_id`      | *optional*, *string*                                                              | Account reference id                   | user reference |
+| -         | `state`             | *optional*, *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | State of the account                   | creating       |
+| -         | `pagination.cursor` | *optional*, *string*                                                              | Cursor to continue the search          | 11111110       |
 
 ```protobuf
 swisschain.sirius.api.accounts.Accounts.GetUpdates
@@ -520,14 +515,14 @@ message AccountUpdateResponse {
 ```
 Response is the stream of historical account updates and real time updates as well:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-- | `account_update_id` | *number* | ID of the account update
-- | `id` | *number* | ID of the account
-- | `reference_id` | *optional*, *string* | Account reference id
-- | `broker_account_id` | *number* | Id of the related Broker Account
-- | `status` | *[AccountState](#accountstate-enum)* | Status of the account
-- | `created_at` | *timestamp* | Date of the account creation
-- | `updated_at` | *timestamp* | Date of the latest account update
-- | `user_id` | *optional*, *number* | Id of the related user in the system (Needed for enabling AML on broker Account)
-- | `user_native_id` | *optional*, *string* | Native Id of the user in customer's system
+| REST name | gRPC name           | type                                                                  | description                                                                      |
+|-----------|---------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| -         | `account_update_id` | *number*                                                              | ID of the account update                                                         |
+| -         | `id`                | *number*                                                              | ID of the account                                                                |
+| -         | `reference_id`      | *optional*, *string*                                                  | Account reference id                                                             |
+| -         | `broker_account_id` | *number*                                                              | Id of the related Broker Account                                                 |
+| -         | `status`            | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account                                                            |
+| -         | `created_at`        | *timestamp*                                                           | Date of the account creation                                                     |
+| -         | `updated_at`        | *timestamp*                                                           | Date of the latest account update                                                |
+| -         | `user_id`           | *optional*, *number*                                                  | Id of the related user in the system (Needed for enabling AML on broker Account) |
+| -         | `user_native_id`    | *optional*, *string*                                                  | Native Id of the user in customer's system                                       |

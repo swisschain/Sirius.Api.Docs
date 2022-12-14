@@ -2,7 +2,7 @@
 
 Sirius API uses gRPC protocol as the main one. To learn more about gRPC please follow [grpc.io](https://grpc.io)
 
-There are several ways to use Sirius gRPC API. If you use .NET, the most convenient wayt for you is Sirius.Api.Client [![Nuget Package](https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg)](https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/).
+There are several ways to use Sirius gRPC API. If you use .NET, the most convenient way for you is Sirius.Api.Client [![Nuget Package](https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg)](https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/).
 
 Otherwise, you can get [proto files](https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto) directly and generate client on almost any platform.
 
@@ -30,9 +30,9 @@ To get the token, [contact us](mailto:info@swisschain.io) to get invitation code
 
 Authorization token should be passed as a gRPC metadata item with the key `Authorization` and value prefix `Bearer `:
 
-name | type | placement | description | example
----- | ---- | --------- | ----------- | -------
-`Authorization` | *string* | metadata | Sirius API key obtained via Universe portal prepended with the `Bearer ` prefix | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc`
+| name            | type     | placement | description                                                                     | example                                                                                                                                                                                                                                                                                                                                                                                               |
+|-----------------|----------|-----------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Authorization` | *string* | metadata  | Sirius API key obtained via Universe portal prepended with the `Bearer ` prefix | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzaXJpdXMuc3dpc3NjaGFpbi5pbyIsImFwaS1rZXktaWQiOiJjM2U3NzhlNy0yM2JjLTQ3YzAtYmYxNC0wMWQ4ZGIxZjQ0YTciLCJ1bmlxdWVfbmFtZSI6IjIiLCJ0ZW5hbnQtaWQiOiJlNmY5Y2U3ZS1hZGFmLTRmNDgtYWI2ZC1lMjBiODk1YzRjZGEiLCIyZmEtZW5hYmxlZCI6IkZhbHNlIiwibmJmIjoxNjY5ODIyODI2LCJleHAiOjE2ODAyMTAwMDAsImlhdCI6MTY2OTgyMjgyNn0.04j2NB8e--mwhvXnEO5Hpd6khoh-Q5uuzT72xX06dFc` |
 
 For simplicity this metadata item is not shown in every request that requires authorization.
 
@@ -66,11 +66,11 @@ var pagination = new PaginationInt64
                 
 ```
 
-name | type | description | example
----- | ---- | ----------- | -------
-`cursor` | *optional*, *string* | Cursor to continue the search | stellar-test
-`limit` | *optional*, *int* | Maximum number of items to return in the search results | 10
-`order` | *optional*, *[Order](#api-usage-models-order-enum)* | Result items sorting order | asc
+| name     | type                                                | description                                             | example      |
+|----------|-----------------------------------------------------|---------------------------------------------------------|--------------|
+| `cursor` | *optional*, *string*                                | Cursor to continue the search                           | stellar-test |
+| `limit`  | *optional*, *int*                                   | Maximum number of items to return in the search results | 10           |
+| `order`  | *optional*, *[Order](#api-usage-models-order-enum)* | Result items sorting order                              | asc          |
 
 ### Response
 
@@ -81,10 +81,10 @@ var pagination = response.Body.Pagination;
                 
 ```
 
-name | type | description 
----- | ---- | ----------- 
-`Items` | *List<T>* | The array of an objects
-`Pagination` | *[Pagination](#api-usage-models-pagination-information)* | Pagination state to continue search
+| name         | type                                                     | description                         |
+|--------------|----------------------------------------------------------|-------------------------------------|
+| `Items`      | *List<T>*                                                | The array of an objects             |
+| `Pagination` | *[Pagination](#api-usage-models-pagination-information)* | Pagination state to continue search |
 
 ### Models
 
@@ -98,11 +98,11 @@ var order = response.Body.Pagination.Order;
                 
 ```
 
-name | type | description | example
----- | ---- | ----------- | -------
-`Cursor` | *optional*, *string* | Cursor to continue the search | stellar-test
-`Count` | *optional*, *number* | Number of items in the current page | 10
-`Order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
+| name     | type                               | description                         | example      |
+|----------|------------------------------------|-------------------------------------|--------------|
+| `Cursor` | *optional*, *string*               | Cursor to continue the search       | stellar-test |
+| `Count`  | *optional*, *number*               | Number of items in the current page | 10           |
+| `Order`  | *optional*, *[Order](#order-enum)* | Result items sorting order          | asc          |
 
 #### Order (enum)
 

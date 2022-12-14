@@ -47,14 +47,14 @@ message BrokerAccountCreateRequest {
 }
 ```
 
-REST name | gRPC name | type | REST placement | description 
---------- | --------- | ---- | -------------- | -----------
-`X-Request-ID` | - | *string* | *header* | Unique ID of the request
- - | `request_id` | *string* | - | Unique ID of the request
-`name` | `name` | *string* | *body* | Name of the created Broker Account
-`custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
-`blockchainIds` | `blockchain_ids` | *Array of strings* | *body* | Ids of the blockchains with which broker Account should work
-`amlConnectionIds` | `aml_connection_ids` | *Array of strings* | *body* | Ids of the AML connections to enable for deposit/withdrawal checks
+| REST name          | gRPC name            | type               | REST placement | description                                                        |
+|--------------------|----------------------|--------------------|----------------|--------------------------------------------------------------------|
+| `X-Request-ID`     | -                    | *string*           | *header*       | Unique ID of the request                                           |
+| -                  | `request_id`         | *string*           | -              | Unique ID of the request                                           |
+| `name`             | `name`               | *string*           | *body*         | Name of the created Broker Account                                 |
+| `custodyId`        | `custody_id`         | *number*           | *body*         | ID of the custody for broker account                               |
+| `blockchainIds`    | `blockchain_ids`     | *Array of strings* | *body*         | Ids of the blockchains with which broker Account should work       |
+| `amlConnectionIds` | `aml_connection_ids` | *Array of strings* | *body*         | Ids of the AML connections to enable for deposit/withdrawal checks |
 
 ### Response
 
@@ -109,19 +109,19 @@ message BrokerAccountResponse {
 }
 ```
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the broker account
-`name` | `name` | *string* | *body* | Account reference id
-`accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
-`blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
-`state` | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
-`createdAt` | `created_at` | *timestamp* | Date of the broker account creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
-`custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
-`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
-`blockchain_ids` | `blockchain_ids` | *Array of string* | *body* | Blockchains ids that are connected to the broker account
-`amlConnectionIds` | `aml_connection_ids` | *Array of numbers* | *body* | AML Connections that are enabled for the broker account
+| REST name          | gRPC name            | type                                             | description                                                |
+|--------------------|----------------------|--------------------------------------------------|------------------------------------------------------------|
+| `id`               | `id`                 | *number*                                         | ID of the broker account                                   |
+| `name`             | `name`               | *string*                                         | *body*                                                     | Account reference id
+| `accountsCount`    | `accounts_count`     | *number*                                         | Number of accounts that are attached to the broker account |
+| `blockchainsCount` | `blockchains_count`  | *number*                                         | Number of already created broker account details           |
+| `state`            | `state`              | *[BrokerAccountState](_brokerage-api-data-structures.md#brokeraccountstate-enum)* | Status of the broker account                               |
+| `createdAt`        | `created_at`         | *timestamp*                                      | Date of the broker account creation                        |
+| `updatedAt`        | `updated_at`         | *timestamp*                                      | Date of the latest broker account update                   |
+| `custodyId`        | `custody_id`         | *number*                                         | *body*                                                     | ID of the custody for broker account
+| `custodyName`      | `custody_name`       | *string*                                         | *body*                                                     | Name of the custody related to broker account
+| `blockchain_ids`   | `blockchain_ids`     | *Array of string*                                | *body*                                                     | Blockchains ids that are connected to the broker account
+| `amlConnectionIds` | `aml_connection_ids` | *Array of numbers*                               | *body*                                                     | AML Connections that are enabled for the broker account
 
 
 ## Update the broker account
@@ -220,19 +220,19 @@ message BrokerAccountResponse {
 }
 ```
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the broker account
-`name` | `name` | *string* | *body* | Broker account name
-`accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
-`blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
-`state` | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
-`createdAt` | `created_at` | *timestamp* | Date of the broker account creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
-`custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
-`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
-`blockchain_ids` | `blockchain_ids` | *Array of string* | *body* | Blockchains ids that are connected to the broker account
-`amlConnectionIds` | `aml_connection_ids` | *Array of numbers* | *body* | AML Connections that are enabled for the broker account
+| REST name          | gRPC name            | type                                                                              | description                                                |
+|--------------------|----------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------|
+| `id`               | `id`                 | *number*                                                                          | ID of the broker account                                   |
+| `name`             | `name`               | *string*                                                                          | *body*                                                     | Broker account name
+| `accountsCount`    | `accounts_count`     | *number*                                                                          | Number of accounts that are attached to the broker account |
+| `blockchainsCount` | `blockchains_count`  | *number*                                                                          | Number of already created broker account details           |
+| `state`            | `state`              | *[BrokerAccountState](_brokerage-api-data-structures.md#brokeraccountstate-enum)* | Status of the broker account                               |
+| `createdAt`        | `created_at`         | *timestamp*                                                                       | Date of the broker account creation                        |
+| `updatedAt`        | `updated_at`         | *timestamp*                                                                       | Date of the latest broker account update                   |
+| `custodyId`        | `custody_id`         | *number*                                                                          | *body*                                                     | ID of the custody for broker account
+| `custodyName`      | `custody_name`       | *string*                                                                          | *body*                                                     | Name of the custody related to broker account
+| `blockchain_ids`   | `blockchain_ids`     | *Array of string*                                                                 | *body*                                                     | Blockchains ids that are connected to the broker account
+| `amlConnectionIds` | `aml_connection_ids` | *Array of numbers*                                                                | *body*                                                     | AML Connections that are enabled for the broker account
 
 ## Searches broker accounts
 
@@ -244,16 +244,15 @@ REST name | gRPC name | type | description
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`id` | `id` | *optional*, *number* | Exact broker account ID to search | 100000113
-`name` | `name` | *optional*, *string* | Name of the broker account  | Broker account name
-`state` | `state` | *optional*, *Array of [BrokerAccountState](#brokeraccountstate-enum)* | State of the broker account | creating
-- | `custody_id` | *optional*, *number* | Find broker accounts with specified Custody ID | 200000000
-`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
+| REST name | gRPC name           | type                                                                                                   | description                                             | example             |
+|-----------|---------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------|---------------------|
+| `id`      | `id`                | *optional*, *number*                                                                                   | Exact broker account ID to search                       | 100000113           |
+| `name`    | `name`              | *optional*, *string*                                                                                   | Name of the broker account                              | Broker account name |
+| `state`   | `state`             | *optional*, *Array of [BrokerAccountState](_brokerage-api-data-structures.md#brokeraccountstate-enum)* | State of the broker account                             | creating            |
+| -         | `custody_id`        | *optional*, *number*                                                                                   | Find broker accounts with specified Custody ID          | 200000000           |
+| `order`   | `pagination.order`  | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)*                                    | Result items sorting order                              | asc                 |
+| `cursor`  | `pagination.cursor` | *optional*, *string*                                                                                   | Cursor to continue the search                           | 11111110            |
+| `limit`   | `pagination.limit`  | *optional*, *number*                                                                                   | Maximum number of items to return in the search results | 10                  |
 
 ```protobuf
 swisschain.sirius.api.brokerAccounts.BrokerAccounts.Search
@@ -335,19 +334,19 @@ message BrokerAccountResponse {
 
 Paginated response of the broker accounts:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the broker account
-`name` | `name` | *string* | *body* | Broker account name
-`accountsCount` | `accounts_count` | *number* | Number of accounts that are attached to the broker account
-`blockchainsCount` | `blockchains_count` | *number* | Number of already created broker account details
-`state` | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
-`createdAt` | `created_at` | *timestamp* | Date of the broker account creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account update
-`custodyId` | `custody_id` | *number* | *body* | ID of the custody for broker account
-`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
-`blockchain_ids` | `blockchain_ids` | *Array of string* | *body* | Blockchains ids that are connected to the broker account
-`amlConnectionIds` | `aml_connection_ids` | *Array of numbers* | *body* | AML Connections that are enabled for the broker account
+| REST name          | gRPC name            | type                                                                              | description                                                |
+|--------------------|----------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------|
+| `id`               | `id`                 | *number*                                                                          | ID of the broker account                                   |
+| `name`             | `name`               | *string* *body*                                                                   | Broker account name                                        | 
+| `accountsCount`    | `accounts_count`     | *number*                                                                          | Number of accounts that are attached to the broker account |
+| `blockchainsCount` | `blockchains_count`  | *number*                                                                          | Number of already created broker account details           |
+| `state`            | `state`              | *[BrokerAccountState](_brokerage-api-data-structures.md#brokeraccountstate-enum)* | Status of the broker account                               |
+| `createdAt`        | `created_at`         | *timestamp*                                                                       | Date of the broker account creation                        |
+| `updatedAt`        | `updated_at`         | *timestamp*                                                                       | Date of the latest broker account update                   |
+| `custodyId`        | `custody_id`         | *number* *body*                                                                   | ID of the custody for broker account                       |
+| `custodyName`      | `custody_name`       | *string* *body*                                                                   | Name of the custody related to broker account              |
+| `blockchain_ids`   | `blockchain_ids`     | *Array of string* *body*                                                          | Blockchains ids that are connected to the broker account   |
+| `amlConnectionIds` | `aml_connection_ids` | *Array of numbers* *body*                                                         | AML Connections that are enabled for the broker account    |
 
 ## Searches the broker account balances
 
@@ -359,14 +358,13 @@ REST name | gRPC name | type | description
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`brokerAccountId` | `broker_account_id` | *number* | Find balances for specified broker account ID | 200000000
-`assetId` | `asset_id` | *optional*, *number* | Show balance for specified asset ID | 100000113
-`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
+| REST name         | gRPC name           | type                                                                | description                                             | example   |
+|-------------------|---------------------|---------------------------------------------------------------------|---------------------------------------------------------|-----------|
+| `brokerAccountId` | `broker_account_id` | *number*                                                            | Find balances for specified broker account ID           | 200000000 |
+| `assetId`         | `asset_id`          | *optional*, *number*                                                | Show balance for specified asset ID                     | 100000113 |
+| `order`           | `pagination.order`  | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)* | Result items sorting order                              | asc       |
+| `cursor`          | `pagination.cursor` | *optional*, *string*                                                | Cursor to continue the search                           | 11111110  |
+| `limit`           | `pagination.limit`  | *optional*, *number*                                                | Maximum number of items to return in the search results | 10        |
 
 ```protobuf
 swisschain.sirius.api.brokerAccounts.BrokerAccounts.GetBalances
@@ -450,21 +448,21 @@ message BrokerAccountBalancesResponse
 
 Paginated response of the broker account balances:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the broker account balance
-`brokerAccountId` | `broker_account_id` | *number* | ID of the broker account
-`assetId` | `asset_id` | *number* | ID of the asset
-`ownedBalance` | `owned_balance` | *decimal* | Owned balance. (see balance diagram)
-`availableBalance` | `available_balance` | *decimal* | Available balance. (see balance diagram)
-`pendingBalance` | `pending_balance` | *decimal* | Pending balance. (see balance diagram)
-`reservedBalance` | `reserved_balance` | *decimal* | Reserved balance. (see balance diagram)
-`createdAt` | `created_at` | *timestamp* | Date of the broker account balance creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest broker account balance update
-`assetSymbol` | `asset_symbol` | *string* | Symbol of the asset
-`assetAddress` | `asset_address` | *string* | Asset's address on the blockchain(e.x:for tokens)
-`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
-`blockchain_name` | `blockchain_name` | *string* | *body* | Blockchains name
+| REST name          | gRPC name           | type            | description                                       |
+|--------------------|---------------------|-----------------|---------------------------------------------------|
+| `id`               | `id`                | *number*        | ID of the broker account balance                  |
+| `brokerAccountId`  | `broker_account_id` | *number*        | ID of the broker account                          |
+| `assetId`          | `asset_id`          | *number*        | ID of the asset                                   |
+| `ownedBalance`     | `owned_balance`     | *decimal*       | Owned balance. (see balance diagram)              |
+| `availableBalance` | `available_balance` | *decimal*       | Available balance. (see balance diagram)          |
+| `pendingBalance`   | `pending_balance`   | *decimal*       | Pending balance. (see balance diagram)            |
+| `reservedBalance`  | `reserved_balance`  | *decimal*       | Reserved balance. (see balance diagram)           |
+| `createdAt`        | `created_at`        | *timestamp*     | Date of the broker account balance creation       |
+| `updatedAt`        | `updated_at`        | *timestamp*     | Date of the latest broker account balance update  |
+| `assetSymbol`      | `asset_symbol`      | *string*        | Symbol of the asset                               |
+| `assetAddress`     | `asset_address`     | *string*        | Asset's address on the blockchain(e.x:for tokens) |
+| `custodyName`      | `custody_name`      | *string* *body* | Name of the custody related to broker account     |
+| `blockchain_name`  | `blockchain_name`   | *string* *body* | Blockchains name                                  |
 
 ## Searches the broker account details
 
@@ -476,17 +474,16 @@ REST name | gRPC name | type | description
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`brokerAccountId` | `broker_account_id` | *number* | Find details for specified broker account ID | 200000000
-`id` | `id` | *optional*, *number* | Find details for specified broker account ID | 200000001
-`assetId` | `asset_id` | *optional*, *number* | Show details for specified asset ID | 100000
-`blockchainId` | `blockchain_id` | *optional*, *number* | Show details for specified blockchain ID | ethereum-ropsten
-`address` | `address` | *optional*, *number* | Show details for specified address | 0x678401cf8200967a3998d1480512b3f9e79f9447
-`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
+| REST name         | gRPC name           | type                                                                | description                                             | example                                    |
+|-------------------|---------------------|---------------------------------------------------------------------|---------------------------------------------------------|--------------------------------------------|
+| `brokerAccountId` | `broker_account_id` | *number*                                                            | Find details for specified broker account ID            | 200000000                                  |
+| `id`              | `id`                | *optional*, *number*                                                | Find details for specified broker account ID            | 200000001                                  |
+| `assetId`         | `asset_id`          | *optional*, *number*                                                | Show details for specified asset ID                     | 100000                                     |
+| `blockchainId`    | `blockchain_id`     | *optional*, *number*                                                | Show details for specified blockchain ID                | ethereum-ropsten                           |
+| `address`         | `address`           | *optional*, *number*                                                | Show details for specified address                      | 0x678401cf8200967a3998d1480512b3f9e79f9447 |
+| `order`           | `pagination.order`  | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)* | Result items sorting order                              | asc                                        |
+| `cursor`          | `pagination.cursor` | *optional*, *string*                                                | Cursor to continue the search                           | 11111110                                   |
+| `limit`           | `pagination.limit`  | *optional*, *number*                                                | Maximum number of items to return in the search results | 10                                         |
 
 ```protobuf
 swisschain.sirius.api.brokerAccounts.BrokerAccounts.SearchDetails
@@ -556,15 +553,15 @@ message BrokerAccountDetailsResponse {
 
 Paginated response of the broker account details:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the broker account balance
-`brokerAccountId` | `broker_account_id` | *number* | ID of the broker account
-`assetId` | `asset_id` | *number* | ID of the asset
-`createdAt` | `created_at` | *timestamp* | Date of the broker account balance creation
-`address` | `address` | *string* | Asset's address on the blockchain(e.x:for tokens)
-`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
-`blockchainId` | `blockchain_id` | *string* | *body* | Blockchain ID
+| REST name         | gRPC name           | type             | description                                       |
+|-------------------|---------------------|------------------|---------------------------------------------------|
+| `id`              | `id`                | *number*         | ID of the broker account balance                  |
+| `brokerAccountId` | `broker_account_id` | *number*         | ID of the broker account                          |
+| `assetId`         | `asset_id`          | *number*         | ID of the asset                                   |
+| `createdAt`       | `created_at`        | *timestamp*      | Date of the broker account balance creation       |
+| `address`         | `address`           | *string*         | Asset's address on the blockchain(e.x:for tokens) |
+| `custodyName`     | `custody_name`      | *string* *body*  | Name of the custody related to broker account     |
+| `blockchainId`    | `blockchain_id`     | *string*  *body* | Blockchain ID                                     |
 
 ## Gets the broker account details by the asset id
 
@@ -576,11 +573,10 @@ REST name | gRPC name | type | description
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`brokerAccountId` | `broker_account_id` | *number* | Find details for specified broker account ID | 200000000
-`assetId` | `asset_id` | *number* | Show details for specified asset ID | 100000
-
+| REST name         | gRPC name           | type     | description                                  | example   |
+|-------------------|---------------------|----------|----------------------------------------------|-----------|
+| `brokerAccountId` | `broker_account_id` | *number* | Find details for specified broker account ID | 200000000 |
+| `assetId`         | `asset_id`          | *number* | Show details for specified asset ID          | 100000    |
 
 ```protobuf
 swisschain.sirius.api.brokerAccount.BrokerAccounts.GetDetails
@@ -634,15 +630,15 @@ message BrokerAccountDetailsResponse {
 }
 ```
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the broker account balance
-`brokerAccountId` | `broker_account_id` | *number* | ID of the broker account
-`assetId` | `asset_id` | *number* | ID of the asset
-`createdAt` | `created_at` | *timestamp* | Date of the broker account balance creation
-`address` | `address` | *string* | Asset's address on the blockchain(e.x:for tokens)
-`custodyName` | `custody_name` | *string* | *body* | Name of the custody related to broker account
-`blockchainId` | `blockchain_id` | *string* | *body* | Blockchain ID
+| REST name         | gRPC name           | type            | description                                       |
+|-------------------|---------------------|-----------------|---------------------------------------------------|
+| `id`              | `id`                | *number*        | ID of the broker account balance                  |
+| `brokerAccountId` | `broker_account_id` | *number*        | ID of the broker account                          |
+| `assetId`         | `asset_id`          | *number*        | ID of the asset                                   |
+| `createdAt`       | `created_at`        | *timestamp*     | Date of the broker account balance creation       |
+| `address`         | `address`           | *string*        | Asset's address on the blockchain(e.x:for tokens) |
+| `custodyName`     | `custody_name`      | *string* *body* | Name of the custody related to broker account     |
+| `blockchainId`    | `blockchain_id`     | *string* *body* | Blockchain ID                                     |
 
 ## Search for broker account updates
 
@@ -652,14 +648,13 @@ REST name | gRPC name | type | description
 
 ### Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-- | `custody_id` | *optional*, *number* | Search for broker accounts with this custody ID | 100000113
-- | `broker_account_id` | *optional*, *number* | Exact broker account ID to search details for | 103000113
-- | `name` | *optional*, *string* | Broker account name | user reference
-- | `state` | *optional*, *Array of [BrokerAccountState](#brokeraccountstate-enum)* | State of the account | creating
-- | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-
+| REST name | gRPC name           | type                                                                                                   | description                                     | example        |
+|-----------|---------------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------|----------------|
+| -         | `custody_id`        | *optional*, *number*                                                                                   | Search for broker accounts with this custody ID | 100000113      |
+| -         | `broker_account_id` | *optional*, *number*                                                                                   | Exact broker account ID to search details for   | 103000113      |
+| -         | `name`              | *optional*, *string*                                                                                   | Broker account name                             | user reference |
+| -         | `state`             | *optional*, *Array of [BrokerAccountState](_brokerage-api-data-structures.md#brokeraccountstate-enum)* | State of the account                            | creating       |
+| -         | `pagination.cursor` | *optional*, *string*                                                                                   | Cursor to continue the search                   | 11111110       |
 
 ```protobuf
 swisschain.sirius.api.accounts.BrokerAccounts.GetUpdates
@@ -701,19 +696,19 @@ message BrokerAccountUpdateItemResponse {
 ```
 Response is the stream of historical broker account updates and real time updates as well:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-- | `id` | *number* | ID of the broker account
-- | `name` | *string* | *body* | Broker account name
-- | `accounts_count` | *number* | Number of accounts that are attached to the broker account
-- | `blockchains_count` | *number* | Number of already created broker account details
-- | `state` | *[BrokerAccountState](#brokeraccountstate-enum)* | Status of the broker account
-- | `created_at` | *timestamp* | Date of the broker account creation
-- | `updated_at` | *timestamp* | Date of the latest broker account update
-- | `custody_id` | *number* | *body* | ID of the custody for broker account
-- | `custody_name` | *string* | *body* | Name of the custody related to broker account
-- | `blockchain_ids` | *Array of string* | *body* | Blockchains IDs that are connected to the broker account
-- | `aml_connection_ids` | *Array of numbers* | *body* | AML Connections that are enabled for the broker account
-- | `broker_account_update_id` | *number* | *body* | Broker account update ID
+| REST name | gRPC name                  | type                                                                              | description                                                |
+|-----------|----------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------|
+| -         | `id`                       | *number*                                                                          | ID of the broker account                                   |
+| -         | `name`                     | *string*                                                                          | *body*                                                     | Broker account name
+| -         | `accounts_count`           | *number*                                                                          | Number of accounts that are attached to the broker account |
+| -         | `blockchains_count`        | *number*                                                                          | Number of already created broker account details           |
+| -         | `state`                    | *[BrokerAccountState](_brokerage-api-data-structures.md#brokeraccountstate-enum)* | Status of the broker account                               |
+| -         | `created_at`               | *timestamp*                                                                       | Date of the broker account creation                        |
+| -         | `updated_at`               | *timestamp*                                                                       | Date of the latest broker account update                   |
+| -         | `custody_id`               | *number*                                                                          | *body*                                                     | ID of the custody for broker account
+| -         | `custody_name`             | *string*                                                                          | *body*                                                     | Name of the custody related to broker account
+| -         | `blockchain_ids`           | *Array of string*                                                                 | *body*                                                     | Blockchains IDs that are connected to the broker account
+| -         | `aml_connection_ids`       | *Array of numbers*                                                                | *body*                                                     | AML Connections that are enabled for the broker account
+| -         | `broker_account_update_id` | *number*                                                                          | *body*                                                     | Broker account update ID
 
 

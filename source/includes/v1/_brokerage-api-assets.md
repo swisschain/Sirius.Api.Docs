@@ -12,28 +12,28 @@ Sirius provides the set of crypto assets available to use. You can get notificat
 
 ### Query Parameters
 
-name | type | description | example
----- | ---- | ----------- | -------
-`id` | *optional*, *number* | ID of the asset to search | 100553
-`blockchainId` | *optional*, *string* | Exact blockchain id to search | bitcoin-private
-`symbol` | *optional*, *string* | Text to search in the asset symbol | BTC
-`address` | *optional*, *string* | Exact address to search | 0xC1701AbD559FC263829CA3917d03045F95b5224A
-`accuracy` | *optional*, *number* | Exact accuracy to search | 8
-`order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-`cursor` | *optional*, *string* | Cursor to continue the search | stellar-test
-`limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
+| name           | type                                                                | description                                             | example                                    |
+|----------------|---------------------------------------------------------------------|---------------------------------------------------------|--------------------------------------------|
+| `id`           | *optional*, *number*                                                | ID of the asset to search                               | 100553                                     |
+| `blockchainId` | *optional*, *string*                                                | Exact blockchain id to search                           | bitcoin-private                            |
+| `symbol`       | *optional*, *string*                                                | Text to search in the asset symbol                      | BTC                                        |
+| `address`      | *optional*, *string*                                                | Exact address to search                                 | 0xC1701AbD559FC263829CA3917d03045F95b5224A |
+| `accuracy`     | *optional*, *number*                                                | Exact accuracy to search                                | 8                                          |
+| `order`        | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)* | Result items sorting order                              | asc                                        |
+| `cursor`       | *optional*, *string*                                                | Cursor to continue the search                           | stellar-test                               |
+| `limit`        | *optional*, *number*                                                | Maximum number of items to return in the search results | 10                                         |
 
 ### Response
 
 Paginated array of the assets:
 
-name | type | description | example
----- | ---- | ----------- | -------
-`id` | *number* | ID of the asset to search | 100003
-`blockchainId` | *string* | Exact blockchain id to search | bitcoin-private
-`symbol` | *string* | Text to search in the asset symbol | BTC
-`address` | *optional*, *string* | Exact address to search | 0xC1701AbD559FC263829CA3917d03045F95b5224A
-`accuracy` | *number* | Exact accuracy to search | 8
+| name           | type                 | description                        | example                                    |
+|----------------|----------------------|------------------------------------|--------------------------------------------|
+| `id`           | *number*             | ID of the asset to search          | 100003                                     |
+| `blockchainId` | *string*             | Exact blockchain id to search      | bitcoin-private                            |
+| `symbol`       | *string*             | Text to search in the asset symbol | BTC                                        |
+| `address`      | *optional*, *string* | Exact address to search            | 0xC1701AbD559FC263829CA3917d03045F95b5224A |
+| `accuracy`     | *number*             | Exact accuracy to search           | 8                                          |
 
 > GET /api/assets 200 OK
 

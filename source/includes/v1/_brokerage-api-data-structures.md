@@ -17,21 +17,21 @@ Type of blockchain network
 
 ## BlockchainProtocol (object)
 
-+ `code` (*string*) - Code of the protocol. (eg. "bitcoin").
-+ `name` (*string*) - Name of the protocol. (eg. "Bitcoin").
++ `code` (*string*) - Code of the protocol. (e.g. "bitcoin").
++ `name` (*string*) - Name of the protocol. (e.g. "Bitcoin").
 + `startBlockNumber` (*number*) - Number of the first block in the blockchain. Usually 0 or 1.
 + `requirements` (*object*) - Requirements of the protocol.
-    + `publicKey` (*boolean*) - Indicates, if source address public key is required to build a transaction. (eg. `true`).
+    + `publicKey` (*boolean*) - Indicates, if source address public key is required to build a transaction. (e.g. `true`).
 + `capabilities` (*object*) - Capabilities of the protocol.
     + `destinationTag` (*optional*, *object*) - Capabilities of the protocol related to the destination tag. `null` if destination tag is not supported.
-        + `number` (*optional*, *object*) - Capabilities of the protocol related to the `Number` [TagType](#TagType). `null` if `Number` tag is not suppoerted.
-            + `min` (*number*) - Minimum number supported by the `Number` destination tag. (eg. 1).
-            + `max` (*number*) - Maximum number supported by the `Number` destination tag. (eg. 9223372036854776000).
-            + `name` (*string*) - Name of the `Number` tag field which is accepted in the given blockchain. (eg. "Memo ID").
-        + `text` (*optional*, *object*) - Capabilities of the protocol related to the `Text` [TagType](#TagType). `null` if the `Text` tag is not supported.
-            + `maxLength` (*number*) - Maximum length of the `Text` destination tag. (eg. 28).
-            + `name` (*string*) - Name of the `Text` tag field which is accepted in the given blockchain. (eg. "Memo text").
-        + `doubleSpendingProtectionType` (*[DoubleSpendingProtectionType](#DoubleSpendingProtectionType-enum)*) - Type of the protection agains funds double spending (eg. `coins`).
+        + `number` (*optional*, *object*) - Capabilities of the protocol related to the `Number` [TagType](#tagtype-enum). `null` if `Number` tag is not suppoerted.
+            + `min` (*number*) - Minimum number supported by the `Number` destination tag. (e.g. 1).
+            + `max` (*number*) - Maximum number supported by the `Number` destination tag. (e.g. 9223372036854776000).
+            + `name` (*string*) - Name of the `Number` tag field which is accepted in the given blockchain. (e.g. "Memo ID").
+        + `text` (*optional*, *object*) - Capabilities of the protocol related to the `Text` [TagType](#tagtype-enum). `null` if the `Text` tag is not supported.
+            + `maxLength` (*number*) - Maximum length of the `Text` destination tag. (e.g. 28).
+            + `name` (*string*) - Name of the `Text` tag field which is accepted in the given blockchain. (e.g. "Memo text").
+        + `doubleSpendingProtectionType` (*[DoubleSpendingProtectionType](#doublespendingprotectiontype-enum)*) - Type of the protection against funds double spending (e.g. `coins`).
 
 ## TagType (enum)
 
@@ -48,8 +48,8 @@ and you have to specify exact type in this case.
 
 Each blockchain uses some protection mechanism against funds double-spending. Sirius distinguishes the following types:
 
-+ `coins` - Coins are used to transfer funds. (eg. Bitcoin, Dash)
-+ `nonce` - Nonce number (sequence) is used to distinguish outgoing transactions. (eg. Ethereum, Stellar)
++ `coins` - Coins are used to transfer funds. (e.g. Bitcoin, Dash)
++ `nonce` - Nonce number (sequence) is used to distinguish outgoing transactions. (e.g. Ethereum, Stellar)
 
 ## BrokerAccountState (enum)
 
@@ -71,7 +71,7 @@ State of the account
 
 Type of the vault
 
-+ `selfManaged` - can be run and managed either by **SwissChain** or by the **Customer** on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It's fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can't get unauthorized access to your funds. The solutions is based on **IBM HSM**, **Hyper Protect Virtual Servers**, **Hyper Protected DBaaS**, **Secure Image Build**, **Secure Image Deploy**, and **Operational Decision Manager**. It provides a flexible way to control you transaction signing policy. It includes **Multi Party Signature** mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is **FIPS 140-2 Level 4-certified**. [Contact](mailto:contact@swisschain.io) us to get help with deploying of the self-managed Custody.
++ `selfManaged` - can be run and managed either by **SwissChain** or by the **Customer** on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It's fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can't get unauthorized access to your funds. The solutions are based on **IBM HSM**, **Hyper Protect Virtual Servers**, **Hyper Protected DBaaS**, **Secure Image Build**, **Secure Image Deploy**, and **Operational Decision Manager**. It provides a flexible way to control you transaction signing policy. It includes **Multi Party Signature** mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is **FIPS 140-2 Level 4-certified**. [Contact](mailto:contact@swisschain.io) us to get help with deploying of the self-managed Custody.
 + `shared` - run and managed by SwissChain, shared between all the customers that use it.
 
 ## DepositState (enum)
@@ -254,13 +254,13 @@ CompletedAmlCheck contains information about passed AML check for deposit.
 + `name` (*string*) - SmartContract internal name.
 + `blockchainId`  (*string*) - ID of blockchain used for deployment
 + `brokerAccountId`  (*string*) - ID of broker account which initiate Invocation
-+ `referenceId`  (*string*) - uniq identificatior of request
++ `referenceId`  (*string*) - uniq identifier of request
 + `arguments`  (*array*) - Array of repeatable object with `parameterName`  and `value` (can be empty)
     + `parameterName`  (*string*) - parameterName
-    + `value`  (*object*) - Object wich contain `prototype` and *type* value
+    + `value`  (*object*) - Object which contains `prototype` and *type* value
         + `prototype`  (*string*) - data type which used in argument # address
         + `*oneofDataItem*`  (*string*) - value depend on #DataItem
-+ `payment`  (*object*) - Object which contatin payment details during deployment
++ `payment`  (*object*) - Object which contains payment details during deployment
 + `assetId`  (*int*) - Asset id for payment
 + `amount`  (*double*) - amount can be 0
 
