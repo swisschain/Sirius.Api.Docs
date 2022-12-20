@@ -613,7 +613,7 @@
 <h1 id='grpc-protocol-description'>gRPC Protocol description</h1>
 <p>Sirius API uses gRPC protocol as the main one. To learn more about gRPC please follow <a href="https://grpc.io">grpc.io</a></p>
 
-<p>There are several ways to use Sirius gRPC API. If you use .NET, the most convenient wayt for you is Sirius.Api.Client <a href="https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/"><img src="https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg" alt="Nuget Package" /></a>.</p>
+<p>There are several ways to use Sirius gRPC API. If you use .NET, the most convenient way for you is Sirius.Api.Client <a href="https://www.nuget.org/packages/Swisschain.Sirius.Api.ApiClient/"><img src="https://img.shields.io/nuget/v/Swisschain.Sirius.Api.ApiClient.svg" alt="Nuget Package" /></a>.</p>
 
 <p>Otherwise, you can get <a href="https://github.com/swisschain/Sirius.Api.Docs/tree/master/.proto">proto files</a> directly and generate client on almost any platform.</p>
 <h2 id='grpc-protocol-description-net-client-registration'>.NET client registration</h2><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
@@ -909,13 +909,13 @@ to represent data that should be signed. Data can be serialized to JSON using an
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td><em>optional</em>, <em><a href="#networktype-enum">NetworkType</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#networktype-enum">NetworkType</a></em></td>
 <td>List of the network types to search. Repeat the parameter to specify multiple items</td>
 <td>private</td>
 </tr>
 <tr>
 <td><code>order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -963,13 +963,13 @@ to represent data that should be signed. Data can be serialized to JSON using an
 </tr>
 <tr>
 <td><code>networkType</code></td>
-<td><em><a href="#networktype-enum">NetworkType</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#networktype-enum">NetworkType</a></em></td>
 <td>Type of the network</td>
 <td></td>
 </tr>
 <tr>
 <td><code>protocol</code></td>
-<td><em><a href="#blockchainprotocol-object">BlockchainProtocol</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#blockchainprotocol-object">BlockchainProtocol</a></em></td>
 <td>Protocol of the blockchain.</td>
 <td></td>
 </tr>
@@ -1155,7 +1155,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 </tr>
 <tr>
 <td><code>order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -1315,7 +1315,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#custodytype-enum">CustodyType</a></em></td>
 <td><em>body</em></td>
 <td>Type of the custody</td>
 </tr>
@@ -1379,13 +1379,13 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#custodytype-enum">CustodyType</a></em></td>
 <td>Type of the custody</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#custodystatus-enum">CustodyStatus</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#custodystatus-enum">CustodyStatus</a></em></td>
 <td>Status of the custody</td>
 </tr>
 <tr>
@@ -1521,13 +1521,13 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#custodytype-enum">CustodyType</a></em></td>
 <td>Type of the custody</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#custodystatus-enum">CustodyStatus</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#custodystatus-enum">CustodyStatus</a></em></td>
 <td>Status of the custody</td>
 </tr>
 <tr>
@@ -1591,14 +1591,14 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em>Array&lt;<a href="#custodytype-enum">CustodyType</a>&gt;, optional</em></td>
+<td><em>Array&lt;<a href="_brokerage-api-data-structures.md#custodytype-enum">CustodyType</a>&gt;, optional</em></td>
 <td><em>query</em></td>
 <td>Zero or several custody types to search</td>
 </tr>
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em><a href="#order-enum">Order</a>, optional</em></td>
+<td><em><a href="_brokerage-api-data-structures.md#order-enum">Order</a>, optional</em></td>
 <td><em>query</em></td>
 <td>Results sorting order</td>
 </tr>
@@ -1715,13 +1715,13 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>type</code></td>
 <td><code>type</code></td>
-<td><em><a href="#custodytype-enum">CustodyType</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#custodytype-enum">CustodyType</a></em></td>
 <td>Type of the custody</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#custodystatus-enum">CustodyStatus</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#custodystatus-enum">CustodyStatus</a></em></td>
 <td>Status of the custody</td>
 </tr>
 <tr>
@@ -1951,7 +1951,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em><a href="#order-enum">Order</a>, optional</em></td>
+<td><em><a href="_brokerage-api-data-structures.md#order-enum">Order</a>, optional</em></td>
 <td><em>query</em></td>
 <td>Results sorting order</td>
 </tr>
@@ -2267,7 +2267,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em><a href="#brokeraccountstate-enum">BrokerAccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#brokeraccountstate-enum">BrokerAccountState</a></em></td>
 <td>Status of the broker account</td>
 </tr>
 <tr>
@@ -2459,7 +2459,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em><a href="#brokeraccountstate-enum">BrokerAccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#brokeraccountstate-enum">BrokerAccountState</a></em></td>
 <td>Status of the broker account</td>
 </tr>
 <tr>
@@ -2530,7 +2530,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em>Array of <a href="#brokeraccountstate-enum">BrokerAccountState</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="_brokerage-api-data-structures.md#brokeraccountstate-enum">BrokerAccountState</a></em></td>
 <td>State of the broker account</td>
 <td>creating</td>
 </tr>
@@ -2544,7 +2544,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -2650,8 +2650,8 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>name</code></td>
 <td><code>name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em> <em>body</em></td>
+<td>Broker account name</td>
 </tr>
 <tr>
 <td><code>accountsCount</code></td>
@@ -2668,7 +2668,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em><a href="#brokeraccountstate-enum">BrokerAccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#brokeraccountstate-enum">BrokerAccountState</a></em></td>
 <td>Status of the broker account</td>
 </tr>
 <tr>
@@ -2686,26 +2686,26 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>custodyId</code></td>
 <td><code>custody_id</code></td>
-<td><em>number</em></td>
-<td><em>body</em></td>
+<td><em>number</em> <em>body</em></td>
+<td>ID of the custody for broker account</td>
 </tr>
 <tr>
 <td><code>custodyName</code></td>
 <td><code>custody_name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em> <em>body</em></td>
+<td>Name of the custody related to broker account</td>
 </tr>
 <tr>
 <td><code>blockchain_ids</code></td>
 <td><code>blockchain_ids</code></td>
-<td><em>Array of string</em></td>
-<td><em>body</em></td>
+<td><em>Array of string</em> <em>body</em></td>
+<td>Blockchains ids that are connected to the broker account</td>
 </tr>
 <tr>
 <td><code>amlConnectionIds</code></td>
 <td><code>aml_connection_ids</code></td>
-<td><em>Array of numbers</em></td>
-<td><em>body</em></td>
+<td><em>Array of numbers</em> <em>body</em></td>
+<td>AML Connections that are enabled for the broker account</td>
 </tr>
 </tbody></table>
 <h2 id='broker-accounts-searches-the-broker-account-balances'>Searches the broker account balances</h2><h3 id='broker-accounts-searches-the-broker-account-balances-request'>Request</h3>
@@ -2739,7 +2739,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -2907,14 +2907,14 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>custodyName</code></td>
 <td><code>custody_name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em> <em>body</em></td>
+<td>Name of the custody related to broker account</td>
 </tr>
 <tr>
 <td><code>blockchain_name</code></td>
 <td><code>blockchain_name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em> <em>body</em></td>
+<td>Blockchains name</td>
 </tr>
 </tbody></table>
 <h2 id='broker-accounts-searches-the-broker-account-details'>Searches the broker account details</h2><h3 id='broker-accounts-searches-the-broker-account-details-request'>Request</h3>
@@ -2969,7 +2969,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -3087,14 +3087,14 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>custodyName</code></td>
 <td><code>custody_name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em> <em>body</em></td>
+<td>Name of the custody related to broker account</td>
 </tr>
 <tr>
 <td><code>blockchainId</code></td>
 <td><code>blockchain_id</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em>  <em>body</em></td>
+<td>Blockchain ID</td>
 </tr>
 </tbody></table>
 <h2 id='broker-accounts-gets-the-broker-account-details-by-the-asset-id'>Gets the broker account details by the asset id</h2><h3 id='broker-accounts-gets-the-broker-account-details-by-the-asset-id-request'>Request</h3>
@@ -3209,14 +3209,14 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>custodyName</code></td>
 <td><code>custody_name</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em> <em>body</em></td>
+<td>Name of the custody related to broker account</td>
 </tr>
 <tr>
 <td><code>blockchainId</code></td>
 <td><code>blockchain_id</code></td>
-<td><em>string</em></td>
-<td><em>body</em></td>
+<td><em>string</em> <em>body</em></td>
+<td>Blockchain ID</td>
 </tr>
 </tbody></table>
 <h2 id='broker-accounts-search-for-broker-account-updates'>Search for broker account updates</h2><h3 id='broker-accounts-search-for-broker-account-updates-request'>Request</h3>
@@ -3255,7 +3255,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td>-</td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em>Array of <a href="#brokeraccountstate-enum">BrokerAccountState</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="_brokerage-api-data-structures.md#brokeraccountstate-enum">BrokerAccountState</a></em></td>
 <td>State of the account</td>
 <td>creating</td>
 </tr>
@@ -3336,7 +3336,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td>-</td>
 <td><code>state</code></td>
-<td><em><a href="#brokeraccountstate-enum">BrokerAccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#brokeraccountstate-enum">BrokerAccountState</a></em></td>
 <td>Status of the broker account</td>
 </tr>
 <tr>
@@ -3527,7 +3527,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#accountstate-enum">AccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#accountstate-enum">AccountState</a></em></td>
 <td>Status of the account</td>
 </tr>
 <tr>
@@ -3645,7 +3645,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#accountstate-enum">AccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#accountstate-enum">AccountState</a></em></td>
 <td>Status of the account</td>
 </tr>
 <tr>
@@ -3718,14 +3718,14 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em><a href="#accountstate-enum">AccountState</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#accountstate-enum">AccountState</a></em></td>
 <td>State of the account</td>
 <td>creating</td>
 </tr>
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -3838,7 +3838,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>status</code></td>
 <td><code>status</code></td>
-<td><em><a href="#accountstate-enum">AccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#accountstate-enum">AccountState</a></em></td>
 <td>Status of the account</td>
 </tr>
 <tr>
@@ -3939,14 +3939,14 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>tag_type</code></td>
 <td><code>tag_type</code></td>
-<td><em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#tagtype-enum">TagType</a></em></td>
 <td>tag type</td>
 <td>null</td>
 </tr>
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -4077,7 +4077,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>tagType</code></td>
 <td><code>tag_type</code></td>
-<td><em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#tagtype-enum">TagType</a></em></td>
 <td>Tag type</td>
 </tr>
 </tbody></table>
@@ -4203,7 +4203,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td><code>tagType</code></td>
 <td><code>tag_type</code></td>
-<td><em>optional</em>, <em><a href="#tagtype-enum">TagType</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#tagtype-enum">TagType</a></em></td>
 <td>Tag type</td>
 </tr>
 </tbody></table>
@@ -4243,7 +4243,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td>-</td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em><a href="#accountstate-enum">AccountState</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#accountstate-enum">AccountState</a></em></td>
 <td>State of the account</td>
 <td>creating</td>
 </tr>
@@ -4324,7 +4324,7 @@ to represent data that should be signed. Data can be serialized to JSON using an
 <tr>
 <td>-</td>
 <td><code>status</code></td>
-<td><em><a href="#accountstate-enum">AccountState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#accountstate-enum">AccountState</a></em></td>
 <td>Status of the account</td>
 </tr>
 <tr>
@@ -4400,14 +4400,14 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em>Array of <a href="#depositstate-enum">DepositState</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="_brokerage-api-data-structures.md#depositstate-enum">DepositState</a></em></td>
 <td>State of the deposit</td>
 <td>detected</td>
 </tr>
 <tr>
 <td><code>type</code></td>
 <td><code>deposit_type</code></td>
-<td><em>optional</em>, <em>Array of <a href="#deposittype-enum">DepositType</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="_brokerage-api-data-structures.md#deposittype-enum">DepositType</a></em></td>
 <td>State of the deposit</td>
 <td>regular</td>
 </tr>
@@ -4442,7 +4442,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>order</code></td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -4622,7 +4622,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>brokerAccountDetails</code></td>
 <td><code>broker_account_details</code></td>
-<td><em><a href="#brokeraccountdetails-object">BrokerAccountDetails</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#brokeraccountdetails-object">BrokerAccountDetails</a></em></td>
 <td>Broker account details</td>
 </tr>
 <tr>
@@ -4640,7 +4640,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>accountDetails</code></td>
 <td><code>account_details</code></td>
-<td><em>optional</em>, <em><a href="#accountdetails-object">AccountDetails</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#accountdetails-object">AccountDetails</a></em></td>
 <td>Account details if type is not Broker</td>
 </tr>
 <tr>
@@ -4658,25 +4658,25 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>fees</code></td>
 <td><code>fees</code></td>
-<td><em>Array of <a href="#fee-object">Fee</a></em></td>
+<td><em>Array of <a href="_brokerage-api-data-structures.md#fee-object">Fee</a></em></td>
 <td>Array of spent fees if type is not Broker</td>
 </tr>
 <tr>
 <td><code>transactionInfo</code></td>
 <td><code>transaction_info</code></td>
-<td><em><a href="#transactioninfo-object">TransactionInfo</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#transactioninfo-object">TransactionInfo</a></em></td>
 <td>Transaction info of incoming transaction</td>
 </tr>
 <tr>
 <td><code>state</code></td>
 <td><code>state</code></td>
-<td><em><a href="#depositstate-enum">DepositState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#depositstate-enum">DepositState</a></em></td>
 <td>State of the deposit</td>
 </tr>
 <tr>
 <td><code>sources</code></td>
 <td><code>sources</code></td>
-<td><em>Array of <a href="#depositsource-object">DepositSources</a></em></td>
+<td><em>Array of <a href="_brokerage-api-data-structures.md#depositsource-object">DepositSources</a></em></td>
 <td>Sources of the deposit transaction</td>
 </tr>
 <tr>
@@ -4730,13 +4730,13 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td><code>depositYype</code></td>
 <td><code>deposit_type</code></td>
-<td><em><a href="#deposittype-enum">DepositType</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#deposittype-enum">DepositType</a></em></td>
 <td>Deposit type</td>
 </tr>
 <tr>
 <td><code>amlChecks</code></td>
 <td><code>aml_checks</code></td>
-<td><em><a href="#amlchecks-object">AmlChecks</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#amlchecks-object">AmlChecks</a></em></td>
 <td>AML checks root object</td>
 </tr>
 </tbody></table>
@@ -4776,14 +4776,14 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td>-</td>
 <td><code>state</code></td>
-<td><em>optional</em>, <em>Array of <a href="#depositstate-enum">DepositState</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="_brokerage-api-data-structures.md#depositstate-enum">DepositState</a></em></td>
 <td>State of the deposit</td>
 <td>detected</td>
 </tr>
 <tr>
 <td>-</td>
 <td><code>deposit_type</code></td>
-<td><em>optional</em>, <em>Array of <a href="#deposittype-enum">DepositType</a></em></td>
+<td><em>optional</em>, <em>Array of <a href="_brokerage-api-data-structures.md#deposittype-enum">DepositType</a></em></td>
 <td>State of the deposit</td>
 <td>regular</td>
 </tr>
@@ -4818,7 +4818,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td>-</td>
 <td><code>pagination.order</code></td>
-<td><em>optional</em>, <em><a href="#order-enum">Order</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#order-enum">Order</a></em></td>
 <td>Result items sorting order</td>
 <td>asc</td>
 </tr>
@@ -4918,7 +4918,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td>-</td>
 <td><code>broker_account_details</code></td>
-<td><em><a href="#brokeraccountdetails-object">BrokerAccountDetails</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#brokeraccountdetails-object">BrokerAccountDetails</a></em></td>
 <td>Broker account details</td>
 </tr>
 <tr>
@@ -4936,7 +4936,7 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td>-</td>
 <td><code>account_details</code></td>
-<td><em>optional</em>, <em><a href="#accountdetails-object">AccountDetails</a></em></td>
+<td><em>optional</em>, <em><a href="_brokerage-api-data-structures.md#accountdetails-object">AccountDetails</a></em></td>
 <td>Account details if type is not Broker</td>
 </tr>
 <tr>
@@ -4954,25 +4954,25 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td>-</td>
 <td><code>fees</code></td>
-<td><em>Array of <a href="#fee-object">Fee</a></em></td>
+<td><em>Array of <a href="_brokerage-api-data-structures.md#fee-object">Fee</a></em></td>
 <td>Array of spent fees if type is not Broker</td>
 </tr>
 <tr>
 <td>-</td>
 <td><code>transaction_info</code></td>
-<td><em><a href="#transactioninfo-object">TransactionInfo</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#transactioninfo-object">TransactionInfo</a></em></td>
 <td>Transaction info of incoming transaction</td>
 </tr>
 <tr>
 <td>-</td>
 <td><code>state</code></td>
-<td><em><a href="#depositstate-enum">DepositState</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#depositstate-enum">DepositState</a></em></td>
 <td>State of the deposit</td>
 </tr>
 <tr>
 <td>-</td>
 <td><code>sources</code></td>
-<td><em>Array of <a href="#depositsource-object">DepositSources</a></em></td>
+<td><em>Array of <a href="_brokerage-api-data-structures.md#depositsource-object">DepositSources</a></em></td>
 <td>Sources of the deposit transaction</td>
 </tr>
 <tr>
@@ -5026,13 +5026,13 @@ too small to transfer funds from the account address to the broker account addre
 <tr>
 <td>-</td>
 <td><code>deposit_type</code></td>
-<td><em><a href="#deposittype-enum">DepositType</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#deposittype-enum">DepositType</a></em></td>
 <td>Deposit type</td>
 </tr>
 <tr>
 <td>-</td>
 <td><code>aml_checks</code></td>
-<td><em><a href="#amlchecks-object">AmlChecks</a></em></td>
+<td><em><a href="_brokerage-api-data-structures.md#amlchecks-object">AmlChecks</a></em></td>
 <td>AML checks root object</td>
 </tr>
 </tbody></table>
@@ -7430,13 +7430,13 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 </ul>
 <h2 id='data-structures-blockchainprotocol-object'>BlockchainProtocol (object)</h2>
 <ul>
-<li><code>code</code> (<em>string</em>) - Code of the protocol. (eg. &quot;bitcoin&quot;).</li>
-<li><code>name</code> (<em>string</em>) - Name of the protocol. (eg. &quot;Bitcoin&quot;).</li>
+<li><code>code</code> (<em>string</em>) - Code of the protocol. (e.g. &quot;bitcoin&quot;).</li>
+<li><code>name</code> (<em>string</em>) - Name of the protocol. (e.g. &quot;Bitcoin&quot;).</li>
 <li><code>startBlockNumber</code> (<em>number</em>) - Number of the first block in the blockchain. Usually 0 or 1.</li>
 <li><code>requirements</code> (<em>object</em>) - Requirements of the protocol.
 
 <ul>
-<li><code>publicKey</code> (<em>boolean</em>) - Indicates, if source address public key is required to build a transaction. (eg. <code>true</code>).</li>
+<li><code>publicKey</code> (<em>boolean</em>) - Indicates, if source address public key is required to build a transaction. (e.g. <code>true</code>).</li>
 </ul></li>
 <li><code>capabilities</code> (<em>object</em>) - Capabilities of the protocol.
 
@@ -7444,20 +7444,20 @@ GRPC <code>swisschain.sirius.api.smart_contracts.SmartContracts.Invoke</code></p
 <li><code>destinationTag</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the destination tag. <code>null</code> if destination tag is not supported.
 
 <ul>
-<li><code>number</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the <code>Number</code> <a href="#TagType">TagType</a>. <code>null</code> if <code>Number</code> tag is not suppoerted.
+<li><code>number</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the <code>Number</code> <a href="#tagtype-enum">TagType</a>. <code>null</code> if <code>Number</code> tag is not suppoerted.
 
 <ul>
-<li><code>min</code> (<em>number</em>) - Minimum number supported by the <code>Number</code> destination tag. (eg. 1).</li>
-<li><code>max</code> (<em>number</em>) - Maximum number supported by the <code>Number</code> destination tag. (eg. 9223372036854776000).</li>
-<li><code>name</code> (<em>string</em>) - Name of the <code>Number</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo ID&quot;).</li>
+<li><code>min</code> (<em>number</em>) - Minimum number supported by the <code>Number</code> destination tag. (e.g. 1).</li>
+<li><code>max</code> (<em>number</em>) - Maximum number supported by the <code>Number</code> destination tag. (e.g. 9223372036854776000).</li>
+<li><code>name</code> (<em>string</em>) - Name of the <code>Number</code> tag field which is accepted in the given blockchain. (e.g. &quot;Memo ID&quot;).</li>
 </ul></li>
-<li><code>text</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the <code>Text</code> <a href="#TagType">TagType</a>. <code>null</code> if the <code>Text</code> tag is not supported.
+<li><code>text</code> (<em>optional</em>, <em>object</em>) - Capabilities of the protocol related to the <code>Text</code> <a href="#tagtype-enum">TagType</a>. <code>null</code> if the <code>Text</code> tag is not supported.
 
 <ul>
-<li><code>maxLength</code> (<em>number</em>) - Maximum length of the <code>Text</code> destination tag. (eg. 28).</li>
-<li><code>name</code> (<em>string</em>) - Name of the <code>Text</code> tag field which is accepted in the given blockchain. (eg. &quot;Memo text&quot;).</li>
+<li><code>maxLength</code> (<em>number</em>) - Maximum length of the <code>Text</code> destination tag. (e.g. 28).</li>
+<li><code>name</code> (<em>string</em>) - Name of the <code>Text</code> tag field which is accepted in the given blockchain. (e.g. &quot;Memo text&quot;).</li>
 </ul></li>
-<li><code>doubleSpendingProtectionType</code> (<em><a href="#DoubleSpendingProtectionType-enum">DoubleSpendingProtectionType</a></em>) - Type of the protection agains funds double spending (eg. <code>coins</code>).</li>
+<li><code>doubleSpendingProtectionType</code> (<em><a href="#doublespendingprotectiontype-enum">DoubleSpendingProtectionType</a></em>) - Type of the protection against funds double spending (e.g. <code>coins</code>).</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -7476,8 +7476,8 @@ and you have to specify exact type in this case.</p>
 <p>Each blockchain uses some protection mechanism against funds double-spending. Sirius distinguishes the following types:</p>
 
 <ul>
-<li><code>coins</code> - Coins are used to transfer funds. (eg. Bitcoin, Dash)</li>
-<li><code>nonce</code> - Nonce number (sequence) is used to distinguish outgoing transactions. (eg. Ethereum, Stellar)</li>
+<li><code>coins</code> - Coins are used to transfer funds. (e.g. Bitcoin, Dash)</li>
+<li><code>nonce</code> - Nonce number (sequence) is used to distinguish outgoing transactions. (e.g. Ethereum, Stellar)</li>
 </ul>
 <h2 id='data-structures-brokeraccountstate-enum'>BrokerAccountState (enum)</h2>
 <p>State of the broker account</p>
@@ -7499,7 +7499,7 @@ and you have to specify exact type in this case.</p>
 <p>Type of the vault</p>
 
 <ul>
-<li><code>selfManaged</code> - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong> on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It&#39;s fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can&#39;t get unauthorized access to your funds. The solutions is based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It provides a flexible way to control you transaction signing policy. It includes <strong>Multi Party Signature</strong> mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help with deploying of the self-managed Custody.</li>
+<li><code>selfManaged</code> - can be run and managed either by <strong>SwissChain</strong> or by the <strong>Customer</strong> on infrastructure owned and controlled by the Customer. SwissChain provides Custody as a set of Docker images. It&#39;s fully secure and protected solution to keep your funds save and under your control. SwissChain, IBM admins, your admins or anyone else can&#39;t get unauthorized access to your funds. The solutions are based on <strong>IBM HSM</strong>, <strong>Hyper Protect Virtual Servers</strong>, <strong>Hyper Protected DBaaS</strong>, <strong>Secure Image Build</strong>, <strong>Secure Image Deploy</strong>, and <strong>Operational Decision Manager</strong>. It provides a flexible way to control you transaction signing policy. It includes <strong>Multi Party Signature</strong> mechanism which allows you to delegate transaction signing to any number of your employees and/or software components. The same time transactions can be signed automatically still. You can configure this via our transaction signing policy engine. It can be run either in the cloud or on-premise. IBM HSM is the only solution in the industry which is <strong>FIPS 140-2 Level 4-certified</strong>. <a href="mailto:contact@swisschain.io">Contact</a> us to get help with deploying of the self-managed Custody.</li>
 <li><code>shared</code> - run and managed by SwissChain, shared between all the customers that use it.</li>
 </ul>
 <h2 id='data-structures-depositstate-enum'>DepositState (enum)</h2>
@@ -7682,19 +7682,19 @@ for each asset in each broker account.</p>
 <li><code>name</code> (<em>string</em>) - SmartContract internal name.</li>
 <li><code>blockchainId</code>  (<em>string</em>) - ID of blockchain used for deployment</li>
 <li><code>brokerAccountId</code>  (<em>string</em>) - ID of broker account which initiate Invocation</li>
-<li><code>referenceId</code>  (<em>string</em>) - uniq identificatior of request</li>
+<li><code>referenceId</code>  (<em>string</em>) - uniq identifier of request</li>
 <li><code>arguments</code>  (<em>array</em>) - Array of repeatable object with <code>parameterName</code>  and <code>value</code> (can be empty)
 
 <ul>
 <li><code>parameterName</code>  (<em>string</em>) - parameterName</li>
-<li><code>value</code>  (<em>object</em>) - Object wich contain <code>prototype</code> and <em>type</em> value
+<li><code>value</code>  (<em>object</em>) - Object which contains <code>prototype</code> and <em>type</em> value
 
 <ul>
 <li><code>prototype</code>  (<em>string</em>) - data type which used in argument # address</li>
 <li><code>*oneofDataItem*</code>  (<em>string</em>) - value depend on #DataItem</li>
 </ul></li>
 </ul></li>
-<li><code>payment</code>  (<em>object</em>) - Object which contatin payment details during deployment</li>
+<li><code>payment</code>  (<em>object</em>) - Object which contains payment details during deployment</li>
 <li><code>assetId</code>  (<em>int</em>) - Asset id for payment</li>
 <li><code>amount</code>  (<em>double</em>) - amount can be 0</li>
 </ul>

@@ -474,74 +474,116 @@ You can get notifications about a deposit or initiate a withdrawal in any asset 
 The asset is a generic model which represents a native asset, fungible token or a non-fungible token.
 It&#39;s possible that in the different blockchains assets with the same symbol and/or address are existed, so you have to rely only on the asset ID if you need to deterministically identify it.
 If you&#39;ve received a deposit of an asset which is not supported by Sirius yet, you can add this particular asset to your personal list by specifying all needed asset parameters.</p>
+
+<p><strong>Rest API:</strong> <code>/api/v2/assets</code></p>
+
+<p><strong>gRPC API:</strong> <code>swisschain.sirius.api.v2.assets</code></p>
 <h2 id='assets-search'>Search</h2>
 <p>Returns assets by search parameters.</p>
-<div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AssetSearchRequest</span>
-<span class="p">{</span>
-    <span class="n">Id</span> <span class="p">=</span> <span class="m">10001</span><span class="p">,</span>
-    <span class="n">BlockchainId</span> <span class="p">=</span> <span class="s">"ethereum"</span><span class="p">,</span>
-    <span class="n">Symbol</span> <span class="p">=</span> <span class="s">"USDC"</span><span class="p">,</span>
-    <span class="n">TokenId</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
-    <span class="n">Address</span> <span class="p">=</span> <span class="s">"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"</span><span class="p">,</span>
-    <span class="n">Accuracy</span> <span class="p">=</span> <span class="m">6</span><span class="p">,</span>
-    <span class="n">Pagination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PaginationInt64</span>
-    <span class="p">{</span>
-        <span class="n">Cursor</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
-        <span class="n">Limit</span> <span class="p">=</span> <span class="m">100</span><span class="p">,</span>
-        <span class="n">Order</span> <span class="p">=</span> <span class="n">PaginationOrder</span><span class="p">.</span><span class="n">Asc</span>
-    <span class="p">}</span>
-<span class="p">};</span>
 
-<span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">AssetsV2</span><span class="p">.</span><span class="nf">SearchAsync</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
-</code></pre></div><h3 id='assets-search-request'>Request</h3>
+<p>gRPC API example:
+```csharp
+var request = new AssetSearchRequest
+{
+    Id = 10001,
+    BlockchainId = &quot;ethereum&quot;,
+    Symbol = &quot;USDC&quot;,
+    TokenId = null,
+    Address = &quot;0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48&quot;,
+    Accuracy = 6,
+    Pagination = new PaginationInt64
+    {
+        Cursor = null,
+        Limit = 100,
+        Order = PaginationOrder.Asc
+    }
+};</p>
+
+<p>var response = client.AssetsV2.SearchAsync(request);
+```</p>
+
+<p>REST API example:
+<code>json
+GET /api/v2/assets?blockchainId=bitcoin&amp;symbol=BTC
+</code></p>
+<h3 id='assets-search-request'>Request</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th style="text-align: left">gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Id</code></td>
+<td><code>id</code></td>
+<td style="text-align: left"><code>id</code></td>
 <td><em>optional</em>, <em>long</em></td>
 <td>ID of the asset to search</td>
 <td>100553</td>
 </tr>
 <tr>
-<td><code>BlockchainId</code></td>
+<td><code>blockchainId</code></td>
+<td style="text-align: left"><code>blockchain_id</code></td>
 <td><em>optional</em>, <em>string</em></td>
 <td>Exact blockchain id to search</td>
 <td>bitcoin-private</td>
 </tr>
 <tr>
-<td><code>Symbol</code></td>
+<td><code>symbol</code></td>
+<td style="text-align: left"><code>symbol</code></td>
 <td><em>optional</em>, <em>string</em></td>
 <td>Text to search in the asset symbol</td>
 <td>BTC</td>
 </tr>
 <tr>
-<td><code>TokenId</code></td>
+<td><code>tokenId</code></td>
+<td style="text-align: left"><code>token_id</code></td>
 <td><em>optional</em>, <em>string</em></td>
 <td>Text to search in the asset symbol</td>
 <td>BTC</td>
 </tr>
 <tr>
-<td><code>Address</code></td>
+<td><code>address</code></td>
+<td style="text-align: left"><code>address</code></td>
 <td><em>optional</em>, <em>string</em></td>
 <td>Exact address to search</td>
 <td>0xC1701AbD559FC263829CA3917d03045F95b5224A</td>
 </tr>
 <tr>
-<td><code>Accuracy</code></td>
+<td><code>accuracy</code></td>
+<td style="text-align: left"><code>accuracy</code></td>
 <td><em>optional</em>, <em>int</em></td>
 <td>Exact accuracy to search</td>
 <td>8</td>
 </tr>
 <tr>
-<td><code>Pagination</code></td>
+<td><code>pagination</code></td>
+<td style="text-align: left">---</td>
 <td><em>optional</em>, <em><a href="#api-usage-pagination-request">Pagination</a></em></td>
+<td>pagination for gRPC API</td>
 <td></td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td style="text-align: left"><code>order</code></td>
+<td><em>optional</em>, <em><a href="#api-usage-pagination-request">PaginationOrder</a></em>, enum</td>
+<td><em>REST</em> Descending or ascending sort of entries</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td style="text-align: left"><code>limit</code></td>
+<td><em>optional</em>, <em><a href="#api-usage-pagination-request">PaginationLimit</a></em>, int</td>
+<td><em>REST</em> Maximum number of entries to fetch</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td style="text-align: left"><code>cursor</code></td>
+<td><em>optional</em>, <em><a href="#api-usage-pagination-request">PaginationCursor</a></em>, long</td>
+<td><em>REST</em> ID of anchor entity to start pagination from</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -573,64 +615,115 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 </tbody></table>
 <h2 id='assets-addattributes'>AddAttributes</h2>
 <p>Adds asset attributes.</p>
-<div class="highlight"><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AssetAddAttributesRequest</span>
-<span class="p">{</span>
-    <span class="n">IdempotencyId</span> <span class="p">=</span> <span class="s">"AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34"</span><span class="p">,</span>
-    <span class="n">AssetId</span> <span class="p">=</span> <span class="m">10001</span><span class="p">,</span>
-    <span class="n">Aml</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AmlAssetAttributesCreateInfo</span>
-    <span class="p">{</span>
-        <span class="n">Chainalysis</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AmlChainalysisAssetAttributesInfo</span>
-        <span class="p">{</span>
-            <span class="n">Symbol</span> <span class="p">=</span> <span class="s">"USDC"</span><span class="p">,</span>
-            <span class="n">TransferFormat</span> <span class="p">=</span> <span class="n">ChainalysisTransferFormat</span><span class="p">.</span><span class="n">HashAndAddress</span><span class="p">,</span>
-            <span class="n">IsCheckDepositsEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-            <span class="n">IsCheckWithdrawalsEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-            <span class="n">IsNotifyWithdrawalsEnabled</span> <span class="p">=</span> <span class="k">true</span>
-        <span class="p">},</span>
-        <span class="n">MerkleScience</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AmlMerkleScienceAssetAttributesInfo</span>
-        <span class="p">{</span>
-            <span class="n">Symbol</span> <span class="p">=</span> <span class="s">"USDC"</span><span class="p">,</span>
-            <span class="n">Currency</span> <span class="p">=</span> <span class="m">14</span><span class="p">,</span>
-            <span class="n">IsDisabled</span> <span class="p">=</span> <span class="k">false</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="n">Brokerage</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BrokerageAssetAttributesCreateInfo</span>
-    <span class="p">{</span>
-        <span class="n">MinDepositThreshold</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-        <span class="n">MinWithdrawalAmount</span> <span class="p">=</span> <span class="m">1</span>
-    <span class="p">}</span>
-<span class="p">};</span>
 
-<span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">AssetsV2</span><span class="p">.</span><span class="nf">AddAttributes</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
-</code></pre></div><h3 id='assets-addattributes-request'>Request</h3>
+<p>gRPC API example:
+```csharp
+var request = new AssetAddAttributesRequest
+{
+    IdempotencyId = &quot;AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34&quot;,
+    AssetId = 10001,
+    Aml = new AmlAssetAttributesCreateInfo
+    {
+        Chainalysis = new AmlChainalysisAssetAttributesInfo
+        {
+            Symbol = &quot;USDC&quot;,
+            TransferFormat = ChainalysisTransferFormat.HashAndAddress,
+            IsCheckDepositsEnabled = true,
+            IsCheckWithdrawalsEnabled = true,
+            IsNotifyWithdrawalsEnabled = true
+        },
+        MerkleScience = new AmlMerkleScienceAssetAttributesInfo
+        {
+            Symbol = &quot;USDC&quot;,
+            Currency = 14,
+            IsDisabled = false
+        }
+    },
+    Brokerage = new BrokerageAssetAttributesCreateInfo
+    {
+        MinDepositThreshold = 1,
+        MinWithdrawalAmount = 1
+    }
+};</p>
+
+<p>var response = client.AssetsV2.AddAttributes(request);
+```</p>
+
+<p>REST API example:
+```json
+POST /api/v2/assets</p>
+
+<blockquote>
+<p>Request: (application/json)</p>
+
+<p>Headers:<br>
+X-Idempotency-ID: AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34</p>
+
+<p>Body:
+{
+  &quot;assetId&quot;:123122,
+  &quot;brokerage&quot;:{
+    &quot;minDepositThreshold&quot;:9,
+    &quot;minWithdrawalAmount&quot;:144
+  },
+  &quot;aml&quot;:{
+    &quot;chainalysis&quot;:{
+      &quot;symbol&quot;:&quot;MANA&quot;,
+      &quot;isCheckWithdrawalsEnabled&quot;:true,
+      &quot;isCheckDepositsEnabled&quot;:true,
+      &quot;isNotifyWithdrawalsEnabled&quot;:true,
+      &quot;transferFormat&quot;:&quot;hashAndIndex&quot;
+    },
+    &quot;merkleScience&quot;:{
+      &quot;symbol&quot;:&quot;MANA&quot;,
+      &quot;currency&quot;:3,
+      &quot;isDisabled&quot;:true
+    }
+  }
+}
+```</p>
+</blockquote>
+<h3 id='assets-addattributes-request'>Request</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
+<td><code>X-Idempotency-ID</code></td>
+<td>---</td>
+<td><em>string</em></td>
+<td><em>header</em></td>
+<td>Unique ID of the request</td>
+</tr>
+<tr>
+<td>---</td>
 <td><code>IdempotencyId</code></td>
 <td><em>string</em></td>
 <td>Request unique identifier</td>
 <td>&quot;AD1D5199-1D1F-4B2C-AE6C-DED0DAAC4D34&quot;</td>
 </tr>
 <tr>
-<td><code>AssetId</code></td>
+<td><code>assetId</code></td>
+<td><code>asset_id</code></td>
 <td><em>long</em></td>
 <td>Asset identifier in Sirius</td>
 <td>10001</td>
 </tr>
 <tr>
-<td><code>Aml</code></td>
+<td><code>aml</code></td>
+<td><code>aml</code></td>
 <td><em><a href="#assets-models-amlassetattributescreateinfo">AmlAssetAttributesCreateInfo</a></em></td>
 <td>AML asset attributes</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Brokerage</code></td>
+<td><code>brokerage</code></td>
+<td><code>brokerage</code></td>
 <td><em><a href="#assets-models-brokerageassetattributescreateinfo">BrokerageAssetAttributesCreateInfo</a></em></td>
 <td>Brokerage asset attributes</td>
 <td></td>
@@ -639,17 +732,26 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h3 id='assets-addattributes-response'>Response</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Id</code></td>
-<td><em>long</em></td>
-<td>Asset attributes identifier</td>
+<td><code>BrokerageAssetAttributesInfoId</code></td>
+<td><code>brokerage_asset_attributes_id</code></td>
+<td><em>required</em> <em>long</em></td>
+<td>Brokerage asset attributes identifier</td>
 <td>30002</td>
+</tr>
+<tr>
+<td><code>AmlAssetAttributesInfoId</code></td>
+<td><code>aml_asset_attributes_id</code></td>
+<td><em>long</em></td>
+<td>AML asset attributes identifier</td>
+<td>40002</td>
 </tr>
 </tbody></table>
 
@@ -679,74 +781,86 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h2 id='assets-models'>Models</h2><h3 id='assets-models-asset'>Asset</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Id</code></td>
+<td><code>id</code></td>
+<td><code>id</code></td>
 <td><em>long</em></td>
 <td>ID of the asset</td>
 <td>100003</td>
 </tr>
 <tr>
-<td><code>BlockchainId</code></td>
+<td><code>blockchainId</code></td>
+<td><code>blockchain_id</code></td>
 <td><em>string</em></td>
 <td>Exact blockchain id</td>
 <td>bitcoin-private</td>
 </tr>
 <tr>
-<td><code>Symbol</code></td>
+<td><code>symbol</code></td>
+<td><code>symbol</code></td>
 <td><em>string</em></td>
 <td>Asset symbol</td>
 <td>BTC</td>
 </tr>
 <tr>
-<td><code>TokenId</code></td>
+<td><code>tokenId</code></td>
+<td><code>token_id</code></td>
 <td><em>string</em></td>
 <td>Token ID</td>
 <td>101</td>
 </tr>
 <tr>
-<td><code>Address</code></td>
+<td><code>address</code></td>
+<td><code>address</code></td>
 <td><em>string</em></td>
 <td>Exact address</td>
 <td>0xC1701AbD559FC263829CA3917d03045F95b5224A</td>
 </tr>
 <tr>
-<td><code>Accuracy</code></td>
+<td><code>accuracy</code></td>
+<td><code>accuracy</code></td>
 <td><em>int</em></td>
 <td>Exact accuracy</td>
 <td>8</td>
 </tr>
 <tr>
-<td><code>Name</code></td>
+<td><code>name</code></td>
+<td><code>name</code></td>
 <td><em>string</em></td>
 <td>The name of token</td>
 <td>Toy</td>
 </tr>
 <tr>
-<td><code>MetadataUrl</code></td>
+<td><code>metadataUrl</code></td>
+<td><code>metadata_url</code></td>
 <td><em>string</em></td>
 <td>The token metadata URL</td>
 <td>ipfs://metadata.json</td>
 </tr>
 <tr>
-<td><code>Type</code></td>
+<td><code>type</code></td>
+<td><code>type</code></td>
 <td><em>string</em></td>
 <td>The blockchain-specific type of token</td>
 <td>ERC-20</td>
 </tr>
 <tr>
-<td><code>Aml</code></td>
+<td><code>aml</code></td>
+<td><code>aml</code></td>
 <td><em><a href="#assets-models-amlassetattributesinfo">AmlAssetAttributesInfo</a></em></td>
 <td>The AML attributes</td>
 <td></td>
 </tr>
 <tr>
-<td><code>Brokerage</code></td>
+<td><code>brokerage</code></td>
+<td><code>brokerage</code></td>
 <td><em><a href="#assets-models-brokerageassetattributesinfo">BrokerageAssetAttributesInfo</a></em></td>
 <td>The brokerage attributes</td>
 <td></td>
@@ -755,20 +869,23 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h3 id='assets-models-amlassetattributescreateinfo'>AmlAssetAttributesCreateInfo</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Chainalysis</code></td>
+<td><code>chainalysis</code></td>
+<td><code>chainalysis</code></td>
 <td><em><a href="#assets-models-amlchainalysisassetattributesinfo">AmlChainalysisAssetAttributesInfo</a></em></td>
 <td>Chainalysis attributes</td>
 <td></td>
 </tr>
 <tr>
-<td><code>MerkleScience</code></td>
+<td><code>merkleScience</code></td>
+<td><code>merkle_science</code></td>
 <td><em><a href="#assets-models-amlmerklescienceassetattributesinfo">AmlMerkleScienceAssetAttributesInfo</a></em></td>
 <td>MerkleScience attributes</td>
 <td></td>
@@ -777,38 +894,44 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h3 id='assets-models-amlassetattributesinfo'>AmlAssetAttributesInfo</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Id</code></td>
+<td><code>id</code></td>
+<td><code>id</code></td>
 <td><em>long</em></td>
 <td>ID of the info</td>
 <td>300001</td>
 </tr>
 <tr>
-<td><code>Chainalysis</code></td>
+<td><code>chainalysis</code></td>
+<td><code>chainalysis</code></td>
 <td><em><a href="#assets-models-amlchainalysisassetattributesinfo">AmlChainalysisAssetAttributesInfo</a></em></td>
 <td>Chainalysis attributes</td>
 <td></td>
 </tr>
 <tr>
-<td><code>MerkleScience</code></td>
-<td><em><a href="#assets-models-amlmerklescienceassetattributesinfo">AmlMerkleScienceAssetAttributesInfo</a></em></td>
+<td><code>merkleScience</code></td>
+<td><code>merkle_science</code></td>
+<td><em><a href="#amlmerklescienceassetattributesinfo">AmlMerkleScienceAssetAttributesInfo</a></em></td>
 <td>MerkleScience attributes</td>
 <td></td>
 </tr>
 <tr>
-<td><code>CreatedAt</code></td>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
 <td><em>DateTime</em></td>
 <td>Create date time</td>
 <td></td>
 </tr>
 <tr>
-<td><code>UpdatedAt</code></td>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
 <td><em>DateTime</em></td>
 <td>Update date time</td>
 <td></td>
@@ -817,38 +940,44 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h3 id='assets-models-amlchainalysisassetattributesinfo'>AmlChainalysisAssetAttributesInfo</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Symbol</code></td>
+<td><code>symbol</code></td>
+<td><code>symbol</code></td>
 <td><em>string</em></td>
 <td>Chainalysis asset symbol</td>
 <td>BTC</td>
 </tr>
 <tr>
-<td><code>IsCheckWithdrawalsEnabled</code></td>
+<td><code>isCheckWithdrawalsEnabled</code></td>
+<td><code>is_check_withdrawals_enabled</code></td>
 <td><em>bool</em></td>
 <td>Indicates that withdrawals check enabled</td>
 <td>true</td>
 </tr>
 <tr>
-<td><code>IsCheckDepositsEnabled</code></td>
+<td><code>isCheckDepositsEnabled</code></td>
+<td><code>is_check_deposits_enabled</code></td>
 <td><em>bool</em></td>
 <td>Indicates that deposits check enabled</td>
 <td>true</td>
 </tr>
 <tr>
-<td><code>IsNotifyWithdrawalsEnabled</code></td>
+<td><code>isNotifyWithdrawalsEnabled</code></td>
+<td><code>is_notify_withdrawals_enabled</code></td>
 <td><em>bool</em></td>
 <td>Indicates that notify withdrawals check enabled</td>
 <td>true</td>
 </tr>
 <tr>
-<td><code>TransferFormat</code></td>
+<td><code>transferFormat</code></td>
+<td><code>transfer_format</code></td>
 <td><em><a href="#assets-models-chainalysistransferformat-enum">ChainalysisTransferFormat</a></em></td>
 <td>Update date time</td>
 <td></td>
@@ -863,26 +992,30 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h3 id='assets-models-amlmerklescienceassetattributesinfo'>AmlMerkleScienceAssetAttributesInfo</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Symbol</code></td>
+<td><code>symbol</code></td>
+<td><code>symbol</code></td>
 <td><em>string</em></td>
 <td>MerkleScience asset symbol</td>
 <td>BTC</td>
 </tr>
 <tr>
-<td><code>Currency</code></td>
+<td><code>currency</code></td>
+<td><code>currency</code></td>
 <td><em>int</em></td>
 <td>MerkleScience currency ID</td>
 <td>12</td>
 </tr>
 <tr>
-<td><code>IsDisabled</code></td>
+<td><code>isDisabled</code></td>
+<td><code>is_disabled</code></td>
 <td><em>bool</em></td>
 <td>Indicates that asset check enabled</td>
 <td>true</td>
@@ -891,20 +1024,23 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h3 id='assets-models-brokerageassetattributescreateinfo'>BrokerageAssetAttributesCreateInfo</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>MinDepositThreshold</code></td>
+<td><code>minDepositThreshold</code></td>
+<td><code>min_deposit_threshold</code></td>
 <td><em>decimal</em></td>
 <td>Minimum deposit threshold</td>
 <td>0.0001</td>
 </tr>
 <tr>
-<td><code>MinWithdrawalAmount</code></td>
+<td><code>minWithdrawalAmount</code></td>
+<td><code>min_withdrawal_amount</code></td>
 <td><em>decimal</em></td>
 <td>Minimum withdrawal amount</td>
 <td>0.1</td>
@@ -913,38 +1049,44 @@ If you&#39;ve received a deposit of an asset which is not supported by Sirius ye
 <h3 id='assets-models-brokerageassetattributesinfo'>BrokerageAssetAttributesInfo</h3>
 <table><thead>
 <tr>
-<th>name</th>
+<th>REST name</th>
+<th>gRPC name</th>
 <th>type</th>
 <th>description</th>
 <th>example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Id</code></td>
+<td><code>id</code></td>
+<td><code>id</code></td>
 <td><em>long</em></td>
 <td>ID of the info</td>
 <td>300001</td>
 </tr>
 <tr>
-<td><code>MinDepositThreshold</code></td>
+<td><code>minDepositThreshold</code></td>
+<td><code>min_deposit_threshold</code></td>
 <td><em>decimal</em></td>
 <td>Minimum deposit threshold</td>
 <td>0.0001</td>
 </tr>
 <tr>
-<td><code>MinWithdrawalAmount</code></td>
+<td><code>minWithdrawalAmount</code></td>
+<td><code>min_withdrawal_amount</code></td>
 <td><em>decimal</em></td>
 <td>Minimum withdrawal amount</td>
 <td>0.1</td>
 </tr>
 <tr>
-<td><code>CreatedAt</code></td>
+<td><code>createdAt</code></td>
+<td><code>created_at</code></td>
 <td><em>DateTime</em></td>
 <td>Create date time</td>
 <td></td>
 </tr>
 <tr>
-<td><code>UpdatedAt</code></td>
+<td><code>updatedAt</code></td>
+<td><code>updated_at</code></td>
 <td><em>DateTime</em></td>
 <td>Update date time</td>
 <td></td>
