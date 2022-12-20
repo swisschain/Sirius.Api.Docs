@@ -40,13 +40,13 @@ message SmartContractDeployRequest {
 
 ### Parameters
 
-REST name | gRPC name | type | REST placement | description 
---------- | --------- | ---- | -------------- | -----------
-`x-request-id` | - | *string* | *header* | Unique ID of the request
-`x-2fa-code` | - | *string* | *header* | 2fa code for corresponding Universe user
- - | `request_id` | *string* | - | Unique ID of the request
-`document` | `document` | *optional*, *serialized-as-string*, *[SmartContractDocument](#smartcontractdeploymentdocument-object)* | *body* | JSON-formatted document describing the deployment parameters serialized as string
-`signature` | `signature` | *optional*, *string* | *body* | Base64-encoded RSA signature of the document signed with the Customer's private key
+| REST name      | gRPC name    | type                                                                                                   | REST placement | description                                                                         |
+|----------------|--------------|--------------------------------------------------------------------------------------------------------|----------------|-------------------------------------------------------------------------------------|
+| `x-request-id` | -            | *string*                                                                                               | *header*       | Unique ID of the request                                                            |
+| `x-2fa-code`   | -            | *string*                                                                                               | *header*       | 2fa code for corresponding Universe user                                            |
+| -              | `request_id` | *string*                                                                                               | -              | Unique ID of the request                                                            |
+| `document`     | `document`   | *optional*, *serialized-as-string*, *[SmartContractDocument](#smartcontractdeploymentdocument-object)* | *body*         | JSON-formatted document describing the deployment parameters serialized as string   |
+| `signature`    | `signature`  | *optional*, *string*                                                                                   | *body*         | Base64-encoded RSA signature of the document signed with the Customer's private key |
 
 ```
 
@@ -199,10 +199,10 @@ message SmartContractParseRequest{
 
 ###  Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`blockchainId` | `blockchain_id` | *required*, *string* | ID of the blockchain  | ethereum
-`code` | `code` | *required*, *binary* | compiled smart contract
+| REST name      | gRPC name       | type                 | description             | example  |
+|----------------|-----------------|----------------------|-------------------------|----------|
+| `blockchainId` | `blockchain_id` | *required*, *string* | ID of the blockchain    | ethereum |
+| `code`         | `code`          | *required*, *binary* | compiled smart contract |          |
 
 ### Response
 
@@ -767,13 +767,13 @@ example:
 ### Query Parameters
 
 
-REST name | gRPC name        | type | REST placement    | description
---------- |------------------| ---- |-------------------| -----------
-`X-idempotency-ID` | -                | *string* | *header*          | Unique ID of the request
-- | `idempotency_id` | *string* | -                 | Unique ID of the request
-`family_code` | `family_code`       | *string* | *body*            | short codename of a known smart contract family
-`blockchain_id` | `blockchain_id`      | *string* | *body*            | ID of target blockchain
-`tenant_id` | `tenant_id`      | *string* | *JWT token claim* | ID of tenant 
+| REST name          | gRPC name        | type     | REST placement    | description                                     |
+|--------------------|------------------|----------|-------------------|-------------------------------------------------|
+| `X-idempotency-ID` | -                | *string* | *header*          | Unique ID of the request                        |
+| -                  | `idempotency_id` | *string* | -                 | Unique ID of the request                        |
+| `family_code`      | `family_code`    | *string* | *body*            | short codename of a known smart contract family |
+| `blockchain_id`    | `blockchain_id`  | *string* | *body*            | ID of target blockchain                         |
+| `tenant_id`        | `tenant_id`      | *string* | *JWT token claim* | ID of tenant                                    |
 
 ### Response
 

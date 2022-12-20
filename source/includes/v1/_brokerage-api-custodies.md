@@ -40,12 +40,12 @@ message CustodyCreateRequest {
 }
 ```
 
-REST name | gRPC name | type | REST placement | description 
---------- | --------- | ---- | -------------- | -----------
-`X-Request-ID` | - | *string* | *header* | Unique ID of the request
- - | `request_id` | *string* | - | Unique ID of the request
-`name` | `name` | *string* | *body* | Name of the custody
-`type` | `type` | *[CustodyType](#custodytype-enum)* | *body* | Type of the custody
+| REST name      | gRPC name    | type                                                                | REST placement | description              |
+|----------------|--------------|---------------------------------------------------------------------|----------------|--------------------------|
+| `X-Request-ID` | -            | *string*                                                            | *header*       | Unique ID of the request |
+| -              | `request_id` | *string*                                                            | -              | Unique ID of the request |
+| `name`         | `name`       | *string*                                                            | *body*         | Name of the custody      |
+| `type`         | `type`       | *[CustodyType](_brokerage-api-data-structures.md#custodytype-enum)* | *body*         | Type of the custody      |
 
 ### Response
 
@@ -94,8 +94,8 @@ REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
 `id` | `id` | *number* | ID of the custody
 `name` | `name` | *string* | Name of the custody
-`type` | `type` | *[CustodyType](#custodytype-enum)* | Type of the custody
-`status` | `status` | *[CustodyStatus](#custodystatus-enum)* | Status of the custody
+`type` | `type` | *[CustodyType](_brokerage-api-data-structures.md#custodytype-enum)* | Type of the custody
+`status` | `status` | *[CustodyStatus](_brokerage-api-data-structures.md#custodystatus-enum)* | Status of the custody
 `createdAt` | `created_at` | *timestamp* | Date of the custody creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the custody update
 
@@ -185,8 +185,8 @@ REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
 `id` | `id` | *number* | ID of the custody
 `name` | `name` | *string* | Name of the custody
-`type` | `type` | *[CustodyType](#custodytype-enum)* | Type of the custody
-`status` | `status` | *[CustodyStatus](#custodystatus-enum)* | Status of the custody
+`type` | `type` | *[CustodyType](_brokerage-api-data-structures.md#custodytype-enum)* | Type of the custody
+`status` | `status` | *[CustodyStatus](_brokerage-api-data-structures.md#custodystatus-enum)* | Status of the custody
 `createdAt` | `created_at` | *timestamp* | Date of the custody creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the custody update
 
@@ -225,8 +225,8 @@ REST name | gRPC name | type | REST placement | description
 --------- | --------- | ---- | -------------- | -----------
 `id` | `id` | *number, optional* | *query* | Exact ID of the custody to search
 `name` | `name` | *string, optional* | *query* | Name of the custody to search
-`type` | `type` | *Array<[CustodyType](#custodytype-enum)>, optional* | *query* | Zero or several custody types to search
-`order` | `pagination.order` | *[Order](#order-enum), optional* | *query* | Results sorting order
+`type` | `type` | *Array<[CustodyType](_brokerage-api-data-structures.md#custodytype-enum)>, optional* | *query* | Zero or several custody types to search
+`order` | `pagination.order` | *[Order](_brokerage-api-data-structures.md#order-enum), optional* | *query* | Results sorting order
 `cursor` | `pagination.cursor` | *number, optional* | *query* | Cursor to continue search from
 `limit` | `pagination.limit` | *number, optional* | *query* | Max numbers of the items to return from the server
 
@@ -316,8 +316,8 @@ REST name | gRPC name | type | description
 --------- | --------- | ---- | -----------
 `id` | `id` | *number* | ID of the custody
 `name` | `name` | *string* | Name of the custody
-`type` | `type` | *[CustodyType](#custodytype-enum)* | Type of the custody
-`status` | `status` | *[CustodyStatus](#custodystatus-enum)* | Status of the custody
+`type` | `type` | *[CustodyType](_brokerage-api-data-structures.md#custodytype-enum)* | Type of the custody
+`status` | `status` | *[CustodyStatus](_brokerage-api-data-structures.md#custodystatus-enum)* | Status of the custody
 `createdAt` | `created_at` | *timestamp* | Date of the custody creation
 `updatedAt` | `updated_at` | *timestamp* | Date of the custody update
 
@@ -447,15 +447,15 @@ message PaginationInt64 {
 }
 ```
 
-REST name | gRPC name | type | REST placement | description 
---------- | --------- | ---- | -------------- | -----------
-`custodyId` | `custody_id` | *number* | *path* | Exact ID of the custody to search
-`id` | `id` | *number, optional* | *query* | Exact ID of the custody API key to search
-`name` | `name` | *string, optional* | *query* | Name of the custody API key to search
-`isRevoked` | `is_revoked` | *bool, optional* | *query* | Flag indicating if only revoked or only not revoked custody API keys should be searched
-`order` | `pagination.order` | *[Order](#order-enum), optional* | *query* | Results sorting order
-`cursor` | `pagination.cursor` | *number, optional* | *query* | Cursor to continue search from
-`limit` | `pagination.limit` | *number, optional* | *query* | Max numbers of the items to return from the server
+| REST name   | gRPC name           | type                                                              | REST placement | description                                                                             |
+|-------------|---------------------|-------------------------------------------------------------------|----------------|-----------------------------------------------------------------------------------------|
+| `custodyId` | `custody_id`        | *number*                                                          | *path*         | Exact ID of the custody to search                                                       |
+| `id`        | `id`                | *number, optional*                                                | *query*        | Exact ID of the custody API key to search                                               |
+| `name`      | `name`              | *string, optional*                                                | *query*        | Name of the custody API key to search                                                   |
+| `isRevoked` | `is_revoked`        | *bool, optional*                                                  | *query*        | Flag indicating if only revoked or only not revoked custody API keys should be searched |
+| `order`     | `pagination.order`  | *[Order](_brokerage-api-data-structures.md#order-enum), optional* | *query*        | Results sorting order                                                                   |
+| `cursor`    | `pagination.cursor` | *number, optional*                                                | *query*        | Cursor to continue search from                                                          |
+| `limit`     | `pagination.limit`  | *number, optional*                                                | *query*        | Max numbers of the items to return from the server                                      |
 
 ### Response
 
@@ -529,14 +529,14 @@ message CustodyApiKeyResponse {
 
 [Paginated](#Pagination) list of
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id` | *number* | ID of the custody API key
-`custodyId` | `custody_id` | *number* | ID of the custody
-`name` | `name` | *string* | Name of the custody API key
-`expiresAt` | `expires_at` | *timestamp* | Date of the API key expiration
-`issuedAt` | `issued_at` | *timestamp* | Date of the API key issuance
-`isRevoked` | `is_revoked` | *bool* | Flag indicating if the custody API key is revoked
+| REST name   | gRPC name    | type        | description                                       |
+|-------------|--------------|-------------|---------------------------------------------------|
+| `id`        | `id`         | *number*    | ID of the custody API key                         |
+| `custodyId` | `custody_id` | *number*    | ID of the custody                                 |
+| `name`      | `name`       | *string*    | Name of the custody API key                       |
+| `expiresAt` | `expires_at` | *timestamp* | Date of the API key expiration                    |
+| `issuedAt`  | `issued_at`  | *timestamp* | Date of the API key issuance                      |
+| `isRevoked` | `is_revoked` | *bool*      | Flag indicating if the custody API key is revoked |
 
 ## Custody API key token obtaining
 

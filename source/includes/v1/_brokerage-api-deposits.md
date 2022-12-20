@@ -25,20 +25,19 @@ If user deposited an asset which is not blockchain native (a token), the deposit
 
 ### Query Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-`id` | `id` | *optional*, *number* | Exact deposit ID to search | 500000113
-`brokerAccountId` | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000113
-`state` | `state` | *optional*, *Array of [DepositState](#depositstate-enum)* | State of the deposit | detected
-`type` | `deposit_type` | *optional*, *Array of [DepositType](#deposittype-enum)* | State of the deposit | regular
-`accountId` | `accountId` | *optional*, *number* | ID of the account  | 200000113
-`assetId` | `asset_id` | *optional*, *number* | ID of the asset  | 100000
-`blockchainId` | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-test
-`referenceId` | `reference_id` | *optional*, *string* | Reference ID of the account  | ethereum-test
-`order` | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-`cursor` | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-`limit` | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
+| REST name         | gRPC name           | type                                                                                       | description                                             | example       |
+|-------------------|---------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------|---------------|
+| `id`              | `id`                | *optional*, *number*                                                                       | Exact deposit ID to search                              | 500000113     |
+| `brokerAccountId` | `broker_account_id` | *optional*, *number*                                                                       | ID of the broker account                                | 100000113     |
+| `state`           | `state`             | *optional*, *Array of [DepositState](_brokerage-api-data-structures.md#depositstate-enum)* | State of the deposit                                    | detected      |
+| `type`            | `deposit_type`      | *optional*, *Array of [DepositType](_brokerage-api-data-structures.md#deposittype-enum)*   | State of the deposit                                    | regular       |
+| `accountId`       | `accountId`         | *optional*, *number*                                                                       | ID of the account                                       | 200000113     |
+| `assetId`         | `asset_id`          | *optional*, *number*                                                                       | ID of the asset                                         | 100000        |
+| `blockchainId`    | `blockchain_id`     | *optional*, *string*                                                                       | ID of the blockchain                                    | ethereum-test |
+| `referenceId`     | `reference_id`      | *optional*, *string*                                                                       | Reference ID of the account                             | ethereum-test |
+| `order`           | `pagination.order`  | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)*                        | Result items sorting order                              | asc           |
+| `cursor`          | `pagination.cursor` | *optional*, *string*                                                                       | Cursor to continue the search                           | 11111110      |
+| `limit`           | `pagination.limit`  | *optional*, *number*                                                                       | Maximum number of items to return in the search results | 10            |
 
 ```protobuf
 swisschain.sirius.api.deposits.Deposits.Search
@@ -188,30 +187,30 @@ message DepositResponse {
 
 Paginated response of the deposits:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-`id` | `id`| *number* | ID of the deposit
-`brokerAccountId` | `broker_account_id`| *number* | Relevant broker account ID
-`brokerAccountDetails` | `broker_account_details`| *[BrokerAccountDetails](#brokeraccountdetails-object)* | Broker account details
-`accountId` | `account_id`| *optional*, *number* | Account ID if type is not Broker
-`referenceId` | `reference_id`| *optional*, *string* | Account reference ID if type is not Broker
-`accountDetails` | `account_details`| *optional*, *[AccountDetails](#accountdetails-object)* | Account details if type is not Broker
-`assetId` | `asset_id`| *number* | Asset ID of the deposit transaction
-`blockchainId` | `blockchain_id`| *string* | Blockchain ID of the deposit transaction
-`fees` | `fees`| *Array of [Fee](#fee-object)* | Array of spent fees if type is not Broker
-`transactionInfo` | `transaction_info`| *[TransactionInfo](#transactioninfo-object)* | Transaction info of incoming transaction
-`state` | `state`| *[DepositState](#depositstate-enum)* | State of the deposit
-`sources` | `sources`| *Array of [DepositSources](#depositsource-object)* | Sources of the deposit transaction
-`amount` | `amount`| *decimal* | Amount of the deposit transaction
-`createdAt` | `created_at` | *timestamp* | Date of the deposit creation
-`updatedAt` | `updated_at` | *timestamp* | Date of the latest deposit update
-`requiredConfirmationsCount` | `required_confirmations_count` | *number* | Required confirmations count for transaction
-`assetSymbol` | `asset_symbol` | *string* | Asset symbol (BTC, ETH)
-`assetAddress` | `asset_address` | *string* | Asset address (ERC20)
-`blockchainName` | `blockchain_name` | *string* | Name of the blockchain
-`brokerAccountName` | `broker_account_name` | *string* | Name of the broker account
-`depositYype` | `deposit_type` | *[DepositType](#deposittype-enum)* | Deposit type
-`amlChecks` | `aml_checks` | *[AmlChecks](#amlchecks-object)* | AML checks root object 
+| REST name                    | gRPC name                      | type                                                                  | description                                  |
+|------------------------------|--------------------------------|-----------------------------------------------------------------------|----------------------------------------------|
+| `id`                         | `id`                           | *number*                                                              | ID of the deposit                            |
+| `brokerAccountId`            | `broker_account_id`            | *number*                                                              | Relevant broker account ID                   |
+| `brokerAccountDetails`       | `broker_account_details`       | *[BrokerAccountDetails](_brokerage-api-data-structures.md#brokeraccountdetails-object)*                | Broker account details                       |
+| `accountId`                  | `account_id`                   | *optional*, *number*                                                  | Account ID if type is not Broker             |
+| `referenceId`                | `reference_id`                 | *optional*, *string*                                                  | Account reference ID if type is not Broker   |
+| `accountDetails`             | `account_details`              | *optional*, *[AccountDetails](_brokerage-api-data-structures.md#accountdetails-object)*                | Account details if type is not Broker        |
+| `assetId`                    | `asset_id`                     | *number*                                                              | Asset ID of the deposit transaction          |
+| `blockchainId`               | `blockchain_id`                | *string*                                                              | Blockchain ID of the deposit transaction     |
+| `fees`                       | `fees`                         | *Array of [Fee](_brokerage-api-data-structures.md#fee-object)*                                         | Array of spent fees if type is not Broker    |
+| `transactionInfo`            | `transaction_info`             | *[TransactionInfo](_brokerage-api-data-structures.md#transactioninfo-object)*                          | Transaction info of incoming transaction     |
+| `state`                      | `state`                        | *[DepositState](_brokerage-api-data-structures.md#depositstate-enum)* | State of the deposit                         |
+| `sources`                    | `sources`                      | *Array of [DepositSources](_brokerage-api-data-structures.md#depositsource-object)*                    | Sources of the deposit transaction           |
+| `amount`                     | `amount`                       | *decimal*                                                             | Amount of the deposit transaction            |
+| `createdAt`                  | `created_at`                   | *timestamp*                                                           | Date of the deposit creation                 |
+| `updatedAt`                  | `updated_at`                   | *timestamp*                                                           | Date of the latest deposit update            |
+| `requiredConfirmationsCount` | `required_confirmations_count` | *number*                                                              | Required confirmations count for transaction |
+| `assetSymbol`                | `asset_symbol`                 | *string*                                                              | Asset symbol (BTC, ETH)                      |
+| `assetAddress`               | `asset_address`                | *string*                                                              | Asset address (ERC20)                        |
+| `blockchainName`             | `blockchain_name`              | *string*                                                              | Name of the blockchain                       |
+| `brokerAccountName`          | `broker_account_name`          | *string*                                                              | Name of the broker account                   |
+| `depositYype`                | `deposit_type`                 | *[DepositType](_brokerage-api-data-structures.md#deposittype-enum)*   | Deposit type                                 |
+| `amlChecks`                  | `aml_checks`                   | *[AmlChecks](_brokerage-api-data-structures.md#amlchecks-object)*                                      | AML checks root object                       |
 
 ## Searches deposit updates
 
@@ -221,21 +220,20 @@ REST name | gRPC name | type | description
 
 ### Parameters
 
-REST name | gRPC name | type | description | example
---------- | --------- | ---- | ----------- | -------
-- | `deposit_id` | *optional*, *number* | Exact deposit ID to search | 500000113
-- | `deposit_update_id` | *optional*, *number* | Exact deposit update ID to search | 600000001
-- | `broker_account_id` | *optional*, *number* | ID of the broker account  | 100000113
-- | `state` | *optional*, *Array of [DepositState](#depositstate-enum)* | State of the deposit | detected
-- | `deposit_type` | *optional*, *Array of [DepositType](#deposittype-enum)* | State of the deposit | regular
-- | `accountId` | *optional*, *number* | ID of the account  | 200000113
-- | `asset_id` | *optional*, *number* | ID of the asset  | 100000
-- | `blockchain_id` | *optional*, *string* | ID of the blockchain  | ethereum-test
-- | `reference_id` | *optional*, *string* | Reference ID of the account  | ethereum-test
-- | `pagination.order` | *optional*, *[Order](#order-enum)* | Result items sorting order | asc
-- | `pagination.cursor` | *optional*, *string* | Cursor to continue the search | 11111110
-- | `pagination.limit` | *optional*, *number* | Maximum number of items to return in the search results | 10
-
+| REST name | gRPC name           | type                                                                                       | description                                             | example       |
+|-----------|---------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------|---------------|
+| -         | `deposit_id`        | *optional*, *number*                                                                       | Exact deposit ID to search                              | 500000113     |
+| -         | `deposit_update_id` | *optional*, *number*                                                                       | Exact deposit update ID to search                       | 600000001     |
+| -         | `broker_account_id` | *optional*, *number*                                                                       | ID of the broker account                                | 100000113     |
+| -         | `state`             | *optional*, *Array of [DepositState](_brokerage-api-data-structures.md#depositstate-enum)* | State of the deposit                                    | detected      |
+| -         | `deposit_type`      | *optional*, *Array of [DepositType](_brokerage-api-data-structures.md#deposittype-enum)*   | State of the deposit                                    | regular       |
+| -         | `accountId`         | *optional*, *number*                                                                       | ID of the account                                       | 200000113     |
+| -         | `asset_id`          | *optional*, *number*                                                                       | ID of the asset                                         | 100000        |
+| -         | `blockchain_id`     | *optional*, *string*                                                                       | ID of the blockchain                                    | ethereum-test |
+| -         | `reference_id`      | *optional*, *string*                                                                       | Reference ID of the account                             | ethereum-test |
+| -         | `pagination.order`  | *optional*, *[Order](_brokerage-api-data-structures.md#order-enum)*                        | Result items sorting order                              | asc           |
+| -         | `pagination.cursor` | *optional*, *string*                                                                       | Cursor to continue the search                           | 11111110      |
+| -         | `pagination.limit`  | *optional*, *number*                                                                       | Maximum number of items to return in the search results | 10            |
 
 ```protobuf
 swisschain.sirius.api.deposits.Deposits.GetUpdates
@@ -296,28 +294,28 @@ message DepositUpdateResponse {
 
 Paginated response of the deposits:
 
-REST name | gRPC name | type | description
---------- | --------- | ---- | -----------
-- | `deposit_id`| *number* | ID of the deposit
-- | `deposit_update_id`| *number* | ID of the deposit update
-- | `broker_account_id`| *number* | Relevant broker account ID
-- | `broker_account_details`| *[BrokerAccountDetails](#brokeraccountdetails-object)* | Broker account details
-- | `account_id`| *optional*, *number* | Account ID if type is not Broker
-- | `reference_id`| *optional*, *string* | Account reference ID if type is not Broker
-- | `account_details`| *optional*, *[AccountDetails](#accountdetails-object)* | Account details if type is not Broker
-- | `asset_id`| *number* | Asset ID of the deposit transaction
-- | `blockchain_id`| *string* | Blockchain ID of the deposit transaction
-- | `fees`| *Array of [Fee](#fee-object)* | Array of spent fees if type is not Broker
-- | `transaction_info`| *[TransactionInfo](#transactioninfo-object)* | Transaction info of incoming transaction
-- | `state`| *[DepositState](#depositstate-enum)* | State of the deposit
-- | `sources`| *Array of [DepositSources](#depositsource-object)* | Sources of the deposit transaction
-- | `amount`| *decimal* | Amount of the deposit transaction
-- | `created_at` | *timestamp* | Date of the deposit creation
-- | `updated_at` | *timestamp* | Date of the latest deposit update
-- | `required_confirmations_count` | *number* | Required confirmations count for transaction
-- | `asset_symbol` | *string* | Asset symbol (BTC, ETH)
-- | `asset_address` | *string* | Asset address (ERC20)
-- | `blockchain_name` | *string* | Name of the blockchain
-- | `broker_account_name` | *string* | Name of the broker account
-- | `deposit_type` | *[DepositType](#deposittype-enum)* | Deposit type
-- | `aml_checks` | *[AmlChecks](#amlchecks-object)* | AML checks root object 
+| REST name | gRPC name                      | type                                                                                    | description                                  |
+|-----------|--------------------------------|-----------------------------------------------------------------------------------------|----------------------------------------------|
+| -         | `deposit_id`                   | *number*                                                                                | ID of the deposit                            |
+| -         | `deposit_update_id`            | *number*                                                                                | ID of the deposit update                     |
+| -         | `broker_account_id`            | *number*                                                                                | Relevant broker account ID                   |
+| -         | `broker_account_details`       | *[BrokerAccountDetails](_brokerage-api-data-structures.md#brokeraccountdetails-object)* | Broker account details                       |
+| -         | `account_id`                   | *optional*, *number*                                                                    | Account ID if type is not Broker             |
+| -         | `reference_id`                 | *optional*, *string*                                                                    | Account reference ID if type is not Broker   |
+| -         | `account_details`              | *optional*, *[AccountDetails](_brokerage-api-data-structures.md#accountdetails-object)* | Account details if type is not Broker        |
+| -         | `asset_id`                     | *number*                                                                                | Asset ID of the deposit transaction          |
+| -         | `blockchain_id`                | *string*                                                                                | Blockchain ID of the deposit transaction     |
+| -         | `fees`                         | *Array of [Fee](_brokerage-api-data-structures.md#fee-object)*                          | Array of spent fees if type is not Broker    |
+| -         | `transaction_info`             | *[TransactionInfo](_brokerage-api-data-structures.md#transactioninfo-object)*           | Transaction info of incoming transaction     |
+| -         | `state`                        | *[DepositState](_brokerage-api-data-structures.md#depositstate-enum)*                   | State of the deposit                         |
+| -         | `sources`                      | *Array of [DepositSources](_brokerage-api-data-structures.md#depositsource-object)*     | Sources of the deposit transaction           |
+| -         | `amount`                       | *decimal*                                                                               | Amount of the deposit transaction            |
+| -         | `created_at`                   | *timestamp*                                                                             | Date of the deposit creation                 |
+| -         | `updated_at`                   | *timestamp*                                                                             | Date of the latest deposit update            |
+| -         | `required_confirmations_count` | *number*                                                                                | Required confirmations count for transaction |
+| -         | `asset_symbol`                 | *string*                                                                                | Asset symbol (BTC, ETH)                      |
+| -         | `asset_address`                | *string*                                                                                | Asset address (ERC20)                        |
+| -         | `blockchain_name`              | *string*                                                                                | Name of the blockchain                       |
+| -         | `broker_account_name`          | *string*                                                                                | Name of the broker account                   |
+| -         | `deposit_type`                 | *[DepositType](_brokerage-api-data-structures.md#deposittype-enum)*                     | Deposit type                                 |
+| -         | `aml_checks`                   | *[AmlChecks](_brokerage-api-data-structures.md#amlchecks-object)*                       | AML checks root object                       |
