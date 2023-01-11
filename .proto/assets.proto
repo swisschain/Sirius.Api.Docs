@@ -106,7 +106,8 @@ message AssetAddAttributesResponse {
 }
 
 message AddAssetAttributesPayload {
-    int64 id = 1;
+    int64 brokerage_asset_attributes_id = 1;
+    google.protobuf.Int64Value aml_asset_attributes_id = 2;
 }
 
 message AddAssetAttributesError {
