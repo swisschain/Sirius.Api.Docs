@@ -101,6 +101,7 @@ enum DepositState
   REFUNDING_PROVISIONED = 12;
   REFUNDED = 13;
   APPROVAL_REQUIRED = 14;
+  IN_MEMPOOL = 15;
 }
 
 enum DepositType
