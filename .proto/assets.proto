@@ -57,6 +57,7 @@ message BrokerageAssetAttributesInfo {
     swisschain.sirius.api.common.BigDecimal min_withdrawal_amount = 3;
     google.protobuf.Timestamp created_at = 4;
     google.protobuf.Timestamp updated_at = 5;
+    string display_name = 6;
 }
 
 message AmlAssetAttributesInfo {
@@ -91,6 +92,7 @@ message AssetAddAttributesRequest {
 message BrokerageAssetAttributesCreateInfo {
     swisschain.sirius.api.common.BigDecimal min_deposit_threshold = 1;
     swisschain.sirius.api.common.BigDecimal min_withdrawal_amount = 2;
+    string display_name = 3;
 }
 
 message AmlAssetAttributesCreateInfo {
