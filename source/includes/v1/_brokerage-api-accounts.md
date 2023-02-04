@@ -100,7 +100,7 @@ message AccountResponse {
 | `id`              | `id`                | *number*                                                              | ID of the account                 |
 | `referenceId`     | `reference_id`      | *optional*, *string*                                                  | *body*                            | Account reference id
 | `brokerAccountId` | `broker_account_id` | *number*                                                              | *body*                            | Id of the related Broker Account
-| `status`          | `status`            | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account             |
+| `state`           | `state`             | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account             |
 | `createdAt`       | `created_at`        | *timestamp*                                                           | Date of the account creation      |
 | `updatedAt`       | `updated_at`        | *timestamp*                                                           | Date of the latest account update |
 | `userId`          | `user_id`           | *optional*, *number*                                                  | *body*                            | Id of the related user in the system (Needed for enabling AML on broker Account)
@@ -157,7 +157,7 @@ POST /api/accounts
 | `id`              | `id`                | *number*                                                              | ID of the account                 |
 | `referenceId`     | `reference_id`      | *optional*, *string*                                                  | *body*                            | Account reference id
 | `brokerAccountId` | `broker_account_id` | *number*                                                              | *body*                            | Id of the related Broker Account
-| `status`          | `status`            | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account             |
+| `state`           | `state`             | *[AccountState](_brokerage-api-data-structures.md#accountstate-enum)* | Status of the account             |
 | `createdAt`       | `created_at`        | *timestamp*                                                           | Date of the account creation      |
 | `updatedAt`       | `updated_at`        | *timestamp*                                                           | Date of the latest account update |
 | `userId`          | `user_id`           | *optional*, *number*                                                  | *body*                            | Id of the related user in the system (Needed for enabling AML on broker Account)
@@ -274,7 +274,7 @@ Paginated response of the accounts:
 
 ### Request
 
-**Rest API:** `GET /api/accounts/{accountId}/details`
+**Rest API:** `GET /api/accounts/details`
 
 **gRPC API:** `swisschain.sirius.api.accounts.Accounts.SearchDetails`
 
