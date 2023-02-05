@@ -41,6 +41,7 @@ Paginated array of the blockchains:
 | `networkType`       | *[NetworkType](_brokerage-api-data-structures.md#networktype-enum)*                 | Type of the network                       |                   |
 | `protocol`          | *[BlockchainProtocol](_brokerage-api-data-structures.md#blockchainprotocol-object)* | Protocol of the blockchain.               |                   |
 | `latestBlockNumber` | *number*                                                                            | Number of the latest block                | 1567432           |
+| `isDisabled`        | *booledn*                                                                           | is blockchain currently working           | false             |
 
 > GET /api/blockchains 200 OK
 
@@ -73,7 +74,8 @@ Paginated array of the blockchains:
       "tenantId": null,
       "name": "Bitcoin private network",
       "networkType": "private",
-      "latestBlockNumber": 5899
+      "latestBlockNumber": 5899,
+      "isDisabled": false
     },
     {
       "id": "ethereum-ropsten",
@@ -95,7 +97,8 @@ Paginated array of the blockchains:
       "tenantId": null,
       "name": "Ethereum test network",
       "networkType": "test",
-      "latestBlockNumber": 8450781
+      "latestBlockNumber": 8450781,
+      "isDisabled": false
     },
     {
       "id": "stellar-test",
@@ -124,7 +127,8 @@ Paginated array of the blockchains:
       "tenantId": null,
       "name": "Stellar test network",
       "networkType": "test",
-      "latestBlockNumber": 133093
+      "latestBlockNumber": 133093,
+      "isDisabled": false
     }
   ]
 }
