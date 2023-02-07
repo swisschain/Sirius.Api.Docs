@@ -47,6 +47,7 @@ message Blockchain {
   swisschain.sirius.api.common.NetworkType network_type = 7;
   int64 latest_block_number = 8;
   int64 chain_sequence = 9;
+  bool is_disabled = 10;
 }
 
 message Protocol {
