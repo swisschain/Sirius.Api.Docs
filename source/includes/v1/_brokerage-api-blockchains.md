@@ -41,7 +41,7 @@ Paginated array of the blockchains:
 | `networkType`       | *[NetworkType](_brokerage-api-data-structures.md#networktype-enum)*                 | Type of the network                       |                   |
 | `protocol`          | *[BlockchainProtocol](_brokerage-api-data-structures.md#blockchainprotocol-object)* | Protocol of the blockchain.               |                   |
 | `latestBlockNumber` | *number*                                                                            | Number of the latest block                | 1567432           |
-| `isDisabled`        | *booledn*                                                                           | is blockchain currently working           | false             |
+| `isDisabled`        | *booledn*                                                                           | Is blockchain currently working           | false             |
 
 > GET /api/blockchains 200 OK
 
