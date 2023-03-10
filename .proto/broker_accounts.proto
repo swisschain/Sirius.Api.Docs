@@ -42,6 +42,8 @@ message BrokerAccountCreateRequest {
   repeated string blockchain_ids = 4;
 
   repeated int64 aml_connection_ids = 5;
+
+  google.protobuf.Int64Value gas_station_id = 6;
 }
 
 message BrokerAccountCreateResponse {
@@ -63,6 +65,8 @@ message BrokerAccountUpdateRequest {
   repeated string blockchain_ids = 3;
 
   repeated int64 aml_connections_ids = 4;
+
+  google.protobuf.Int64Value gas_station_id = 5;
 }
 
 message BrokerAccountUpdateResponse {
@@ -88,6 +92,8 @@ message BrokerAccountSearchRequest {
   swisschain.sirius.api.common.PaginationInt64 pagination = 5;
   
   google.protobuf.StringValue custodyName = 6;
+
+  google.protobuf.Int64Value gas_station_id = 7;
 }
 
 message BrokerAccountSearchResponse {
@@ -191,6 +197,8 @@ message BrokerAccountResponse {
   repeated string blockchain_ids = 10;
 
   repeated int64 aml_connection_ids = 11;
+  
+  google.protobuf.Int64Value gas_station_id = 12;
 }
 
 message BrokerAccountUpdateItemResponse {
@@ -211,6 +219,8 @@ message BrokerAccountUpdateItemResponse {
   repeated string blockchain_ids = 8;
 
   int64 broker_account_update_id = 9;
+
+  google.protobuf.Int64Value gas_station_id = 10;
 }
 
 message BrokerAccountDetailsResponse {
@@ -223,6 +233,8 @@ message BrokerAccountDetailsResponse {
   string address = 4;
 
   string blockchain_id = 5;
+
+  google.protobuf.Int64Value gas_station_id = 6;
 }
 
 message BrokerAccountBalancesResponse

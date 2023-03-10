@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+option csharp_namespace = "Swisschain.Sirius.Api.ApiContract.V1.GasStations";
+
+import "aml.proto";
+import "common.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+package swisschain.sirius.api.gasstations;
+
+service GasStationsService {
+  rpc Search (GasStationSearchRequest) returns (GasStationSearchResponse);
+  rpc Add (GasStationAddRequest) returns (GasStationAddResponse);
+  rpc Update (GasStationUpdateRequest) returns (GasStationUpdateResponse);
+  rpc Remove (GasStationRemoveRequest) returns (GasStationRemoveResponse);
+}
+
+message GasStationSearchRequest {
+  google.protobuf.StringValue name = 1;
+  int64 broker_account_id = 2;
+  
+  swisschain.sirius.api.common.PaginationInt64 pagination = 3;
+}
+
+message GasStationSearchResponse {
+  oneof body {
+    GasStationSearchPayload payload = 1;
+    GasStationSearchError error = 2;
+  }
+}
+
+message GasStationSearchPayload {
+  repeated GasStationResponse items = 1;
+}
+
+message GasStationAddRequest {
+  string idempotency_id = 1;
+  int64 broker_account_id = 2;
+  string name = 3;
+  repeated GasStationAccessRight gas_station_access_rights = 4;
+}
+message GasStationUpdateRequest {
+  string idempotency_id = 1;
+  int64 id = 2;
+  int64 broker_account_id = 3;
+  string name = 4;
+  repeated GasStationAccessRight gas_station_access_rights = 5;
+}
+message GasStationRemoveRequest {
+  string idempotency_id = 1;
+  int64 id = 2;
+}
+
+message GasStationAddResponse {
+  oneof body {
+    GasStationAddPayload payload = 1;
+    GasStationAddError error = 2;
+  }
+}
+message GasStationUpdateResponse {
+  oneof body {
+    GasStationUpdatePayload payload = 1;
+    GasStationUpdateError error = 2;
+  }
+}message GasStationRemoveResponse {
+  oneof body {
+    GasStationRemovePayload payload = 1;
+    GasStationRemoveError error = 2;
+  }
+}
+message GasStationAddPayload {
+  int64 id = 1;
+}
+message GasStationUpdatePayload {}
+message GasStationRemovePayload {}
+
+
+message GasStationSearchError {
+
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM  = 3;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+message GasStationAddError {
+
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM  = 3;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+message GasStationUpdateError {
+
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM  = 3;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+
+message GasStationRemoveError {
+
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM  = 3;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+
+
+message GasStationAccessRight {
+  GasStationAccessRightType gas_station_access_rights = 1;
+  google.protobuf.StringValue object_id = 2;
+}
+
+enum GasStationAccessRightType {
+  COMPANY = 0;
+  SUBSCRIPTION = 1;
+  BROKER_ACCOUNT = 2;
+}
+
+message GasStationResponse {
+  google.protobuf.Int64Value id = 1;
+  string tenant_id = 2;
+  int64 broker_account_id = 3;
+  string name = 4;
+  repeated GasStationAccessRight gas_station_access_rights = 5;
+}
+
