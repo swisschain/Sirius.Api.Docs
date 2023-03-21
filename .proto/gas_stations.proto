@@ -43,7 +43,6 @@ message GasStationAddRequest {
 message GasStationUpdateRequest {
   string idempotency_id = 1;
   int64 id = 2;
-  int64 broker_account_id = 3;
   string name = 4;
   repeated GasStationAccessRight gas_station_access_rights = 5;
 }
