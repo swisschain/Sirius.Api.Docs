@@ -44,6 +44,7 @@ message BrokerAccountCreateRequest {
   repeated int64 aml_connection_ids = 5;
 
   google.protobuf.Int64Value gas_station_id = 6;
+  bool use_managed_gas_station = 7;
 }
 
 message BrokerAccountCreateResponse {
@@ -67,6 +68,7 @@ message BrokerAccountUpdateRequest {
   repeated int64 aml_connections_ids = 4;
 
   google.protobuf.Int64Value gas_station_id = 5;
+  bool use_managed_gas_station = 6;
 }
 
 message BrokerAccountUpdateResponse {
@@ -199,6 +201,8 @@ message BrokerAccountResponse {
   repeated int64 aml_connection_ids = 11;
   
   google.protobuf.Int64Value gas_station_id = 12;
+  
+  bool use_managed_gas_station = 13;
 }
 
 message BrokerAccountUpdateItemResponse {
@@ -233,8 +237,6 @@ message BrokerAccountDetailsResponse {
   string address = 4;
 
   string blockchain_id = 5;
-
-  google.protobuf.Int64Value gas_station_id = 6;
 }
 
 message BrokerAccountBalancesResponse
