@@ -5,10 +5,10 @@ package swisschain.sirius.api.v2.cardano.staking;
 
 service CardanoStakingService {
   rpc Delegate (CardanoDelegateRequest) returns (CardanoDelegateResponse);
+  rpc Withdraw (CardanoWithdrawRequest) returns (CardanoWithdrawResponse);
 }
 
 // Delegate
-
 message CardanoDelegateRequest {
   string idempotency_id = 1;
   CardanoDelegationDocument document = 2;
@@ -34,6 +34,42 @@ message CardanoDelegatePayload {
 }
 
 message CardanoDelegateError {
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEMS = 3;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+// Withdraw
+message CardanoWithdrawRequest {
+  string idempotency_id = 1;
+  CardanoWithdrawDocument document = 2;
+  string signature = 3;
+  string blockchain_id = 4;
+}
+
+message CardanoWithdrawDocument {
+  map<string,string> properties = 1;
+  int64 broker_account_id = 2;
+}
+
+message CardanoWithdrawResponse {
+  oneof result {
+    CardanoWithdrawPayload payload = 1;
+    CardanoWithdrawError error = 2;
+  }
+}
+
+message CardanoWithdrawPayload {
+  int64 id = 1;
+}
+
+message CardanoWithdrawError {
   enum ErrorCode {
     UNKNOWN = 0;
     INVALID_PARAMETERS = 1;
