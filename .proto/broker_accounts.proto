@@ -96,6 +96,8 @@ message BrokerAccountSearchRequest {
   google.protobuf.StringValue custodyName = 6;
 
   google.protobuf.Int64Value gas_station_id = 7;
+
+  google.protobuf.StringValue blockchain_id = 8;
 }
 
 message BrokerAccountSearchResponse {
