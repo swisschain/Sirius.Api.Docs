@@ -30,7 +30,7 @@ POST /api/withdrawals
 x-request-id: 1a5c0b3d15494ec8a390fd3b22d757d6
 
 {
-  "document": "{\"version\":\"1.0\",\"brokerAccountId\":100000162,\"accountId\":103000171,\"accountReferenceId\":99,\"withdrawalReferenceId\":76766,\"assetId\":112248,\"amount\":\"0.053\",\"destinationDetails\":{\"address\":\"0x45238387503b485ae1a279d8B420f0e8562bfa35\",\"tag\":null,\"tag_type\":null}}",
+  "document": "{\"version\":\"1.0\",\"brokerAccountId\":100000162,\"accountId\":103000171,\"accountReferenceId\":99,\"withdrawalReferenceId\":76766,\"assetId\":112248,\"amount\":\"0.053\",\"destinationDetails\":{\"address\":\"0x45238387503b485ae1a279d8B420f0e8562bfa35\",\"tag\":null,\"tag_type\":null},\"fee_payer\":\"sender\"}",
   "signature": "CBAirYR2d6vmRV6d1GEfdA3Kv11pOvdebhEyx8pGNKvTaQcbc0IiBUKCESX9eiOlxorkMDuOEMVs4HZ6JnKg6aY8akb72723cBTxvNIHb/P3OyHQWECcIKwmruWXEunWS8ZlFjxy/nWr/XGD0G8N8/xREGhGCcHCjdwrMmMQBSg="
 }
 
@@ -44,7 +44,7 @@ swisschain.sirius.api.withdrawals.Withdrawals.Execute
 
 message WithdrawalExecuteRequest {
     string request_id = 1; // 3a2b59a1-07e5-48b1-ba8b-4b3c750a2aa1
-    string document = 2; // "{\"version\":\"1.0\",\"brokerAccountId\":100000162,\"accountId\":103000171,\"accountReferenceId\":99,\"withdrawalReferenceId\":76766,\"assetId\":112248,\"amount\":\"0.053\",\"destinationDetails\":{\"address\":\"0x45238387503b485ae1a279d8B420f0e8562bfa35\",\"tag\":null,\"tag_type\":null}}"
+    string document = 2; // "{\"version\":\"1.0\",\"brokerAccountId\":100000162,\"accountId\":103000171,\"accountReferenceId\":99,\"withdrawalReferenceId\":76766,\"assetId\":112248,\"amount\":\"0.053\",\"destinationDetails\":{\"address\":\"0x45238387503b485ae1a279d8B420f0e8562bfa35\",\"tag\":null,\"tag_type\":null},\"fee_payer\":\"sender\"}"
     string signature = 3; // "CBAirYR2d6vmRV6d1GEfdA3Kv11pOvdebhEyx8pGNKvTaQcbc0IiBUKCESX9eiOlxorkMDuOEMVs4HZ6JnKg6aY8akb72723cBTxvNIHb/P3OyHQWECcIKwmruWXEunWS8ZlFjxy/nWr/XGD0G8N8/xREGhGCcHCjdwrMmMQBSg="
 }
 
@@ -74,7 +74,8 @@ Withdrawal document format:
         "address": "string",			// Blockchain address
         "tag": "string", 				// Optional
         "tagType": "string", 			// Optional - ("text", "number")
-    }
+    },
+    "feePayer": "sender",
 }
 ```
 
@@ -128,7 +129,8 @@ POST /api/withdrawals
   },
   "validatorContext":null,
   "createdAt":"2021-03-31T11:46:46.614955Z",
-  "updatedAt":"2021-03-31T11:46:46.614955Z"
+  "updatedAt":"2021-03-31T11:46:46.614955Z",
+  "feePayer": "sender"
 }
 ```
 
@@ -203,7 +205,8 @@ REST name | gRPC name | type | description
 `validatorContext` | `validator_context` | *string* | Details of validator response
 `createdAt` | `created_at` | *timestamp* | Datetime of withdrawal creation
 `updatedAt` | `updated_at` | *timestamp* | Datetime of latest withdrawal update
-
+`feePayer` | `fee_payer` | *string* | either 'sender' or 'recipient'
+''
 
 ## Searches withdrawals
 
@@ -257,7 +260,8 @@ swisschain.sirius.api.withdrawals.Withdrawals.Search
   },
   "user_native_id": {
     "value": "us1"
-  }
+  },
+  "fee_payer":"sender"
 }
 
 

@@ -46,7 +46,8 @@ X-TFA-code: 785441
     "destinationDetails":{
       "address":"0x663e933ECdc5b1acbaCB87F4aa1636cd05837613"
     },
-    "amount":0.1
+    "amount":0.1,
+    "feePayer":"sender"
   },
   "signature":"pqG0st53GVkdBHIqCHsg9cB4noO1nyXlM8UGkZ+bC0fmvCbuf0W78GYj8ZuCtPMWl0XDIh5hVjwsjIPhiUfCl5KVUIA8La3EunRJZ5UkW95IvjcPCn+z5atzb8JQxPee8q2ehaMY+UNH08p1VmIjqJE1eKFzzs8ZxITu0gtwbZ4="
 }
@@ -69,6 +70,7 @@ message WithdrawalDocument {
   int64 broker_account_id = 3; // 100000140
   DestinationDetails destination_details = 4;
   swisschain.sirius.api.common.BigDecimal amount = 5; // 0.1
+  swisschain.sirius.api.common.FeePayer fee_payer = 6;
 }
 
 message DestinationDetails {
