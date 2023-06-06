@@ -23,6 +23,7 @@ message WithdrawalDocument {
   int64 broker_account_id = 3;
   DestinationDetails destination_details = 4;
   swisschain.sirius.api.common.BigDecimal amount = 5;
+  swisschain.sirius.api.common.FeePayer fee_payer = 6;
 }
 
 message DestinationDetails {

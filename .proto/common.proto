@@ -149,3 +149,8 @@ message RequestContext {
   google.protobuf.StringValue ip = 3;
   google.protobuf.Timestamp timestamp = 4;
 }
+
+enum FeePayer {
+  SENDER = 0;
+  RECIPIENT = 1;
+}
