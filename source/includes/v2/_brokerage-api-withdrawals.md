@@ -98,13 +98,14 @@ REST name | gRPC name                    | type                                 
 `document.brokerAccountId` | `document.broker_account_id` | *int64*                                            | *body* | ID of the broker account to use
 `document.destinationDetails` | `document.destination_details` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
 `document.Amount` | `document.amount` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
+`document.FeePayer` | `document.feePayer` | "Sender" | "Recepient" | *body* |  how a fee should be applied to a withdrawal - if the fee should be added atop of the amount, or it should be deducted from the amount
 `signature` | `signature`                  | *optional*, *string*                               | *body* | Base64-encoded RSA signature of the data signed with the Customer's private key. The exact format of the data to be signed is described below.
 
 
 ### Signing data format
 Withdrawal signing data format (order of parameters is important):
 ```
-['36585f34-d311-433a-87f1-1751b08480c3','300578305','100000140','0x663e933ECdc5b1acbaCB87F4aa1636cd05837613',null,null,'0.1','UserId:test;WalletId:12345']
+['36585f34-d311-433a-87f1-1751b08480c3','300578305','100000140','0x663e933ECdc5b1acbaCB87F4aa1636cd05837613',null,null,'0.1','sender','UserId:test;WalletId:12345']
 ```
 
 Parameters used:
