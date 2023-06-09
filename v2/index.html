@@ -368,6 +368,14 @@
               </ul>
           </li>
           <li>
+            <a href="#smartcontracts" class="toc-h1 toc-link" data-title="SmartContracts">SmartContracts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#smartcontracts-invoke-smart-contract-method" class="toc-h2 toc-link" data-title="Invoke smart contract method">Invoke smart contract method</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#known-properties" class="toc-h1 toc-link" data-title="Known properties">Known properties</a>
           </li>
       </ul>
@@ -417,6 +425,75 @@ in which several chunks of data may appear separated by a semicolon (<code>;</co
 first one representing a collection of values and second one is a hashmap:</p>
 
 <p><code>[&#39;1.2;34.0;123.1;12.0&#39;,&#39;keyOne:valueOne;keyTwo:valueTwo&#39;]</code></p>
+<h3 id='v2-requests-signing-signing-format-guidelines-argument-parameter-values'>Argument parameter values</h3>
+<p>The arguments in the signing data represent inputs to the smart contract method being invoked. Similar to 
+complex parameters, smart contract argument parameter values are represented as a single parameter encased 
+with single quotes. Each Argument object consists of a parameter name and its corresponding value, and these 
+are separated by a colon (<code>:</code>).</p>
+
+<p>The Argument objects are sorted alphabetically by their parameter names. They are then appended to 
+the signing data format string, with each Argument object separated by a semicolon (<code>;</code>).</p>
+
+<p>Different types of arguments are formatted as follows:</p>
+
+<p><strong>Void</strong>: A void argument type doesn&#39;t have a value to be represented, so the value should not appear in the signing data. Example:
+<code>&#39;voidParameterName:&#39;</code></p>
+
+<p><strong>Bool</strong>: A boolean argument is represented as either <code>true</code> or <code>false</code>. Example:
+<code>&#39;flag:true&#39;</code></p>
+
+<p><strong>Bytes</strong>: Byte array arguments are Base64-encoded. Example:
+<code>&#39;byteArray:SGVsbG8=&#39;</code></p>
+
+<p>This is for the byte array equivalent of the string &quot;Hello&quot;.</p>
+
+<p><strong>Decimal</strong>: A BigDecimal argument is formatted with at least one fractional digit, even if the value is an integer. Example:
+<code>&#39;decimalValue:2.0&#39;</code></p>
+
+<p><strong>Int</strong>: A BigInteger argument is represented as is. Example:
+<code>&#39;intValue:123&#39;</code></p>
+
+<p><strong>String</strong>: String arguments are formatted in the same way as string parameters, i.e. with special characters escaped. Example:
+<code>&#39;stringValue:Hello\:world&#39;</code></p>
+
+<p><strong>Address</strong>: Ethereum address arguments are represented as is. Example:
+<code>&#39;address:0x663e933ECdc5b1acbaCB87F4aa1636cd05837613&#39;</code></p>
+
+<p><strong>Timestamp</strong>: A timestamp argument is represented in the same format it was passed to the API originally, 
+following RFC 3339 format used in <code>google.protobuf.Timestamp</code>, i.e. <code>{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z</code>. Example:
+<code>&#39;timestampParam:2017-01-15T01:30:15.01Z&#39;&#39;</code></p>
+
+<p><strong>Enum</strong>: An enumeration argument is represented as a string. Example:
+<code>&#39;enumValue:OPTION_ONE&#39;</code></p>
+
+<p><strong>Array</strong>: Array arguments are formatted as a string with elements separated by a semicolon (<code>;</code>). Example:
+<code>&#39;arrayArg:{value1;1234}&#39;</code></p>
+
+<p><strong>Composite</strong>: Composite arguments are objects that contain fields. These fields are sorted alphabetically 
+by name and formatted as a string of key-value pairs. Example:
+<code>&#39;composite:{&#39;field1&#39;:&#39;value1&#39;,&#39;field2&#39;:&#39;value2&#39;}&#39;</code></p>
+
+<p><strong>Map</strong>: Map arguments are formatted as a string with entries separated by a semicolon. Each entry is formatted 
+as a key-value pair with a colon separating the key from the value. Example:
+<code>&#39;arg1:{mapKeyB:mapValueB;mapKeyA:mapValueA}&#39;</code>
+NB: map arguments ARE NOT sorted alphabetically by the keys, since the keys can theoretically be of different type, including
+complex ones. Since it is not feasible to compare for instance an array with a timestamp for the purpose of sorting them, 
+it was decided to format map arguments in the order they were provided.</p>
+
+<p><strong>Either</strong>: An either argument can have one of two possible types. The value is formatted based on its actual type (as described above). The argument name indicates which type it is. Example:
+<code>&#39;arg1:{field1:value1}&#39;</code></p>
+
+<p>If the list of Argument objects is empty or null, it should be represented as null without quotes.</p>
+
+<p>The arguments&#39; values have to be formatted correctly based on their types. For instance, if the value is a BigDecimal,
+it is important to ensure that there&#39;s at least one fractional digit. If it&#39;s a String, the special characters have to be escaped.
+In case of complex types like Array, Composite, or Either, the elements inside are sorted alphabetically 
+by their keys before they are formatted for signing. However, the complex type of Map does not require sorting and it the 
+signing data will be constructed in the original order of key-value pairs of map.</p>
+
+<p>In the case where Argument objects contain complex parameter values like Array, Map, Composite, or Either, 
+each value is formatted and encased in curly brackets {}. Each value inside these complex types is separated 
+by a semicolon (;), and in the case of Map, Composite and Either, each key-value pair is separated by a colon (:).</p>
 <h3 id='v2-requests-signing-signing-format-guidelines-special-characters'>Special characters</h3>
 <p>Since original parameter values may contain special characters, used to encase values or denote boundaries between chunks 
 of data, their values have to be escaped with a backslash (<code>\</code>). The comprehensive list of special characters is defined below:
@@ -437,9 +514,23 @@ In the example below there are two parameters, the first one with value and the 
 
 <p>The absence of a complex parameter value (i.e. when a hashmap parameter is unset) should be treated in the same way.</p>
 <h3 id='v2-requests-signing-signing-format-guidelines-numeric-values'>Numeric values</h3>
-<p>Parameters with decimal (or BigDecimal) values with or without fractional part have to be formatted with at least one fractional digit. Usually such parameters represent amounts of assets.
-Thus, for example 2 has to become 2.0 in the signing data:
-<code>[&#39;2.0&#39;]</code></p>
+<p>Numeric parameters, specifically those with data types that can contain a fractional part (such as decimal, double, float, etc.),
+must be formatted with at least one decimal digit, regardless of whether they have a fractional part or not.
+These parameters often represent quantities, such as asset amounts.</p>
+
+<p>For example, a decimal value of 2 should be represented as 2.0 in the signing data:</p>
+
+<p><code>[&#39;2.0&#39;]</code></p>
+
+<p>This rule ensures consistency in how numeric values are presented in the signing data.</p>
+
+<p>On the other hand, numeric data types that do not support a fractional part (e.g., integer, long, short, etc.) 
+must be formatted without a fractional part and without a decimal separator symbol. For instance, an integer value 
+of 2 should remain as 2 in the signing data:</p>
+
+<p><code>[&#39;2&#39;]</code></p>
+
+<p>It&#39;s important to distinguish between these two cases to prevent any ambiguity when processing the signing data.</p>
 <h3 id='v2-requests-signing-signing-format-guidelines-configurable-properties'>Configurable properties</h3>
 <p>Most API V2 requests support assigning custom properties in the form of set of key-value pairs. Since 
 assigning properties can change the way request will be handled on the serverside (see <em><a href="_known-properties.md">known properties</a></em>),
@@ -1367,7 +1458,256 @@ These key-value pairs will be sorted during signature validation internally on t
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='known-properties'>Known properties</h1>
+<h1 id='smartcontracts'>SmartContracts</h1>
+<p><Placeholder_for_description></p>
+<h2 id='smartcontracts-invoke-smart-contract-method'>Invoke smart contract method</h2><h3 id='smartcontracts-invoke-smart-contract-method-request'>Request</h3>
+<p><strong>Rest API:</strong> <code>POST /api/v2/smart-contracts/{smartContractId}/invoke</code>
+<strong>gRPC API:</strong> <code>Swisschain.Sirius.Api.ApiContract.V2.SmartContracts.Invoke</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/v</span><span class="mi">2</span><span class="err">/smart-contracts/</span><span class="p">{</span><span class="err">smartContractId</span><span class="p">}</span><span class="err">/invoke</span><span class="w">
+
+</span><span class="err">&gt;</span><span class="w"> </span><span class="err">Request:</span><span class="w"> </span><span class="err">(application/json,</span><span class="w"> </span><span class="err">text/plain,</span><span class="w"> </span><span class="err">*/*)</span><span class="w">
+
+</span><span class="err">x-idempotency-id:</span><span class="w"> </span><span class="mi">1</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">0</span><span class="err">b</span><span class="mi">3</span><span class="err">d</span><span class="mi">15494</span><span class="err">ec</span><span class="mi">8</span><span class="err">a</span><span class="mi">390</span><span class="err">fd</span><span class="mi">3</span><span class="err">b</span><span class="mi">22</span><span class="err">d</span><span class="mi">757</span><span class="err">d</span><span class="mi">6</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"Document"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"prop1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prop2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"MethodName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mint"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"MethodAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40c10f19"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"BrokerAccountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000074</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ReferenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1a5c0b3d15494ec8a390fd3b22d757d6"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ParameterName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Prototype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x94afa005a395e470EB56a26E9081dC650EF84732"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ParameterName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Prototype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Int"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000000000000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"Payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"AssetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">300000010</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyContractInvocation"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JiOtcENJqblnWFcTZ4DiXwUZudlKBUtYnSkUjmfAH/8a1jeMPwFBu8MGjffITh3PRl/VLRTj8kjKWFT8EUR/8Qb3E8dTeuBlCIDU2RlHRRfb6iuTvjlPmUYQ/+Es6oZlH+Tapvjfa57N19poNZ7zimqadsASe3FGt0ME9J5vufE="</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">SmartContractInvokeRequest</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="na">idempotency_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">SmartContractInvocationDocument</span> <span class="na">document</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">bytes</span> <span class="na">signature</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">int64</span> <span class="na">smart_contract_id</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractInvocationDocument</span> <span class="p">{</span>
+  <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">method_name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">method_address</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="n">swisschain.sirius.api.smart_connect.data_model.Argument</span> <span class="na">arguments</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">swisschain.sirius.api.smart_contracts.common.Payment</span> <span class="na">payment</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">google.protobuf.StringValue</span> <span class="na">reference_id</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="n">map</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="kt">string</span><span class="err">&gt;</span> <span class="na">properties</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">// example:</span>
+<span class="p">{</span>
+  <span class="s">"idempotency_id"</span><span class="o">:</span> <span class="s">"60f0cea8-1836-4ff5-b81d-422c1f705bce"</span><span class="p">,</span>
+  <span class="s">"document"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s">"broker_account_id"</span><span class="o">:</span> <span class="mi">100000074</span><span class="p">,</span>
+    <span class="s">"method_name"</span><span class="o">:</span> <span class="s">"mint"</span><span class="p">,</span>
+    <span class="s">"method_address"</span><span class="o">:</span> <span class="s">"40c10f19"</span><span class="p">,</span>
+    <span class="s">"arguments"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s">"parameterName"</span><span class="o">:</span> <span class="s">"account"</span><span class="p">,</span>
+        <span class="s">"value"</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s">"prototype"</span><span class="o">:</span> <span class="s">"address"</span><span class="p">,</span>
+          <span class="s">"address"</span><span class="o">:</span> <span class="s">"0x94afa005a395e470EB56a26E9081dC650EF84732"</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s">"parameterName"</span><span class="o">:</span> <span class="s">"amount"</span><span class="p">,</span>
+        <span class="s">"value"</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s">"prototype"</span><span class="o">:</span> <span class="s">"int"</span><span class="p">,</span>
+          <span class="s">"int"</span><span class="o">:</span> <span class="mi">100000000000000000</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s">"payment"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s">"assetId"</span><span class="o">:</span> <span class="mi">300000010</span><span class="p">,</span>
+      <span class="s">"amount"</span><span class="o">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="s">"reference_id"</span><span class="o">:</span> <span class="s">"1234"</span><span class="p">,</span>
+    <span class="s">"properties"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s">"exampleKey"</span><span class="o">:</span> <span class="s">"exampleValue"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s">"signature"</span><span class="o">:</span> <span class="s">"JiOtcENJqblnWFcTZ4DiXwUZudlKBUtYnSkUjmfAH/8a1jeMPwFBu8MGjffITh3PRl/VLRTj8kjKWFT8EUR/8Qb3E8dTeuBlCIDU2RlHRRfb6iuTvjlPmUYQ/+Es6oZlH+Tapvjfa57N19poNZ7zimqadsASe3FGt0ME9J5vufE="</span><span class="p">,</span>
+  <span class="s">"smart_contract_id"</span><span class="o">:</span> <span class="mi">109000043</span><span class="p">,</span>
+  <span class="s">"name"</span><span class="o">:</span> <span class="s">"ExampleName"</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='smartcontracts-invoke-smart-contract-method-query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>gRPC name</th>
+<th>REST name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Location</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>idempotency_id</code></td>
+<td><code>idempotencyId</code></td>
+<td>string</td>
+<td>Unique ID for idempotency</td>
+<td>header</td>
+</tr>
+<tr>
+<td><code>smart_contract_id</code></td>
+<td><code>smartContractId</code></td>
+<td>int64</td>
+<td>ID of the deployed smart contract</td>
+<td>path</td>
+</tr>
+<tr>
+<td><code>document.broker_account_id</code></td>
+<td><code>document.brokerAccountId</code></td>
+<td>int64</td>
+<td>Broker account ID</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>document.method_name</code></td>
+<td><code>document.methodName</code></td>
+<td>string</td>
+<td>Method name to be invoked</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>document.method_address</code></td>
+<td><code>document.methodAddress</code></td>
+<td>string</td>
+<td>Method address to be invoked</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>document.arguments</code></td>
+<td><code>document.arguments</code></td>
+<td><em>repeated</em>, <em><a href="#argument">Argument</a></em></td>
+<td>Arguments to the method invocation</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>document.payment</code></td>
+<td><code>document.payment</code></td>
+<td><em><a href="#payment">Payment</a></em></td>
+<td>Payment for the smart contract</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>document.reference_id</code></td>
+<td><code>document.referenceId</code></td>
+<td>string</td>
+<td>Reference ID</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>document.properties</code></td>
+<td><code>document.properties</code></td>
+<td>map<string, string></td>
+<td>Properties of the smart contract</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td><code>signature</code></td>
+<td>bytes</td>
+<td>Base64-encoded RSA signature of the document signed with the Customer&#39;s private key</td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td>string</td>
+<td>Name</td>
+<td>body</td>
+</tr>
+</tbody></table>
+<h3 id='smartcontracts-invoke-smart-contract-method-response'>Response</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"SmartContractInvocationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight protobuf tab-protobuf"><code><span class="kd">message</span> <span class="nc">SmartContractInvokeResponse</span> <span class="p">{</span>
+  <span class="k">oneof</span> <span class="n">kind</span> <span class="p">{</span>
+    <span class="n">SmartContractInvokePayload</span> <span class="na">payload</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">SmartContractInvokeError</span> <span class="na">error</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractInvokePayload</span> <span class="p">{</span>
+  <span class="n">int63</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">message</span> <span class="nc">SmartContractInvokeError</span> <span class="p">{</span>
+  <span class="kd">enum</span> <span class="n">ErrorCode</span> <span class="p">{</span>
+    <span class="na">UNKNOWN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="na">INVALID_PARAMETERS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">DOMAIN_PROBLEM</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="na">TECHNICAL_PROBLEM</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="na">NOT_AUTHORIZED</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="na">NOT_ENOUGH_BALANCE</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">ErrorCode</span> <span class="na">code</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="kd">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id='smartcontracts-invoke-smart-contract-method-signing-data-format'>Signing data format</h3>
+<p>Smart Contract Invocation V2 signing data format (order of parameters is important):</p>
+<div class="highlight"><pre class="highlight plaintext"><code>
+
+Parameters used:
+
+0: IdempotencyId `422895a404f220d08763`
+
+1: MethodName `createForgeBond`
+
+2: MethodAddress `0x6ff569ba`
+
+3: BrokerAccountId `100000077`
+
+4: ReferenceId `null`
+
+5: Arguments `basicTokenInput:{...};registryAddress:0x99b7a5170d2F89bB22a295DE41B548eB4A345bc0`
+
+6: AssetId `300638515`
+
+7: PaymentAmount `0.0`
+
+8: Properties `CastOperationType:Issuance;FactoryAddress:0xAd3df4b196d2fbafecd6CFa6914B73d2d5812da3;...`
+
+When constructing the signing data, ensure the properties are sorted alphabetically by keys. Despite gRPC and REST APIs accepting properties as a hashmap of unordered key-value pairs, these pairs will be internally sorted during signature validation on the server-side.
+
+This signing data format is used whenever a client wishes to execute a signed Smart Contract Invocation V2. The signing data must be created on the client side and signed with the customer's private key.
+
+Notes on the signing data format:
+
+- Please use `null` without quotes for parameters without value (including properties)
+- Please format numeric values according to their type. Numeric data types that can contain a fractional part (e.g., decimal, double, float, etc.) must be formatted with at least one decimal digit. Numeric data types that cannot contain a fractional part (e.g., integer, long, short) must be formatted without a fractional part and without a decimal separator.
+
+For more information on the signing data format and its usage, please refer to the page dedicated to *[signing data formats](_signing-data.md)*.
+</code></pre></div><h1 id='known-properties'>Known properties</h1>
 <p>V2 API allows assigning custom properties to some requests in the form
 of set of key-value pairs where both key and value are strings. Users can provide custom
 keys or use some known properties with predefined behaviour and functionality.</p>
