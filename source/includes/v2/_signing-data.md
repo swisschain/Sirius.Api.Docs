@@ -36,6 +36,81 @@ first one representing a collection of values and second one is a hashmap:
 
 `['1.2;34.0;123.1;12.0','keyOne:valueOne;keyTwo:valueTwo']`
 
+### Argument parameter values
+
+The arguments in the signing data represent inputs to the smart contract method being invoked. Similar to 
+complex parameters, smart contract argument parameter values are represented as a single parameter encased 
+with single quotes. Each Argument object consists of a parameter name and its corresponding value, and these 
+are separated by a colon (`:`).
+
+The Argument objects are sorted alphabetically by their parameter names. They are then appended to 
+the signing data format string, with each Argument object separated by a semicolon (`;`).
+
+Different types of arguments are formatted as follows:
+
+**Void**: A void argument type doesn't have a value to be represented, so the value should not appear in the signing data. Example:
+```'voidParameterName:'```
+
+
+**Bool**: A boolean argument is represented as either `true` or `false`. Example:
+```'flag:true'```
+
+**Bytes**: Byte array arguments are Base64-encoded. Example:
+```'byteArray:SGVsbG8='```
+
+This is for the byte array equivalent of the string "Hello".
+
+**Decimal**: A BigDecimal argument is formatted with at least one fractional digit, even if the value is an integer. Example:
+```'decimalValue:2.0'```
+
+**Int**: A BigInteger argument is represented as is. Example:
+```'intValue:123'```
+
+**String**: String arguments are formatted in the same way as string parameters, i.e. with special characters escaped. Example:
+```'stringValue:Hello\:world'```
+
+**Address**: Ethereum address arguments are represented as is. Example:
+```'address:0x663e933ECdc5b1acbaCB87F4aa1636cd05837613'```
+
+
+**Timestamp**: A timestamp argument is represented in the same format it was passed to the API originally, 
+following RFC 3339 format used in `google.protobuf.Timestamp`, i.e. `{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z`. Example:
+```'timestampParam:2017-01-15T01:30:15.01Z''```
+
+**Enum**: An enumeration argument is represented as a string. Example:
+```'enumValue:OPTION_ONE'```
+
+**Array**: Array arguments are formatted as a string with elements separated by a semicolon (`;`). Example:
+```'arrayArg:{value1;1234}'```
+
+**Composite**: Composite arguments are objects that contain fields. These fields are sorted alphabetically 
+by name and formatted as a string of key-value pairs. Example:
+```'composite:{'field1':'value1','field2':'value2'}'```
+
+
+**Map**: Map arguments are formatted as a string with entries separated by a semicolon. Each entry is formatted 
+as a key-value pair with a colon separating the key from the value. Example:
+```'arg1:{mapKeyB:mapValueB;mapKeyA:mapValueA}'```
+NB: map arguments ARE NOT sorted alphabetically by the keys, since the keys can theoretically be of different type, including
+complex ones. Since it is not feasible to compare for instance an array with a timestamp for the purpose of sorting them, 
+it was decided to format map arguments in the order they were provided.
+
+
+**Either**: An either argument can have one of two possible types. The value is formatted based on its actual type (as described above). The argument name indicates which type it is. Example:
+```'arg1:{field1:value1}'```
+
+If the list of Argument objects is empty or null, it should be represented as null without quotes.
+
+The arguments' values have to be formatted correctly based on their types. For instance, if the value is a BigDecimal,
+it is important to ensure that there's at least one fractional digit. If it's a String, the special characters have to be escaped.
+In case of complex types like Array, Composite, or Either, the elements inside are sorted alphabetically 
+by their keys before they are formatted for signing. However, the complex type of Map does not require sorting and it the 
+signing data will be constructed in the original order of key-value pairs of map.
+
+In the case where Argument objects contain complex parameter values like Array, Map, Composite, or Either, 
+each value is formatted and encased in curly brackets {}. Each value inside these complex types is separated 
+by a semicolon (;), and in the case of Map, Composite and Either, each key-value pair is separated by a colon (:).
+
 ### Special characters
 
 Since original parameter values may contain special characters, used to encase values or denote boundaries between chunks 
@@ -61,9 +136,23 @@ The absence of a complex parameter value (i.e. when a hashmap parameter is unset
 
 ### Numeric values
 
-Parameters with decimal (or BigDecimal) values with or without fractional part have to be formatted with at least one fractional digit. Usually such parameters represent amounts of assets.
-Thus, for example 2 has to become 2.0 in the signing data:
+Numeric parameters, specifically those with data types that can contain a fractional part (such as decimal, double, float, etc.),
+must be formatted with at least one decimal digit, regardless of whether they have a fractional part or not.
+These parameters often represent quantities, such as asset amounts.
+
+For example, a decimal value of 2 should be represented as 2.0 in the signing data:
+
 `['2.0']`
+
+This rule ensures consistency in how numeric values are presented in the signing data.
+
+On the other hand, numeric data types that do not support a fractional part (e.g., integer, long, short, etc.) 
+must be formatted without a fractional part and without a decimal separator symbol. For instance, an integer value 
+of 2 should remain as 2 in the signing data:
+
+`['2']`
+
+It's important to distinguish between these two cases to prevent any ambiguity when processing the signing data.
 
 ### Configurable properties
 
