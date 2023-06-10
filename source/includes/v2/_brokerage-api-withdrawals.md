@@ -98,7 +98,7 @@ REST name | gRPC name                    | type                                 
 `document.brokerAccountId` | `document.broker_account_id` | *int64*                                            | *body* | ID of the broker account to use
 `document.destinationDetails` | `document.destination_details` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
 `document.Amount` | `document.amount` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
-`document.FeePayer` | `document.feePayer` | "Sender" | "Recepient" | *body* |  how a fee should be applied to a withdrawal - if the fee should be added atop of the amount, or it should be deducted from the amount
+`document.FeePayer` | `document.feePayer` | "sender" | "recepient" | *body* |  how a fee should be applied to a withdrawal - if the fee should be added atop of the amount, or it should be deducted from the amount
 `signature` | `signature`                  | *optional*, *string*                               | *body* | Base64-encoded RSA signature of the data signed with the Customer's private key. The exact format of the data to be signed is described below.
 
 
@@ -122,7 +122,7 @@ Parameters used:
 5: DestinationTagType `null`
 
 6: Amount: `0.1`
-7: FeePayer: `Sender`
+7: FeePayer: `sender`
 
 8: Properties:
 
