@@ -122,12 +122,13 @@ Parameters used:
 5: DestinationTagType `null`
 
 6: Amount: `0.1`
+7: FeePayer: `Sender`
 
-7: Properties:
+8: Properties:
 
-7.1: UserId: `test` (corresponds to UserNativeId)
+8.1: UserId: `test` (corresponds to UserNativeId)
 
-7.2: WalletId: `12345` (corresponds to AccountReferenceId)
+8.2: WalletId: `12345` (corresponds to AccountReferenceId)
 
 When putting together signing data, it is required to sort properties alphabetically by keys. 
 However, gRPC and REST APIs accept properties as hashmap of unordered key-value pairs.
