@@ -46,7 +46,8 @@ X-TFA-code: 785441
     "destinationDetails":{
       "address":"0x663e933ECdc5b1acbaCB87F4aa1636cd05837613"
     },
-    "amount":0.1
+    "amount":0.1,
+    "feePayer":"sender"
   },
   "signature":"pqG0st53GVkdBHIqCHsg9cB4noO1nyXlM8UGkZ+bC0fmvCbuf0W78GYj8ZuCtPMWl0XDIh5hVjwsjIPhiUfCl5KVUIA8La3EunRJZ5UkW95IvjcPCn+z5atzb8JQxPee8q2ehaMY+UNH08p1VmIjqJE1eKFzzs8ZxITu0gtwbZ4="
 }
@@ -69,6 +70,7 @@ message WithdrawalDocument {
   int64 broker_account_id = 3; // 100000140
   DestinationDetails destination_details = 4;
   swisschain.sirius.api.common.BigDecimal amount = 5; // 0.1
+  swisschain.sirius.api.common.FeePayer fee_payer = 6;
 }
 
 message DestinationDetails {
@@ -96,13 +98,14 @@ REST name | gRPC name                    | type                                 
 `document.brokerAccountId` | `document.broker_account_id` | *int64*                                            | *body* | ID of the broker account to use
 `document.destinationDetails` | `document.destination_details` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
 `document.Amount` | `document.amount` | *[DestinationDetails](#destinationdetails-object)* | *body* | destination parameters of the withdrawal (address and tag info)
+`document.FeePayer` | `document.feePayer` | "sender" | "recepient" | *body* |  how a fee should be applied to a withdrawal - if the fee should be added atop of the amount, or it should be deducted from the amount
 `signature` | `signature`                  | *optional*, *string*                               | *body* | Base64-encoded RSA signature of the data signed with the Customer's private key. The exact format of the data to be signed is described below.
 
 
 ### Signing data format
 Withdrawal signing data format (order of parameters is important):
 ```
-['36585f34-d311-433a-87f1-1751b08480c3','300578305','100000140','0x663e933ECdc5b1acbaCB87F4aa1636cd05837613',null,null,'0.1','UserId:test;WalletId:12345']
+['36585f34-d311-433a-87f1-1751b08480c3','300578305','100000140','0x663e933ECdc5b1acbaCB87F4aa1636cd05837613',null,null,'0.1','sender','UserId:test;WalletId:12345']
 ```
 
 Parameters used:
@@ -119,12 +122,13 @@ Parameters used:
 5: DestinationTagType `null`
 
 6: Amount: `0.1`
+7: FeePayer: `sender`
 
-7: Properties:
+8: Properties:
 
-7.1: UserId: `test` (corresponds to UserNativeId)
+8.1: UserId: `test` (corresponds to UserNativeId)
 
-7.2: WalletId: `12345` (corresponds to AccountReferenceId)
+8.2: WalletId: `12345` (corresponds to AccountReferenceId)
 
 When putting together signing data, it is required to sort properties alphabetically by keys. 
 However, gRPC and REST APIs accept properties as hashmap of unordered key-value pairs.
