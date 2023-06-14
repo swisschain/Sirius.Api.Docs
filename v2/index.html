@@ -1254,7 +1254,8 @@ be used to enable AML verification procedure.</p>
     </span><span class="nl">"destinationDetails"</span><span class="p">:{</span><span class="w">
       </span><span class="nl">"address"</span><span class="p">:</span><span class="s2">"0x663e933ECdc5b1acbaCB87F4aa1636cd05837613"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="mf">0.1</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"feePayer"</span><span class="p">:</span><span class="s2">"sender"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"signature"</span><span class="p">:</span><span class="s2">"pqG0st53GVkdBHIqCHsg9cB4noO1nyXlM8UGkZ+bC0fmvCbuf0W78GYj8ZuCtPMWl0XDIh5hVjwsjIPhiUfCl5KVUIA8La3EunRJZ5UkW95IvjcPCn+z5atzb8JQxPee8q2ehaMY+UNH08p1VmIjqJE1eKFzzs8ZxITu0gtwbZ4="</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1274,6 +1275,7 @@ be used to enable AML verification procedure.</p>
   <span class="kt">int64</span> <span class="na">broker_account_id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 100000140</span>
   <span class="n">DestinationDetails</span> <span class="na">destination_details</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
   <span class="n">swisschain.sirius.api.common.BigDecimal</span> <span class="na">amount</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// 0.1</span>
+  <span class="n">swisschain.sirius.api.common.FeePayer</span> <span class="na">fee_payer</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">message</span> <span class="nc">DestinationDetails</span> <span class="p">{</span>
@@ -1360,6 +1362,13 @@ be used to enable AML verification procedure.</p>
 <td>destination parameters of the withdrawal (address and tag info)</td>
 </tr>
 <tr>
+<td><code>document.FeePayer</code></td>
+<td><code>document.feePayer</code></td>
+<td>&quot;sender&quot;</td>
+<td>&quot;recepient&quot;</td>
+<td><em>body</em></td>
+</tr>
+<tr>
 <td><code>signature</code></td>
 <td><code>signature</code></td>
 <td><em>optional</em>, <em>string</em></td>
@@ -1370,7 +1379,7 @@ be used to enable AML verification procedure.</p>
 <h3 id='withdrawals-starts-a-withdrawal-signing-data-format'>Signing data format</h3>
 <p>Withdrawal signing data format (order of parameters is important):
 <code>
-[&#39;36585f34-d311-433a-87f1-1751b08480c3&#39;,&#39;300578305&#39;,&#39;100000140&#39;,&#39;0x663e933ECdc5b1acbaCB87F4aa1636cd05837613&#39;,null,null,&#39;0.1&#39;,&#39;UserId:test;WalletId:12345&#39;]
+[&#39;36585f34-d311-433a-87f1-1751b08480c3&#39;,&#39;300578305&#39;,&#39;100000140&#39;,&#39;0x663e933ECdc5b1acbaCB87F4aa1636cd05837613&#39;,null,null,&#39;0.1&#39;,&#39;sender&#39;,&#39;UserId:test;WalletId:12345&#39;]
 </code></p>
 
 <p>Parameters used:
@@ -1386,13 +1395,14 @@ be used to enable AML verification procedure.</p>
 
 <p>5: DestinationTagType <code>null</code></p>
 
-<p>6: Amount: <code>0.1</code></p>
+<p>6: Amount: <code>0.1</code>
+7: FeePayer: <code>sender</code></p>
 
-<p>7: Properties:</p>
+<p>8: Properties:</p>
 
-<p>7.1: UserId: <code>test</code> (corresponds to UserNativeId)</p>
+<p>8.1: UserId: <code>test</code> (corresponds to UserNativeId)</p>
 
-<p>7.2: WalletId: <code>12345</code> (corresponds to AccountReferenceId)</p>
+<p>8.2: WalletId: <code>12345</code> (corresponds to AccountReferenceId)</p>
 
 <p>When putting together signing data, it is required to sort properties alphabetically by keys. 
 However, gRPC and REST APIs accept properties as hashmap of unordered key-value pairs.
