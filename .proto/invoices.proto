@@ -1,0 +1,139 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Swisschain.Sirius.Api.ApiContract.V2.Invoices";
+
+import "common.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+package swisschain.sirius.api.v2.invoices;
+
+service InvoiceService {
+    rpc Create (InvoiceCreateRequest) returns (InvoiceCreateResponse);
+    rpc Cancel (InvoiceCancelRequest) returns (InvoiceCancelResponse);
+    rpc ManuallyConsiderPaid (InvoiceManuallyConsiderPaidRequest) returns (InvoiceManuallyConsiderPaidResponse);
+    rpc GetInvoiceDetails(InvoiceDetailsRequest) returns (InvoiceDetailsResponse);
+}
+
+message InvoiceCreateRequest {
+  string idempotency_id = 1;
+  int64 merchant_id = 2;
+  string invoice_number = 3;
+  swisschain.sirius.api.common.BigDecimal amount = 4;
+  int64 asset_id = 5;
+  google.protobuf.Timestamp expiration_date = 6;
+  map<string, string> properties = 7;
+}
+
+message InvoiceCreateResponse {
+  oneof result {
+    InvoiceCreatePayload payload = 1;
+    InvoiceError error = 2;
+  }
+}
+
+message InvoiceCreatePayload {
+  int64 id = 1;
+}
+message InvoiceCancelRequest {
+  string idempotency_id = 1;
+  int64 invoice_id = 2;
+}
+
+message InvoiceCancelResponse {
+  oneof result {
+    InvoiceCancelPayload payload = 1;
+    InvoiceError error = 2;
+  }
+}
+
+message InvoiceCancelPayload {
+  int64 id = 1;
+}
+
+message InvoiceError {
+  enum ErrorCode {
+    UNKNOWN = 0;
+    INVALID_PARAMETERS = 1;
+    DOMAIN_PROBLEM = 2;
+    TECHNICAL_PROBLEM = 3;
+    NOT_AUTHORIZED = 4;
+  }
+
+  ErrorCode code = 1;
+  string message = 2;
+}
+
+message InvoiceManuallyConsiderPaidRequest {
+  string idempotency_id = 1;
+  int64 invoice_id = 2;
+}
+
+message InvoiceManuallyConsiderPaidResponse {
+  oneof result {
+    InvoiceManuallyConsiderPaidPayload payload = 1;
+    InvoiceError error = 2;
+  }
+}
+
+message InvoiceManuallyConsiderPaidPayload {
+  int64 id = 1;
+}
+
+message InvoiceDetailsRequest {
+  int64 invoice_id = 1;
+}
+
+message InvoiceDetailsResponse {
+  oneof result {
+    InvoiceDetailsPayload payload = 1;
+    InvoiceError error = 2;
+  }
+}
+
+message InvoiceDetailsPayload {
+  int64 id = 1;
+  InvoiceState state = 2;
+  int32 sequence = 3;
+  string invoice_number = 4;
+  swisschain.sirius.api.common.BigDecimal invoiced_amount = 5;
+  int64 invoiced_asset_id = 6;
+  int64 merchant_id = 7;
+  google.protobuf.Int64Value leased_account_id = 8;
+  repeated InvoicePaymentMethod payment_methods = 9;
+  google.protobuf.Timestamp expiration_date = 10;
+  google.protobuf.Timestamp paid_date = 11;
+  OptionalInvoiceErrorCode error = 12;
+  map<string, string> properties = 13;
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp updated_at = 15;
+}
+
+message InvoicePaymentMethod {
+  int64 account_details_id = 1;
+  string address = 2;
+  int64 asset_id = 3;
+  string asset_symbol = 4;
+  swisschain.sirius.api.common.BigDecimal amount = 5;
+  string blockchain_id = 6;
+  string blockchain_name = 7;
+}
+
+enum InvoiceState {
+  UNKNOWN = 0;
+  CREATING = 1;
+  NEW = 2;
+  MANUAL_ACTION_REQUIRED = 3;
+  PAYMENT_DETECTED = 4;
+  PAID = 5;
+  CANCELLED = 6;
+  EXPIRED = 7;
+}
+
+message OptionalInvoiceErrorCode {
+    enum InvoiceErrorCode {
+      UNKNOWN = 0;
+      OVERPAID = 1;
+    }
+    InvoiceErrorCode code = 1;
+}
