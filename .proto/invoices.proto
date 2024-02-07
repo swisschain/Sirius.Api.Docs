@@ -12,6 +12,8 @@ service InvoiceService {
     rpc Create (InvoiceCreateRequest) returns (InvoiceCreateResponse);
     rpc Cancel (InvoiceCancelRequest) returns (InvoiceCancelResponse);
     rpc ManuallyConsiderPaid (InvoiceManuallyConsiderPaidRequest) returns (InvoiceManuallyConsiderPaidResponse);
+    rpc ProlongExpiration (InvoiceProlongExpirationRequest) returns (InvoiceProlongExpirationResponse);
+    rpc ReCreateExpired (InvoiceReCreateExpiredRequest) returns (InvoiceReCreateExpiredResponse);
     rpc GetInvoiceDetails(InvoiceDetailsRequest) returns (InvoiceDetailsResponse);
 }
 
@@ -78,6 +80,38 @@ message InvoiceManuallyConsiderPaidResponse {
 
 message InvoiceManuallyConsiderPaidPayload {
   int64 id = 1;
+}
+
+message InvoiceProlongExpirationRequest {
+  string idempotency_id = 1;
+  int64 invoice_id = 2;
+  google.protobuf.Timestamp new_expiration_date = 3;
+}
+
+message InvoiceProlongExpirationResponse {
+  oneof result {
+    InvoiceProlongExpirationPayload payload = 1;
+    InvoiceError error = 2;
+  }
+}
+
+message InvoiceProlongExpirationPayload {
+}
+
+message InvoiceReCreateExpiredRequest {
+  string idempotency_id = 1;
+  int64 invoice_id = 2;
+  google.protobuf.Timestamp new_expiration_date = 3;
+}
+
+message InvoiceReCreateExpiredResponse {
+  oneof result {
+    InvoiceReCreateExpiredPayload payload = 1;
+    InvoiceError error = 2;
+  }
+}
+
+message InvoiceReCreateExpiredPayload {
 }
 
 message InvoiceDetailsRequest {
