@@ -164,6 +164,11 @@ message BrokerAccountGetBalancesRequest {
   google.protobuf.Int64Value assetId = 2;
 
   swisschain.sirius.api.common.PaginationInt64 pagination = 3;
+
+  google.protobuf.StringValue blockchainId = 4;
+
+
+  google.protobuf.BoolValue excludeUnknownAssets = 5;
 }
 
 message BrokerAccountGetBalancesResponse {
