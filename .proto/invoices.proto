@@ -25,6 +25,7 @@ message InvoiceCreateRequest {
   int64 asset_id = 5;
   google.protobuf.Timestamp expiration_date = 6;
   map<string, string> properties = 7;
+  google.protobuf.StringValue description = 8;
 }
 
 message InvoiceCreateResponse {
@@ -141,6 +142,7 @@ message InvoiceDetailsPayload {
   map<string, string> properties = 13;
   google.protobuf.Timestamp created_at = 14;
   google.protobuf.Timestamp updated_at = 15;
+  google.protobuf.StringValue description = 16;
 }
 
 message InvoicePaymentMethod {
